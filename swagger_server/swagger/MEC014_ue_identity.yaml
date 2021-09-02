@@ -1,0 +1,315 @@
+openapi: 3.0.2
+info:
+  title: UE Identity API
+  description: The ETSI MEC ISG MEC014 UE Identity API described using OpenAPI
+  contact:
+    email: cti_support@etsi.org
+  license:
+    name: BSD-3-Clause
+    url: https://forge.etsi.org/legal-matters
+  version: 1.1.1
+externalDocs:
+  description: "ETSI GS MEC014 UE Identity API, V1.1.1"
+  url: http://www.etsi.org/deliver/etsi_gs/MEC/001_099/014/01.01.01_60/gs_mec014v010101p.pdf
+servers:
+- url: http://127.0.0.1:8081/ui/v1
+- url: https://127.0.0.1:8081/ui/v1
+security:
+- OauthSecurity:
+  - all
+tags:
+- name: ueIdentityTagInfo
+paths:
+  /{appInstanceId}/ue_identity_tag_info:
+    get:
+      tags:
+      - ueIdentityTagInfo
+      description: Retrieves information about a specific UeIdentityTagInfo resource
+      operationId: ue_identity_tag_info_get
+      parameters:
+      - name: appInstanceId
+        in: path
+        description: Represents a mobile edge application instance
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: ueIdentityTag
+        in: query
+        description: Represents a UE
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        "200":
+          description: It is used to indicate nonspecific success. The response body
+            contains a representation of the UeIdentityTagInfo resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UeIdentityTagInfo'
+        "400":
+          description: "Bad Request. Incorrect parameters were passed in the request.In\
+            \ the returned ProblemDetails structure, the \"detail\" attribute should\
+            \ convey more information about the error."
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Empty'
+        "403":
+          description: Forbidden. The operation is not allowed given the current status
+            of the resource. More information should be provided in the "detail" attribute
+            of the "ProblemDetails" structure.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "404":
+          description: "Not Found. The client provided a URI that cannot be mapped\
+            \ to a valid resource URL. In the returned ProblemDetails structure, the\
+            \ \"detail\" attribute should convey more information about the error."
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Empty'
+      x-openapi-router-controller: swagger_server.controllers.MEC014_ue_identity.ue_identity_tag_info_controller
+    put:
+      tags:
+      - ueIdentityTagInfo
+      description: Register/De-register the information about specific a UeIdentityTagInfo
+        resource
+      operationId: ue_identity_tag_info_put
+      parameters:
+      - name: appInstanceId
+        in: path
+        description: Represents a mobile edge application instance
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: '''The updated "state" for each included UE Identity tag is included
+          in the entity body of the request'''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UeIdentityTagInfo'
+        required: true
+      responses:
+        "200":
+          description: It is used to indicate success. The response body contains
+            a representation of the UeIdentityTagInfo resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UeIdentityTagInfo'
+        "400":
+          description: "Bad Request. Incorrect parameters were passed in the request.In\
+            \ the returned ProblemDetails structure, the \"detail\" attribute should\
+            \ convey more information about the error."
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Empty'
+        "403":
+          description: Forbidden. The operation is not allowed given the current status
+            of the resource. More information should be provided in the "detail" attribute
+            of the "ProblemDetails" structure.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "404":
+          description: "Not Found. The client provided a URI that cannot be mapped\
+            \ to a valid resource URL. In the returned ProblemDetails structure, the\
+            \ \"detail\" attribute should convey more information about the error."
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Empty'
+        "412":
+          description: "Precondition Failed. It is used when a condition has failed\
+            \ during conditional requests, e.g. when using ETags to avoid write conflicts.In\
+            \ the returned ProblemDetails structure, the \"detail\" attribute should\
+            \ convey more information about the error."
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Empty'
+      x-openapi-router-controller: swagger_server.controllers.MEC014_ue_identity.ue_identity_tag_info_controller
+components:
+  schemas:
+    Empty:
+      description: Empty schema
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/Problem.type'
+        title:
+          $ref: '#/components/schemas/Problem.title'
+        status:
+          $ref: '#/components/schemas/Problem.status'
+        detail:
+          $ref: '#/components/schemas/Problem.detail'
+        instance:
+          $ref: '#/components/schemas/Problem.instance'
+    Problem.type:
+      type: string
+      description: A URI reference according to IETF RFC 3986 that identifies the
+        problem type
+      format: uri
+    Problem.title:
+      type: string
+      description: "A short, human-readable summary of the problem type"
+    Problem.status:
+      type: integer
+      description: The HTTP status code for this occurrence of the problem
+      format: uint32
+    Problem.detail:
+      type: string
+      description: A human-readable explanation specific to this occurrence of the
+        problem
+    Problem.instance:
+      type: string
+      description: A URI reference that identifies the specific occurrence of the
+        problem
+      format: uri
+    UeIdentityTagInfo:
+      required:
+      - ueIdentityTags
+      type: object
+      properties:
+        ueIdentityTags:
+          $ref: '#/components/schemas/UeIdentityTags'
+      description: information of UE identity tag used in UE Identity feature
+      example:
+        ueIdentityTags:
+        - ueIdentityTag: UeTagA
+          state: REGISTERED
+        - ueIdentityTag: UeTagA
+          state: REGISTERED
+    UeIdentityTags:
+      type: array
+      description: 1 to N tags presented by a ME Application instance to a ME Platform
+      items:
+        $ref: '#/components/schemas/UeIdentityTags_inner'
+    UeIdentityTag:
+      type: string
+      description: Specific tag presented by a ME Application instance to a ME Platform
+      example: UeTagA
+    State:
+      type: string
+      description: Status of the resource ueIdentityTagInfo
+      example: REGISTERED
+      enum:
+      - UNREGISTERED
+      - REGISTERED
+    UeIdentityTags_inner:
+      required:
+      - state
+      - ueIdentityTag
+      properties:
+        ueIdentityTag:
+          $ref: '#/components/schemas/UeIdentityTag'
+        state:
+          $ref: '#/components/schemas/State'
+      example:
+        ueIdentityTag: UeTagA
+        state: REGISTERED
+  responses:
+    Error.400:
+      description: "Bad Request. Incorrect parameters were passed in the request.In\
+        \ the returned ProblemDetails structure, the \"detail\" attribute should convey\
+        \ more information about the error."
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Empty'
+    Error.403:
+      description: Forbidden. The operation is not allowed given the current status
+        of the resource. More information should be provided in the "detail" attribute
+        of the "ProblemDetails" structure.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    Error.404:
+      description: "Not Found. The client provided a URI that cannot be mapped to\
+        \ a valid resource URL. In the returned ProblemDetails structure, the \"detail\"\
+        \ attribute should convey more information about the error."
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Empty'
+    Error.412:
+      description: "Precondition Failed. It is used when a condition has failed during\
+        \ conditional requests, e.g. when using ETags to avoid write conflicts.In\
+        \ the returned ProblemDetails structure, the \"detail\" attribute should convey\
+        \ more information about the error."
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+        text/plain:
+          schema:
+            $ref: '#/components/schemas/Empty'
+  parameters:
+    Path.AppInstanceId:
+      name: appInstanceId
+      in: path
+      description: Represents a mobile edge application instance
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Query.UeIdentityTag:
+      name: ueIdentityTag
+      in: query
+      description: Represents a UE
+      required: true
+      style: form
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+  securitySchemes:
+    OauthSecurity:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth.exampleAPI/token
+          scopes:
+            all: Single oauth2 scope for API
+      x-tokenInfoFunc: swagger_server.controllers.authorization_controller.check_OauthSecurity
+      x-scopeValidateFunc: swagger_server.controllers.authorization_controller.validate_scope_OauthSecurity
+

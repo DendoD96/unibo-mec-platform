@@ -1,0 +1,2773 @@
+openapi: 3.0.0
+info:
+  title: ETSI GS MEC 029 Fixed Access Information API
+  description: ETSI GS MEC 029 Fixed Access Information API described using OpenAPI.
+  contact:
+    name: ETSI Forge
+    url: https://forge.etsi.org/rep/mec/gs029-fai-api
+    email: cti_support@etsi.org
+  license:
+    name: BSD-3-Clause
+    url: https://forge.etsi.org/legal-matters
+  version: 2.1.1
+externalDocs:
+  description: "ETSI GS MEC 029 Fixed Access Information API, v2.1.1"
+  url: https://www.etsi.org/deliver/etsi_gs/MEC/001_099/029/02.01.01_60/gs_mec029v020101p.pdf
+servers:
+- url: https://localhost/fai/v1
+tags:
+- name: Queries
+- name: Subscription
+paths:
+  /queries/fa_info:
+    get:
+      tags:
+      - Queries
+      summary: Retrieve information on the available fixed access networks.
+      description: Retrieve information on the available fixed access networks.
+      operationId: fa_info_get
+      parameters:
+      - name: customerPremisesInfo
+        in: query
+        description: Comma separated list of customer premises information
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/CpInfo'
+      - name: lastMileTech
+        in: query
+        description: Comma separated list of last mile technologies.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+      - name: interfaceType
+        in: query
+        description: Comma separated list of interface types.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+      - name: dsbw
+        in: query
+        description: Comma separated list of the bandwidth (in Mbps) from the network
+          towards the customer site.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+      - name: usbw
+        in: query
+        description: Comma separated list of the bandwidth (in Mbps) from the customer
+          site towards the network.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+      - name: latency
+        in: query
+        description: Comma separated list of the maximum baseline latency (in ms)
+          between customer site and service edge node.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+      responses:
+        "200":
+          description: 'A response body containing the FAI is returned. '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaInfo'
+        "400":
+          description: "Bad Request : used to indicate that incorrect parameters were\
+            \ passed to the request."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "401":
+          description: "Unauthorized :  used when the client did not submit credentials."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "403":
+          description: "Forbidden :  operation is not allowed given the current status\
+            \ of the resource."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "404":
+          description: "Not Found :  used when a client provided a URI that cannot\
+            \ be mapped to a valid resource URI."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "406":
+          description: "Not Acceptable : used to indicate that the server cannot provide\
+            \ the any of the content formats supported by the client."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "429":
+          description: "Too Many Requests : used when a rate limiter has triggered."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      x-openapi-router-controller: swagger_server.controllers.MEC029_fixed_access_information.queries_controller
+  /queries/device_info:
+    get:
+      tags:
+      - Queries
+      summary: retrieve information on the devices that are connected to a fixed access
+        network.
+      description: retrieve information on the devices that are connected to a fixed
+        access network.
+      operationId: device_info_get
+      parameters:
+      - name: gwId
+        in: query
+        description: Comma separated list of gateway identifier
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: deviceId
+        in: query
+        description: Comma separated list of device identifier.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: deviceStatus
+        in: query
+        description: Comma separated list of device status.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: integer
+      responses:
+        "200":
+          description: A response body containing the device information is returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceInfo'
+        "400":
+          description: "Bad Request : used to indicate that incorrect parameters were\
+            \ passed to the request."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "401":
+          description: "Unauthorized :  used when the client did not submit credentials."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "403":
+          description: "Forbidden :  operation is not allowed given the current status\
+            \ of the resource."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "404":
+          description: "Not Found :  used when a client provided a URI that cannot\
+            \ be mapped to a valid resource URI."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "406":
+          description: "Not Acceptable : used to indicate that the server cannot provide\
+            \ the any of the content formats supported by the client."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "429":
+          description: "Too Many Requests : used when a rate limiter has triggered."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      x-openapi-router-controller: swagger_server.controllers.MEC029_fixed_access_information.queries_controller
+  /queries/cable_line_info:
+    get:
+      tags:
+      - Cable line info
+      summary: It Queries information about the cable line of a fixed access network.
+      description: It Queries information about the cable line of a fixed access network.
+      operationId: cable_line_info_get
+      parameters:
+      - name: customerPremisesInfo
+        in: query
+        description: Comma separated list of customer premises information
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/CpInfo'
+      - name: cmId
+        in: query
+        description: Comma separated list of Cable Modem identifiers.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        "200":
+          description: A response body containing the cable line information is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CableLineInfo'
+        "400":
+          description: "Bad Request : used to indicate that incorrect parameters were\
+            \ passed to the request."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "401":
+          description: "Unauthorized :  used when the client did not submit credentials."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "403":
+          description: "Forbidden :  operation is not allowed given the current status\
+            \ of the resource."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "404":
+          description: "Not Found :  used when a client provided a URI that cannot\
+            \ be mapped to a valid resource URI."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "406":
+          description: "Not Acceptable : used to indicate that the server cannot provide\
+            \ the any of the content formats supported by the client."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "429":
+          description: "Too Many Requests : used when a rate limiter has triggered."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      x-openapi-router-controller: swagger_server.controllers.MEC029_fixed_access_information.cable_line_info_controller
+  /queries/optical_network_info:
+    get:
+      tags:
+      - Optical network info
+      summary: used to query information about the optical network.
+      description: used to query information about the optical network.
+      operationId: optical_network_info_get
+      parameters:
+      - name: customerPremisesInfo
+        in: query
+        description: Comma separated list of customer premises information
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/CpInfo'
+      - name: ponYS_ID
+        in: query
+        description: Comma separated list of optical system identifiers.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: onuId
+        in: query
+        description: Comma separated list of optical network unit identifiers.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        "200":
+          description: A response body containing the optical network information
+            is returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PonInfo'
+                x-content-type: application/json
+        "400":
+          description: "Bad Request : used to indicate that incorrect parameters were\
+            \ passed to the request."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "401":
+          description: "Unauthorized :  used when the client did not submit credentials."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "403":
+          description: "Forbidden :  operation is not allowed given the current status\
+            \ of the resource."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "404":
+          description: "Not Found :  used when a client provided a URI that cannot\
+            \ be mapped to a valid resource URI."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "406":
+          description: "Not Acceptable : used to indicate that the server cannot provide\
+            \ the any of the content formats supported by the client."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "429":
+          description: "Too Many Requests : used when a rate limiter has triggered."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      x-openapi-router-controller: swagger_server.controllers.MEC029_fixed_access_information.optical_network_info_controller
+  /subscriptions:
+    get:
+      tags:
+      - Subscription
+      summary: request information about the subscriptions for this requestor.
+      description: request information about the subscriptions for this requestor.
+      operationId: sub_get
+      parameters:
+      - name: subscription_type
+        in: query
+        description: "Query parameter to filter on a specific subscription type. Permitted\
+          \ values: ONU_ALARM. DEVICE_ABNORMAL_ALERT. CM_CONNECTIVITY_STATE.  ANI_ALARM."
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: A response body containing the list of links to requestor subscriptions
+            is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionLinkList'
+        "400":
+          description: "Bad Request : used to indicate that incorrect parameters were\
+            \ passed to the request."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "401":
+          description: "Unauthorized :  used when the client did not submit credentials."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "403":
+          description: "Forbidden :  operation is not allowed given the current status\
+            \ of the resource."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "404":
+          description: "Not Found :  used when a client provided a URI that cannot\
+            \ be mapped to a valid resource URI."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "406":
+          description: "Not Acceptable : used to indicate that the server cannot provide\
+            \ the any of the content formats supported by the client."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "429":
+          description: "Too Many Requests : used when a rate limiter has triggered."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      x-openapi-router-controller: swagger_server.controllers.MEC029_fixed_access_information.subscription_controller
+    post:
+      tags:
+      - Subscription
+      summary: ' create a new subscription to FAI notifications.'
+      description: ' create a new subscription to FAI notifications.'
+      operationId: sub_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/subscriptions_body'
+        required: true
+      responses:
+        "201":
+          description: "In the returned NotificationSubscription structure, the created\
+            \ subscription is described using the appropriate data type."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/subscriptions_body'
+        "400":
+          description: "Bad Request : used to indicate that incorrect parameters were\
+            \ passed to the request."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "401":
+          description: "Unauthorized :  used when the client did not submit credentials."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "403":
+          description: "Forbidden :  operation is not allowed given the current status\
+            \ of the resource."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "404":
+          description: "Not Found :  used when a client provided a URI that cannot\
+            \ be mapped to a valid resource URI."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "406":
+          description: "Not Acceptable : used to indicate that the server cannot provide\
+            \ the any of the content formats supported by the client."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "415":
+          description: "Unsupported Media Type :  used to indicate that the server\
+            \ or the client does not support the content type of the entity body."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "422":
+          description: "Unprocessable Entity : used to indicate that the server understands\
+            \ the content type of the request entity and that the syntax of the request\
+            \ entity is correct but that the server is unable to process the contained\
+            \ instructions. This error condition can occur if an JSON request body\
+            \ is syntactically correct but semantically incorrect, for example if\
+            \ the target area for the request is considered too large. This error\
+            \ condition can also occur if the capabilities required by the request\
+            \ are not supported."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "429":
+          description: "Too Many Requests : used when a rate limiter has triggered."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      callbacks:
+        notification:
+          '{$request.body#/callbackReference}':
+            post:
+              summary: Callback POST used to send a notification
+              description: A notification from FAIS.
+              operationId: notificationPOST
+              requestBody:
+                description: Subscription notification
+                content:
+                  application/json:
+                    schema:
+                      oneOf:
+                      - $ref: '#/components/schemas/OnuAlarmNotification'
+                      - $ref: '#/components/schemas/DevInfoNotification'
+                      - $ref: '#/components/schemas/CmConnNotification'
+                      - $ref: '#/components/schemas/AniAlarmNotification'
+                required: true
+              responses:
+                "204":
+                  description: No Content
+      x-openapi-router-controller: swagger_server.controllers.MEC029_fixed_access_information.subscription_controller
+  /subscriptions/{subscriptionId}:
+    get:
+      tags:
+      - Subscription
+      summary: Retrieve information about this subscription.
+      description: Retrieve information about this subscription.
+      operationId: individual_subscription_get
+      parameters:
+      - name: subscriptionId
+        in: path
+        description: "Refers to created subscription, where the FAI API allocates\
+          \ a unique resource name for this subscription"
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: A response body containing data type describing the specific
+            FAI event subscription is returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/subscriptions_body'
+        "400":
+          description: "Bad Request : used to indicate that incorrect parameters were\
+            \ passed to the request."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "401":
+          description: "Unauthorized :  used when the client did not submit credentials."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "403":
+          description: "Forbidden :  operation is not allowed given the current status\
+            \ of the resource."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "404":
+          description: "Not Found :  used when a client provided a URI that cannot\
+            \ be mapped to a valid resource URI."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "406":
+          description: "Not Acceptable : used to indicate that the server cannot provide\
+            \ the any of the content formats supported by the client."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "429":
+          description: "Too Many Requests : used when a rate limiter has triggered."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      x-openapi-router-controller: swagger_server.controllers.MEC029_fixed_access_information.subscription_controller
+    put:
+      tags:
+      - Subscription
+      summary: Used to update the existing subscription.
+      description: Used to update the existing subscription.
+      operationId: individual_subscription_put
+      parameters:
+      - name: subscriptionId
+        in: path
+        description: "Refers to created subscription, where the FAI API allocates\
+          \ a unique resource name for this subscription"
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/subscriptions_subscriptionId_body'
+        required: true
+      responses:
+        "200":
+          description: A response body containing data type describing the updated
+            subscription is returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/subscriptions_subscriptionId_body'
+        "400":
+          description: "Bad Request : used to indicate that incorrect parameters were\
+            \ passed to the request."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "401":
+          description: "Unauthorized :  used when the client did not submit credentials."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "403":
+          description: "Forbidden :  operation is not allowed given the current status\
+            \ of the resource."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "404":
+          description: "Not Found :  used when a client provided a URI that cannot\
+            \ be mapped to a valid resource URI."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "406":
+          description: "Not Acceptable : used to indicate that the server cannot provide\
+            \ the any of the content formats supported by the client."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "412":
+          description: "Precondition failed :  used when a condition has failed during\
+            \ conditional requests, e.g. when using ETags to avoid write conflicts\
+            \ when using PUT"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "422":
+          description: "Unprocessable Entity : used to indicate that the server understands\
+            \ the content type of the request entity and that the syntax of the request\
+            \ entity is correct but that the server is unable to process the contained\
+            \ instructions. This error condition can occur if an JSON request body\
+            \ is syntactically correct but semantically incorrect, for example if\
+            \ the target area for the request is considered too large. This error\
+            \ condition can also occur if the capabilities required by the request\
+            \ are not supported."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "429":
+          description: "Too Many Requests : used when a rate limiter has triggered."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      x-openapi-router-controller: swagger_server.controllers.MEC029_fixed_access_information.subscription_controller
+    delete:
+      tags:
+      - Subscription
+      summary: Used to cancel the existing subscription.
+      description: Used to cancel the existing subscription.
+      operationId: individual_subscription_delete
+      parameters:
+      - name: subscriptionId
+        in: path
+        description: "Refers to created subscription, where the FAI API allocates\
+          \ a unique resource name for this subscription"
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: "Unauthorized :  used when the client did not submit credentials."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "403":
+          description: "Forbidden :  operation is not allowed given the current status\
+            \ of the resource."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "404":
+          description: "Not Found :  used when a client provided a URI that cannot\
+            \ be mapped to a valid resource URI."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        "429":
+          description: "Too Many Requests : used when a rate limiter has triggered."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+      x-openapi-router-controller: swagger_server.controllers.MEC029_fixed_access_information.subscription_controller
+components:
+  schemas:
+    AniAlarmNotification.alarm:
+      type: integer
+      description: "Indicates the alarm of the ANI: 0 = LowReceivedOpticalPower. 1\
+        \ = HighReceivedOpticalPower. 2 = SignalFailure. 3 = SignalDegrade. 4 = LowTransmitOpticalPower.5\
+        \ = HighTransmitOpticalPower.6 = LaserBiasCurrent."
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      x-etsi-mec-cardinality: "1"
+      x-etsi-mec-origin-type: Enum
+    AniAlarmNotification.aniId:
+      required:
+      - aniIndex
+      - onuId
+      properties:
+        onuId:
+          type: string
+          description: The unique identifiers for the optical network unit.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: String
+        aniIndex:
+          type: string
+          description: The index of an access network interface supported by the optical
+            network unit.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: String
+    AniAlarmNotification:
+      required:
+      - alarm
+#      - aniIndex TODO: check with ETSI if is an error
+      - notificationType
+      type: object
+      properties:
+        alarm:
+          $ref: '#/components/schemas/AniAlarmNotification.alarm'
+        aniId:
+          $ref: '#/components/schemas/AniAlarmNotification.aniId'
+        customerPremisesInfo:
+          minItems: 0
+          type: array
+          description: The physical location of the related customer sites.
+          items:
+            $ref: '#/components/schemas/CpInfo'
+          x-etsi-mec-cardinality: 0..N
+          x-etsi-mec-origin-type: CpInfo
+        notificationType:
+          type: string
+          description: Shall be set to "AniAlarmNotification".
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: String
+        onuId:
+          type: string
+        timeStamp:
+          $ref: '#/components/schemas/TimeStamp'
+      x-etsi-ref: 6.4.6
+    AniAlarmSubscription.filterCriteriaAniAlarm.alarms:
+      type: integer
+      description: "In case alarms is not included in the subscription request, the\
+        \ default value -1 = All shall be used and included in the response:\n0  =\t\
+        LowReceivedOpticalPower.\n(Received downstream optical power below threshold.)\n\
+        1  =\tHighReceivedOpticalPower.\n\t(Received downstream optical power above\
+        \ threshold.)\n2  =\tSignalFalure.\n(Bit error-based signal fail.)\n3  =\t\
+        SignalDegrade.\n(Bit error-based signal degrade.)\n4  =\tLowTransmitOpticalPower.\n\
+        (Transmit optical power below lower threshold.)\n5  =\tHighTransmitOpticalPower.\n\
+        (Transmit optical power above upper threshold.)\n6  =\tLaserBiasCurrent.\n\
+        (Laser bias current above threshold determined by vendor.)\n-1 =\tAll."
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - -1
+    AniAlarmSubscription.links:
+      required:
+      - self
+      properties:
+        self:
+          $ref: '#/components/schemas/LinkType'
+    AniAlarmSubscription.filterCriteriaAniAlarm:
+      required:
+      - aniId
+      - onuId
+      properties:
+        customerPremisesInfo:
+          minItems: 0
+          required:
+          - aniId
+          - onuId
+          type: array
+          description: 0 to N physical locations of the customer sites.
+          items:
+            $ref: '#/components/schemas/CpInfo'
+          x-etsi-mec-cardinality: 0..N
+          x-etsi-mec-origin-type: CpInfo
+        onuId:
+          type: array
+          description: "1 to N unique identifiers for the optical network units. \
+            \ Typical it is the unique serial number for each ONU, which contains\
+            \ the vendor ID and version number. The first four bytes are an ASCII-encoded\
+            \ four-letter vendor ID. The second four bytes are a binary encoded serial\
+            \ number, under the control of the ONU vendor."
+          items:
+            type: string
+            x-etsi-mec-cardinality: 1..N
+            x-etsi-mec-origin-type: String
+        aniId:
+          $ref: '#/components/schemas/AniAlarmSubscription.filterCriteriaAniAlarm_aniId'
+        alarms:
+          type: array
+          items:
+            $ref: '#/components/schemas/AniAlarmSubscription.filterCriteriaAniAlarm.alarms'
+      description: "List of filtering criteria for the subscription. Any filtering\
+        \ criteria from below, which is included in the request, shall also be included\
+        \ in the response."
+    AniAlarmSubscription:
+      required:
+      - aniIndex
+      - callbackReference
+      - filterCriteriaAniAlarm
+#      - onuId   TODO: check with ETSI if is an error
+      - subscriptionType
+      type: object
+      properties:
+        subscriptionType:
+          type: string
+          description: Shall be set to \"AniAlarmSubscription\"
+        _links:
+          $ref: '#/components/schemas/AniAlarmSubscription.links'
+        aniIndex:
+          type: string
+          description: The index of an access network interface supported by the optical
+            network unit.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: String
+        callbackReference:
+          type: string
+          description: URI selected by the service consumer to receive notifications
+            on the subscribed FAIS information. This shall be included both in the
+            request and in response.
+          format: uri
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: URI
+        expiryDeadline:
+          $ref: '#/components/schemas/TimeStamp'
+        filterCriteriaAniAlarm:
+          $ref: '#/components/schemas/AniAlarmSubscription.filterCriteriaAniAlarm'
+      x-etsi-ref: 6.3.6
+    CableLineInfo.cmInfo.serviceFlowStats:
+      required:
+      - ifIndex
+      - serviceFlowInfo
+      type: object
+      properties:
+        ifIndex:
+          type: string
+          description: It represents the interface index of the MAC Domain of the
+            Service Flow
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: String
+        serviceFlowInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/CableLineInfo.cmInfo.serviceFlowStats.serviceFlowInfo'
+      description: It describes statistics associated with the Service Flows in a
+        managed device.
+      example:
+        ifIndex: ifIndex
+        serviceFlowInfo:
+        - timeActive: 1
+          serviceFlowId: 1
+          timeCreated: null
+          policedDropPkts: 1
+          aqmDroppedPkts: 2
+          policedDelayPkts: 7
+          pkts: 4
+        - timeActive: 1
+          serviceFlowId: 1
+          timeCreated: null
+          policedDropPkts: 1
+          aqmDroppedPkts: 2
+          policedDelayPkts: 7
+          pkts: 4
+    CableLineInfo.cmInfo.serviceFlowStats.serviceFlowInfo:
+      required:
+      - aqmDroppedPkts
+      - pkts
+      - policedDelayPkts
+      - policedDropPkts
+      - serviceFlowId
+      - timeActive
+      - timeCreated
+      properties:
+        aqmDroppedPkts:
+          type: integer
+          description: "For upstream service flows on which AQM is enabled, this attribute\
+            \ counts the number of Packet Data PDUs classified to this service flow\
+            \ dropped due to Active Queue Management drop decisions."
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Integer
+        pkts:
+          type: integer
+          description: "For outgoing Service Flows, this attribute counts the number\
+            \ of Packet Data PDUs forwarded to this Service Flow. For incoming upstream\
+            \ CMTS service flows, this attribute counts the number of Packet Data\
+            \ PDUs actually received on the Service Flow identified by the SID for\
+            \ which the packet was scheduled."
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Integer
+        policedDelayPkts:
+          type: integer
+          description: It counts only outgoing packets delayed in order to maintain
+            the Maximum Sustained Traffic Rate.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Integer
+        policedDropPkts:
+          type: integer
+          description: "For upstream service flows, this attribute counts the number\
+            \ of Packet Data PDUs classified to this service flow dropped due to:\n\
+            1)\texceeding the selected Buffer Size for the service flow; or\n2)\t\
+            UGS packets dropped due to exceeding the Unsolicited Grant Size with a\
+            \ Request/Transmission policy that requires such packets to be dropped."
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Integer
+        serviceFlowId:
+          type: integer
+          description: It represents an identifier assigned to a Service Flow by CMTS
+            within a MAC Domain.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Integer
+        timeActive:
+          type: integer
+          description: It indicates the number of seconds that the service flow has
+            been active.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Integer
+        timeCreated:
+          $ref: '#/components/schemas/TimeStamp'
+      description: It represents the information of a Service Flow.
+      example:
+        timeActive: 1
+        serviceFlowId: 1
+        timeCreated: null
+        policedDropPkts: 1
+        aqmDroppedPkts: 2
+        policedDelayPkts: 7
+        pkts: 4
+    CableLineInfo.cmInfo.cmStatus.cmRegState:
+      type: integer
+      description: "It defines the CM connectivity state. Enumeration of: 1 = other.\
+        \  2 = notReady. 3 = notSynchronized. 4 = phySynchronized. 5 = usParametersAcquired.\
+        \ 6 = rangingComplete. 7 = dhcpV4Complete. 8 = todEstablished. 9 = securityEstablished.\
+        \ 10 = configFileDownloadComplete. 11 = registrationComplete. 12 = operational.\
+        \ 13 = accessDenied. 14 = eaeInProgress. 15 = dhcpv4InProgress. 16 = dhcpv6InProgress.\
+        \ 17 = dhcpV6Complete. 18 = registrationInProgress. 19 = bpiInit. 20 = forwardingDisabled.\
+        \ 21 = dsTopologyResolutionInProgress. 22 = rangingInProgress. 23 = rfMuteAll."
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 23
+      x-etsi-mec-cardinality: "1"
+      x-etsi-mec-origin-type: Enum
+    CableLineInfo.cmInfo.cmStatus:
+      required:
+      - cmRegState
+      - emDlsOperStatus
+      - energyMgt1x1OperStatus
+      - ifIndex
+      - invalidRegRsps
+      - lostSyncs
+      - resets
+      properties:
+        cmRegState:
+          $ref: '#/components/schemas/CableLineInfo.cmInfo.cmStatus.cmRegState'
+        emDlsOperStatus:
+          type: boolean
+          description: It indicates whether the CM is currently operating in Energy
+            Management DLS Mode.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Boolean
+        energyMgt1x1OperStatus:
+          type: boolean
+          description: It indicates whether the CM is currently operating in Energy
+            Management 1x1 Mode.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Boolean
+        ifIndex:
+          type: string
+          description: It denotes the MAC Domain interface index of the CM.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: String
+        invalidRegRsps:
+          type: integer
+          description: It denotes the number of times the CM received invalid registration
+            response messages.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Integer
+        lostSyncs:
+          type: integer
+          description: It denotes the number of times the CM lost synchronization
+            with the downstream channel.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Integer
+        resets:
+          type: integer
+          description: It denotes the number of times the CM reset or initialized
+            this interface.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Integer
+      description: It provides CM connectivity status information of the CM.
+      example:
+        ifIndex: ifIndex
+        emDlsOperStatus: true
+        resets: 3
+        energyMgt1x1OperStatus: true
+        cmRegState: 2
+        invalidRegRsps: 7
+        lostSyncs: 9
+    CableLineInfo.cmInfo.cmDpvStats:
+      required:
+      - avgLatency
+      - ifIndex
+      - lastMeasLatency
+      - lastMeasTime
+      - maxLatency
+      - minLatency
+      - numMeas
+      properties:
+        avgLatency:
+          type: integer
+          description: The average latency measurement.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Integer
+        ifIndex:
+          type: string
+          description: It represents the interface Index of the Downstream Interface
+            where the measurements are taken.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: String
+        lastMeasLatency:
+          type: integer
+          description: The last latency measurement.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Integer
+        lastMeasTime:
+          $ref: '#/components/schemas/TimeStamp'
+        maxLatency:
+          type: integer
+          description: The maximum latency measurement.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Integer
+        minLatency:
+          type: integer
+          description: The minimum latency measurement.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Integer
+        numMeas:
+          type: integer
+          description: The number of latency measurements made.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Integer
+      description: It represents the DOCSIS Path Verify Statistics collected in the
+        cable modem device.
+      example:
+        ifIndex: ifIndex
+        lastMeasLatency: 6
+        avgLatency: 0
+        minLatency: 5
+        lastMeasTime:
+          seconds: 3
+          nanoSeconds: 9
+        maxLatency: 1
+        numMeas: 5
+    CableLineInfo.cmInfo:
+      required:
+      - cmId
+      properties:
+        cmDpvStats:
+          type: array
+          items:
+            $ref: '#/components/schemas/CableLineInfo.cmInfo.cmDpvStats'
+        cmId:
+          type: string
+          description: "Information (typically the serial number) to identify a Cable\
+            \ Modem at subscriber locations intended for use in conveying data communications\
+            \ on a cable data system.This value SHALL remain fixed over the lifetime\
+            \ of thedevice, including across firmware updates."
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: String
+        cmStatus:
+          $ref: '#/components/schemas/CableLineInfo.cmInfo.cmStatus'
+        serviceFlowStats:
+          type: array
+          items:
+            $ref: '#/components/schemas/CableLineInfo.cmInfo.serviceFlowStats'
+      example:
+        cmStatus:
+          ifIndex: ifIndex
+          emDlsOperStatus: true
+          resets: 3
+          energyMgt1x1OperStatus: true
+          cmRegState: 2
+          invalidRegRsps: 7
+          lostSyncs: 9
+        serviceFlowStats:
+        - ifIndex: ifIndex
+          serviceFlowInfo:
+          - timeActive: 1
+            serviceFlowId: 1
+            timeCreated: null
+            policedDropPkts: 1
+            aqmDroppedPkts: 2
+            policedDelayPkts: 7
+            pkts: 4
+          - timeActive: 1
+            serviceFlowId: 1
+            timeCreated: null
+            policedDropPkts: 1
+            aqmDroppedPkts: 2
+            policedDelayPkts: 7
+            pkts: 4
+        - ifIndex: ifIndex
+          serviceFlowInfo:
+          - timeActive: 1
+            serviceFlowId: 1
+            timeCreated: null
+            policedDropPkts: 1
+            aqmDroppedPkts: 2
+            policedDelayPkts: 7
+            pkts: 4
+          - timeActive: 1
+            serviceFlowId: 1
+            timeCreated: null
+            policedDropPkts: 1
+            aqmDroppedPkts: 2
+            policedDelayPkts: 7
+            pkts: 4
+        cmDpvStats:
+        - ifIndex: ifIndex
+          lastMeasLatency: 6
+          avgLatency: 0
+          minLatency: 5
+          lastMeasTime:
+            seconds: 3
+            nanoSeconds: 9
+          maxLatency: 1
+          numMeas: 5
+        - ifIndex: ifIndex
+          lastMeasLatency: 6
+          avgLatency: 0
+          minLatency: 5
+          lastMeasTime:
+            seconds: 3
+            nanoSeconds: 9
+          maxLatency: 1
+          numMeas: 5
+        cmId: cmId
+    CableLineInfo:
+      required:
+      - cmInfo
+      - customerPremisesInfo
+      type: object
+      properties:
+        cmInfo:
+          $ref: '#/components/schemas/CableLineInfo.cmInfo'
+        customerPremisesInfo:
+          $ref: '#/components/schemas/CpInfo'
+        timeStamp:
+          $ref: '#/components/schemas/TimeStamp'
+      example:
+        timeStamp: null
+        customerPremisesInfo:
+          latitude: 2.3021358869347654518833223846741020679473876953125
+          postalCode: postalCode
+          longitude: 7.061401241503109105224211816675961017608642578125
+        cmInfo:
+          cmStatus:
+            ifIndex: ifIndex
+            emDlsOperStatus: true
+            resets: 3
+            energyMgt1x1OperStatus: true
+            cmRegState: 2
+            invalidRegRsps: 7
+            lostSyncs: 9
+          serviceFlowStats:
+          - ifIndex: ifIndex
+            serviceFlowInfo:
+            - timeActive: 1
+              serviceFlowId: 1
+              timeCreated: null
+              policedDropPkts: 1
+              aqmDroppedPkts: 2
+              policedDelayPkts: 7
+              pkts: 4
+            - timeActive: 1
+              serviceFlowId: 1
+              timeCreated: null
+              policedDropPkts: 1
+              aqmDroppedPkts: 2
+              policedDelayPkts: 7
+              pkts: 4
+          - ifIndex: ifIndex
+            serviceFlowInfo:
+            - timeActive: 1
+              serviceFlowId: 1
+              timeCreated: null
+              policedDropPkts: 1
+              aqmDroppedPkts: 2
+              policedDelayPkts: 7
+              pkts: 4
+            - timeActive: 1
+              serviceFlowId: 1
+              timeCreated: null
+              policedDropPkts: 1
+              aqmDroppedPkts: 2
+              policedDelayPkts: 7
+              pkts: 4
+          cmDpvStats:
+          - ifIndex: ifIndex
+            lastMeasLatency: 6
+            avgLatency: 0
+            minLatency: 5
+            lastMeasTime:
+              seconds: 3
+              nanoSeconds: 9
+            maxLatency: 1
+            numMeas: 5
+          - ifIndex: ifIndex
+            lastMeasLatency: 6
+            avgLatency: 0
+            minLatency: 5
+            lastMeasTime:
+              seconds: 3
+              nanoSeconds: 9
+            maxLatency: 1
+            numMeas: 5
+          cmId: cmId
+      x-etsi-ref: 6.2.4
+    CmConnNotification.cmIf.cmRegState:
+      type: integer
+      description: "It indicates the CM connectivity state. Enumeration of:  1 = notReady.\
+        \ 2 = notSynchronized. 3 = phySynchronized. 4 = dsTopologyResolutionInProgress.5\
+        \ = usParametersAcquired. 6 = rangingInProgress.7 = rangingComplete. 8 = eaeInProgress.9\
+        \ = dhcpv4InProgress. 10 = dhcpv6InProgress.11 = dhcpV4Complete.12 = dhcpV6Complete.13\
+        \ = todEstablished.14 = securityEstablished.15 = configFileDownloadComplete.16\
+        \ = registrationInProgress.17 = registrationComplete. 18 = accessDenied. 19\
+        \ =operational. 20 = bpiInit.21 =forwardingDisabled."
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+    CmConnNotification.cmIf:
+      required:
+      - cmId
+      - cmRegState
+      - ifIndex
+      type: array
+      properties:
+        cmId:
+          type: string
+          description: The Cable Modem identifier.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: String
+        cmRegState:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/CmConnNotification.cmIf.cmRegState'
+          x-etsi-mec-cardinality: 1..N
+          x-etsi-mec-origin-type: Enum
+        ifIndex:
+          minItems: 1
+          type: array
+          description: The MAC Domain interface index of the CM.
+          items:
+            type: string
+          x-etsi-mec-cardinality: 1..N
+          x-etsi-mec-origin-type: String
+      items:
+        type: object
+    CmConnNotification:
+      required:
+      - cmIf
+      - notificationType
+      type: object
+      properties:
+        cmIf:
+          type: array
+          items:
+            $ref: '#/components/schemas/CmConnNotification.cmIf'
+        customerPremisesInfo:
+          $ref: '#/components/schemas/CpInfo'
+        notificationType:
+          type: string
+          description: Shall be set to \"CmconnNotification\".
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: String
+        timeStamp:
+          $ref: '#/components/schemas/TimeStamp'
+      x-etsi-ref: 6.4.4
+    CmConnSubscription.links:
+      required:
+      - self
+      type: object
+      properties:
+        self:
+          $ref: '#/components/schemas/LinkType'
+      description: Hyperlink related to the resource. This shall be only included
+        in the HTTP responses and in HTTP PUT requests.
+      x-etsi-mec-cardinality: 0..1
+    CmConnSubscription.filterCriteriaCmConn.cmIf.cmRegState:
+      type: integer
+      description: "It indicates the CM connectivity state. Enumeration of:  1 = notReady.\
+        \ 2 = notSynchronized. 3 = phySynchronized. 4 = dsTopologyResolutionInProgress.5\
+        \ = usParametersAcquired. 6 = rangingInProgress.7 = rangingComplete. 8 = eaeInProgress.9\
+        \ = dhcpv4InProgress. 10 = dhcpv6InProgress.11 = dhcpV4Complete.12 = dhcpV6Complete.13\
+        \ = todEstablished.14 = securityEstablished.15 = configFileDownloadComplete.16\
+        \ = registrationInProgress.17 = registrationComplete. 18 = accessDenied. 19\
+        \ =operational. 20 = bpiInit.21 =forwardingDisabled."
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+    CmConnSubscription.filterCriteriaCmConn.cmIf:
+      required:
+      - cmId
+      - cmRegState
+      - ifIndex
+      properties:
+        cmId:
+          type: string
+          description: The identifier of a Cable Modem at subscriber locations intended
+            for use in conveying data communications on a cable data system.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: String
+        cmRegState:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/CmConnSubscription.filterCriteriaCmConn.cmIf.cmRegState'
+          x-etsi-mec-cardinality: 1..N
+          x-etsi-mec-origin-type: Enum
+        ifIndex:
+          minItems: 1
+          type: array
+          description: The MAC Domain interface index of the CM.
+          items:
+            type: string
+          x-etsi-mec-cardinality: 1..N
+          x-etsi-mec-origin-type: String
+    CmConnSubscription.filterCriteriaCmConn:
+      type: object
+      properties:
+        cmIf:
+          type: array
+          items:
+            $ref: '#/components/schemas/CmConnSubscription.filterCriteriaCmConn.cmIf'
+        customerPremisesInfo:
+          $ref: '#/components/schemas/CpInfo'
+      description: "List of filtering criteria for the subscription. Any filtering\
+        \ criteria from below, which is included in the request, shall also be included\
+        \ in the response."
+      x-etsi-mec-cardinality: "1"
+    CmConnSubscription:
+      required:
+      - callbackReference
+      - filterCriteriaCmConn
+      - subscriptionType
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/CmConnSubscription.links'
+        callbackReference:
+          type: string
+          description: URI selected by the service consumer to receive notifications
+            on the subscribed FAIS information. This shall be included both in the
+            request and in response.
+          format: uri
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: URI
+        expiryDeadline:
+          $ref: '#/components/schemas/TimeStamp'
+        filterCriteriaCmConn:
+          $ref: '#/components/schemas/CmConnSubscription.filterCriteriaCmConn'
+        subscriptionType:
+          type: string
+          description: Shall be set to "CmConnSubscription".
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: String
+      x-etsi-notes: "NOTE:\t'notReady' indicates that the CM has not started the registration\
+        \ process yet.\n\t'notSynchronized' indicates that the CM has not initiated\
+        \ or completed the synchronization of the downstream physical layer.\n\t'phySynchronized'\
+        \ indicates that the CM has completed the synchronization of the downstream\
+        \ physical layer.\n\t'dsTopologyResolutionInProgress' indicates that the CM\
+        \ is attempting to determine its MD-DS-SG.\n\t'usParametersAcquired' indicates\
+        \ that the CM has completed the upstream parameters acquisition or have completed\
+        \ the downstream and upstream service groups resolution.\n\t'rangingInProgress'\
+        \ indicates that the CM has initiated the initial ranging process.\n\t'rangingComplete'\
+        \ indicates that the CM has completed initial ranging and received a Ranging\
+        \ Status of success from the CMTS in the RNG-RSP message.\n\t'eaeInProgress'\
+        \ indicates that the CM has sent an Auth Info message for EAE.\n\t'dhcpv4InProgress'\
+        \ indicates that the CM has sent a DHCPv4 DISCOVER to gain IP connectivity.\n\
+        \t'dhcpv6InProgress' indicates that the CM has sent a DHCPv6 Solicit message.\n\
+        \t'dhcpv4Complete' indicates that the CM has received a DHCPv4 ACK message\
+        \ from the CMTS.\n\t'dhcpv6Complete' indicates that the CM has received a\
+        \ DHCPv6 Reply message from the CMTS.\n\t'todEstablished' indicates that the\
+        \ CM has successfully acquired time of day.\n\t'securityEstablished' indicates\
+        \ that the CM has successfully completed the BPI initialization process.\n\
+        \t'configFileDownloadComplete' indicates that the CM has completed the config\
+        \ file download process.\n\t'registrationInProgress' indicates that the CM\
+        \ has sent a Registration Request.\n\t'registrationComplete' indicates that\
+        \ the CM has successfully completed the Registration process with the CMTS.\n\
+        \t'accessDenied' indicates that the CM has received a registration aborted\
+        \ notification from the CMTS.\n\t'operational' indicates that the CM has completed\
+        \ all necessary initialization steps and is operational.\n\t'bpiInit' indicates\
+        \ that the CM has started the BPI initialization process as indicated in the\
+        \ CM config file.\n\t'forwardingDisabled' indicates that the registration\
+        \ process was completed, but the network access option in the received configuration\
+        \ file prohibits forwarding."
+      x-etsi-ref: 6.3.4
+    CpInfo:
+      type: object
+      properties:
+        latitude:
+          type: number
+          description: |-
+            Latitude (DATUM=WGS84)
+            -90 to 90 in decimal degree format DDD.ddd
+          format: Float
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Float
+        longitude:
+          type: number
+          description: |-
+            Longitude (DATUM=WGS84)
+            -180 to 180 in decimal degree format DDD.ddd
+          format: Float
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Float
+        postalCode:
+          type: string
+          description: Postal code for the location
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: String
+      example:
+        latitude: 2.3021358869347654518833223846741020679473876953125
+        postalCode: postalCode
+        longitude: 7.061401241503109105224211816675961017608642578125
+      x-etsi-ref: 6.5.3
+    DevInfoNotification:
+      required:
+      - deviceErrStatus
+      - deviceId
+      - notificationType
+      type: object
+      properties:
+        deviceErrStatus:
+          $ref: '#/components/schemas/deviceErrStatus'
+        deviceId:
+          type: string
+          description: The identifier for a device.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: String
+        notificationType:
+          type: string
+          description: Shall be set to "DevInfoNotification".
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: String
+        timeStamp:
+          $ref: '#/components/schemas/TimeStamp'
+      x-etsi-ref: 6.4.3
+    deviceErrStatus:
+      type: integer
+      description: "The abnormal operational status of the device. Enumeration of:\
+        \  1 = Error. 2 = Disabled."
+      enum:
+      - 1
+      - 2
+    DevInfoSubscription.links:
+      required:
+      - self
+      type: object
+      properties:
+        self:
+          $ref: '#/components/schemas/LinkType'
+      description: Hyperlink related to the resource. This shall be only included
+        in the HTTP responses and in HTTP PUT requests.
+      x-etsi-mec-cardinality: 0..1
+    DevInfoSubscription.filterCriteriaDevInfo:
+      type: object
+      properties:
+        deviceErrStatus:
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/deviceErrStatus'
+          x-etsi-mec-cardinality: 0..N
+          x-etsi-mec-origin-type: Enum
+        deviceId:
+          minItems: 0
+          type: array
+          description: The device identifier.
+          items:
+            type: string
+          x-etsi-mec-cardinality: 0..N
+          x-etsi-mec-origin-type: String
+        gwId:
+          minItems: 0
+          type: array
+          description: The identifier of an Internet Gateway Device through which
+            the customer premises device is connected.
+          items:
+            type: string
+          x-etsi-mec-cardinality: 0..N
+          x-etsi-mec-origin-type: String
+      description: "List of filtering criteria for the subscription. Any filtering\
+        \ criteria from below, which is included in the request, shall also be included\
+        \ in the response."
+      x-etsi-mec-cardinality: "1"
+    DevInfoSubscription:
+      required:
+      - callbackReference
+      - filterCriteriaDevInfo
+      - subscriptionType
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/DevInfoSubscription.links'
+        callbackReference:
+          type: string
+          description: URI selected by the service consumer to receive notifications
+            on the subscribed FAIS information. This shall be included both in the
+            request and in response.
+          format: uri
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: URI
+        expiryDeadline:
+          $ref: '#/components/schemas/TimeStamp'
+        filterCriteriaDevInfo:
+          $ref: '#/components/schemas/DevInfoSubscription.filterCriteriaDevInfo'
+        subscriptionType:
+          type: string
+          description: Shall be set to "DevInfoSubscription".
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: String
+      x-etsi-ref: 6.3.3
+    DeviceInfo.deviceStatus:
+      type: integer
+      description: "Current operational status of the device. Enumeration of: 1 =\
+        \ Up. 2 = Initializing. 3 = Error. 4 = Disabled."
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      x-etsi-mec-cardinality: "1"
+      x-etsi-mec-origin-type: Enum
+    DeviceInfo:
+      required:
+      - deviceStatus
+      - gwId
+      - iPConnectionUpTime
+      - totalBytesReceived
+      - totalBytesSent
+      - totalPacketsReceived
+      - totalPacketsSent
+      - upTime
+      type: object
+      properties:
+        deviceId:
+          type: array
+          description: "Typically, the serial number of the device.This value shall\
+            \ remain fixed over the lifetime of the device, including across firmware\
+            \ updates."
+          items:
+            type: string
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: String
+        deviceStatus:
+          $ref: '#/components/schemas/DeviceInfo.deviceStatus'
+        downloadDiagnostics:
+          $ref: '#/components/schemas/DownloadDiagnostics'
+        gwId:
+          minItems: 1
+          type: array
+          description: "Information (typically the serial number) to identify an Internet\
+            \ Gateway Device through which\nthe customer premises device is connected.\n\
+            \nThis value shall remain fixed over the lifetime of the device, including\
+            \ across firmware updates."
+          items:
+            type: string
+          x-etsi-mec-cardinality: 1..N
+          x-etsi-mec-origin-type: String
+        iPConnectionUpTime:
+          type: integer
+          description: The time in seconds that the IP interface has been connected.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Integer
+        iPPingDiagnostics:
+          $ref: '#/components/schemas/IPPingDiagnostics'
+        timeStamp:
+          $ref: '#/components/schemas/TimeStamp'
+        totalBytesReceived:
+          type: integer
+          description: Total number of IP payload bytes received since the device
+            was last restarted.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Integer
+        totalBytesSent:
+          type: integer
+          description: Total number of IP payload bytes sent since the device was
+            last restarted.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Integer
+        totalPacketsReceived:
+          type: integer
+          description: Total number of packets received since the device was last
+            restarted.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Integer
+        totalPacketsSent:
+          type: integer
+          description: Total number of packets sent since the device was last restarted.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Integer
+        traceRouteDiagnostics:
+          $ref: '#/components/schemas/TraceRouteDiagnostics'
+        upTime:
+          type: integer
+          description: Time in seconds since the device was last restarted.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Integer
+        uploadDiagnostics:
+          $ref: '#/components/schemas/UploadDiagnostics'
+      example:
+        downloadDiagnostics:
+          tCPOpenRequestTime: null
+          totalBytesReceived: 5
+          diagnosticsState: 6
+          rOMTime: null
+          testBytesReceived: 1
+          eOMTime: null
+          tCPOpenReponseTime: null
+          bOMTime:
+            seconds: 3
+            nanoSeconds: 9
+          downloadURI: http://example.com/aeiou
+        totalBytesReceived: 1
+        totalPacketsReceived: 7
+        totalPacketsSent: 1
+        uploadDiagnostics:
+          tCPOpenRequestTime: null
+          uploadURI: http://example.com/aeiou
+          testBytesSent: 3
+          diagnosticsState: 6
+          rOMTime: null
+          eOMTime: null
+          tCPOpenReponseTime: null
+          testFileLength: 6
+          bOMTime: null
+        iPPingDiagnostics:
+          averageResponseTime: 2
+          dataBlockSize: 7
+          maximumResponseTime: 2
+          minimumResponseTime: 4
+          diagnosticsState: 9
+          host: host
+          successCount: 1
+          numberOfRepetitions: 7
+          failureCount: 3
+          timeout: 1
+        deviceId:
+        - deviceId
+        - deviceId
+        deviceStatus: 0
+        iPConnectionUpTime: 5
+        timeStamp: null
+        upTime: 9
+        totalBytesSent: 6
+        gwId:
+        - gwId
+        - gwId
+        traceRouteDiagnostics:
+          dataBlockSize: 4
+          responseTime: 6
+          diagnosticsState: 5
+          host: host
+          maxHopCount: 9
+          numberOfRouteHops: 9
+          timeout: 8
+      x-etsi-ref: 6.2.3
+    DownloadDiagnostics.diagnosticsState:
+      type: integer
+      description: The state of the HTTP and FTP download test. Enumeration of:1 =
+        None.2 = Requested.3 = Completed.4 = Error_InitConnectionFailed.5 = Error_NoResponse.6
+        = Error_TransferFailed. 7 = Error_PasswordRequestFailed.8 = Error_LoginFailed.9
+        = Error_NoTransferMode.10 = Error_NoPASV.11 = Error_IncorrectSize.12 = Error_Timeout.
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      x-etsi-mec-cardinality: "1"
+      x-etsi-mec-origin-type: Enum
+    DownloadDiagnostics:
+      required:
+      - diagnosticsState
+      type: object
+      properties:
+        bOMTime:
+          $ref: '#/components/schemas/TimeStamp'
+        diagnosticsState:
+          $ref: '#/components/schemas/DownloadDiagnostics.diagnosticsState'
+        downloadURI:
+          type: string
+          description: The URI for the device to perform the download on.
+          format: uri
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: URI
+        eOMTime:
+          $ref: '#/components/schemas/TimeStamp'
+        rOMTime:
+          $ref: '#/components/schemas/TimeStamp'
+        tCPOpenReponseTime:
+          $ref: '#/components/schemas/TimeStamp'
+        tCPOpenRequestTime:
+          $ref: '#/components/schemas/TimeStamp'
+        testBytesReceived:
+          type: integer
+          description: "The test traffic received in bytes during the FTP/HTTP transaction\
+            \ including FTP/HTTP headers, between bOMTime and eOMTime."
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Integer
+        totalBytesReceived:
+          type: integer
+          description: The total number of bytes received on the Interface between
+            bOMTime and eOMTime.
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Integer
+      example:
+        tCPOpenRequestTime: null
+        totalBytesReceived: 5
+        diagnosticsState: 6
+        rOMTime: null
+        testBytesReceived: 1
+        eOMTime: null
+        tCPOpenReponseTime: null
+        bOMTime:
+          seconds: 3
+          nanoSeconds: 9
+        downloadURI: http://example.com/aeiou
+      x-etsi-ref: 6.5.6
+    ExpiryNotification.links:
+      required:
+      - self
+      type: object
+      properties:
+        self:
+          type: string
+          description: Self referring URI. This shall be included in the response
+            from the FAIS. The URI shall be unique within the FAI API as it acts as
+            an ID for the subscription.
+          format: uri
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: URI
+      description: List of hyperlinks related to the resource.
+      x-etsi-mec-cardinality: "1"
+    ExpiryNotification:
+      required:
+      - _links
+      - expiryDeadline
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/ExpiryNotification.links'
+        expiryDeadline:
+          $ref: '#/components/schemas/TimeStamp'
+        timeStamp:
+          $ref: '#/components/schemas/TimeStamp'
+      x-etsi-ref: 6.4.5
+    FaInfo.connectivityInfo.interfaceType:
+      type: integer
+      description: The physical interface used for the end customer site:1   =   100BASE-TX.2   =   1000BASE-TX.3   =   1000BASE-LX.4   =   1000BASELX10.5   =   1000BASEBX10.
+        6   =   1000BASE-LH.7   =   1000Base-ZX. 8   =   ADSL-RJ11.9   =   VDSL-RJ11.10
+        =   GPON.
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      x-etsi-mec-cardinality: "1"
+      x-etsi-mec-origin-type: Enum
+    FaInfo.connectivityInfo.lastMileTech:
+      type: integer
+      description: An informative field identifying the last mile access technology
+        used.The valid values are:1 = ADSL.2 = VDSL.3 = GPON. 4 = XGPON.5 = NGPON2.
+        6 = XGSPON. 7 = GFAST.8 = P2PEthernet.
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      x-etsi-mec-cardinality: "1"
+      x-etsi-mec-origin-type: Enum
+    FaInfo.connectivityInfo:
+      required:
+      - interfaceType
+      - lastMileTech
+      properties:
+        dsbw:
+          type: integer
+          description: The bandwidth (in Mbps) from the network towards the customer
+            site.
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Integer
+        interfaceType:
+          $ref: '#/components/schemas/FaInfo.connectivityInfo.interfaceType'
+        lastMileTech:
+          $ref: '#/components/schemas/FaInfo.connectivityInfo.lastMileTech'
+        latency:
+          type: integer
+          description: Maximum baseline latency (in ms) between customer site and
+            service edge node.
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Integer
+        usbw:
+          type: integer
+          description: The bandwidth (in Mbps) from the customer site towards the
+            network.
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Integer
+      description: The per connectivity domain FAI as defined below.
+      example:
+        interfaceType: 6
+        lastMileTech: 1
+        usbw: 5
+        latency: 5
+        dsbw: 0
+    FaInfo:
+      required:
+      - customerPremisesInfo
+      type: object
+      properties:
+        connectivityInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/FaInfo.connectivityInfo'
+        customerPremisesInfo:
+          minItems: 1
+          type: array
+          description: The physical location of a customer site.
+          items:
+            $ref: '#/components/schemas/CpInfo'
+          x-etsi-mec-cardinality: 1..N
+          x-etsi-mec-origin-type: CpInfo
+        timeStamp:
+          $ref: '#/components/schemas/TimeStamp'
+      example:
+        timeStamp:
+          seconds: 3
+          nanoSeconds: 9
+        customerPremisesInfo:
+        - latitude: 2.3021358869347654518833223846741020679473876953125
+          postalCode: postalCode
+          longitude: 7.061401241503109105224211816675961017608642578125
+        - latitude: 2.3021358869347654518833223846741020679473876953125
+          postalCode: postalCode
+          longitude: 7.061401241503109105224211816675961017608642578125
+        connectivityInfo:
+        - interfaceType: 6
+          lastMileTech: 1
+          usbw: 5
+          latency: 5
+          dsbw: 0
+        - interfaceType: 6
+          lastMileTech: 1
+          usbw: 5
+          latency: 5
+          dsbw: 0
+      x-etsi-ref: 6.2.2
+    IPPingDiagnostics.diagnosticsState:
+      type: integer
+      description: "The state of the IP ping test. Enumeration of: 1 = None. 2 = Requested.\
+        \ 3 = Complete. 4 = Error_CannotResolveHostName. 5 = Error_Internal.6 = Error_Other."
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      x-etsi-mec-cardinality: "1"
+      x-etsi-mec-origin-type: Enum
+    IPPingDiagnostics:
+      required:
+      - diagnosticsState
+      type: object
+      properties:
+        averageResponseTime:
+          type: integer
+          description: "Result parameter indicating the average response time in milliseconds\
+            \ over all repetitions with successful responses of the most recent ping\
+            \ test.\n\nIf there were no successful responses, this value shall be\
+            \ zero."
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Integer
+        dataBlockSize:
+          type: integer
+          description: Size of the data block in bytes to be sent for each ping.
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Integer
+        diagnosticsState:
+          $ref: '#/components/schemas/IPPingDiagnostics.diagnosticsState'
+        failureCount:
+          type: integer
+          description: Result parameter indicating the number of failed pings in the
+            most recent ping test.
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Integer
+        host:
+          type: string
+          description: Host name or address of the host to ping.
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: String
+        maximumResponseTime:
+          type: integer
+          description: "Result parameter indicating the maximum response time in milliseconds\
+            \ over all repetitions with successful responses of the most recent ping\
+            \ test.\n\nIf there were no successful responses, this value shall be\
+            \ zero."
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Integer
+        minimumResponseTime:
+          type: integer
+          description: "Result parameter indicating the minimum response time in milliseconds\
+            \ over all repetitions with successful responses of the most recent ping\
+            \ test.\n\nIf there were no successful responses, this value shall be\
+            \ zero."
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Integer
+        numberOfRepetitions:
+          type: integer
+          description: Number of repetitions of the ping test to perform before reporting
+            the results.
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Integer
+        successCount:
+          type: integer
+          description: |-
+            Result parameter indicating the number of successful
+            pings (those in which a successful response was received prior to the timeout) in the most recent ping test.
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Integer
+        timeout:
+          type: integer
+          description: Timeout in milliseconds for the ping test.
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Integer
+      example:
+        averageResponseTime: 2
+        dataBlockSize: 7
+        maximumResponseTime: 2
+        minimumResponseTime: 4
+        diagnosticsState: 9
+        host: host
+        successCount: 1
+        numberOfRepetitions: 7
+        failureCount: 3
+        timeout: 1
+      x-etsi-ref: 6.5.4
+    OnuAlarmNotification.alarm:
+      type: integer
+      description: Indicates the alarm of the ONU:0  = EquipmentAlarm.1  = PoweringAlarm.2  =
+        BatteryMissing.3  = BatteryFailure.4  = BatteryLow.5  = PhysicalIntrusion.
+        6  = OnuSelfTestFailure. 7  = DyingGasp. 8  = TemperatureYellow.9  = TemperatureRed.10
+        = VoltageYellow.11 = VoltageRed.12 = OnuManualPowerOff. 13 = InvImage.14 =
+        PseOverloadYellow.15 = PseOverloadRed.
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      x-etsi-mec-cardinality: "1"
+      x-etsi-mec-origin-type: Enum
+    OnuAlarmNotification:
+      required:
+      - alarm
+      - notificationType
+      - onuId
+      type: object
+      properties:
+        alarm:
+          $ref: '#/components/schemas/OnuAlarmNotification.alarm'
+        customerPremisesInfo:
+          minItems: 0
+          type: array
+          description: The physical location of the related customer sites.
+          items:
+            $ref: '#/components/schemas/CpInfo'
+          x-etsi-mec-cardinality: 0..N
+          x-etsi-mec-origin-type: CpInfo
+        notificationType:
+          type: string
+          description: Shall be set to "OnuAlarmNotification".
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: String
+        onuId:
+          type: string
+          description: The unique identifier for an optical network unit.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: String
+        timeStamp:
+          $ref: '#/components/schemas/TimeStamp'
+      x-etsi-ref: 6.4.2
+    OnuAlarmSubscription.alarms:
+      type: integer
+      description: "In case alarms is not included in the subscription request, the\
+        \ default value -1 = All shall be used and included in the response:\n0  =\t\
+        EquipmentAlarm.\n\t(Functional failure on an internal interface.)\n1  =\t\
+        PoweringAlarm.\n\t(Loss of external power to battery backup unit. This alarm\
+        \ is typically derived through an external interface to a battery backup unit,\
+        \ and indicates that AC is no longer available to maintain battery charge.)\n\
+        2  =\tBatteryMissing.\n\t(Battery is provisioned but missing.)\n3  =\tBatteryFailure.\n\
+        \t(Battery is provisioned and present but cannot recharge.)\n4  =\tBatteryLow.\n\
+        \t(Battery is provisioned and present but its voltage is too low.)\n5  =\t\
+        PhysicalIntrusion.\n\t(Applies if the ONU supports detection such as door\
+        \ or box open.)\n6  =\tOnuSelfTestFailure.\n\t(ONU has failed autonomous self-test.)\n\
+        7  =\tDyingGasp.\n\t(ONU is powering off imminently due to loss of power to\
+        \ the ONU itself.)\n8  =\tTemperatureYellow.\n\t(No service shutdown at present,\
+        \ but the circuit pack is operating beyond its recommended range.)\n9  =\t\
+        TemperatureRed.\n\t(Some services have been shut down to avoid equipment damage.)\n\
+        10 =\tVoltageYellow.\n\t(No service shutdown at present, but the line power\
+        \ voltage is below its recommended minimum.)\n11 =\tVoltageRed.\n\t(Some services\
+        \ have been shut down to avoid power collapse.)\n12 =\tOnuManualPowerOff.\n\
+        \t(The ONU is shutting down because the subscriber has turned off its power\
+        \ switch.)\n13 =\tInvImage.\n\t(Software image is invalid.)\n14 =\tPseOverloadYellow.\n\
+        \t(Indicates that the ONU is nearing its maximum ability to supply the known\
+        \ PoE demand of the attached PDs. The thresholds for declaring and clearing\
+        \ this alarm are vendor-specific.)\n15 =\tPseOverloadRed.\n\t(Indicates that\
+        \ the ONU is unable to supply all of the PoE demand of the attached PDs and\
+        \ has removed or reduced power to at least one PD.)\n-1 =\tAll."
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - -1
+    OnuAlarmSubscription.links:
+      required:
+      - self
+      type: object
+      properties:
+        self:
+          $ref: '#/components/schemas/LinkType'
+      description: Hyperlink related to the resource. This shall be only included
+        in the HTTP responses and in HTTP PUT requests.
+      x-etsi-mec-cardinality: 0..1
+    OnuAlarmSubscription.filterCriteriaOnuAlarm:
+      required:
+      - onuId
+      type: object
+      properties:
+        alarms:
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/OnuAlarmSubscription.alarms'
+          x-etsi-mec-cardinality: 0..N
+          x-etsi-mec-origin-type: Enum
+        customerPremisesInfo:
+          minItems: 0
+          type: array
+          description: 0 to N physical locations of the customer sites.
+          items:
+            $ref: '#/components/schemas/CpInfo'
+          x-etsi-mec-cardinality: 0..N
+          x-etsi-mec-origin-type: CpInfo
+        onuId:
+          minItems: 1
+          type: array
+          description: "1 to N unique identifiers for the optical network units.\n\
+            Typical it is the unique serial number for each ONU, which contains the\
+            \ vendor ID and version number. The first four bytes are an ASCII-encoded\
+            \ four-letter vendor ID. The second four bytes are a binary encoded serial\
+            \ number, under the control of the ONU vendor."
+          items:
+            type: string
+          x-etsi-mec-cardinality: 1..N
+          x-etsi-mec-origin-type: String
+      description: "List of filtering criteria for the subscription. Any filtering\
+        \ criteria from below, which is included in the request, shall also be included\
+        \ in the response."
+      x-etsi-mec-cardinality: "1"
+    OnuAlarmSubscription:
+      required:
+      - callbackReference
+      - filterCriteriaOnuAlarm
+      - subscriptionType
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/OnuAlarmSubscription.links'
+        callbackReference:
+          type: string
+          description: URI selected by the service consumer to receive notifications
+            on the subscribed FAIS information. This shall be included both in the
+            request and in response.
+          format: uri
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: URI
+        expiryDeadline:
+          $ref: '#/components/schemas/TimeStamp'
+        filterCriteriaOnuAlarm:
+          $ref: '#/components/schemas/OnuAlarmSubscription.filterCriteriaOnuAlarm'
+        subscriptionType:
+          type: string
+          description: Shall be set to \"OnuAlarmSubscription\".
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: String
+      x-etsi-ref: 6.3.2
+    PonInfo.opticalNetworkInfo.dsRate:
+      type: integer
+      description: "Downstream line rate, valid values are:\n1 =\t2,48832 Gbit/s:\
+        \ G-PON [i.9]; or\nNG-PON2 option 2 [i.8].\n2 =\t9,95328 Gbit/s:  XG-PON [i.10];\
+        \ or\n XGS-PON [i.11]; or\nNG-PON2 option 1 [i.8]."
+      enum:
+      - 1
+      - 2
+      x-etsi-mec-cardinality: "1"
+      x-etsi-mec-origin-type: Enum
+    PonInfo.opticalNetworkInfo.operationalState:
+      type: integer
+      description: "It reports whether the ONU is currently capable of performing\
+        \ its function. Valid values are: 0 = enabled 1 = disabled"
+      enum:
+      - 0
+      - 1
+      x-etsi-mec-cardinality: "1"
+      x-etsi-mec-origin-type: Enum
+    PonInfo.opticalNetworkInfo.ponTech:
+      type: integer
+      description: "An informative field identifying the optical technology used.\
+        \ The valid values are: 1 = GPON. 2 = XGPON.3 = NGPON2. 4 = XGSPON."
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      x-etsi-mec-cardinality: "1"
+      x-etsi-mec-origin-type: Enum
+    PonInfo.opticalNetworkInfo.usRate:
+      type: integer
+      description: "Upstream line rate, valid values are:\n1 =\t1,24416 Gbit/s: G-PON\
+        \ option 1 [i.9].\n2 =\t2,48832 Gbit/s: G-PON option 2 [i.9]; or\nXG-PON [i.10];\
+        \ or\nNG-PON2 option 2 [i.8].\n3 =\t9,95328 Gbit/s: XGS-PON [i.11]; or\nNG-PON2\
+        \ option 1 [i.8]."
+      enum:
+      - 1
+      - 2
+      - 3
+      x-etsi-mec-cardinality: "1"
+      x-etsi-mec-origin-type: Enum
+    PonInfo.opticalNetworkInfo:
+      minItems: 1
+      required:
+      - dsRate
+      - onuId
+      - operationalState
+      - ponTech
+      - usRate
+      type: array
+      properties:
+        dsRate:
+          $ref: '#/components/schemas/PonInfo.opticalNetworkInfo.dsRate'
+        onuId:
+          type: string
+          description: Information to identify an Optical Network Unit.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: String
+        operationalState:
+          $ref: '#/components/schemas/PonInfo.opticalNetworkInfo.operationalState'
+        ponTech:
+          $ref: '#/components/schemas/PonInfo.opticalNetworkInfo.ponTech'
+        usRate:
+          $ref: '#/components/schemas/PonInfo.opticalNetworkInfo.usRate'
+      items:
+        type: object
+    PonInfo:
+      required:
+      - customerPremisesInfo
+      - opticalNetworkInfo
+      - ponSYS_ID
+      type: object
+      properties:
+        customerPremisesInfo:
+          minItems: 1
+          type: array
+          description: The physical location of a customer site.
+          items:
+            $ref: '#/components/schemas/CpInfo'
+          x-etsi-mec-cardinality: 1..N
+          x-etsi-mec-origin-type: CpInfo
+        opticalNetworkInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/PonInfo.opticalNetworkInfo'
+        ponSYS_ID:
+          type: string
+          description: The 20-bit identity of the optical system within a certain
+            domain.This is a reference value set by the OSS.
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: String
+        timeStamp:
+          $ref: '#/components/schemas/TimeStamp'
+      example:
+        timeStamp:
+          seconds: 3
+          nanoSeconds: 9
+        customerPremisesInfo:
+        - latitude: 2.3021358869347654518833223846741020679473876953125
+          postalCode: postalCode
+          longitude: 7.061401241503109105224211816675961017608642578125
+        - latitude: 2.3021358869347654518833223846741020679473876953125
+          postalCode: postalCode
+          longitude: 7.061401241503109105224211816675961017608642578125
+        opticalNetworkInfo:
+        - - {}
+          - {}
+        - - {}
+          - {}
+        ponSYS_ID: ponSYS_ID
+      x-etsi-ref: 6.2.5
+    SubscriptionLinkList.links.subscription.subscriptionType:
+      type: integer
+      description: "Numeric value (0 - 255) corresponding to specified type of subscription\
+        \ as following: 0 = RESERVED. 1 = ONU_ALARM. 2 = DEVICE_ABNORMAL_ALERT. 3\
+        \ = CM_CONNECTIVITY_STATE.4 = ANI_ALARM."
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      x-etsi-mec-cardinality: "1"
+      x-etsi-mec-origin-type: Enum
+    SubscriptionLinkList.links.subscription:
+      required:
+      - href
+      - subscriptionType
+      properties:
+        href:
+          type: string
+          description: The URI referring to the subscription.
+          format: uri
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: URI
+        subscriptionType:
+          $ref: '#/components/schemas/SubscriptionLinkList.links.subscription.subscriptionType'
+      description: A link to a subscription.
+      example:
+        subscriptionType: 0
+        href: http://example.com/aeiou
+    SubscriptionLinkList.links:
+      properties:
+        subscription:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubscriptionLinkList.links.subscription'
+      description: List of hyperlinks related to the resource.
+      example:
+        subscription:
+        - subscriptionType: 0
+          href: http://example.com/aeiou
+        - subscriptionType: 0
+          href: http://example.com/aeiou
+    SubscriptionLinkList:
+      required:
+      - _links
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/SubscriptionLinkList.links'
+      example:
+        _links:
+          subscription:
+          - subscriptionType: 0
+            href: http://example.com/aeiou
+          - subscriptionType: 0
+            href: http://example.com/aeiou
+      x-etsi-ref: 6.3.5
+    TimeStamp:
+      required:
+      - nanoSeconds
+      - seconds
+      type: object
+      properties:
+        nanoSeconds:
+          type: integer
+          description: "The nanoseconds part of the time. Time is defined as Unix-time\
+            \ since January 1, 1970, 00:00:00 UTC."
+          format: Uint32
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Uint32
+        seconds:
+          type: integer
+          description: "The seconds part of the time. Time is defined as Unixtime\
+            \ since January 1, 1970, 00:00:00 UTC."
+          format: Uint32
+          x-etsi-mec-cardinality: "1"
+          x-etsi-mec-origin-type: Uint32
+      example:
+        seconds: 3
+        nanoSeconds: 9
+      x-etsi-ref: 6.5.2
+    TraceRouteDiagnostics.diagnosticsState:
+      type: integer
+      description: "The state of the IP trace-route test. Enumeration of: 1 = None.\
+        \ 2 = Requested. 3 = Complete.  4 = Error_CannotResolveHostName. 5 = Error_MaxHopCountExceeded.\
+        \ 6 = Error_Internal. 7 = Error_Other."
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      x-etsi-mec-cardinality: "1"
+      x-etsi-mec-origin-type: Enum
+    TraceRouteDiagnostics:
+      required:
+      - diagnosticsState
+      type: object
+      properties:
+        dataBlockSize:
+          type: integer
+          description: Size of the data block in bytes to be sent for each trace route.
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Integer
+        diagnosticsState:
+          $ref: '#/components/schemas/TraceRouteDiagnostics.diagnosticsState'
+        host:
+          type: string
+          description: Host name or address of the host to find a route to.
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: String
+        maxHopCount:
+          type: integer
+          description: The maximum number of hop used in outgoing probe packets. The
+            default is 30 hops.
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Integer
+        numberOfRouteHops:
+          type: integer
+          description: "Result parameter indicating the number of hops within the\
+            \ discovered route.\n\nIf a route could not be determined, this value\
+            \ shall be zero."
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Integer
+        responseTime:
+          type: integer
+          description: "Result parameter indicating the response time in milliseconds\
+            \ the most recent trace route test.\n\nIf a route could not be determined,\
+            \ this value shall be zero."
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Integer
+        timeout:
+          type: integer
+          description: Timeout in milliseconds for the trace route test.
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Integer
+      example:
+        dataBlockSize: 4
+        responseTime: 6
+        diagnosticsState: 5
+        host: host
+        maxHopCount: 9
+        numberOfRouteHops: 9
+        timeout: 8
+      x-etsi-ref: 6.5.5
+    UploadDiagnostics.diagnosticsState:
+      type: integer
+      description: "The state of the HTTP and FTP download test. Enumeration of: 1\
+        \ = None. 2 = Requested. 3 = Completed. 4 = Error_InitConnectionFailed. 5\
+        \ = Error_NoResponse.  6 = Error_PasswordRequestFailed. 7 = Error_LoginFailed.\
+        \ 8 = Error_NoTransferMode. 9 = Error_NoPASV.  10 = Error_NoCWD. 11 = Error_NoSTOR.12\
+        \ = Error_NoTransferComplete."
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      x-etsi-mec-cardinality: "1"
+      x-etsi-mec-origin-type: Enum
+    UploadDiagnostics:
+      required:
+      - diagnosticsState
+      type: object
+      properties:
+        bOMTime:
+          $ref: '#/components/schemas/TimeStamp'
+        diagnosticsState:
+          $ref: '#/components/schemas/UploadDiagnostics.diagnosticsState'
+        eOMTime:
+          $ref: '#/components/schemas/TimeStamp'
+        rOMTime:
+          $ref: '#/components/schemas/TimeStamp'
+        tCPOpenReponseTime:
+          $ref: '#/components/schemas/TimeStamp'
+        tCPOpenRequestTime:
+          $ref: '#/components/schemas/TimeStamp'
+        testBytesSent:
+          type: integer
+          description: "The test traffic sent in bytes during the FTP/HTTP transaction\
+            \ including FTP/HTTP headers, between bOMTime and eOMTime."
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Integer
+        testFileLength:
+          type: integer
+          description: |-
+            The size of the file (in bytes) to be uploaded to the
+            server.
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Integer
+        uploadURI:
+          type: string
+          description: The URI for the device to perform the upload to.
+          format: uri
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: URI
+      example:
+        tCPOpenRequestTime: null
+        uploadURI: http://example.com/aeiou
+        testBytesSent: 3
+        diagnosticsState: 6
+        rOMTime: null
+        eOMTime: null
+        tCPOpenReponseTime: null
+        testFileLength: 6
+        bOMTime: null
+      x-etsi-ref: 6.5.7
+    LinkType:
+      required:
+      - href
+      type: object
+      properties:
+        href:
+          $ref: '#/components/schemas/Href'
+      description: '''This data type represents a type of link'''
+    Href:
+      type: string
+      description: The URI referring to the subscription.
+      format: uri
+    ProblemDetails:
+      type: object
+      properties:
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of
+            the problem
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: String
+        instance:
+          type: string
+          description: A URI reference that identifies the specific occurrence of
+            the problem
+          format: uri
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: URI
+        status:
+          type: integer
+          description: The HTTP status code for this occurrence of the problem
+          format: uint32
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: Uint32
+        title:
+          type: string
+          description: "A short, human-readable summary of the problem type"
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: String
+        type:
+          type: string
+          description: A URI reference according to IETF RFC 3986 that identifies
+            the problem type
+          format: uri
+          x-etsi-mec-cardinality: 0..1
+          x-etsi-mec-origin-type: URI
+    subscriptions_body:
+      oneOf:
+      - $ref: '#/components/schemas/OnuAlarmSubscription'
+      - $ref: '#/components/schemas/DevInfoSubscription'
+      - $ref: '#/components/schemas/CmConnSubscription'
+      - $ref: '#/components/schemas/AniAlarmSubscription'
+    subscriptions_subscriptionId_body:
+      oneOf:
+      - $ref: '#/components/schemas/OnuAlarmSubscription'
+      - $ref: '#/components/schemas/DevInfoSubscription'
+      - $ref: '#/components/schemas/CmConnSubscription'
+      - $ref: '#/components/schemas/AniAlarmSubscription'
+    AniAlarmSubscription.filterCriteriaAniAlarm_aniId:
+      required:
+      - aniIndex
+      - onuId
+      type: object
+      properties:
+        onuId:
+          type: string
+          description: The unique identifiers for the optical network unit
+        aniIndex:
+          type: string
+          description: The index of an access network interface supported by the optical
+            network unit
+  responses:
+    "204":
+      description: No Content
+    "206":
+      description: Partial content
+    "400":
+      description: "Bad Request : used to indicate that incorrect parameters were\
+        \ passed to the request."
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    "401":
+      description: "Unauthorized :  used when the client did not submit credentials."
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    "403":
+      description: "Forbidden :  operation is not allowed given the current status\
+        \ of the resource."
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    "404":
+      description: "Not Found :  used when a client provided a URI that cannot be\
+        \ mapped to a valid resource URI."
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    "406":
+      description: "Not Acceptable : used to indicate that the server cannot provide\
+        \ the any of the content formats supported by the client."
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    "409":
+      description: "Conflict : The operation cannot be executed currently, due to\
+        \ a conflict with the state of the resource"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    "412":
+      description: "Precondition failed :  used when a condition has failed during\
+        \ conditional requests, e.g. when using ETags to avoid write conflicts when\
+        \ using PUT"
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    "415":
+      description: "Unsupported Media Type :  used to indicate that the server or\
+        \ the client does not support the content type of the entity body."
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    "422":
+      description: "Unprocessable Entity : used to indicate that the server understands\
+        \ the content type of the request entity and that the syntax of the request\
+        \ entity is correct but that the server is unable to process the contained\
+        \ instructions. This error condition can occur if an JSON request body is\
+        \ syntactically correct but semantically incorrect, for example if the target\
+        \ area for the request is considered too large. This error condition can also\
+        \ occur if the capabilities required by the request are not supported."
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+    "429":
+      description: "Too Many Requests : used when a rate limiter has triggered."
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+
