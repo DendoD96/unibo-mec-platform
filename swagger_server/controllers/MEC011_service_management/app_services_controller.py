@@ -8,14 +8,14 @@ from swagger_server.models.internal.applications_services_data import update_app
 from swagger_server.models.problem_details import ProblemDetails
 
 
-def app_services_get(appInstanceId, ser_instance_id=None, ser_name=None, ser_category_id=None, consumed_local_only=None,
+def app_services_get(app_instance_id, ser_instance_id=None, ser_name=None, ser_category_id=None, consumed_local_only=None,
                      is_local=None, scope_of_locality=None):  # noqa: E501
 	"""app_services_get
 
 	This method retrieves information about a list of mecService resources. This method is typically used in 'service availability query' procedure # noqa: E501
 
-	:param appInstanceId: Represents a MEC application instance. Note that the appInstanceId is allocated by the MEC platform manager.
-	:type appInstanceId: str
+	:param app_instance_id: Represents a MEC application instance. Note that the app_instance_id is allocated by the MEC platform manager.
+	:type app_instance_id: str
 	:param ser_instance_id: A MEC application instance may use multiple ser_instance_ids as an input parameter to query the availability of a list of MEC service instances. Either 'ser_instance_id' or 'ser_name' or 'ser_category_id' or none of them shall be present.
 	:type ser_instance_id: List[str]
 	:param ser_name: A MEC application instance may use multiple ser_names as an input parameter to query the availability of a list of MEC service instances. Either 'ser_instance_id' or 'ser_name' or 'ser_category_id' or none of them shall be present.
@@ -31,82 +31,82 @@ def app_services_get(appInstanceId, ser_instance_id=None, ser_name=None, ser_cat
 
 	:rtype: List[ServiceInfo]
 	"""
-	return get_app_service(app_instance_id=appInstanceId, ser_instance_id=ser_instance_id, ser_name=ser_name,
+	return get_app_service(app_instance_id=app_instance_id, ser_instance_id=ser_instance_id, ser_name=ser_name,
 	                       ser_category_id=ser_category_id, consumed_local_only=consumed_local_only, is_local=is_local,
 	                       scope_of_locality=scope_of_locality)
 
 
-def app_services_post(body, appInstanceId):  # noqa: E501
+def app_services_post(body, app_instance_id):  # noqa: E501
 	"""app_services_post
 
 	This method is used to create a mecService resource. This method is typically used in 'service availability update and new service registration' procedure # noqa: E501
 
 	:param body: New ServiceInfo with updated &quot;state&quot; is included as entity body of the request
 	:type body: dict | bytes
-	:param appInstanceId: Represents a MEC application instance. Note that the appInstanceId is allocated by the MEC platform manager.
-	:type appInstanceId: str
+	:param app_instance_id: Represents a MEC application instance. Note that the app_instance_id is allocated by the MEC platform manager.
+	:type app_instance_id: str
 
 	:rtype: ServiceInfo
 	"""
 	if connexion.request.is_json:
 		body = ServiceInfoPost.from_dict(connexion.request.get_json())  # noqa: E501
-	return add_app_service(appInstanceId, body)
+	return add_app_service(app_instance_id, body)
 
 
-def app_services_service_id_delete(appInstanceId, serviceId):  # noqa: E501
+def app_services_service_id_delete(app_instance_id, service_id):  # noqa: E501
 	"""app_services_service_id_delete
 
 	This method deletes a mecService resource. This method is typically used in the service deregistration procedure.  # noqa: E501
 
-	:param appInstanceId: Represents a MEC application instance. Note that the appInstanceId is allocated by the MEC platform manager.
-	:type appInstanceId: str
-	:param serviceId: Represents a MEC service instance.
-	:type serviceId: str
+	:param app_instance_id: Represents a MEC application instance. Note that the app_instance_id is allocated by the MEC platform manager.
+	:type app_instance_id: str
+	:param service_id: Represents a MEC service instance.
+	:type service_id: str
 
 	:rtype: None
 	"""
-	result = delete_app_service(app_instance_id=appInstanceId, ser_instance_id=serviceId)
+	result = delete_app_service(app_instance_id=app_instance_id, ser_instance_id=service_id)
 	if result is not None:
 		return "Done", 204
 	return ProblemDetails(title="service not found", status=404), 404
 
 
-def app_services_service_id_get(appInstanceId, serviceId):  # noqa: E501
+def app_services_service_id_get(app_instance_id, service_id):  # noqa: E501
 	"""app_services_service_id_get
 
 	This method retrieves information about a mecService resource. This method is typically used in 'service availability query' procedure # noqa: E501
 
-	:param appInstanceId: Represents a MEC application instance. Note that the appInstanceId is allocated by the MEC platform manager.
-	:type appInstanceId: str
-	:param serviceId: Represents a MEC service instance.
-	:type serviceId: str
+	:param app_instance_id: Represents a MEC application instance. Note that the app_instance_id is allocated by the MEC platform manager.
+	:type app_instance_id: str
+	:param service_id: Represents a MEC service instance.
+	:type service_id: str
 
 	:rtype: ServiceInfo
 	"""
-	service_info = get_app_service(app_instance_id=appInstanceId, ser_instance_id=[serviceId])
+	service_info = get_app_service(app_instance_id=app_instance_id, ser_instance_id=[service_id])
 	if len(service_info) == 1:
 		return service_info[0]
 	else:
 		return ProblemDetails(title="service not found", status=404), 404
 
 
-def app_services_service_id_put(body, appInstanceId, serviceId):  # noqa: E501
+def app_services_service_id_put(body, app_instance_id, service_id):  # noqa: E501
 	"""app_services_service_id_put
 
 	This method updates the information about a mecService resource # noqa: E501
 
 	:param body: New ServiceInfo with updated &quot;state&quot; is included as entity body of the request
 	:type body: dict | bytes
-	:param appInstanceId: Represents a MEC application instance. Note that the appInstanceId is allocated by the MEC platform manager.
-	:type appInstanceId: str
-	:param serviceId: Represents a MEC service instance.
-	:type serviceId: str
+	:param app_instance_id: Represents a MEC application instance. Note that the app_instance_id is allocated by the MEC platform manager.
+	:type app_instance_id: str
+	:param service_id: Represents a MEC service instance.
+	:type service_id: str
 
 	:rtype: ServiceInfo
 	"""
 	if connexion.request.is_json:
 		body = ServiceInfo.from_dict(connexion.request.get_json())  # noqa: E501
-	result = update_app_service(app_instance_id=appInstanceId, ser_instance_id=serviceId, service=body)
+	result = update_app_service(app_instance_id=app_instance_id, ser_instance_id=service_id, service=body)
 	if result:
 		return result
 	return ProblemDetails(title="service not found", status=404), 404

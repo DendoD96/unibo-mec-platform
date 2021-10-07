@@ -1,5 +1,5 @@
 from swagger_server.models.MEC011_service_management.service_info import ServiceInfo  # noqa: E501
-
+from swagger_server.models.internal.applications_services_data import get_services
 
 def services_get(ser_instance_id=None, ser_name=None, ser_category_id=None, consumed_local_only=None, is_local=None, scope_of_locality=None):  # noqa: E501
     """services_get
@@ -17,21 +17,22 @@ def services_get(ser_instance_id=None, ser_name=None, ser_category_id=None, cons
     :param is_local: Indicate whether the service is located in the same locality (as  defined by scopeOfLocality) as the consuming MEC application.
     :type is_local: bool
     :param scope_of_locality: A MEC application instance may use scope_of_locality as an input  parameter to query the availability of a list of MEC service instances  with a certain scope of locality.
-    :type scope_of_locality: str
+    :type scope_of_locality: str 
 
     :rtype: List[ServiceInfo]
     """
-    return 'do some magic!'
+    return get_services(ser_instance_id=ser_instance_id, ser_name=ser_name, ser_category_id=ser_category_id, consumed_local_only=consumed_local_only,
+				 is_local=is_local, scope_of_locality=scope_of_locality)
 
 
-def services_service_id_get(serviceId):  # noqa: E501
+def services_service_id_get(service_id):  # noqa: E501
     """services_service_id_get
 
     This method retrieves information about a mecService resource. This method is typically used in 'service availability query' procedure # noqa: E501
 
-    :param serviceId: Represents a MEC service instance.
-    :type serviceId: str
+    :param service_id: Represents a MEC service instance.
+    :type service_id: str
 
     :rtype: ServiceInfo
     """
-    return 'do some magic!'
+    return get_services(ser_instance_id=[service_id])

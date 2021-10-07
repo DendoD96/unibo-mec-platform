@@ -18,7 +18,8 @@ class BaseTestCase(TestCase):
 		app.app.json_encoder = JSONEncoder
 		for filename in os.listdir(SPECIFICATIONS_DIRECTORY):
 			if filename.endswith(".yaml"):
-				app.add_api(filename, arguments={'title': f"ETSI GS ${filename.split('.')[0]} API"})
+				app.add_api(filename, arguments={'title': f"ETSI GS ${filename.split('.')[0]} API"},
+				pythonic_params=True)
 				continue
 			else:
 				continue

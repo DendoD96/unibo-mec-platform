@@ -1,6 +1,6 @@
 from swagger_server.models.MEC011_application_support.current_time import CurrentTime  # noqa: E501
 from swagger_server.models.MEC011_application_support.timing_caps import TimingCaps  # noqa: E501
-
+from swagger_server.models.internal.applications_services_data import get_current_time
 
 def timing_caps_get():  # noqa: E501
     """timing_caps_get
@@ -21,4 +21,4 @@ def timing_current_time_get():  # noqa: E501
 
     :rtype: CurrentTime
     """
-    return 'do some magic!'
+    return get_current_time()
