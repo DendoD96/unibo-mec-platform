@@ -3,6 +3,10 @@ import connexion
 from swagger_server.models.MEC011_service_management.mec_service_mgmt_api_subscription_link_list import MecServiceMgmtApiSubscriptionLinkList  # noqa: E501
 from swagger_server.models.MEC011_service_management.ser_availability_notification_subscription import SerAvailabilityNotificationSubscription  # noqa: E501
 from swagger_server.models.internal.applications_services_data import get_application_subscriptions 
+from swagger_server.models.internal.applications_services_data import add_application_subscription
+from swagger_server.models.internal.applications_services_data import delete_application_subscription
+from swagger_server.models.problem_details import ProblemDetails
+
 
 def applications_subscription_delete(app_instance_id, subscription_id):  # noqa: E501
     """applications_subscription_delete
@@ -16,7 +20,10 @@ def applications_subscription_delete(app_instance_id, subscription_id):  # noqa:
 
     :rtype: None
     """
-    return 'do some magic!'
+    result = delete_application_subscription(app_instance_id=app_instance_id, subscription_id=subscription_id)
+    if result is not None:
+	    return "Done", 204
+    return ProblemDetails(title="service not found", status=404), 404
 
 
 def applications_subscription_get(app_instance_id, subscription_id):  # noqa: E501
@@ -61,4 +68,4 @@ def applications_subscriptions_post(body, app_instance_id):  # noqa: E501
     """
     if connexion.request.is_json:
         body = SerAvailabilityNotificationSubscription.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+    return add_application_subscription(app_instance_id, body)

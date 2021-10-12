@@ -1,6 +1,7 @@
 from swagger_server.models.MEC011_service_management.service_info import ServiceInfo  # noqa: E501
 from swagger_server.models.MEC011_service_management.service_info_post import ServiceInfoPost
 from swagger_server.models.MEC011_application_support.current_time import CurrentTime
+from swagger_server.models.MEC011_service_management.ser_availability_notification_subscription import SerAvailabilityNotificationSubscription
 from datetime import datetime, timezone
 import uuid
 
@@ -78,6 +79,14 @@ def __delete_service(app_instance_id, ser_instance_id):
 		return services
 	return None
 
+def __delete_app_subscription(app_instance_id, subscription_id):
+	subscriptions = app_ids.get(app_instance_id, {}).get('subscriptionlist', [])
+	if len(subscriptions) > 0:
+		subscriptions = [subscription for subscription in subscriptions if subscription.ser_availability_notification_subscription_id != subscription_id]
+		app_ids[app_instance_id]['subscriptionlist']=subscriptions
+		#TODO if len(subscriptions) > 0 but subscription_id not in app_sub still replies with 204 instead of 404
+		return subscriptions
+	return None
 
 def delete_app_service(app_instance_id, ser_instance_id):
 	return __delete_service(app_instance_id, ser_instance_id)
@@ -103,6 +112,15 @@ def get_application_subscriptions(app_instance_id, subscription_id=None):
 	app_subscriptions = app_ids.get(app_instance_id, {}).get('subscriptionlist', [])
 	if subscription_id:
 	#TODO the subscription_id is not part of the standard MEC011 Subscription model (in v2.1.1)
+	#TODO v2 added ser_availability_notification_subscription_id in the openAPI definition
 		app_subscriptions = list(
 			filter(lambda subscription_info: (subscription_info.ser_availability_notification_subscription_id == subscription_id), app_subscriptions))
-	return subscription_id	
+	return subscription_id
+
+def add_application_subscription(app_instance_id, subscription: SerAvailabilityNotificationSubscription):
+	subscription.ser_availability_notification_subscription_id = str(uuid.uuid4())
+	app_ids.setdefault(app_instance_id, {}).setdefault('subscriptionlist', []).append(subscription)
+	return subscription
+
+def delete_application_subscription(app_instance_id, subscription_id):
+	return __delete_app_subscription(app_instance_id, subscription_id)
