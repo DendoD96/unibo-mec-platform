@@ -16,20 +16,20 @@ externalDocs:
   description: ETSI GS MEC015 V2.1.1 Traffic Management APIs
   url: https://www.etsi.org/deliver/etsi_gs/MEC/001_099/015/02.01.01_60/gs_MEC015v020101p.pdf
 servers:
-- url: https://localhost/mts/v1
+  - url: https://localhost/mts/v1
 tags:
-- name: mts
+  - name: mts
 paths:
   /mts_capability_info:
     get:
       tags:
-      - mts
+        - mts
       summary: Retrieve the MTS capability informations
       description: Used to query information about the MTS information. Typically
         used in the 'Get MTS service Info from the MTS Service' procedure as described
         in clause 6.2.6.
       operationId: mts_capability_info_get
-      parameters: []
+      parameters: [ ]
       responses:
         "200":
           description: "Upon success, a response body containing the MTS capability\
@@ -63,48 +63,48 @@ paths:
   /mts_sessions:
     get:
       tags:
-      - mts
+        - mts
       summary: Retrieve information about a list of MTS sessions
       description: Retrieves information about a list of MTS sessions. Typically used
         in the 'Get configured MTS Session Info from the MTS Service' procedure as
         described in clause 6.2.10.
       operationId: mts_sessions_list_get
       parameters:
-      - name: app_instance_id
-        in: query
-        description: A MEC application instance may use multiple app_instance_ids
-          as an input parameter to query the MTS session of a list of MEC application
-          instances. See note.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-      - name: app_name
-        in: query
-        description: A MEC application instance may use multiple app_names as an input
-          parameter to query the MTS session of a list of MEC application instances.
-          See note.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-      - name: session_id
-        in: query
-        description: A MEC application instance may use session_id as an input parameter
-          to query the information of a list of MTS sessions. See note.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
+        - name: app_instance_id
+          in: query
+          description: A MEC application instance may use multiple app_instance_ids
+            as an input parameter to query the MTS session of a list of MEC application
+            instances. See note.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: app_name
+          in: query
+          description: A MEC application instance may use multiple app_names as an input
+            parameter to query the MTS session of a list of MEC application instances.
+            See note.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: session_id
+          in: query
+          description: A MEC application instance may use session_id as an input parameter
+            to query the information of a list of MTS sessions. See note.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
       responses:
         "200":
           description: "Upon success, a response body containing an array of the MTS\
@@ -140,13 +140,13 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC015_traffic_steering.mts_controller
     post:
       tags:
-      - mts
+        - mts
       summary: Create a MTS session
       description: Used to create a MTS session. This method is typically used in
         'Register application to the MTS Service' procedure as described in clause
         6.2.7.
       operationId: mts_session_post
-      parameters: []
+      parameters: [ ]
       requestBody:
         description: Entity body in the request contains MtsSessionInfo to be created.
         content:
@@ -187,21 +187,21 @@ paths:
   /mts_sessions/{sessionId}:
     get:
       tags:
-      - mts
+        - mts
       summary: Retrieve information about specific MTS session
       description: Retrieves information about an individual MTS session. Typically
         used in the 'Get configured MTS Session Info from the MTS Service' procedure
         as described in clause 6.2.10.
       operationId: mts_session_get
       parameters:
-      - name: sessionId
-        in: path
-        description: Represents a MTS session instance
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: sessionId
+          in: path
+          description: Represents a MTS session instance
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       responses:
         "200":
           description: Used to indicate nonspecific success. The response body contains
@@ -234,20 +234,20 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC015_traffic_steering.mts_controller
     put:
       tags:
-      - mts
+        - mts
       summary: Update the information about specific MTS session
       description: "Updates the information about an individual MTS session. As specified\
         \ in ETSI GS MEC 009 [6], the PUT HTTP method has 'replace' semantics. "
       operationId: mts_session_put
       parameters:
-      - name: sessionId
-        in: path
-        description: Represents a MTS session instance
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: sessionId
+          in: path
+          description: Represents a MTS session instance
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       requestBody:
         description: MtsSessionInfo with updated information is included as entity
           body of the request.
@@ -296,20 +296,20 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC015_traffic_steering.mts_controller
     delete:
       tags:
-      - mts
+        - mts
       summary: Remove specific MTS session
       description: DELETE method is typically used in 'Unregister from the MTS Service'
         procedure as described in clause 6.2.8.
       operationId: mts_session_delete
       parameters:
-      - name: sessionId
-        in: path
-        description: Represents a MTS session instance
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: sessionId
+          in: path
+          description: Represents a MTS session instance
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       responses:
         "204":
           description: "Upon success, a response 204 No Content without any response\
@@ -333,16 +333,16 @@ components:
   schemas:
     MtsCapabilityInfo:
       required:
-      - mtsAccessInfo
-      - mtsMode
+        - mtsAccessInfo
+        - mtsMode
       type: object
       properties:
         mtsAccessInfo:
           minItems: 1
           required:
-          - accessId
-          - accessType
-          - metered
+            - accessId
+            - accessType
+            - metered
           type: array
           description: The information on access network connection as defined below
           items:
@@ -373,27 +373,27 @@ components:
           seconds: 2
           nanoSeconds: 5
         mtsMode:
-        - 5
-        - 5
+          - 5
+          - 5
         mtsAccessInfo:
-        - accessId: 0
-          accessType: 6
-          metered: 1
-        - accessId: 0
-          accessType: 6
-          metered: 1
+          - accessId: 0
+            accessType: 6
+            metered: 1
+          - accessId: 0
+            accessType: 6
+            metered: 1
       x-etsi-notes: "NOTE:\tA metered connection is a network connection that has\
         \ a maximum data usage in a specific period, e.g. per hour/day/week/month.\
         \ The user may get billed extra charges if they go over the allotted amount."
       x-etsi-ref: 7.2.4
     MtsSessionInfo:
       required:
-      - appInsId
-      - flowFilter
-      - mtsMode
-      - qosD
-      - requestType
-      - trafficDirection
+        - appInsId
+        - flowFilter
+        - mtsMode
+        - qosD
+        - requestType
+        - trafficDirection
       type: object
       properties:
         appInsId:
@@ -435,8 +435,8 @@ components:
           description: "Numeric value (0 - 255) corresponding to specific type of\
             \ consumer as following: 0 = APPLICATION_SPECIFIC_MTS_SESSION 1 = FLOW_SPECIFIC_MTS_SESSION"
           enum:
-          - 0
-          - 1
+            - 0
+            - 1
           x-etsi-mec-cardinality: "1"
           x-etsi-mec-origin-type: Enum_inlined
         timeStamp:
@@ -453,28 +453,28 @@ components:
           seconds: 1
           nanoSeconds: 1
         flowFilter:
-        - flowlabel: 1
-          protocol: 5
-          sourcePort:
-          - 5
-          - 5
-          dscp: 0
-          dstPort:
-          - 6
-          - 6
-          sourceIp: sourceIp
-          dstIp: dstIp
-        - flowlabel: 1
-          protocol: 5
-          sourcePort:
-          - 5
-          - 5
-          dscp: 0
-          dstPort:
-          - 6
-          - 6
-          sourceIp: sourceIp
-          dstIp: dstIp
+          - flowlabel: 1
+            protocol: 5
+            sourcePort:
+              - 5
+              - 5
+            dscp: 0
+            dstPort:
+              - 6
+              - 6
+            sourceIp: sourceIp
+            dstIp: dstIp
+          - flowlabel: 1
+            protocol: 5
+            sourcePort:
+              - 5
+              - 5
+            dscp: 0
+            dstPort:
+              - 6
+              - 6
+            sourceIp: sourceIp
+            dstIp: dstIp
         requestType: 7
         qosD:
           maxJitter: 7
@@ -562,8 +562,8 @@ components:
         metered: 1
     MtsCapabilityInfo_timeStamp:
       required:
-      - nanoSeconds
-      - seconds
+        - nanoSeconds
+        - seconds
       type: object
       properties:
         nanoSeconds:
@@ -639,12 +639,12 @@ components:
         flowlabel: 1
         protocol: 5
         sourcePort:
-        - 5
-        - 5
+          - 5
+          - 5
         dscp: 0
         dstPort:
-        - 6
-        - 6
+          - 6
+          - 6
         sourceIp: sourceIp
         dstIp: dstIp
     MtsSessionInfo_qosD:
@@ -693,8 +693,8 @@ components:
         minTpt: 2
     MtsSessionInfo_timeStamp:
       required:
-      - nanoSeconds
-      - seconds
+        - nanoSeconds
+        - seconds
       type: object
       properties:
         nanoSeconds:

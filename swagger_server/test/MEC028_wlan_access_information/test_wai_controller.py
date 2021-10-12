@@ -6,7 +6,6 @@ from flask import json
 
 from swagger_server.models.MEC028_wlan_access_information.ap_identity import ApIdentity
 from swagger_server.models.MEC028_wlan_access_information.assoc_sta_subscription import AssocStaSubscription
-from swagger_server.models.MEC028_wlan_access_information.inline_subscription import InlineSubscription  # noqa: E501
 from swagger_server.models.MEC028_wlan_access_information.measurement_config import MeasurementConfig  # noqa: E501
 from swagger_server.models.MEC028_wlan_access_information.measurement_info import MeasurementInfo
 from swagger_server.models.MEC028_wlan_access_information.sta_identity import StaIdentity

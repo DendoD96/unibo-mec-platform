@@ -7,9 +7,6 @@ from flask import json
 from swagger_server.models.MEC029_fixed_access_information.onu_alarm_subscription import OnuAlarmSubscription
 from swagger_server.models.MEC029_fixed_access_information.onu_alarm_subscription_filter_criteria_onu_alarm import \
 	OnuAlarmSubscriptionFilterCriteriaOnuAlarm
-from swagger_server.models.MEC029_fixed_access_information.subscriptions_body import SubscriptionsBody  # noqa: E501
-from swagger_server.models.MEC029_fixed_access_information.subscriptions_subscription_id_body import \
-	SubscriptionsSubscriptionIdBody  # noqa: E501
 from swagger_server.test import BaseTestCase
 
 

@@ -13,89 +13,89 @@ externalDocs:
   description: "ETSI GS MEC011 Application Enablement API, V2.1.1"
   url: https://www.etsi.org/deliver/etsi_gs/MEC/001_099/011/02.01.01_60/gs_MEC011v020101p.pdf
 servers:
-- url: http://127.0.0.1:8081/mec_service_mgmt/v1
-- url: https://127.0.0.1:8081/mec_service_mgmt/v1
+  - url: http://127.0.0.1:8081/mec_service_mgmt/v1
+  - url: https://127.0.0.1:8081/mec_service_mgmt/v1
 tags:
-- name: appSubscriptions
-- name: appServices
-- name: services
-- name: transports
-- name: callbacks
+  - name: appSubscriptions
+  - name: appServices
+  - name: services
+  - name: transports
+  - name: callbacks
 paths:
   /services:
     get:
       tags:
-      - services
+        - services
       description: This method retrieves information about a list of mecService resources.
         This method is typically used in "service availability query" procedure
       operationId: services_get
       parameters:
-      - name: ser_instance_id
-        in: query
-        description: A MEC application instance may use multiple ser_instance_ids
-          as an input parameter to query the availability of a list of MEC service
-          instances. Either "ser_instance_id" or "ser_name" or "ser_category_id" or
-          none of them shall be present.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
+        - name: ser_instance_id
+          in: query
+          description: A MEC application instance may use multiple ser_instance_ids
+            as an input parameter to query the availability of a list of MEC service
+            instances. Either "ser_instance_id" or "ser_name" or "ser_category_id" or
+            none of them shall be present.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: ser_name
+          in: query
+          description: A MEC application instance may use multiple ser_names as an input
+            parameter to query the availability of a list of MEC service instances.
+            Either "ser_instance_id" or "ser_name" or "ser_category_id" or none of them
+            shall be present.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: ser_category_id
+          in: query
+          description: A MEC application instance may use ser_category_id as an input
+            parameter to query the availability of a list of MEC service instances in
+            a serCategory. Either "ser_instance_id" or "ser_name" or "ser_category_id"
+            or none of them shall be present.
+          required: false
+          style: form
+          explode: true
+          schema:
             type: string
-      - name: ser_name
-        in: query
-        description: A MEC application instance may use multiple ser_names as an input
-          parameter to query the availability of a list of MEC service instances.
-          Either "ser_instance_id" or "ser_name" or "ser_category_id" or none of them
-          shall be present.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
+        - name: consumed_local_only
+          in: query
+          description: Indicate whether the service can only be consumed by the MEC  applications
+            located in the same locality (as defined by  scopeOfLocality) as this service
+            instance.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: boolean
+        - name: is_local
+          in: query
+          description: Indicate whether the service is located in the same locality
+            (as  defined by scopeOfLocality) as the consuming MEC application.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: boolean
+        - name: scope_of_locality
+          in: query
+          description: A MEC application instance may use scope_of_locality as an input  parameter
+            to query the availability of a list of MEC service instances  with a certain
+            scope of locality.
+          required: false
+          style: form
+          explode: true
+          schema:
             type: string
-      - name: ser_category_id
-        in: query
-        description: A MEC application instance may use ser_category_id as an input
-          parameter to query the availability of a list of MEC service instances in
-          a serCategory. Either "ser_instance_id" or "ser_name" or "ser_category_id"
-          or none of them shall be present.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-      - name: consumed_local_only
-        in: query
-        description: Indicate whether the service can only be consumed by the MEC  applications
-          located in the same locality (as defined by  scopeOfLocality) as this service
-          instance.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: boolean
-      - name: is_local
-        in: query
-        description: Indicate whether the service is located in the same locality
-          (as  defined by scopeOfLocality) as the consuming MEC application.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: boolean
-      - name: scope_of_locality
-        in: query
-        description: A MEC application instance may use scope_of_locality as an input  parameter
-          to query the availability of a list of MEC service instances  with a certain
-          scope of locality.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
       responses:
         "200":
           description: It is used to indicate nonspecific success. The response body
@@ -158,19 +158,19 @@ paths:
   /services/{serviceId}:
     get:
       tags:
-      - services
+        - services
       description: This method retrieves information about a mecService resource.
         This method is typically used in "service availability query" procedure
       operationId: services_service_id_get
       parameters:
-      - name: serviceId
-        in: path
-        description: Represents a MEC service instance.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: serviceId
+          in: path
+          description: Represents a MEC service instance.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       responses:
         "200":
           description: It is used to indicate nonspecific success. The response body
@@ -213,86 +213,86 @@ paths:
   /applications/{appInstanceId}/services:
     get:
       tags:
-      - appServices
+        - appServices
       description: This method retrieves information about a list of mecService resources.
         This method is typically used in "service availability query" procedure
       operationId: app_services_get
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a MEC application instance. Note that the appInstanceId
-          is allocated by the MEC platform manager.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-      - name: ser_instance_id
-        in: query
-        description: A MEC application instance may use multiple ser_instance_ids
-          as an input parameter to query the availability of a list of MEC service
-          instances. Either "ser_instance_id" or "ser_name" or "ser_category_id" or
-          none of them shall be present.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
+        - name: appInstanceId
+          in: path
+          description: Represents a MEC application instance. Note that the appInstanceId
+            is allocated by the MEC platform manager.
+          required: true
+          style: simple
+          explode: false
+          schema:
             type: string
-      - name: ser_name
-        in: query
-        description: A MEC application instance may use multiple ser_names as an input
-          parameter to query the availability of a list of MEC service instances.
-          Either "ser_instance_id" or "ser_name" or "ser_category_id" or none of them
-          shall be present.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
+        - name: ser_instance_id
+          in: query
+          description: A MEC application instance may use multiple ser_instance_ids
+            as an input parameter to query the availability of a list of MEC service
+            instances. Either "ser_instance_id" or "ser_name" or "ser_category_id" or
+            none of them shall be present.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: ser_name
+          in: query
+          description: A MEC application instance may use multiple ser_names as an input
+            parameter to query the availability of a list of MEC service instances.
+            Either "ser_instance_id" or "ser_name" or "ser_category_id" or none of them
+            shall be present.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: ser_category_id
+          in: query
+          description: A MEC application instance may use ser_category_id as an input
+            parameter to query the availability of a list of MEC service instances in
+            a serCategory. Either "ser_instance_id" or "ser_name" or "ser_category_id"
+            or none of them shall be present.
+          required: false
+          style: form
+          explode: true
+          schema:
             type: string
-      - name: ser_category_id
-        in: query
-        description: A MEC application instance may use ser_category_id as an input
-          parameter to query the availability of a list of MEC service instances in
-          a serCategory. Either "ser_instance_id" or "ser_name" or "ser_category_id"
-          or none of them shall be present.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-      - name: consumed_local_only
-        in: query
-        description: Indicate whether the service can only be consumed by the MEC  applications
-          located in the same locality (as defined by  scopeOfLocality) as this service
-          instance.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: boolean
-      - name: is_local
-        in: query
-        description: Indicate whether the service is located in the same locality
-          (as  defined by scopeOfLocality) as the consuming MEC application.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: boolean
-      - name: scope_of_locality
-        in: query
-        description: A MEC application instance may use scope_of_locality as an input  parameter
-          to query the availability of a list of MEC service instances  with a certain
-          scope of locality.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
+        - name: consumed_local_only
+          in: query
+          description: Indicate whether the service can only be consumed by the MEC  applications
+            located in the same locality (as defined by  scopeOfLocality) as this service
+            instance.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: boolean
+        - name: is_local
+          in: query
+          description: Indicate whether the service is located in the same locality
+            (as  defined by scopeOfLocality) as the consuming MEC application.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: boolean
+        - name: scope_of_locality
+          in: query
+          description: A MEC application instance may use scope_of_locality as an input  parameter
+            to query the availability of a list of MEC service instances  with a certain
+            scope of locality.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
       responses:
         "200":
           description: It is used to indicate nonspecific success. The response body
@@ -354,21 +354,21 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC011_service_management.app_services_controller
     post:
       tags:
-      - appServices
+        - appServices
       description: This method is used to create a mecService resource. This method
         is typically used in "service availability update and new service registration"
         procedure
       operationId: app_services_post
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a MEC application instance. Note that the appInstanceId
-          is allocated by the MEC platform manager.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: appInstanceId
+          in: path
+          description: Represents a MEC application instance. Note that the appInstanceId
+            is allocated by the MEC platform manager.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       requestBody:
         $ref: '#/components/requestBodies/Services.Post'
       responses:
@@ -426,28 +426,28 @@ paths:
   /applications/{appInstanceId}/services/{serviceId}:
     get:
       tags:
-      - appServices
+        - appServices
       description: This method retrieves information about a mecService resource.
         This method is typically used in "service availability query" procedure
       operationId: app_services_service_id_get
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a MEC application instance. Note that the appInstanceId
-          is allocated by the MEC platform manager.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-      - name: serviceId
-        in: path
-        description: Represents a MEC service instance.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: appInstanceId
+          in: path
+          description: Represents a MEC application instance. Note that the appInstanceId
+            is allocated by the MEC platform manager.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: serviceId
+          in: path
+          description: Represents a MEC service instance.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       responses:
         "200":
           description: It is used to indicate nonspecific success. The response body
@@ -489,27 +489,27 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC011_service_management.app_services_controller
     put:
       tags:
-      - appServices
+        - appServices
       description: This method updates the information about a mecService resource
       operationId: app_services_service_id_put
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a MEC application instance. Note that the appInstanceId
-          is allocated by the MEC platform manager.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-      - name: serviceId
-        in: path
-        description: Represents a MEC service instance.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: appInstanceId
+          in: path
+          description: Represents a MEC application instance. Note that the appInstanceId
+            is allocated by the MEC platform manager.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: serviceId
+          in: path
+          description: Represents a MEC service instance.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       requestBody:
         $ref: '#/components/requestBodies/ServicesServiceId'
       responses:
@@ -563,28 +563,28 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC011_service_management.app_services_controller
     delete:
       tags:
-      - appServices
+        - appServices
       description: 'This method deletes a mecService resource. This method is typically
         used in the service deregistration procedure. '
       operationId: app_services_service_id_delete
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a MEC application instance. Note that the appInstanceId
-          is allocated by the MEC platform manager.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-      - name: serviceId
-        in: path
-        description: Represents a MEC service instance.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: appInstanceId
+          in: path
+          description: Represents a MEC application instance. Note that the appInstanceId
+            is allocated by the MEC platform manager.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: serviceId
+          in: path
+          description: Represents a MEC service instance.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       responses:
         "204":
           description: No Content
@@ -609,21 +609,21 @@ paths:
   /applications/{appInstanceId}/subscriptions:
     get:
       tags:
-      - appSubscriptions
+        - appSubscriptions
       description: "The GET method may be used to request information about all subscriptions\
         \ for this requestor. Upon success, the response contains entity body with\
         \ all the subscriptions for the requestor."
       operationId: applications_subscriptions_get
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a MEC application instance. Note that the appInstanceId
-          is allocated by the MEC platform manager.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: appInstanceId
+          in: path
+          description: Represents a MEC application instance. Note that the appInstanceId
+            is allocated by the MEC platform manager.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       responses:
         "200":
           description: "Upon success, a response body containing the list of links\
@@ -667,22 +667,22 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC011_service_management.app_subscriptions_controller
     post:
       tags:
-      - appSubscriptions
+        - appSubscriptions
       description: "The POST method may be used to create a new subscription. One\
         \ example use case is to create a new subscription to the MEC service availability\
         \ notifications. Upon success, the response contains entity body describing\
         \ the created subscription."
       operationId: applications_subscriptions_post
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a MEC application instance. Note that the appInstanceId
-          is allocated by the MEC platform manager.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: appInstanceId
+          in: path
+          description: Represents a MEC application instance. Note that the appInstanceId
+            is allocated by the MEC platform manager.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       requestBody:
         $ref: '#/components/requestBodies/ApplicationsSubscriptions'
       responses:
@@ -740,29 +740,29 @@ paths:
   /applications/{appInstanceId}/subscriptions/{subscriptionId}:
     get:
       tags:
-      - appSubscriptions
+        - appSubscriptions
       description: "The GET method requests information about a subscription for this\
         \ requestor. Upon success, the response contains entity body with the subscription\
         \ for the requestor."
       operationId: applications_subscription_get
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a MEC application instance. Note that the appInstanceId
-          is allocated by the MEC platform manager.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-      - name: subscriptionId
-        in: path
-        description: Represents a subscription to the notifications from the MEC platform.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: appInstanceId
+          in: path
+          description: Represents a MEC application instance. Note that the appInstanceId
+            is allocated by the MEC platform manager.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: subscriptionId
+          in: path
+          description: Represents a subscription to the notifications from the MEC platform.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       responses:
         "200":
           description: "Upon success, a response body containing the requested subscription\
@@ -801,28 +801,28 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC011_service_management.app_subscriptions_controller
     delete:
       tags:
-      - appSubscriptions
+        - appSubscriptions
       description: This method deletes a mecSrvMgmtSubscription. This method is typically
         used in "Unsubscribing from service availability event notifications" procedure.
       operationId: applications_subscription_delete
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a MEC application instance. Note that the appInstanceId
-          is allocated by the MEC platform manager.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-      - name: subscriptionId
-        in: path
-        description: Represents a subscription to the notifications from the MEC platform.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: appInstanceId
+          in: path
+          description: Represents a MEC application instance. Note that the appInstanceId
+            is allocated by the MEC platform manager.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: subscriptionId
+          in: path
+          description: Represents a subscription to the notifications from the MEC platform.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       responses:
         "204":
           description: No Content
@@ -847,7 +847,7 @@ paths:
   /transports:
     get:
       tags:
-      - transports
+        - transports
       description: This method retrieves information about a list of available transports.
         This method is typically used by a service-producing application to discover
         transports provided by the MEC platform in the "transport information query"
@@ -920,10 +920,10 @@ components:
       example: version1
     CategoryRef:
       required:
-      - href
-      - id
-      - name
-      - version
+        - href
+        - id
+        - name
+        - version
       type: object
       properties:
         href:
@@ -957,8 +957,8 @@ components:
       example: 8080
     EndPointInfo.Address:
       required:
-      - host
-      - port
+        - host
+        - port
       type: object
       properties:
         host:
@@ -968,7 +968,7 @@ components:
       description: A IP address and port pair
     EndPointInfo.Addresses:
       required:
-      - addresses
+        - addresses
       type: object
       properties:
         addresses:
@@ -980,7 +980,7 @@ components:
         IP address and port
     EndPointInfo.Alternative:
       required:
-      - alternative
+        - alternative
       type: object
       properties:
         alternative:
@@ -994,7 +994,7 @@ components:
       example: /mecSerMgmtApi/service/EntryPoint
     EndPointInfo.Uris:
       required:
-      - uris
+        - uris
       type: object
       properties:
         uris:
@@ -1020,7 +1020,7 @@ components:
       example: /mecSerMgmtApi/example
     MecServiceMgmtApiSubscriptionLinkList.Links:
       required:
-      - self
+        - self
       type: object
       properties:
         self:
@@ -1033,16 +1033,16 @@ components:
       description: Self-referring URI.
       example:
         subscriptions:
-        - rel: rel
-          href: null
-        - rel: rel
-          href: null
+          - rel: rel
+            href: null
+          - rel: rel
+            href: null
         self:
           href: /mecSerMgmtApi/example
     MecServiceMgmtApiSubscriptionLinkList.Subscription:
       required:
-      - href
-      - rel
+        - href
+        - rel
       type: object
       properties:
         href:
@@ -1056,7 +1056,7 @@ components:
         href: null
     MecServiceMgmtApiSubscriptionLinkList:
       required:
-      - _links
+        - _links
       type: object
       properties:
         _links:
@@ -1067,10 +1067,10 @@ components:
       example:
         _links:
           subscriptions:
-          - rel: rel
-            href: null
-          - rel: rel
-            href: null
+            - rel: rel
+              href: null
+            - rel: rel
+              href: null
           self:
             href: /mecSerMgmtApi/example
     ProblemDetails:
@@ -1112,10 +1112,10 @@ components:
       description: OAuth 2.0 grant type
       example: OAUTH2_CLIENT_CREDENTIALS
       enum:
-      - OAUTH2_AUTHORIZATION_CODE
-      - OAUTH2_IMPLICIT_GRANT
-      - OAUTH2_RESOURCE_OWNER
-      - OAUTH2_CLIENT_CREDENTIALS
+        - OAUTH2_AUTHORIZATION_CODE
+        - OAUTH2_IMPLICIT_GRANT
+        - OAUTH2_RESOURCE_OWNER
+        - OAUTH2_CLIENT_CREDENTIALS
     SecurityInfo.OAuth2Info.GrantTypes:
       maxItems: 4
       minItems: 1
@@ -1130,8 +1130,8 @@ components:
       example: /mecSerMgmtApi/security/TokenEndPoint
     SecurityInfo.OAuth2Info:
       required:
-      - grantTypes
-      - tokenEndpoint
+        - grantTypes
+        - tokenEndpoint
       type: object
       properties:
         grantTypes:
@@ -1142,10 +1142,10 @@ components:
       example:
         tokenEndpoint: /mecSerMgmtApi/security/TokenEndPoint
         grantTypes:
-        - OAUTH2_CLIENT_CREDENTIALS
-        - OAUTH2_CLIENT_CREDENTIALS
-        - OAUTH2_CLIENT_CREDENTIALS
-        - OAUTH2_CLIENT_CREDENTIALS
+          - OAUTH2_CLIENT_CREDENTIALS
+          - OAUTH2_CLIENT_CREDENTIALS
+          - OAUTH2_CLIENT_CREDENTIALS
+          - OAUTH2_CLIENT_CREDENTIALS
     SecurityInfo:
       type: object
       properties:
@@ -1156,13 +1156,13 @@ components:
         oAuth2Info:
           tokenEndpoint: /mecSerMgmtApi/security/TokenEndPoint
           grantTypes:
-          - OAUTH2_CLIENT_CREDENTIALS
-          - OAUTH2_CLIENT_CREDENTIALS
-          - OAUTH2_CLIENT_CREDENTIALS
-          - OAUTH2_CLIENT_CREDENTIALS
+            - OAUTH2_CLIENT_CREDENTIALS
+            - OAUTH2_CLIENT_CREDENTIALS
+            - OAUTH2_CLIENT_CREDENTIALS
+            - OAUTH2_CLIENT_CREDENTIALS
     Self:
       required:
-      - self
+        - self
       type: object
       properties:
         self:
@@ -1180,9 +1180,9 @@ components:
       format: uri
     SerAvailabilityNotificationSubscription:
       required:
-      - _links
-      - callbackReference
-      - subscriptionType
+        - _links
+        - callbackReference
+        - subscriptionType
       type: object
       properties:
         serAvailabilityNotificationSubscriptionId:
@@ -1200,23 +1200,23 @@ components:
       example:
         filteringCriteria:
           serNames:
-          - ExampleService
-          - ExampleService
+            - ExampleService
+            - ExampleService
           serInstanceIds:
-          - ServiceInstance123
-          - ServiceInstance123
+            - ServiceInstance123
+            - ServiceInstance123
           serCategories:
-          - name: RNI
-            href: /example/catalogue1
-            id: id12345
-            version: version1
-          - name: RNI
-            href: /example/catalogue1
-            id: id12345
-            version: version1
+            - name: RNI
+              href: /example/catalogue1
+              id: id12345
+              version: version1
+            - name: RNI
+              href: /example/catalogue1
+              id: id12345
+              version: version1
           states:
-          - ACTIVE
-          - ACTIVE
+            - ACTIVE
+            - ACTIVE
           isLocal: true
         subscriptionType: SerAvailabilityNotificationSubscription
         _links:
@@ -1234,9 +1234,9 @@ components:
       type: object
       not:
         required:
-        - serCategories
-        - serInstanceIds
-        - serNames
+          - serCategories
+          - serInstanceIds
+          - serNames
       properties:
         serInstanceIds:
           $ref: '#/components/schemas/SerInstanceIds'
@@ -1253,23 +1253,23 @@ components:
         \ combined with the logical  \"AND\" operation."
       example:
         serNames:
-        - ExampleService
-        - ExampleService
+          - ExampleService
+          - ExampleService
         serInstanceIds:
-        - ServiceInstance123
-        - ServiceInstance123
+          - ServiceInstance123
+          - ServiceInstance123
         serCategories:
-        - name: RNI
-          href: /example/catalogue1
-          id: id12345
-          version: version1
-        - name: RNI
-          href: /example/catalogue1
-          id: id12345
-          version: version1
+          - name: RNI
+            href: /example/catalogue1
+            id: id12345
+            version: version1
+          - name: RNI
+            href: /example/catalogue1
+            id: id12345
+            version: version1
         states:
-        - ACTIVE
-        - ACTIVE
+          - ACTIVE
+          - ACTIVE
         isLocal: true
     SerAvailabilityNotificationSubscription.SubscriptionType:
       type: string
@@ -1277,9 +1277,9 @@ components:
       example: SerAvailabilityNotificationSubscription
     ServiceAvailabilityNotification:
       required:
-      - _links
-      - notificationType
-      - serviceReferences
+        - _links
+        - notificationType
+        - serviceReferences
       type: object
       properties:
         notificationType:
@@ -1293,10 +1293,10 @@ components:
       description: This type represents the service availability information.
     ServiceAvailabilityNotification.ServiceReferences:
       required:
-      - changeType
-      - serInstanceId
-      - serName
-      - state
+        - changeType
+        - serInstanceId
+        - serName
+        - state
       type: object
       properties:
         link:
@@ -1318,37 +1318,37 @@ components:
         \ of the service other than state was changed. The change may or may not include\
         \ changing the state."
       enum:
-      - ADDED
-      - REMOVED
-      - STATE_CHANGED
-      - ATTRIBUTES_CHANGED
+        - ADDED
+        - REMOVED
+        - STATE_CHANGED
+        - ATTRIBUTES_CHANGED
     SerializerType:
       type: string
       description: The enumeration  represents types of serializers
       example: JSON
       enum:
-      - JSON
-      - XML
-      - PROTOBUF3
+        - JSON
+        - XML
+        - PROTOBUF3
     LocalityType:
       type: string
       description: "The scope of locality as expressed by \"consumedLocalOnly\" and\
         \ \"isLocal\". If absent, defaults to MEC_HOST"
       example: MEC_SYSTEM
       enum:
-      - MEC_SYSTEM
-      - MEC_HOST
-      - NFVI_POP
-      - ZONE
-      - ZONE_GROUP
-      - NFVI_NODE
+        - MEC_SYSTEM
+        - MEC_HOST
+        - NFVI_POP
+        - ZONE
+        - ZONE_GROUP
+        - NFVI_NODE
     ServiceState:
       type: string
       description: This enumeration defines the possible states of a service.
       example: ACTIVE
       enum:
-      - ACTIVE
-      - INACTIVE
+        - ACTIVE
+        - INACTIVE
     ServiceStates:
       minItems: 0
       type: array
@@ -1403,10 +1403,10 @@ components:
       example: true
     ServiceInfo.Post:
       required:
-      - serName
-      - serializer
-      - state
-      - version
+        - serName
+        - serializer
+        - state
+        - version
       type: object
       properties:
         serInstanceId:
@@ -1433,17 +1433,17 @@ components:
           $ref: '#/components/schemas/ServiceInfo.IsLocal'
       description: This type represents the general information of a MEC service.
       oneOf:
-      - required:
-        - transportId
-      - required:
-        - transportInfo
+        - required:
+            - transportId
+        - required:
+            - transportInfo
     ServiceInfo:
       required:
-      - serName
-      - serializer
-      - state
-      - transportInfo
-      - version
+        - serName
+        - serializer
+        - state
+        - transportInfo
+        - version
       type: object
       properties:
         serInstanceId:
@@ -1475,17 +1475,17 @@ components:
           version: version1
         scopeOfLocality: MEC_SYSTEM
         transportInfo:
-          implSpecificInfo: {}
+          implSpecificInfo: { }
           protocol: HTTP
           endpoint: ""
           security:
             oAuth2Info:
               tokenEndpoint: /mecSerMgmtApi/security/TokenEndPoint
               grantTypes:
-              - OAUTH2_CLIENT_CREDENTIALS
-              - OAUTH2_CLIENT_CREDENTIALS
-              - OAUTH2_CLIENT_CREDENTIALS
-              - OAUTH2_CLIENT_CREDENTIALS
+                - OAUTH2_CLIENT_CREDENTIALS
+                - OAUTH2_CLIENT_CREDENTIALS
+                - OAUTH2_CLIENT_CREDENTIALS
+                - OAUTH2_CLIENT_CREDENTIALS
           name: REST
           description: REST API
           id: TransId12345
@@ -1500,7 +1500,7 @@ components:
         isLocal: true
     Subscription:
       required:
-      - subscription
+        - subscription
       type: object
       properties:
         subscription:
@@ -1532,13 +1532,13 @@ components:
       example: "2.0"
     TransportInfo:
       required:
-      - endpoint
-      - id
-      - name
-      - protocol
-      - security
-      - type
-      - version
+        - endpoint
+        - id
+        - name
+        - protocol
+        - security
+        - type
+        - version
       type: object
       properties:
         id:
@@ -1557,26 +1557,26 @@ components:
           type: object
           description: This type represents information about a transport endpoint
           oneOf:
-          - $ref: '#/components/schemas/EndPointInfo.Uris'
-          - $ref: '#/components/schemas/EndPointInfo.Addresses'
-          - $ref: '#/components/schemas/EndPointInfo.Alternative'
+            - $ref: '#/components/schemas/EndPointInfo.Uris'
+            - $ref: '#/components/schemas/EndPointInfo.Addresses'
+            - $ref: '#/components/schemas/EndPointInfo.Alternative'
         security:
           $ref: '#/components/schemas/SecurityInfo'
         implSpecificInfo:
           $ref: '#/components/schemas/TransportInfo.ImplSpecificInfo'
       description: This type represents the general information of a MEC service.
       example:
-        implSpecificInfo: {}
+        implSpecificInfo: { }
         protocol: HTTP
         endpoint: ""
         security:
           oAuth2Info:
             tokenEndpoint: /mecSerMgmtApi/security/TokenEndPoint
             grantTypes:
-            - OAUTH2_CLIENT_CREDENTIALS
-            - OAUTH2_CLIENT_CREDENTIALS
-            - OAUTH2_CLIENT_CREDENTIALS
-            - OAUTH2_CLIENT_CREDENTIALS
+              - OAUTH2_CLIENT_CREDENTIALS
+              - OAUTH2_CLIENT_CREDENTIALS
+              - OAUTH2_CLIENT_CREDENTIALS
+              - OAUTH2_CLIENT_CREDENTIALS
         name: REST
         description: REST API
         id: TransId12345
@@ -1587,13 +1587,13 @@ components:
       description: The enumeration TransportType represents types of transports
       example: REST_HTTP
       enum:
-      - REST_HTTP
-      - MB_TOPIC_BASED
-      - MB_ROUTING
-      - MB_PUBSUB
-      - RPC
-      - RPC_STREAMING
-      - WEBSOCKET
+        - REST_HTTP
+        - MB_TOPIC_BASED
+        - MB_ROUTING
+        - MB_PUBSUB
+        - RPC
+        - RPC_STREAMING
+        - WEBSOCKET
   responses:
     ApplicationsSubscriptions.200:
       description: "Upon success, a response body containing the list of links to\
@@ -1900,41 +1900,41 @@ components:
           version: "2.0"
           endpoint:
             uris:
-            - /mecSerMgmtApi/service/EntryPoint
+              - /mecSerMgmtApi/service/EntryPoint
           security:
             oAuth2Info:
               grantTypes:
-              - OAUTH2_CLIENT_CREDENTIALS
+                - OAUTH2_CLIENT_CREDENTIALS
               tokenEndpoint: /mecSerMgmtApi/security/TokenEndPoint
         serializer: JSON
     ServiceInfoList:
       value:
-      - serInstanceId: ServiceInstance123
-        serName: ExampleService
-        serCategory:
-          href: catItem1
-          id: id12345
-          name: RNI
-          version: version1
-        version: ServiceVersion1
-        state: ACTIVE
-        transportInfo:
-          id: TransId12345
-          name: REST
-          description: REST API
-          type: REST_HTTP
-          protocol: HTTP
-          version: "2.0"
-          endpoint:
-            addresses:
-            - host: 192.0.2.0
-              port: 8080
-          security:
-            oAuth2Info:
-              grantTypes:
-              - OAUTH2_CLIENT_CREDENTIALS
-              tokenEndpoint: /mecSerMgmtApi/security/TokenEndPoint
-        serializer: JSON
+        - serInstanceId: ServiceInstance123
+          serName: ExampleService
+          serCategory:
+            href: catItem1
+            id: id12345
+            name: RNI
+            version: version1
+          version: ServiceVersion1
+          state: ACTIVE
+          transportInfo:
+            id: TransId12345
+            name: REST
+            description: REST API
+            type: REST_HTTP
+            protocol: HTTP
+            version: "2.0"
+            endpoint:
+              addresses:
+                - host: 192.0.2.0
+                  port: 8080
+            security:
+              oAuth2Info:
+                grantTypes:
+                  - OAUTH2_CLIENT_CREDENTIALS
+                tokenEndpoint: /mecSerMgmtApi/security/TokenEndPoint
+          serializer: JSON
   requestBodies:
     ApplicationsSubscriptions:
       description: Entity body in the request contains a subscription to the MEC application
@@ -2035,7 +2035,7 @@ components:
       '{$request.body#/callbackReference}':
         post:
           tags:
-          - callbacks
+            - callbacks
           description: "'Represents the service availability information that  is\
             \ used in the following cases - when the MEC platform announces the newly\
             \ available\n services to the authorized relevant MEC applications (e.g.\

@@ -12,39 +12,39 @@ externalDocs:
   description: "ETSI GS MEC014 UE Identity API, V1.1.1"
   url: http://www.etsi.org/deliver/etsi_gs/MEC/001_099/014/01.01.01_60/gs_mec014v010101p.pdf
 servers:
-- url: http://127.0.0.1:8081/ui/v1
-- url: https://127.0.0.1:8081/ui/v1
+  - url: http://127.0.0.1:8081/ui/v1
+  - url: https://127.0.0.1:8081/ui/v1
 security:
-- OauthSecurity:
-  - all
+  - OauthSecurity:
+      - all
 tags:
-- name: ueIdentityTagInfo
+  - name: ueIdentityTagInfo
 paths:
   /{appInstanceId}/ue_identity_tag_info:
     get:
       tags:
-      - ueIdentityTagInfo
+        - ueIdentityTagInfo
       description: Retrieves information about a specific UeIdentityTagInfo resource
       operationId: ue_identity_tag_info_get
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a mobile edge application instance
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-      - name: ueIdentityTag
-        in: query
-        description: Represents a UE
-        required: true
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
+        - name: appInstanceId
+          in: path
+          description: Represents a mobile edge application instance
+          required: true
+          style: simple
+          explode: false
+          schema:
             type: string
+        - name: ueIdentityTag
+          in: query
+          description: Represents a UE
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
       responses:
         "200":
           description: It is used to indicate nonspecific success. The response body
@@ -86,19 +86,19 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC014_ue_identity.ue_identity_tag_info_controller
     put:
       tags:
-      - ueIdentityTagInfo
+        - ueIdentityTagInfo
       description: Register/De-register the information about specific a UeIdentityTagInfo
         resource
       operationId: ue_identity_tag_info_put
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a mobile edge application instance
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: appInstanceId
+          in: path
+          description: Represents a mobile edge application instance
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       requestBody:
         description: '''The updated "state" for each included UE Identity tag is included
           in the entity body of the request'''
@@ -198,7 +198,7 @@ components:
       format: uri
     UeIdentityTagInfo:
       required:
-      - ueIdentityTags
+        - ueIdentityTags
       type: object
       properties:
         ueIdentityTags:
@@ -206,10 +206,10 @@ components:
       description: information of UE identity tag used in UE Identity feature
       example:
         ueIdentityTags:
-        - ueIdentityTag: UeTagA
-          state: REGISTERED
-        - ueIdentityTag: UeTagA
-          state: REGISTERED
+          - ueIdentityTag: UeTagA
+            state: REGISTERED
+          - ueIdentityTag: UeTagA
+            state: REGISTERED
     UeIdentityTags:
       type: array
       description: 1 to N tags presented by a ME Application instance to a ME Platform
@@ -224,12 +224,12 @@ components:
       description: Status of the resource ueIdentityTagInfo
       example: REGISTERED
       enum:
-      - UNREGISTERED
-      - REGISTERED
+        - UNREGISTERED
+        - REGISTERED
     UeIdentityTags_inner:
       required:
-      - state
-      - ueIdentityTag
+        - state
+        - ueIdentityTag
       properties:
         ueIdentityTag:
           $ref: '#/components/schemas/UeIdentityTag'

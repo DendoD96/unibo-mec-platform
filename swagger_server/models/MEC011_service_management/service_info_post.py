@@ -1,25 +1,33 @@
 # coding: utf-8
 
 from __future__ import absolute_import
-from datetime import date, datetime  # noqa: F401
+from datetime import date, datetime  # noqa: F401 # pylint: disable=unused-import
 
-from typing import List, Dict  # noqa: F401
+from typing import List, Dict  # noqa: F401 # pylint: disable=unused-import
 
 from swagger_server.models.base_model_ import Model
-from swagger_server.models.MEC011_service_management.category_ref import CategoryRef  # noqa: F401,E501
-from swagger_server.models.MEC011_service_management.locality_type import LocalityType  # noqa: F401,E501
-from swagger_server.models.MEC011_service_management.serializer_type import SerializerType  # noqa: F401,E501
+from swagger_server.models.MEC011_service_management.category_ref import \
+	CategoryRef  # noqa: F401 # pylint: disable=unused-import,E501
+from swagger_server.models.MEC011_service_management.locality_type import \
+	LocalityType  # noqa: F401 # pylint: disable=unused-import,E501
+from swagger_server.models.MEC011_service_management.serializer_type import \
+	SerializerType  # noqa: F401 # pylint: disable=unused-import,E501
 from swagger_server.models.MEC011_service_management.service_info_consumed_local_only import \
-	ServiceInfoConsumedLocalOnly  # noqa: F401,E501
-from swagger_server.models.MEC011_service_management.service_info_is_local import ServiceInfoIsLocal  # noqa: F401,E501
+	ServiceInfoConsumedLocalOnly  # noqa: F401 # pylint: disable=unused-import,E501
+from swagger_server.models.MEC011_service_management.service_info_is_local import \
+	ServiceInfoIsLocal  # noqa: F401 # pylint: disable=unused-import,E501
 from swagger_server.models.MEC011_service_management.service_info_ser_instance_id import \
-	ServiceInfoSerInstanceId  # noqa: F401,E501
-from swagger_server.models.MEC011_service_management.service_info_ser_name import ServiceInfoSerName  # noqa: F401,E501
+	ServiceInfoSerInstanceId  # noqa: F401 # pylint: disable=unused-import,E501
+from swagger_server.models.MEC011_service_management.service_info_ser_name import \
+	ServiceInfoSerName  # noqa: F401 # pylint: disable=unused-import,E501
 from swagger_server.models.MEC011_service_management.service_info_transport_id import \
-	ServiceInfoTransportId  # noqa: F401,E501
-from swagger_server.models.MEC011_service_management.service_info_version import ServiceInfoVersion  # noqa: F401,E501
-from swagger_server.models.MEC011_service_management.service_state import ServiceState  # noqa: F401,E501
-from swagger_server.models.MEC011_service_management.transport_info import TransportInfo  # noqa: F401,E501
+	ServiceInfoTransportId  # noqa: F401 # pylint: disable=unused-import,E501
+from swagger_server.models.MEC011_service_management.service_info_version import \
+	ServiceInfoVersion  # noqa: F401 # pylint: disable=unused-import,E501
+from swagger_server.models.MEC011_service_management.service_state import \
+	ServiceState  # noqa: F401 # pylint: disable=unused-import,E501
+from swagger_server.models.MEC011_service_management.transport_info import \
+	TransportInfo  # noqa: F401 # pylint: disable=unused-import,E501
 from swagger_server import util
 
 

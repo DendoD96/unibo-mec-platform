@@ -2,13 +2,10 @@ import connexion
 
 from swagger_server.models.MEC028_wlan_access_information.inline_subscription import InlineSubscription  # noqa: E501
 from swagger_server.models.MEC028_wlan_access_information.measurement_config import MeasurementConfig  # noqa: E501
-from swagger_server.models.MEC028_wlan_access_information.measurement_config_link_list import \
-	MeasurementConfigLinkList  # noqa: E501
-from swagger_server.models.MEC028_wlan_access_information.subscription_link_list import \
-	SubscriptionLinkList  # noqa: E501
 
 
-def ap_info_get(filter=None, all_fields=None, fields=None, exclude_fields=None, exclude_default=None):  # noqa: E501
+def ap_info_get(filter=None, all_fields=None, fields=None, exclude_fields=None,  # pylint: disable=redefined-builtin
+                exclude_default=None):  # noqa: E501
 	"""Retrieve information on existing Access Points
 
 	Queries information about existing WLAN Access Points # noqa: E501
@@ -40,26 +37,26 @@ def measurement_link_list_measurements_get():  # noqa: E501
 	return 'do some magic!'
 
 
-def measurements_delete(measurementConfigId):  # noqa: E501
+def measurements_delete(measurement_config_id):  # noqa: E501
 	"""Cancel a measurement configuration
 
 	Cancels an existing measurement configuration, identified by its self-referring URI returned on creation (initial POST) # noqa: E501
 
-	:param measurementConfigId: Measurement configuration Id, specifically the 'self' returned in the measurement configuration request
-	:type measurementConfigId: str
+	:param measurement_config_id: Measurement configuration Id, specifically the 'self' returned in the measurement configuration request
+	:type measurement_config_id: str
 
 	:rtype: None
 	"""
 	return 'do some magic!'
 
 
-def measurements_get(measurementConfigId):  # noqa: E501
+def measurements_get(measurement_config_id):  # noqa: E501
 	"""Retrieve information on an existing measurement configuration
 
 	Queries information about an existing measurement configuration, identified by its self-referring URI returned on creation (initial POST) # noqa: E501
 
-	:param measurementConfigId: Measurement configuration Id, specifically the 'self' returned in the measurement configuration request
-	:type measurementConfigId: str
+	:param measurement_config_id: Measurement configuration Id, specifically the 'self' returned in the measurement configuration request
+	:type measurement_config_id: str
 
 	:rtype: MeasurementConfig
 	"""
@@ -81,15 +78,15 @@ def measurements_post(body):  # noqa: E501
 	return 'do some magic!'
 
 
-def measurements_put(body, measurementConfigId):  # noqa: E501
+def measurements_put(body, measurement_config_id):  # noqa: E501
 	"""Modify an existing measurement configuration
 
 	Updates an existing measurement configuration, identified by its self-referring URI returned on creation (initial POST) # noqa: E501
 
 	:param body: Measurement configuration to be modified
 	:type body: dict | bytes
-	:param measurementConfigId: Measurement configuration Id, specifically the 'self' returned in the measurement configuration request
-	:type measurementConfigId: str
+	:param measurement_config_id: Measurement configuration Id, specifically the 'self' returned in the measurement configuration request
+	:type measurement_config_id: str
 
 	:rtype: MeasurementConfig
 	"""
@@ -98,7 +95,8 @@ def measurements_put(body, measurementConfigId):  # noqa: E501
 	return 'do some magic!'
 
 
-def sta_info_get(filter=None, all_fields=None, fields=None, exclude_fields=None, exclude_default=None):  # noqa: E501
+def sta_info_get(filter=None, all_fields=None, fields=None, exclude_fields=None,  # pylint: disable=redefined-builtin
+                 exclude_default=None):  # noqa: E501
 	"""Retrieve information on existing Stations
 
 	Queries information about existing WLAN stations # noqa: E501
@@ -132,26 +130,26 @@ def subscription_link_list_subscriptions_get(subscription_type=None):  # noqa: E
 	return 'do some magic!'
 
 
-def subscriptions_delete(subscriptionId):  # noqa: E501
+def subscriptions_delete(subscription_id):  # noqa: E501
 	"""Cancel an existing subscription
 
 	Cancels an existing subscription, identified by its self-referring URI returned on creation (initial POST) # noqa: E501
 
-	:param subscriptionId: Subscription Id, specifically the 'self' returned in the subscription request
-	:type subscriptionId: str
+	:param subscription_id: Subscription Id, specifically the 'self' returned in the subscription request
+	:type subscription_id: str
 
 	:rtype: None
 	"""
 	return 'do some magic!'
 
 
-def subscriptions_get(subscriptionId):  # noqa: E501
+def subscriptions_get(subscription_id):  # noqa: E501
 	"""Retrieve information on current specific subscription
 
 	Queries information about an existing subscription, identified by its self-referring URI returned on creation (initial POST) # noqa: E501
 
-	:param subscriptionId: Subscription Id, specifically the 'self' returned in the subscription request
-	:type subscriptionId: str
+	:param subscription_id: Subscription Id, specifically the 'self' returned in the subscription request
+	:type subscription_id: str
 
 	:rtype: InlineSubscription
 	"""
@@ -173,15 +171,15 @@ def subscriptions_post(body):  # noqa: E501
 	return 'do some magic!'
 
 
-def subscriptions_put(body, subscriptionId):  # noqa: E501
+def subscriptions_put(body, subscription_id):  # noqa: E501
 	"""Modify an existing subscription
 
 	Updates an existing subscription, identified by its self-referring URI returned on creation (initial POST) # noqa: E501
 
 	:param body: Subscription to be modified
 	:type body: dict | bytes
-	:param subscriptionId: Subscription Id, specifically the 'self' returned in the subscription request
-	:type subscriptionId: str
+	:param subscription_id: Subscription Id, specifically the 'self' returned in the subscription request
+	:type subscription_id: str
 
 	:rtype: InlineSubscription
 	"""

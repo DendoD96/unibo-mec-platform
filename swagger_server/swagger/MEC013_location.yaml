@@ -12,58 +12,58 @@ externalDocs:
   description: ETSI MEC013 V2.1.1 Location API
   url: http://www.etsi.org/deliver/etsi_gs/MEC/001_099/013/02.01.01_60/gs_mec013v020101p.pdf
 servers:
-- url: https://localhost/location/v2
+  - url: https://localhost/location/v2
 tags:
-- name: location
+  - name: location
 paths:
   /queries/distance:
     get:
       tags:
-      - location
+        - location
       summary: UE Distance Lookup of a specific UE
       description: UE Distance Lookup between terminals or a terminal and a location
       operationId: distance_get
       parameters:
-      - name: requester
-        in: query
-        description: Entity that is requesting the information
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-        x-exportParamName: Requester
-      - name: address
-        in: query
-        description: "address of users (e.g. \"sip\" URI, \"tel\" URI, \"acr\" URI)"
-        required: true
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
+        - name: requester
+          in: query
+          description: Entity that is requesting the information
+          required: false
+          style: form
+          explode: true
+          schema:
             type: string
-        x-exportParamName: AddressMandatory
-      - name: latitude
-        in: query
-        description: Latitude geo position
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: number
-          format: float
-        x-exportParamName: Latitude
-      - name: longitude
-        in: query
-        description: Longitude geo position
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: number
-          format: float
-        x-exportParamName: Longitude
+          x-exportParamName: Requester
+        - name: address
+          in: query
+          description: "address of users (e.g. \"sip\" URI, \"tel\" URI, \"acr\" URI)"
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+          x-exportParamName: AddressMandatory
+        - name: latitude
+          in: query
+          description: Latitude geo position
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: number
+            format: float
+          x-exportParamName: Latitude
+        - name: longitude
+          in: query
+          description: Longitude geo position
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: number
+            format: float
+          x-exportParamName: Longitude
       responses:
         "200":
           description: Successful response to a distance request
@@ -116,44 +116,44 @@ paths:
   /queries/users:
     get:
       tags:
-      - location
+        - location
       summary: UE Location Lookup of a specific UE or group of UEs
       description: UE Location Lookup of a specific UE or group of UEs
       operationId: users_get
       parameters:
-      - name: zoneId
-        in: query
-        description: Identifier of zone
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-        x-exportParamName: ZoneId
-      - name: accessPointId
-        in: query
-        description: Identifier of access point
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-        x-exportParamName: AccessPointId
-      - name: address
-        in: query
-        description: "address of users (e.g. \"sip\" URI, \"tel\" URI, \"acr\" URI)"
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-        x-exportParamName: Address
+        - name: zoneId
+          in: query
+          description: Identifier of zone
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+          x-exportParamName: ZoneId
+        - name: accessPointId
+          in: query
+          description: Identifier of access point
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+          x-exportParamName: AccessPointId
+        - name: address
+          in: query
+          description: "address of users (e.g. \"sip\" URI, \"tel\" URI, \"acr\" URI)"
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+          x-exportParamName: Address
       responses:
         "200":
           description: Successful response to users request
@@ -206,7 +206,7 @@ paths:
   /queries/zones:
     get:
       tags:
-      - location
+        - location
       summary: Zones information Lookup
       description: Used to get a list of identifiers for zones authorized for use
         by the application.
@@ -263,21 +263,21 @@ paths:
   /queries/zones/{zoneId}:
     get:
       tags:
-      - location
+        - location
       summary: Zones information Lookup
       description: Used to get the information for an authorized zone for use by the
         application.
       operationId: zones_get_by_id
       parameters:
-      - name: zoneId
-        in: path
-        description: Indentifier of zone
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-        x-exportParamName: ZoneId
+        - name: zoneId
+          in: path
+          description: Indentifier of zone
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          x-exportParamName: ZoneId
       responses:
         "200":
           description: Successful response to an access point Id request
@@ -330,31 +330,31 @@ paths:
   /queries/zones/{zoneId}/accessPoints:
     get:
       tags:
-      - location
+        - location
       summary: Radio Node Location Lookup
       description: Radio Node Location Lookup to retrieve a list of radio nodes associated
         to a zone.
       operationId: ap_get
       parameters:
-      - name: zoneId
-        in: path
-        description: Indentifier of zone
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-        x-exportParamName: ZoneId
-      - name: interestRealm
-        in: query
-        description: "Interest realm of access point (e.g. geographical area, a type\
+        - name: zoneId
+          in: path
+          description: Indentifier of zone
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          x-exportParamName: ZoneId
+        - name: interestRealm
+          in: query
+          description: "Interest realm of access point (e.g. geographical area, a type\
           \ of industry etc.)."
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-        x-exportParamName: InterestRealm
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+          x-exportParamName: InterestRealm
       responses:
         "200":
           description: Successful response to an access point Id request
@@ -407,30 +407,30 @@ paths:
   /queries/zones/{zoneId}/accessPoints/{accessPointId}:
     get:
       tags:
-      - location
+        - location
       summary: Radio Node Location Lookup
       description: Radio Node Location Lookup to retrieve a radio node associated
         to a zone.
       operationId: ap_by_id_get
       parameters:
-      - name: zoneId
-        in: path
-        description: Indentifier of zone
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-        x-exportParamName: ZoneId
-      - name: accessPointId
-        in: path
-        description: Identifier of access Point
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-        x-exportParamName: AccessPointId
+        - name: zoneId
+          in: path
+          description: Indentifier of zone
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          x-exportParamName: ZoneId
+        - name: accessPointId
+          in: path
+          description: Identifier of access Point
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+          x-exportParamName: AccessPointId
       responses:
         "200":
           description: Successful response to an access point Id request
@@ -483,7 +483,7 @@ paths:
   /subscriptions/area/circle:
     get:
       tags:
-      - location
+        - location
       summary: Retrieves all active subscriptions to area change notifications
       description: This operation is used for retrieving all active subscriptions
         to area change notifications.
@@ -498,7 +498,7 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC013_location.location_controller
     post:
       tags:
-      - location
+        - location
       summary: Creates a subscription for area change notification
       description: Creates a subscription to the Location Service for an area change
         notification.
@@ -601,22 +601,22 @@ paths:
   /subscriptions/area/circle/{subscriptionId}:
     get:
       tags:
-      - location
+        - location
       summary: Retrieve subscription information
       description: Get subscription information.
       operationId: area_circle_sub_get
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Identifier, specifically the \"self\" returned\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Identifier, specifically the \"self\" returned\
           \ in the subscription request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
-        x-exportParamName: SubscriptionId
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
+          x-exportParamName: SubscriptionId
       responses:
         "200":
           description: Subscription information regarding subscription notifications
@@ -668,22 +668,22 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC013_location.location_controller
     put:
       tags:
-      - location
+        - location
       summary: Updates a subscription information
       description: Updates a subscription.
       operationId: area_circle_sub_put
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Identifier, specifically the \"self\" returned\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Identifier, specifically the \"self\" returned\
           \ in the subscription request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
-        x-exportParamName: SubscriptionId
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
+          x-exportParamName: SubscriptionId
       requestBody:
         description: Subscription to be modified
         content:
@@ -770,22 +770,22 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC013_location.location_controller
     delete:
       tags:
-      - location
+        - location
       summary: Cancel a subscription
       description: Method to delete a subscription.
       operationId: area_circle_sub_delete
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Identifier, specifically the \"self\" returned\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Identifier, specifically the \"self\" returned\
           \ in the subscription request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
-        x-exportParamName: SubscriptionId
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
+          x-exportParamName: SubscriptionId
       responses:
         "204":
           description: No Content
@@ -820,7 +820,7 @@ paths:
   /subscriptions/distance:
     get:
       tags:
-      - location
+        - location
       summary: Retrieves all active subscriptions to distance change notifications
       description: This operation is used for retrieving all active subscriptions
         to a distance change notifications.
@@ -835,7 +835,7 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC013_location.location_controller
     post:
       tags:
-      - location
+        - location
       summary: Creates a subscription for distance change notification
       description: Creates a subscription to the Location Service for a distance change
         notification.
@@ -919,26 +919,26 @@ paths:
                             rel: DistanceNotificationSubscription
                             href: http://meAppServer.example.com/location/v2/subscriptions/distance/sub123
                           terminalLocation:
-                          - address: acr:10.0.0.1
-                            currentLocation:
-                              accuracy: 100
-                              altitude: 1001
-                              latitude: -80.86302
-                              longitude: 41.277306
-                              timestamp:
-                                seconds: 1483231138
-                                nanoSeconds": 0
-                            locationRetrievalStatus: Retrieved
-                          - address: acr:10.0.0.2
-                            currentLocation:
-                              accuracy: 100
-                              altitude: 1001
-                              latitude: -80.86301
-                              longitude: 41.277306
-                              timestamp:
-                                seconds: 1483231138
-                                nanoSeconds": 0
-                            locationRetrievalStatus: Retrieved
+                            - address: acr:10.0.0.1
+                              currentLocation:
+                                accuracy: 100
+                                altitude: 1001
+                                latitude: -80.86302
+                                longitude: 41.277306
+                                timestamp:
+                                  seconds: 1483231138
+                                  nanoSeconds": 0
+                              locationRetrievalStatus: Retrieved
+                            - address: acr:10.0.0.2
+                              currentLocation:
+                                accuracy: 100
+                                altitude: 1001
+                                latitude: -80.86301
+                                longitude: 41.277306
+                                timestamp:
+                                  seconds: 1483231138
+                                  nanoSeconds": 0
+                              locationRetrievalStatus: Retrieved
                 required: true
               responses:
                 "204":
@@ -948,22 +948,22 @@ paths:
   /subscriptions/distance/{subscriptionId}:
     get:
       tags:
-      - location
+        - location
       summary: Retrieve subscription information
       description: Get subscription information.
       operationId: distance_sub_get
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Identifier, specifically the \"self\" returned\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Identifier, specifically the \"self\" returned\
           \ in the subscription request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
-        x-exportParamName: SubscriptionId
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
+          x-exportParamName: SubscriptionId
       responses:
         "200":
           description: Subscription information regarding subscription notifications
@@ -1015,22 +1015,22 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC013_location.location_controller
     put:
       tags:
-      - location
+        - location
       summary: Updates a subscription information
       description: Updates a subscription.
       operationId: distance_sub_put
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Identifier, specifically the \"self\" returned\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Identifier, specifically the \"self\" returned\
           \ in the subscription request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
-        x-exportParamName: SubscriptionId
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
+          x-exportParamName: SubscriptionId
       requestBody:
         description: Subscription to be modified
         content:
@@ -1117,22 +1117,22 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC013_location.location_controller
     delete:
       tags:
-      - location
+        - location
       summary: Cancel a subscription
       description: Method to delete a subscription.
       operationId: distance_sub_delete
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Identifier, specifically the \"self\" returned\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Identifier, specifically the \"self\" returned\
           \ in the subscription request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
-        x-exportParamName: SubscriptionId
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
+          x-exportParamName: SubscriptionId
       responses:
         "204":
           description: No Content
@@ -1167,7 +1167,7 @@ paths:
   /subscriptions/periodic:
     get:
       tags:
-      - location
+        - location
       summary: Retrieves all active subscriptions to periodic notifications
       description: This operation is used for retrieving all active subscriptions
         to periodic notifications.
@@ -1182,7 +1182,7 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC013_location.location_controller
     post:
       tags:
-      - location
+        - location
       summary: Creates a subscription for periodic notification
       description: Creates a subscription to the Location Service for a periodic notification.
       operationId: periodic_sub_post
@@ -1283,22 +1283,22 @@ paths:
   /subscriptions/periodic/{subscriptionId}:
     get:
       tags:
-      - location
+        - location
       summary: Retrieve subscription information
       description: Get subscription information.
       operationId: periodic_sub_get
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Identifier, specifically the \"self\" returned\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Identifier, specifically the \"self\" returned\
           \ in the subscription request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
-        x-exportParamName: SubscriptionId
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
+          x-exportParamName: SubscriptionId
       responses:
         "200":
           description: Subscription information regarding subscription notifications
@@ -1350,22 +1350,22 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC013_location.location_controller
     put:
       tags:
-      - location
+        - location
       summary: Updates a subscription information
       description: Updates a subscription.
       operationId: periodic_sub_put
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Identifier, specifically the \"self\" returned\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Identifier, specifically the \"self\" returned\
           \ in the subscription request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
-        x-exportParamName: SubscriptionId
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
+          x-exportParamName: SubscriptionId
       requestBody:
         description: Subscription to be modified
         content:
@@ -1452,22 +1452,22 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC013_location.location_controller
     delete:
       tags:
-      - location
+        - location
       summary: Cancel a subscription
       description: Method to delete a subscription.
       operationId: periodic_sub_delete
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Identifier, specifically the \"self\" returned\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Identifier, specifically the \"self\" returned\
           \ in the subscription request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
-        x-exportParamName: SubscriptionId
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
+          x-exportParamName: SubscriptionId
       responses:
         "204":
           description: No Content
@@ -1502,7 +1502,7 @@ paths:
   /subscriptions/userTracking:
     get:
       tags:
-      - location
+        - location
       summary: Retrieves all active subscriptions to user tracking notifications
       description: This operation is used for retrieving all active subscriptions
         to user tracking notifications.
@@ -1517,7 +1517,7 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC013_location.location_controller
     post:
       tags:
-      - location
+        - location
       summary: Creates a subscription for user tracking notification
       description: Creates a subscription to the Location Service for user tracking
         change notification.
@@ -1616,22 +1616,22 @@ paths:
   /subscriptions/userTracking/{subscriptionId}:
     get:
       tags:
-      - location
+        - location
       summary: Retrieve subscription information
       description: Get subscription information.
       operationId: user_tracking_sub_get
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Identifier, specifically the \"self\" returned\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Identifier, specifically the \"self\" returned\
           \ in the subscription request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
-        x-exportParamName: SubscriptionId
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
+          x-exportParamName: SubscriptionId
       responses:
         "200":
           description: Subscription information regarding subscription notifications
@@ -1683,22 +1683,22 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC013_location.location_controller
     put:
       tags:
-      - location
+        - location
       summary: Updates a subscription information
       description: Updates a subscription.
       operationId: user_tracking_sub_put
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Identifier, specifically the \"self\" returned\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Identifier, specifically the \"self\" returned\
           \ in the subscription request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
-        x-exportParamName: SubscriptionId
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
+          x-exportParamName: SubscriptionId
       requestBody:
         description: Subscription to be modified
         content:
@@ -1720,7 +1720,7 @@ paths:
                     notifyURL: http://my.callback.com/location_notifications/some-id
                   address: acr:10.0.0.1
                   userEventCriteria:
-                  - Transferring
+                    - Transferring
                   resourceURL: http://meAppServer.example.com/location/v2/subscriptions/userTracking/sub123
         "400":
           description: "Bad Request : used to indicate that incorrect parameters were\
@@ -1794,22 +1794,22 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC013_location.location_controller
     delete:
       tags:
-      - location
+        - location
       summary: Cancel a subscription
       description: Method to delete a subscription.
       operationId: user_tracking_sub_delete
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Identifier, specifically the \"self\" returned\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Identifier, specifically the \"self\" returned\
           \ in the subscription request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
-        x-exportParamName: SubscriptionId
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
+          x-exportParamName: SubscriptionId
       responses:
         "204":
           description: No Content
@@ -1844,7 +1844,7 @@ paths:
   /subscriptions/zonalTraffic:
     get:
       tags:
-      - location
+        - location
       summary: Retrieves all active subscriptions to zonal traffic notifications
       description: This operation is used for retrieving all active subscriptions
         to zonal traffic change notifications.
@@ -1859,7 +1859,7 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC013_location.location_controller
     post:
       tags:
-      - location
+        - location
       summary: Creates a subscription for zonal traffic notification
       description: Creates a subscription to the Location Service for zonal traffic
         change notification.
@@ -1958,22 +1958,22 @@ paths:
   /subscriptions/zonalTraffic/{subscriptionId}:
     get:
       tags:
-      - location
+        - location
       summary: Retrieve subscription information
       description: Get subscription information.
       operationId: zonal_traffic_sub_get
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Identifier, specifically the \"self\" returned\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Identifier, specifically the \"self\" returned\
           \ in the subscription request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
-        x-exportParamName: SubscriptionId
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
+          x-exportParamName: SubscriptionId
       responses:
         "200":
           description: Subscription information regarding subscription notifications
@@ -2025,22 +2025,22 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC013_location.location_controller
     put:
       tags:
-      - location
+        - location
       summary: Updates a subscription information
       description: Updates a subscription.
       operationId: zonal_traffic_sub_put
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Identifier, specifically the \"self\" returned\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Identifier, specifically the \"self\" returned\
           \ in the subscription request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
-        x-exportParamName: SubscriptionId
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
+          x-exportParamName: SubscriptionId
       requestBody:
         description: Subscription to be modified
         content:
@@ -2062,7 +2062,7 @@ paths:
                     notifyURL: http://my.callback.com/location_notifications/some-id
                   zoneId: zone01
                   userEventCriteria:
-                  - Transferring
+                    - Transferring
                   resourceURL: http://meAppServer.example.com/location/v2/subscriptions/zonalTraffic/sub123
         "400":
           description: "Bad Request : used to indicate that incorrect parameters were\
@@ -2136,22 +2136,22 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC013_location.location_controller
     delete:
       tags:
-      - location
+        - location
       summary: Cancel a subscription
       description: Method to delete a subscription.
       operationId: zonal_traffic_sub_delete
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Identifier, specifically the \"self\" returned\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Identifier, specifically the \"self\" returned\
           \ in the subscription request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
-        x-exportParamName: SubscriptionId
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
+          x-exportParamName: SubscriptionId
       responses:
         "204":
           description: No Content
@@ -2186,7 +2186,7 @@ paths:
   /subscriptions/zoneStatus:
     get:
       tags:
-      - location
+        - location
       summary: Retrieves all active subscriptions to zone status notifications
       description: This operation is used for retrieving all active subscriptions
         to zone status change notifications.
@@ -2201,7 +2201,7 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC013_location.location_controller
     post:
       tags:
-      - location
+        - location
       summary: Creates a subscription for zone status notification
       description: Creates a subscription to the Location Service for zone status
         change notification.
@@ -2300,22 +2300,22 @@ paths:
   /subscriptions/zoneStatus/{subscriptionId}:
     get:
       tags:
-      - location
+        - location
       summary: Retrieve subscription information
       description: Get subscription information.
       operationId: zone_status_sub_get
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Identifier, specifically the \"self\" returned\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Identifier, specifically the \"self\" returned\
           \ in the subscription request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
-        x-exportParamName: SubscriptionId
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
+          x-exportParamName: SubscriptionId
       responses:
         "200":
           description: Subscription information regarding subscription notifications
@@ -2367,22 +2367,22 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC013_location.location_controller
     put:
       tags:
-      - location
+        - location
       summary: Updates a subscription information
       description: Updates a subscription.
       operationId: zone_status_sub_put
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Identifier, specifically the \"self\" returned\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Identifier, specifically the \"self\" returned\
           \ in the subscription request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
-        x-exportParamName: SubscriptionId
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
+          x-exportParamName: SubscriptionId
       requestBody:
         description: Subscription to be modified
         content:
@@ -2405,7 +2405,7 @@ paths:
                   zoneId: zone01
                   numberOfUsersZoneThreshold: 500
                   operationStatus:
-                  - Serviceable
+                    - Serviceable
                   resourceURL: http://meAppServer.example.com/location/v2/subscriptions/zoneStatus/sub123
         "400":
           description: "Bad Request : used to indicate that incorrect parameters were\
@@ -2479,22 +2479,22 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC013_location.location_controller
     delete:
       tags:
-      - location
+        - location
       summary: Cancel a subscription
       description: Method to delete a subscription.
       operationId: zone_status_sub_delete
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Identifier, specifically the \"self\" returned\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Identifier, specifically the \"self\" returned\
           \ in the subscription request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
-        x-exportParamName: SubscriptionId
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
+          x-exportParamName: SubscriptionId
       responses:
         "204":
           description: No Content
@@ -2530,11 +2530,11 @@ components:
   schemas:
     AccessPointInfo:
       required:
-      - accessPointId
-      - connectionType
-      - numberOfUsers
-      - operationStatus
-      - resourceURL
+        - accessPointId
+        - connectionType
+        - numberOfUsers
+        - operationStatus
+        - resourceURL
       type: object
       properties:
         accessPointId:
@@ -2576,8 +2576,8 @@ components:
           shape: 7
           confidence: 5
           latitude:
-          - 9.301444
-          - 9.301444
+            - 9.301444
+            - 9.301444
           offsetAngle: 2
           accuracy: 0
           includedAngle: 2
@@ -2593,8 +2593,8 @@ components:
           accuracyAltitude: 6
           uncertaintyRadius: 1
           longitude:
-          - 3.6160767
-          - 3.6160767
+            - 3.6160767
+            - 3.6160767
           timestamp:
             seconds: 5
             nanoSeconds: 1
@@ -2607,8 +2607,8 @@ components:
         connectionType: Femto
     AccessPointList:
       required:
-      - resourceURL
-      - zoneId
+        - resourceURL
+        - zoneId
       type: object
       properties:
         accessPoint:
@@ -2633,79 +2633,79 @@ components:
         resourceURL: resourceURL
         zoneId: zoneId
         accessPoint:
-        - locationInfo:
-            altitude: 5.962134
-            orientationMajorAxis: 4
-            shape: 7
-            confidence: 5
-            latitude:
-            - 9.301444
-            - 9.301444
-            offsetAngle: 2
-            accuracy: 0
-            includedAngle: 2
-            velocity:
-              verticalUncertainty: 4
-              horizontalSpeed: 1
-              bearing: 1
-              uncertainty: 6
-              verticalSpeed: 1
-              velocityType: 7
-            accuracySemiMinor: 1
-            innerRadius: 7
-            accuracyAltitude: 6
-            uncertaintyRadius: 1
-            longitude:
-            - 3.6160767
-            - 3.6160767
-            timestamp:
-              seconds: 5
-              nanoSeconds: 1
-          operationStatus: Serviceable
-          resourceURL: resourceURL
-          numberOfUsers: 0
-          timezone: timezone
-          accessPointId: accessPointId
-          interestRealm: interestRealm
-          connectionType: Femto
-        - locationInfo:
-            altitude: 5.962134
-            orientationMajorAxis: 4
-            shape: 7
-            confidence: 5
-            latitude:
-            - 9.301444
-            - 9.301444
-            offsetAngle: 2
-            accuracy: 0
-            includedAngle: 2
-            velocity:
-              verticalUncertainty: 4
-              horizontalSpeed: 1
-              bearing: 1
-              uncertainty: 6
-              verticalSpeed: 1
-              velocityType: 7
-            accuracySemiMinor: 1
-            innerRadius: 7
-            accuracyAltitude: 6
-            uncertaintyRadius: 1
-            longitude:
-            - 3.6160767
-            - 3.6160767
-            timestamp:
-              seconds: 5
-              nanoSeconds: 1
-          operationStatus: Serviceable
-          resourceURL: resourceURL
-          numberOfUsers: 0
-          timezone: timezone
-          accessPointId: accessPointId
-          interestRealm: interestRealm
-          connectionType: Femto
+          - locationInfo:
+              altitude: 5.962134
+              orientationMajorAxis: 4
+              shape: 7
+              confidence: 5
+              latitude:
+                - 9.301444
+                - 9.301444
+              offsetAngle: 2
+              accuracy: 0
+              includedAngle: 2
+              velocity:
+                verticalUncertainty: 4
+                horizontalSpeed: 1
+                bearing: 1
+                uncertainty: 6
+                verticalSpeed: 1
+                velocityType: 7
+              accuracySemiMinor: 1
+              innerRadius: 7
+              accuracyAltitude: 6
+              uncertaintyRadius: 1
+              longitude:
+                - 3.6160767
+                - 3.6160767
+              timestamp:
+                seconds: 5
+                nanoSeconds: 1
+            operationStatus: Serviceable
+            resourceURL: resourceURL
+            numberOfUsers: 0
+            timezone: timezone
+            accessPointId: accessPointId
+            interestRealm: interestRealm
+            connectionType: Femto
+          - locationInfo:
+              altitude: 5.962134
+              orientationMajorAxis: 4
+              shape: 7
+              confidence: 5
+              latitude:
+                - 9.301444
+                - 9.301444
+              offsetAngle: 2
+              accuracy: 0
+              includedAngle: 2
+              velocity:
+                verticalUncertainty: 4
+                horizontalSpeed: 1
+                bearing: 1
+                uncertainty: 6
+                verticalSpeed: 1
+                velocityType: 7
+              accuracySemiMinor: 1
+              innerRadius: 7
+              accuracyAltitude: 6
+              uncertaintyRadius: 1
+              longitude:
+                - 3.6160767
+                - 3.6160767
+              timestamp:
+                seconds: 5
+                nanoSeconds: 1
+            operationStatus: Serviceable
+            resourceURL: resourceURL
+            numberOfUsers: 0
+            timezone: timezone
+            accessPointId: accessPointId
+            interestRealm: interestRealm
+            connectionType: Femto
     CallbackReference:
       required:
-      - notifyURL
+        - notifyURL
       type: object
       properties:
         callbackData:
@@ -2729,15 +2729,15 @@ components:
         notifyURL: notifyURL
     CircleNotificationSubscription:
       required:
-      - address
-      - callbackReference
-      - checkImmediate
-      - enteringLeavingCriteria
-      - frequency
-      - latitude
-      - longitude
-      - radius
-      - trackingAccuracy
+        - address
+        - callbackReference
+        - checkImmediate
+        - enteringLeavingCriteria
+        - frequency
+        - latitude
+        - longitude
+        - radius
+        - trackingAccuracy
       type: object
       properties:
         address:
@@ -2834,32 +2834,32 @@ components:
       type: string
       description: The connection type for the access point
       enum:
-      - Femto
-      - LTE-femto
-      - Smallcell
-      - LTE-smallcell
-      - Wifi
-      - Pico
-      - Micro
-      - Macro
-      - Wimax
-      - Unknown
+        - Femto
+        - LTE-femto
+        - Smallcell
+        - LTE-smallcell
+        - Wifi
+        - Pico
+        - Micro
+        - Macro
+        - Wimax
+        - Unknown
     DistanceCriteria:
       type: string
       enum:
-      - AllWithinDistance
-      - AnyWithinDistance
-      - AllBeyondDistance
-      - AnyBeyondDistance
+        - AllWithinDistance
+        - AnyWithinDistance
+        - AllBeyondDistance
+        - AnyBeyondDistance
     DistanceNotificationSubscription:
       required:
-      - callbackReference
-      - checkImmediate
-      - criteria
-      - distance
-      - frequency
-      - monitoredAddress
-      - trackingAccuracy
+        - callbackReference
+        - checkImmediate
+        - criteria
+        - distance
+        - frequency
+        - monitoredAddress
+        - trackingAccuracy
       type: object
       properties:
         callbackReference:
@@ -2953,12 +2953,12 @@ components:
     EnteringLeavingCriteria:
       type: string
       enum:
-      - Entering
-      - Leaving
+        - Entering
+        - Leaving
     Link:
       required:
-      - href
-      - rel
+        - href
+        - rel
       type: object
       properties:
         href:
@@ -2971,9 +2971,9 @@ components:
       description: Link to other resources
     LocationInfo:
       required:
-      - latitude
-      - longitude
-      - shape
+        - latitude
+        - longitude
+        - shape
       type: object
       properties:
         accuracy:
@@ -3075,8 +3075,8 @@ components:
         shape: 7
         confidence: 5
         latitude:
-        - 9.301444
-        - 9.301444
+          - 9.301444
+          - 9.301444
         offsetAngle: 2
         accuracy: 0
         includedAngle: 2
@@ -3092,8 +3092,8 @@ components:
         accuracyAltitude: 6
         uncertaintyRadius: 1
         longitude:
-        - 3.6160767
-        - 3.6160767
+          - 3.6160767
+          - 3.6160767
         timestamp:
           seconds: 5
           nanoSeconds: 1
@@ -3101,11 +3101,11 @@ components:
     NotificationFormat:
       type: string
       enum:
-      - XML
-      - JSON
+        - XML
+        - JSON
     NotificationSubscriptionList:
       required:
-      - resourceURL
+        - resourceURL
       type: object
       properties:
         circleNotificationSubscription:
@@ -3173,15 +3173,15 @@ components:
     OperationStatus:
       type: string
       enum:
-      - Serviceable
-      - Unserviceable
-      - Unknown
+        - Serviceable
+        - Unserviceable
+        - Unknown
     PeriodicNotificationSubscription:
       required:
-      - address
-      - callbackReference
-      - frequency
-      - requestedAccuracy
+        - address
+        - callbackReference
+        - frequency
+        - requestedAccuracy
       type: object
       properties:
         address:
@@ -3277,13 +3277,13 @@ components:
     RetrievalStatus:
       type: string
       enum:
-      - Retrieved
-      - NotRetrieved
-      - Error
+        - Retrieved
+        - NotRetrieved
+        - Error
     ServiceError:
       required:
-      - messageId
-      - text
+        - messageId
+        - text
       type: object
       properties:
         messageId:
@@ -3308,7 +3308,7 @@ components:
       description: used to indicate a notification termination or cancellation.
     SubscriptionCancellationNotification:
       required:
-      - reason  # TODO: check with ETSI if is an error (it was terminalLocation)
+        - reason  # TODO: check with ETSI if is an error (it was terminalLocation)
       type: object
       properties:
         address:
@@ -3334,7 +3334,7 @@ components:
       description: A type containing the subscription cancellation notification.
     SubscriptionNotification:
       required:
-      - terminalLocation
+        - terminalLocation
       type: object
       properties:
         callbackData:
@@ -3369,7 +3369,7 @@ components:
       description: A type containing the notification subscription.
     TerminalDistance:
       required:
-      - distance
+        - distance
       type: object
       properties:
         accuracy:
@@ -3396,8 +3396,8 @@ components:
           nanoSeconds: 1
     TerminalLocation:
       required:
-      - address
-      - locationRetrievalStatus
+        - address
+        - locationRetrievalStatus
       type: object
       properties:
         address:
@@ -3423,8 +3423,8 @@ components:
       x-etsi-mec-origin-type: TerminalLocation
     TimeStamp:
       required:
-      - nanoSeconds
-      - seconds
+        - nanoSeconds
+        - seconds
       type: object
       properties:
         nanoSeconds:
@@ -3448,16 +3448,16 @@ components:
     UserEventType:
       type: string
       enum:
-      - Entering
-      - Leaving
-      - Transferring
+        - Entering
+        - Leaving
+        - Transferring
     UserInfo:
       required:
-      - accessPointId
-      - address
-      - resourceURL
-      - timestamp
-      - zoneId
+        - accessPointId
+        - address
+        - resourceURL
+        - timestamp
+        - zoneId
       type: object
       properties:
         accessPointId:
@@ -3506,8 +3506,8 @@ components:
           shape: 7
           confidence: 5
           latitude:
-          - 9.301444
-          - 9.301444
+            - 9.301444
+            - 9.301444
           offsetAngle: 2
           accuracy: 0
           includedAngle: 2
@@ -3523,8 +3523,8 @@ components:
           accuracyAltitude: 6
           uncertaintyRadius: 1
           longitude:
-          - 3.6160767
-          - 3.6160767
+            - 3.6160767
+            - 3.6160767
           timestamp:
             seconds: 5
             nanoSeconds: 1
@@ -3540,7 +3540,7 @@ components:
       x-etsi-ref: 6.2.2
     UserList:
       required:
-      - resourceURL
+        - resourceURL
       type: object
       properties:
         resourceURL:
@@ -3559,80 +3559,80 @@ components:
       example:
         resourceURL: resourceURL
         user:
-        - locationInfo:
-            altitude: 5.962134
-            orientationMajorAxis: 4
-            shape: 7
-            confidence: 5
-            latitude:
-            - 9.301444
-            - 9.301444
-            offsetAngle: 2
-            accuracy: 0
-            includedAngle: 2
-            velocity:
-              verticalUncertainty: 4
-              horizontalSpeed: 1
-              bearing: 1
-              uncertainty: 6
-              verticalSpeed: 1
-              velocityType: 7
-            accuracySemiMinor: 1
-            innerRadius: 7
-            accuracyAltitude: 6
-            uncertaintyRadius: 1
-            longitude:
-            - 3.6160767
-            - 3.6160767
-            timestamp:
-              seconds: 5
-              nanoSeconds: 1
-          address: http://example.com/aeiou
-          resourceURL: resourceURL
-          accessPointId: accessPointId
-          zoneId: zoneId
-          ancillaryInfo: ancillaryInfo
-          contextLocationInfo: contextLocationInfo
-          timestamp: null
-        - locationInfo:
-            altitude: 5.962134
-            orientationMajorAxis: 4
-            shape: 7
-            confidence: 5
-            latitude:
-            - 9.301444
-            - 9.301444
-            offsetAngle: 2
-            accuracy: 0
-            includedAngle: 2
-            velocity:
-              verticalUncertainty: 4
-              horizontalSpeed: 1
-              bearing: 1
-              uncertainty: 6
-              verticalSpeed: 1
-              velocityType: 7
-            accuracySemiMinor: 1
-            innerRadius: 7
-            accuracyAltitude: 6
-            uncertaintyRadius: 1
-            longitude:
-            - 3.6160767
-            - 3.6160767
-            timestamp:
-              seconds: 5
-              nanoSeconds: 1
-          address: http://example.com/aeiou
-          resourceURL: resourceURL
-          accessPointId: accessPointId
-          zoneId: zoneId
-          ancillaryInfo: ancillaryInfo
-          contextLocationInfo: contextLocationInfo
-          timestamp: null
+          - locationInfo:
+              altitude: 5.962134
+              orientationMajorAxis: 4
+              shape: 7
+              confidence: 5
+              latitude:
+                - 9.301444
+                - 9.301444
+              offsetAngle: 2
+              accuracy: 0
+              includedAngle: 2
+              velocity:
+                verticalUncertainty: 4
+                horizontalSpeed: 1
+                bearing: 1
+                uncertainty: 6
+                verticalSpeed: 1
+                velocityType: 7
+              accuracySemiMinor: 1
+              innerRadius: 7
+              accuracyAltitude: 6
+              uncertaintyRadius: 1
+              longitude:
+                - 3.6160767
+                - 3.6160767
+              timestamp:
+                seconds: 5
+                nanoSeconds: 1
+            address: http://example.com/aeiou
+            resourceURL: resourceURL
+            accessPointId: accessPointId
+            zoneId: zoneId
+            ancillaryInfo: ancillaryInfo
+            contextLocationInfo: contextLocationInfo
+            timestamp: null
+          - locationInfo:
+              altitude: 5.962134
+              orientationMajorAxis: 4
+              shape: 7
+              confidence: 5
+              latitude:
+                - 9.301444
+                - 9.301444
+              offsetAngle: 2
+              accuracy: 0
+              includedAngle: 2
+              velocity:
+                verticalUncertainty: 4
+                horizontalSpeed: 1
+                bearing: 1
+                uncertainty: 6
+                verticalSpeed: 1
+                velocityType: 7
+              accuracySemiMinor: 1
+              innerRadius: 7
+              accuracyAltitude: 6
+              uncertaintyRadius: 1
+              longitude:
+                - 3.6160767
+                - 3.6160767
+              timestamp:
+                seconds: 5
+                nanoSeconds: 1
+            address: http://example.com/aeiou
+            resourceURL: resourceURL
+            accessPointId: accessPointId
+            zoneId: zoneId
+            ancillaryInfo: ancillaryInfo
+            contextLocationInfo: contextLocationInfo
+            timestamp: null
     UserTrackingSubscription:
       required:
-      - address
-      - callbackReference
+        - address
+        - callbackReference
       type: object
       properties:
         address:
@@ -3673,15 +3673,15 @@ components:
           notifyURL: notifyURL
         clientCorrelator: clientCorrelator
         userEventCriteria:
-        - Entering
-        - Entering
+          - Entering
+          - Entering
     ZonalPresenceNotification:
       required:
-      - address
-      - currentAccessPointId
-      - timestamp
-      - userEventType
-      - zoneId
+        - address
+        - currentAccessPointId
+        - timestamp
+        - userEventType
+        - zoneId
       type: object
       properties:
         address:
@@ -3734,8 +3734,8 @@ components:
       description: A type containing zonal presence notification
     ZonalTrafficSubscription:
       required:
-      - callbackReference
-      - zoneId
+        - callbackReference
+        - zoneId
       type: object
       properties:
         callbackReference:
@@ -3798,18 +3798,18 @@ components:
         clientCorrelator: clientCorrelator
         zoneId: zoneId
         interestRealm:
-        - interestRealm
-        - interestRealm
+          - interestRealm
+          - interestRealm
         userEventCriteria:
-        - Entering
-        - Entering
+          - Entering
+          - Entering
     ZoneInfo:
       required:
-      - numberOfAccessPoints
-      - numberOfUnserviceableAccessPoints
-      - numberOfUsers
-      - resourceURL
-      - zoneId
+        - numberOfAccessPoints
+        - numberOfUnserviceableAccessPoints
+        - numberOfUsers
+        - resourceURL
+        - zoneId
       type: object
       properties:
         numberOfAccessPoints:
@@ -3846,7 +3846,7 @@ components:
         numberOfUnserviceableAccessPoints: 6
     ZoneList:
       required:
-      - resourceURL
+        - resourceURL
       type: object
       properties:
         resourceURL:
@@ -3863,20 +3863,20 @@ components:
       example:
         resourceURL: resourceURL
         zone:
-        - resourceURL: resourceURL
-          numberOfUsers: 1
-          zoneId: zoneId
-          numberOfAccessPoints: 0
-          numberOfUnserviceableAccessPoints: 6
-        - resourceURL: resourceURL
-          numberOfUsers: 1
-          zoneId: zoneId
-          numberOfAccessPoints: 0
-          numberOfUnserviceableAccessPoints: 6
+          - resourceURL: resourceURL
+            numberOfUsers: 1
+            zoneId: zoneId
+            numberOfAccessPoints: 0
+            numberOfUnserviceableAccessPoints: 6
+          - resourceURL: resourceURL
+            numberOfUsers: 1
+            zoneId: zoneId
+            numberOfAccessPoints: 0
+            numberOfUnserviceableAccessPoints: 6
     ZoneStatusNotification:
       required:
-      - timestamp
-      - zoneId
+        - timestamp
+        - zoneId
       type: object
       properties:
         accessPointId:
@@ -3925,8 +3925,8 @@ components:
       description: A type containing zone status notification.
     ZoneStatusSubscription:
       required:
-      - callbackReference
-      - zoneId
+        - callbackReference
+        - zoneId
       type: object
       properties:
         callbackReference:
@@ -3970,8 +3970,8 @@ components:
       description: A type containing zone status subscription.
       example:
         operationStatus:
-        - Serviceable
-        - Serviceable
+          - Serviceable
+          - Serviceable
         numberOfUsersAPThreshold: 0
         resourceURL: resourceURL
         callbackReference:
@@ -4002,76 +4002,76 @@ components:
         userList:
           resourceURL: resourceURL
           user:
-          - locationInfo:
-              altitude: 5.962134
-              orientationMajorAxis: 4
-              shape: 7
-              confidence: 5
-              latitude:
-              - 9.301444
-              - 9.301444
-              offsetAngle: 2
-              accuracy: 0
-              includedAngle: 2
-              velocity:
-                verticalUncertainty: 4
-                horizontalSpeed: 1
-                bearing: 1
-                uncertainty: 6
-                verticalSpeed: 1
-                velocityType: 7
-              accuracySemiMinor: 1
-              innerRadius: 7
-              accuracyAltitude: 6
-              uncertaintyRadius: 1
-              longitude:
-              - 3.6160767
-              - 3.6160767
-              timestamp:
-                seconds: 5
-                nanoSeconds: 1
-            address: http://example.com/aeiou
-            resourceURL: resourceURL
-            accessPointId: accessPointId
-            zoneId: zoneId
-            ancillaryInfo: ancillaryInfo
-            contextLocationInfo: contextLocationInfo
-            timestamp: null
-          - locationInfo:
-              altitude: 5.962134
-              orientationMajorAxis: 4
-              shape: 7
-              confidence: 5
-              latitude:
-              - 9.301444
-              - 9.301444
-              offsetAngle: 2
-              accuracy: 0
-              includedAngle: 2
-              velocity:
-                verticalUncertainty: 4
-                horizontalSpeed: 1
-                bearing: 1
-                uncertainty: 6
-                verticalSpeed: 1
-                velocityType: 7
-              accuracySemiMinor: 1
-              innerRadius: 7
-              accuracyAltitude: 6
-              uncertaintyRadius: 1
-              longitude:
-              - 3.6160767
-              - 3.6160767
-              timestamp:
-                seconds: 5
-                nanoSeconds: 1
-            address: http://example.com/aeiou
-            resourceURL: resourceURL
-            accessPointId: accessPointId
-            zoneId: zoneId
-            ancillaryInfo: ancillaryInfo
-            contextLocationInfo: contextLocationInfo
-            timestamp: null
+            - locationInfo:
+                altitude: 5.962134
+                orientationMajorAxis: 4
+                shape: 7
+                confidence: 5
+                latitude:
+                  - 9.301444
+                  - 9.301444
+                offsetAngle: 2
+                accuracy: 0
+                includedAngle: 2
+                velocity:
+                  verticalUncertainty: 4
+                  horizontalSpeed: 1
+                  bearing: 1
+                  uncertainty: 6
+                  verticalSpeed: 1
+                  velocityType: 7
+                accuracySemiMinor: 1
+                innerRadius: 7
+                accuracyAltitude: 6
+                uncertaintyRadius: 1
+                longitude:
+                  - 3.6160767
+                  - 3.6160767
+                timestamp:
+                  seconds: 5
+                  nanoSeconds: 1
+              address: http://example.com/aeiou
+              resourceURL: resourceURL
+              accessPointId: accessPointId
+              zoneId: zoneId
+              ancillaryInfo: ancillaryInfo
+              contextLocationInfo: contextLocationInfo
+              timestamp: null
+            - locationInfo:
+                altitude: 5.962134
+                orientationMajorAxis: 4
+                shape: 7
+                confidence: 5
+                latitude:
+                  - 9.301444
+                  - 9.301444
+                offsetAngle: 2
+                accuracy: 0
+                includedAngle: 2
+                velocity:
+                  verticalUncertainty: 4
+                  horizontalSpeed: 1
+                  bearing: 1
+                  uncertainty: 6
+                  verticalSpeed: 1
+                  velocityType: 7
+                accuracySemiMinor: 1
+                innerRadius: 7
+                accuracyAltitude: 6
+                uncertaintyRadius: 1
+                longitude:
+                  - 3.6160767
+                  - 3.6160767
+                timestamp:
+                  seconds: 5
+                  nanoSeconds: 1
+              address: http://example.com/aeiou
+              resourceURL: resourceURL
+              accessPointId: accessPointId
+              zoneId: zoneId
+              ancillaryInfo: ancillaryInfo
+              contextLocationInfo: contextLocationInfo
+              timestamp: null
     inline_response_200_2:
       type: object
       properties:
@@ -4081,16 +4081,16 @@ components:
         zoneList:
           resourceURL: resourceURL
           zone:
-          - resourceURL: resourceURL
-            numberOfUsers: 1
-            zoneId: zoneId
-            numberOfAccessPoints: 0
-            numberOfUnserviceableAccessPoints: 6
-          - resourceURL: resourceURL
-            numberOfUsers: 1
-            zoneId: zoneId
-            numberOfAccessPoints: 0
-            numberOfUnserviceableAccessPoints: 6
+            - resourceURL: resourceURL
+              numberOfUsers: 1
+              zoneId: zoneId
+              numberOfAccessPoints: 0
+              numberOfUnserviceableAccessPoints: 6
+            - resourceURL: resourceURL
+              numberOfUsers: 1
+              zoneId: zoneId
+              numberOfAccessPoints: 0
+              numberOfUnserviceableAccessPoints: 6
     inline_response_200_3:
       type: object
       properties:
@@ -4113,76 +4113,76 @@ components:
           resourceURL: resourceURL
           zoneId: zoneId
           accessPoint:
-          - locationInfo:
-              altitude: 5.962134
-              orientationMajorAxis: 4
-              shape: 7
-              confidence: 5
-              latitude:
-              - 9.301444
-              - 9.301444
-              offsetAngle: 2
-              accuracy: 0
-              includedAngle: 2
-              velocity:
-                verticalUncertainty: 4
-                horizontalSpeed: 1
-                bearing: 1
-                uncertainty: 6
-                verticalSpeed: 1
-                velocityType: 7
-              accuracySemiMinor: 1
-              innerRadius: 7
-              accuracyAltitude: 6
-              uncertaintyRadius: 1
-              longitude:
-              - 3.6160767
-              - 3.6160767
-              timestamp:
-                seconds: 5
-                nanoSeconds: 1
-            operationStatus: Serviceable
-            resourceURL: resourceURL
-            numberOfUsers: 0
-            timezone: timezone
-            accessPointId: accessPointId
-            interestRealm: interestRealm
-            connectionType: Femto
-          - locationInfo:
-              altitude: 5.962134
-              orientationMajorAxis: 4
-              shape: 7
-              confidence: 5
-              latitude:
-              - 9.301444
-              - 9.301444
-              offsetAngle: 2
-              accuracy: 0
-              includedAngle: 2
-              velocity:
-                verticalUncertainty: 4
-                horizontalSpeed: 1
-                bearing: 1
-                uncertainty: 6
-                verticalSpeed: 1
-                velocityType: 7
-              accuracySemiMinor: 1
-              innerRadius: 7
-              accuracyAltitude: 6
-              uncertaintyRadius: 1
-              longitude:
-              - 3.6160767
-              - 3.6160767
-              timestamp:
-                seconds: 5
-                nanoSeconds: 1
-            operationStatus: Serviceable
-            resourceURL: resourceURL
-            numberOfUsers: 0
-            timezone: timezone
-            accessPointId: accessPointId
-            interestRealm: interestRealm
-            connectionType: Femto
+            - locationInfo:
+                altitude: 5.962134
+                orientationMajorAxis: 4
+                shape: 7
+                confidence: 5
+                latitude:
+                  - 9.301444
+                  - 9.301444
+                offsetAngle: 2
+                accuracy: 0
+                includedAngle: 2
+                velocity:
+                  verticalUncertainty: 4
+                  horizontalSpeed: 1
+                  bearing: 1
+                  uncertainty: 6
+                  verticalSpeed: 1
+                  velocityType: 7
+                accuracySemiMinor: 1
+                innerRadius: 7
+                accuracyAltitude: 6
+                uncertaintyRadius: 1
+                longitude:
+                  - 3.6160767
+                  - 3.6160767
+                timestamp:
+                  seconds: 5
+                  nanoSeconds: 1
+              operationStatus: Serviceable
+              resourceURL: resourceURL
+              numberOfUsers: 0
+              timezone: timezone
+              accessPointId: accessPointId
+              interestRealm: interestRealm
+              connectionType: Femto
+            - locationInfo:
+                altitude: 5.962134
+                orientationMajorAxis: 4
+                shape: 7
+                confidence: 5
+                latitude:
+                  - 9.301444
+                  - 9.301444
+                offsetAngle: 2
+                accuracy: 0
+                includedAngle: 2
+                velocity:
+                  verticalUncertainty: 4
+                  horizontalSpeed: 1
+                  bearing: 1
+                  uncertainty: 6
+                  verticalSpeed: 1
+                  velocityType: 7
+                accuracySemiMinor: 1
+                innerRadius: 7
+                accuracyAltitude: 6
+                uncertaintyRadius: 1
+                longitude:
+                  - 3.6160767
+                  - 3.6160767
+                timestamp:
+                  seconds: 5
+                  nanoSeconds: 1
+              operationStatus: Serviceable
+              resourceURL: resourceURL
+              numberOfUsers: 0
+              timezone: timezone
+              accessPointId: accessPointId
+              interestRealm: interestRealm
+              connectionType: Femto
     inline_response_200_5:
       type: object
       properties:
@@ -4196,8 +4196,8 @@ components:
             shape: 7
             confidence: 5
             latitude:
-            - 9.301444
-            - 9.301444
+              - 9.301444
+              - 9.301444
             offsetAngle: 2
             accuracy: 0
             includedAngle: 2
@@ -4213,8 +4213,8 @@ components:
             accuracyAltitude: 6
             uncertaintyRadius: 1
             longitude:
-            - 3.6160767
-            - 3.6160767
+              - 3.6160767
+              - 3.6160767
             timestamp:
               seconds: 5
               nanoSeconds: 1
@@ -4227,7 +4227,7 @@ components:
           connectionType: Femto
     inline_response_200_6:
       required:
-      - notificationSubscriptionList
+        - notificationSubscriptionList
       type: object
       properties:
         notificationSubscriptionList:
@@ -4235,19 +4235,19 @@ components:
       example:
         notificationSubscriptionList:
           circleNotificationSubscription:
-          - clientCorrelator: "0123"
-            callbackReference:
-              callbackData: "1234"
-              notifyURL: http://clientApp.example.com/location_notifications/123456
-            address: acr:10.0.0.1
-            checkImmediate: true
-            enteringLeavingCriteria: Entering
-            frequency: 10
-            latitude: -80.88
-            longitude: 41.277
-            radius: 500
-            trackingAccuracy: 10
-            resourceURL: http://meAppServer.example.com/location/v2/subscriptions/area/circle/subscription123
+            - clientCorrelator: "0123"
+              callbackReference:
+                callbackData: "1234"
+                notifyURL: http://clientApp.example.com/location_notifications/123456
+              address: acr:10.0.0.1
+              checkImmediate: true
+              enteringLeavingCriteria: Entering
+              frequency: 10
+              latitude: -80.88
+              longitude: 41.277
+              radius: 500
+              trackingAccuracy: 10
+              resourceURL: http://meAppServer.example.com/location/v2/subscriptions/area/circle/subscription123
           resourceURL: http://meAppServer.example.com/location/v2/subscriptions/area/circle
     area_circle_body:
       type: object
@@ -4290,7 +4290,7 @@ components:
           resourceURL: http://meAppServer.example.com/location/v2/subscriptions/area/circle/subscription123
     inline_response_200_7:
       required:
-      - circleNotificationSubscription
+        - circleNotificationSubscription
       type: object
       properties:
         circleNotificationSubscription:
@@ -4332,7 +4332,7 @@ components:
           resourceURL: http://meAppServer.example.com/location/v2/subscriptions/area/circle/subscription123
     inline_response_200_8:
       required:
-      - notificationSubscriptionList
+        - notificationSubscriptionList
       type: object
       properties:
         notificationSubscriptionList:
@@ -4340,20 +4340,20 @@ components:
       example:
         notificationSubscriptionList:
           distanceNotificationSubscription:
-          - clientCorrelator: "0123"
-            callbackReference:
-              callbackData: "1234"
-              notifyURL: http://clientApp.example.com/location_notifications/123456
-            monitoredAddress:
-            - acr:10.0.0.1
-            - acr:10.0.0.2
-            checkImmediate: true
-            criteria: AllWithinDistance
-            distance: 100
-            frequency: 10
-            referenceAddress: acr:10.0.0.3
-            trackingAccuracy: 10
-            resourceURL: http://meAppServer.example.com/location/v2/subscriptions/distance/sub123
+            - clientCorrelator: "0123"
+              callbackReference:
+                callbackData: "1234"
+                notifyURL: http://clientApp.example.com/location_notifications/123456
+              monitoredAddress:
+                - acr:10.0.0.1
+                - acr:10.0.0.2
+              checkImmediate: true
+              criteria: AllWithinDistance
+              distance: 100
+              frequency: 10
+              referenceAddress: acr:10.0.0.3
+              trackingAccuracy: 10
+              resourceURL: http://meAppServer.example.com/location/v2/subscriptions/distance/sub123
           resourceURL: http://meAppServer.example.com/location/v2/subscriptions/distance
     subscriptions_distance_body:
       type: object
@@ -4367,8 +4367,8 @@ components:
             callbackData: "1234"
             notifyURL: http://clientApp.example.com/location_notifications/123456
           monitoredAddress:
-          - acr:10.0.0.1
-          - acr:10.0.0.2
+            - acr:10.0.0.1
+            - acr:10.0.0.2
           checkImmediate: true
           criteria: AllWithinDistance
           distance: 100
@@ -4387,8 +4387,8 @@ components:
             callbackData: "1234"
             notifyURL: http://clientApp.example.com/location_notifications/123456
           monitoredAddress:
-          - acr:10.0.0.1
-          - acr:10.0.0.2
+            - acr:10.0.0.1
+            - acr:10.0.0.2
           checkImmediate: true
           criteria: AllWithinDistance
           distance: 100
@@ -4398,7 +4398,7 @@ components:
           resourceURL: http://meAppServer.example.com/location/v2/subscriptions/distance/subscription123
     inline_response_200_9:
       required:
-      - distanceNotificationSubscription
+        - distanceNotificationSubscription
       type: object
       properties:
         distanceNotificationSubscription:
@@ -4410,8 +4410,8 @@ components:
             callbackData: "1234"
             notifyURL: http://clientApp.example.com/location_notifications/123456
           monitoredAddress:
-          - acr:10.0.0.1
-          - acr:10.0.0.2
+            - acr:10.0.0.1
+            - acr:10.0.0.2
           checkImmediate: true
           criteria: AllWithinDistance
           distance: 100
@@ -4431,8 +4431,8 @@ components:
             callbackData: "1234"
             notifyURL: http://clientApp.example.com/location_notifications/123456
           monitoredAddress:
-          - acr:10.0.0.1
-          - acr:10.0.0.2
+            - acr:10.0.0.1
+            - acr:10.0.0.2
           checkImmediate: true
           criteria: AllWithinDistance
           distance: 100
@@ -4442,7 +4442,7 @@ components:
           resourceURL: http://meAppServer.example.com/location/v2/subscriptions/distance/subscription123
     inline_response_200_10:
       required:
-      - notificationSubscriptionList
+        - notificationSubscriptionList
       type: object
       properties:
         notificationSubscriptionList:
@@ -4450,14 +4450,14 @@ components:
       example:
         notificationSubscriptionList:
           periodicNotificationSubscription:
-          - clientCorrelator: "0123"
-            callbackReference:
-              callbackData: "1234"
-              notifyURL: http://clientApp.example.com/location_notifications/123456
-            address: acr:10.0.0.1
-            frequency: 10
-            requestedAccuracy: 10
-            resourceURL: http://meAppServer.example.com/location/v2/subscriptions/periodic/subscription123
+            - clientCorrelator: "0123"
+              callbackReference:
+                callbackData: "1234"
+                notifyURL: http://clientApp.example.com/location_notifications/123456
+              address: acr:10.0.0.1
+              frequency: 10
+              requestedAccuracy: 10
+              resourceURL: http://meAppServer.example.com/location/v2/subscriptions/periodic/subscription123
           resourceURL: http://meAppServer.example.com/location/v2/subscriptions/periodic
     subscriptions_periodic_body:
       type: object
@@ -4490,7 +4490,7 @@ components:
           resourceURL: http://meAppServer.example.com/location/v2/subscriptions/periodic/subscription123
     inline_response_200_11:
       required:
-      - periodicNotificationSubscription
+        - periodicNotificationSubscription
       type: object
       properties:
         periodicNotificationSubscription:
@@ -4522,7 +4522,7 @@ components:
           resourceURL: http://meAppServer.example.com/location/v2/subscriptions/periodic/subscription123
     inline_response_200_12:
       required:
-      - notificationSubscriptionList
+        - notificationSubscriptionList
       type: object
       properties:
         notificationSubscriptionList:
@@ -4530,20 +4530,20 @@ components:
       example:
         notificationSubscriptionList:
           userTrackingSubscription:
-          - clientCorrelator: "0123"
-            resourceURL: http://meAppServer.example.com/location/v2/subscriptions/userTracking/subscription123
-            callbackReference:
-              notifyURL: http://clientApp.example.com/location_notifications/123456
-            address: acr:192.0.2.1
-            userEventCriteria:
-            - Transferring
-          - clientCorrelator: "0124"
-            resourceURL: http://meAppServer.example.com/location/v2/subscriptions/userTracking/subscription124
-            callbackReference:
-              notifyURL: http://clientApp.example.com/location_notifications/123456
-            address: acr:192.0.2.2
-            userEventCriteria:
-            - Transferring
+            - clientCorrelator: "0123"
+              resourceURL: http://meAppServer.example.com/location/v2/subscriptions/userTracking/subscription123
+              callbackReference:
+                notifyURL: http://clientApp.example.com/location_notifications/123456
+              address: acr:192.0.2.1
+              userEventCriteria:
+                - Transferring
+            - clientCorrelator: "0124"
+              resourceURL: http://meAppServer.example.com/location/v2/subscriptions/userTracking/subscription124
+              callbackReference:
+                notifyURL: http://clientApp.example.com/location_notifications/123456
+              address: acr:192.0.2.2
+              userEventCriteria:
+                - Transferring
           resourceURL: http://meAppServer.example.com/location/v2/subscriptions/userTracking
     subscriptions_userTracking_body:
       type: object
@@ -4557,7 +4557,7 @@ components:
             notifyURL: http://my.callback.com/location_notifications/some-id
           address: acr:10.0.0.1
           userEventCriteria:
-          - Transferring
+            - Transferring
     inline_response_201_3:
       type: object
       properties:
@@ -4570,11 +4570,11 @@ components:
             notifyURL: http://my.callback.com/location_notifications/some-id
           address: acr:10.0.0.1
           userEventCriteria:
-          - Transferring
+            - Transferring
           resourceURL: http://meAppServer.example.com/location/v2/subscriptions/userTracking/sub123
     inline_response_200_13:
       required:
-      - userTrackingSubscription
+        - userTrackingSubscription
       type: object
       properties:
         userTrackingSubscription:
@@ -4586,7 +4586,7 @@ components:
             notifyURL: http://my.callback.com/location_notifications/some-id
           address: acr:10.0.0.1
           userEventCriteria:
-          - Transferring
+            - Transferring
           resourceURL: http://meAppServer.example.com/location/v2/subscriptions/userTracking/sub123
     userTracking_subscriptionId_body:
       type: object
@@ -4600,7 +4600,7 @@ components:
             notifyURL: http://my.callback.com/location_notifications/some-id
           address: acr:10.0.0.1
           userEventCriteria:
-          - Transferring
+            - Transferring
           resourceURL: http://meAppServer.example.com/location/v2/subscriptions/userTracking/sub123
     inline_response_200_14:
       type: object
@@ -4617,11 +4617,11 @@ components:
             notifyURL: notifyURL
           clientCorrelator: clientCorrelator
           userEventCriteria:
-          - Entering
-          - Entering
+            - Entering
+            - Entering
     inline_response_200_15:
       required:
-      - notificationSubscriptionList
+        - notificationSubscriptionList
       type: object
       properties:
         notificationSubscriptionList:
@@ -4629,20 +4629,20 @@ components:
       example:
         notificationSubscriptionList:
           zonalTrafficSubscription:
-          - clientCorrelator: "0123"
-            resourceURL: http://meAppServer.example.com/location/v2/subscriptions/zonalTraffic/subscription123
-            callbackReference:
-              notifyURL: http://clientApp.example.com/location_notifications/123456
-            zoneId: zone01
-            userEventCriteria:
-            - Transferring
-          - clientCorrelator: "0124"
-            resourceURL: http://meAppServer.example.com/location/v2/subscriptions/zonalTraffic/subscription124
-            callbackReference:
-              notifyURL: http://clientApp.example.com/location_notifications/123456
-            zoneId: zone02
-            userEventCriteria:
-            - Transferring
+            - clientCorrelator: "0123"
+              resourceURL: http://meAppServer.example.com/location/v2/subscriptions/zonalTraffic/subscription123
+              callbackReference:
+                notifyURL: http://clientApp.example.com/location_notifications/123456
+              zoneId: zone01
+              userEventCriteria:
+                - Transferring
+            - clientCorrelator: "0124"
+              resourceURL: http://meAppServer.example.com/location/v2/subscriptions/zonalTraffic/subscription124
+              callbackReference:
+                notifyURL: http://clientApp.example.com/location_notifications/123456
+              zoneId: zone02
+              userEventCriteria:
+                - Transferring
           resourceURL: http://meAppServer.example.com/location/v2/subscriptions/zonalTraffic
     subscriptions_zonalTraffic_body:
       type: object
@@ -4656,7 +4656,7 @@ components:
             notifyURL: http://my.callback.com/location_notifications/some-id
           zoneId: zone01
           userEventCriteria:
-          - Transferring
+            - Transferring
     inline_response_201_4:
       type: object
       properties:
@@ -4669,11 +4669,11 @@ components:
             notifyURL: http://my.callback.com/location_notifications/some-id
           zoneId: zone01
           userEventCriteria:
-          - Transferring
+            - Transferring
           resourceURL: http://meAppServer.example.com/location/v2/subscriptions/zonalTraffic/sub123
     inline_response_200_16:
       required:
-      - zonalTrafficSubscription
+        - zonalTrafficSubscription
       type: object
       properties:
         zonalTrafficSubscription:
@@ -4685,7 +4685,7 @@ components:
             notifyURL: http://my.callback.com/location_notifications/some-id
           zoneId: zone01
           userEventCriteria:
-          - Transferring
+            - Transferring
           resourceURL: http://meAppServer.example.com/location/v2/subscriptions/zonalTraffic/sub123
     zonalTraffic_subscriptionId_body:
       type: object
@@ -4699,7 +4699,7 @@ components:
             notifyURL: http://my.callback.com/location_notifications/some-id
           zoneId: zone01
           userEventCriteria:
-          - Transferring
+            - Transferring
           resourceURL: http://meAppServer.example.com/location/v2/subscriptions/zonalTraffic/sub123
     inline_response_200_17:
       type: object
@@ -4717,14 +4717,14 @@ components:
           clientCorrelator: clientCorrelator
           zoneId: zoneId
           interestRealm:
-          - interestRealm
-          - interestRealm
+            - interestRealm
+            - interestRealm
           userEventCriteria:
-          - Entering
-          - Entering
+            - Entering
+            - Entering
     inline_response_200_18:
       required:
-      - notificationSubscriptionList
+        - notificationSubscriptionList
       type: object
       properties:
         notificationSubscriptionList:
@@ -4732,14 +4732,14 @@ components:
       example:
         notificationSubscriptionList:
           zoneStatusSubscription:
-          - clientCorrelator: "0123"
-            resourceURL: http://example.com/exampleAPI/location/v2/subscriptions/zoneStatus/subscription123
-            callbackReference:
-              notifyURL: http://clientApp.example.com/location_notifications/123456
-            zoneId: zone01
-            numberOfUsersZoneThreshold: 500
-            operationStatus:
-            - Serviceable
+            - clientCorrelator: "0123"
+              resourceURL: http://example.com/exampleAPI/location/v2/subscriptions/zoneStatus/subscription123
+              callbackReference:
+                notifyURL: http://clientApp.example.com/location_notifications/123456
+              zoneId: zone01
+              numberOfUsersZoneThreshold: 500
+              operationStatus:
+                - Serviceable
           resourceURL: http://meAppServer.example.com/location/v2/subscriptions/zoneStatus
     subscriptions_zoneStatus_body:
       type: object
@@ -4754,7 +4754,7 @@ components:
           zoneId: zone01
           numberOfUsersZoneThreshold: 500
           operationStatus:
-          - Serviceable
+            - Serviceable
     inline_response_201_5:
       type: object
       properties:
@@ -4768,11 +4768,11 @@ components:
           zoneId: zone01
           numberOfUsersZoneThreshold: 500
           operationStatus:
-          - Serviceable
+            - Serviceable
           resourceURL: http://meAppServer.example.com/location/v2/subscriptions/zoneStatus/sub123
     inline_response_200_19:
       required:
-      - zoneStatusSubscription
+        - zoneStatusSubscription
       type: object
       properties:
         zoneStatusSubscription:
@@ -4785,7 +4785,7 @@ components:
           zoneId: zone01
           numberOfUsersZoneThreshold: 500
           operationStatus:
-          - Serviceable
+            - Serviceable
           resourceURL: http://meAppServer.example.com/location/v2/subscriptions/zoneStatus/sub123
     zoneStatus_subscriptionId_body:
       type: object
@@ -4800,7 +4800,7 @@ components:
           zoneId: zone01
           numberOfUsersZoneThreshold: 500
           operationStatus:
-          - Serviceable
+            - Serviceable
           resourceURL: http://meAppServer.example.com/location/v2/subscriptions/zoneStatus/sub123
     inline_response_200_20:
       type: object
@@ -4810,8 +4810,8 @@ components:
       example:
         zoneStatusSubscription:
           operationStatus:
-          - Serviceable
-          - Serviceable
+            - Serviceable
+            - Serviceable
           numberOfUsersAPThreshold: 0
           resourceURL: resourceURL
           callbackReference:
@@ -4823,9 +4823,9 @@ components:
           numberOfUsersZoneThreshold: 6
     LocationInfo_velocity:
       required:
-      - bearing
-      - horizontalSpeed
-      - velocityType
+        - bearing
+        - horizontalSpeed
+        - velocityType
       type: object
       properties:
         bearing:

@@ -1,8 +1,7 @@
 import logging
-
-import connexion
 import os
 
+import connexion
 from flask_testing import TestCase
 
 from swagger_server.encoder import JSONEncoder
@@ -19,7 +18,7 @@ class BaseTestCase(TestCase):
 		for filename in os.listdir(SPECIFICATIONS_DIRECTORY):
 			if filename.endswith(".yaml"):
 				app.add_api(filename, arguments={'title': f"ETSI GS ${filename.split('.')[0]} API"},
-				pythonic_params=True)
+				            pythonic_params=True)
 				continue
 			else:
 				continue

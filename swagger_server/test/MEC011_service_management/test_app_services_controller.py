@@ -10,9 +10,9 @@ from swagger_server.models.MEC011_service_management.security_info import Securi
 from swagger_server.models.MEC011_service_management.service_info import ServiceInfo  # noqa: E501
 from swagger_server.models.MEC011_service_management.service_info_post import ServiceInfoPost  # noqa: E501
 from swagger_server.models.MEC011_service_management.transport_info import TransportInfo
+from swagger_server.models.internal.applications_services_data import app_ids
 from swagger_server.test import BaseTestCase
 
-from swagger_server.models.internal.applications_services_data import app_ids
 
 class TestAppServicesController(BaseTestCase):
 	"""AppServicesController integration test stubs"""

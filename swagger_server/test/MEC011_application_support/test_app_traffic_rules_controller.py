@@ -12,10 +12,7 @@ class TestAppTrafficRulesController(BaseTestCase):
 	"""AppTrafficRulesController integration test stubs"""
 
 	def test_applications_traffic_rule_get(self):
-		"""Test case for applications_traffic_rule_get
-
-
-		"""
+		"""Test case for applications_traffic_rule_get"""
 		response = self.client.open(
 			'/mec_app_support/v1/applications/{appInstanceId}/traffic_rules/{trafficRuleId}'.format(
 				appInstanceId='app_instance_id_example', trafficRuleId='traffic_rule_id_example'),
@@ -24,10 +21,7 @@ class TestAppTrafficRulesController(BaseTestCase):
 		               'Response body is : ' + response.data.decode('utf-8'))
 
 	def test_applications_traffic_rule_put(self):
-		"""Test case for applications_traffic_rule_put
-
-
-		"""
+		"""Test case for applications_traffic_rule_put"""
 		body = TrafficRule(traffic_rule_id="ruleId", action="PASSTHROUGH", filter_type="FLOW", priority=1,
 		                   state="ACTIVE", traffic_filter=[
 				{
@@ -76,10 +70,7 @@ class TestAppTrafficRulesController(BaseTestCase):
 		               'Response body is : ' + response.data.decode('utf-8'))
 
 	def test_applications_traffic_rules_get(self):
-		"""Test case for applications_traffic_rules_get
-
-
-		"""
+		"""Test case for applications_traffic_rules_get"""
 		response = self.client.open(
 			'/mec_app_support/v1/applications/{appInstanceId}/traffic_rules'.format(
 				appInstanceId='app_instance_id_example'),

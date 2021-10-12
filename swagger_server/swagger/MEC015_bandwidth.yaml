@@ -12,55 +12,55 @@ externalDocs:
   description: ETSI GS MEC015 V2.1.1 Traffic Management APIs
   url: https://www.etsi.org/deliver/etsi_gs/MEC/001_099/015/02.01.01_60/gs_MEC015v020101p.pdf
 servers:
-- url: https://localhost/bwm/v1
+  - url: https://localhost/bwm/v1
 tags:
-- name: bwm
+  - name: bwm
 paths:
   /bw_allocations:
     get:
       tags:
-      - bwm
+        - bwm
       summary: Retrieve information about a list of bandwidthAllocation resources
       description: Retrieves information about a list of bandwidthAllocation resources.
         Typically used in 'Get configured bandwidth allocation from Bandwidth Management
         Service' procedure as described in clause 6.2.5.
       operationId: bandwidth_allocation_list_get
       parameters:
-      - name: app_instance_id
-        in: query
-        description: A MEC application instance may use multiple app_instance_ids
-          as an input parameter to query the bandwidth allocation of a list of MEC
-          application instances. See note.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-      - name: app_name
-        in: query
-        description: A MEC application instance may use multiple app_names as an input
-          parameter to query the bandwidth allocation of a list of MEC application
-          instances. See note.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-      - name: session_id
-        in: query
-        description: A MEC application instance may use session_id as an input parameter
-          to query the bandwidth allocation of a list of sessions. See note.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
+        - name: app_instance_id
+          in: query
+          description: A MEC application instance may use multiple app_instance_ids
+            as an input parameter to query the bandwidth allocation of a list of MEC
+            application instances. See note.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: app_name
+          in: query
+          description: A MEC application instance may use multiple app_names as an input
+            parameter to query the bandwidth allocation of a list of MEC application
+            instances. See note.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: session_id
+          in: query
+          description: A MEC application instance may use session_id as an input parameter
+            to query the bandwidth allocation of a list of sessions. See note.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
       responses:
         "200":
           description: "Upon success, a response body containing an array of the bandwidthAllocations\
@@ -96,13 +96,13 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC015_bandwidth.bwm_controller
     post:
       tags:
-      - bwm
+        - bwm
       summary: Create a bandwidthAllocation resource
       description: Used to create a bandwidthAllocation resource. Typically used in
         'Register to Bandwidth Management Service' procedure as described in clause
         6.2.1.
       operationId: bandwidth_allocation_post
-      parameters: []
+      parameters: [ ]
       requestBody:
         description: Entity body in the request contains BwInfo to be created.
         content:
@@ -143,21 +143,21 @@ paths:
   /bw_allocations/{allocationId}:
     get:
       tags:
-      - bwm
+        - bwm
       summary: Retrieve information about a specific bandwidthAllocation
       description: Retrieves information about a bandwidthAllocation resource. Typically
         used in 'Get configured bandwidth allocation from Bandwidth Management Service'
         procedure as described in clause 6.2.5.
       operationId: bandwidth_allocation_get
       parameters:
-      - name: allocationId
-        in: path
-        description: Represents a bandwidth allocation instance
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: allocationId
+          in: path
+          description: Represents a bandwidth allocation instance
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       responses:
         "200":
           description: Used to indicate nonspecific success. The response body contains
@@ -190,20 +190,20 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC015_bandwidth.bwm_controller
     put:
       tags:
-      - bwm
+        - bwm
       summary: Update the information about a specific bandwidthAllocation
       description: "Updates the information about a bandwidthAllocation resource.\
         \ As specified in ETSI GS MEC 009 [6], the PUT HTTP method has 'replace' semantics."
       operationId: bandwidth_allocation_put
       parameters:
-      - name: allocationId
-        in: path
-        description: Represents a bandwidth allocation instance
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: allocationId
+          in: path
+          description: Represents a bandwidth allocation instance
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       requestBody:
         description: BwInfo with updated information is included as entity body of
           the request.
@@ -252,20 +252,20 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC015_bandwidth.bwm_controller
     delete:
       tags:
-      - bwm
+        - bwm
       summary: Remove a specific bandwidthAllocation
       description: Used in 'Unregister from Bandwidth Management Service' procedure
         as described in clause 6.2.3.
       operationId: bandwidth_allocation_delete
       parameters:
-      - name: allocationId
-        in: path
-        description: Represents a bandwidth allocation instance
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: allocationId
+          in: path
+          description: Represents a bandwidth allocation instance
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       responses:
         "204":
           description: "Upon success, a response 204 No Content without any response\
@@ -287,7 +287,7 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC015_bandwidth.bwm_controller
     patch:
       tags:
-      - bwm
+        - bwm
       summary: Modify the information about a specific existing bandwidthAllocation
         by sending updates on the data structure
       description: "Updates the information about a bandwidthAllocation resource.\
@@ -296,14 +296,14 @@ paths:
         \ in the request body."
       operationId: bandwidth_allocation_patch
       parameters:
-      - name: allocationId
-        in: path
-        description: Represents a bandwidth allocation instance
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: allocationId
+          in: path
+          description: Represents a bandwidth allocation instance
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       requestBody:
         description: Description of the changes to instruct the server how to modify
           the resource representation.
@@ -354,10 +354,10 @@ components:
   schemas:
     BwInfo:
       required:
-      - allocationDirection
-      - appInsId
-      - fixedAllocation
-      - requestType
+        - allocationDirection
+        - appInsId
+        - fixedAllocation
+        - requestType
       type: object
       properties:
         allocationDirection:
@@ -383,7 +383,7 @@ components:
             applications or sessions in parallel. Values are not defined in the present
             document
           enum:
-          - SEE_DESCRIPTION
+            - SEE_DESCRIPTION
           x-etsi-mec-cardinality: 0..1
           x-etsi-mec-origin-type: Enum
         requestType:
@@ -391,8 +391,8 @@ components:
           description: "Numeric value (0 - 255) corresponding to specific type of\
             \ consumer as following: 0 = APPLICATION_SPECIFIC_BW_ALLOCATION 1 = SESSION_SPECIFIC_BW_ALLOCATION"
           enum:
-          - 0
-          - 1
+            - 0
+            - 1
           x-etsi-mec-cardinality: "1"
           x-etsi-mec-origin-type: Enum_inlined
         sessionFilter:
@@ -416,31 +416,31 @@ components:
         fixedBWPriority: SEE_DESCRIPTION
         requestType: 0
         sessionFilter:
-        - protocol: protocol
-          sourcePort:
-          - sourcePort
-          - sourcePort
-          dstPort:
-          - dstPort
-          - dstPort
-          sourceIp: sourceIp
-          dstAddress: dstAddress
-        - protocol: protocol
-          sourcePort:
-          - sourcePort
-          - sourcePort
-          dstPort:
-          - dstPort
-          - dstPort
-          sourceIp: sourceIp
-          dstAddress: dstAddress
+          - protocol: protocol
+            sourcePort:
+              - sourcePort
+              - sourcePort
+            dstPort:
+              - dstPort
+              - dstPort
+            sourceIp: sourceIp
+            dstAddress: dstAddress
+          - protocol: protocol
+            sourcePort:
+              - sourcePort
+              - sourcePort
+            dstPort:
+              - dstPort
+              - dstPort
+            sourceIp: sourceIp
+            dstAddress: dstAddress
         appInsId: appInsId
         fixedAllocation: fixedAllocation
       x-etsi-ref: 7.2.2
     BwInfoDeltas:
       required:
-      - appInsId
-      - requestType
+        - appInsId
+        - requestType
       type: object
       properties:
         allocationDirection:
@@ -466,7 +466,7 @@ components:
             applications or sessions in parallel. Values are not defined in the present
             document
           enum:
-          - SEE DESCRIPTION
+            - SEE DESCRIPTION
           x-etsi-mec-cardinality: 0..1
           x-etsi-mec-origin-type: Enum_inlined
         requestType:
@@ -474,8 +474,8 @@ components:
           description: "Numeric value (0 - 255) corresponding to specific type of\
             \ consumer as following: 0 = APPLICATION_SPECIFIC_BW_ALLOCATION 1 = SESSION_SPECIFIC_BW_ALLOCATION"
           enum:
-          - "0"
-          - "1"
+            - "0"
+            - "1"
           x-etsi-mec-cardinality: "1"
           x-etsi-mec-origin-type: Enum_inlined
         sessionFilter:
@@ -561,17 +561,17 @@ components:
       example:
         protocol: protocol
         sourcePort:
-        - sourcePort
-        - sourcePort
+          - sourcePort
+          - sourcePort
         dstPort:
-        - dstPort
-        - dstPort
+          - dstPort
+          - dstPort
         sourceIp: sourceIp
         dstAddress: dstAddress
     BwInfo_timeStamp:
       required:
-      - nanoSeconds
-      - seconds
+        - nanoSeconds
+        - seconds
       type: object
       properties:
         nanoSeconds:

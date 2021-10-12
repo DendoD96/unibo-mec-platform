@@ -8,7 +8,8 @@ from swagger_server.models.internal.applications_services_data import update_app
 from swagger_server.models.problem_details import ProblemDetails
 
 
-def app_services_get(app_instance_id, ser_instance_id=None, ser_name=None, ser_category_id=None, consumed_local_only=None,
+def app_services_get(app_instance_id, ser_instance_id=None, ser_name=None, ser_category_id=None,
+                     consumed_local_only=None,
                      is_local=None, scope_of_locality=None):  # noqa: E501
 	"""app_services_get
 

@@ -1,21 +1,25 @@
 # coding: utf-8
 
 from __future__ import absolute_import
-from datetime import date, datetime  # noqa: F401
+from datetime import date, datetime  # noqa: F401 # pylint: disable=unused-import
 
-from typing import List, Dict  # noqa: F401
+from typing import List, Dict  # noqa: F401 # pylint: disable=unused-import
 
 from swagger_server.models.base_model_ import Model
 from swagger_server.models.MEC011_application_support.destination_interface import \
-	DestinationInterface  # noqa: F401,E501
-from swagger_server.models.MEC011_application_support.traffic_filter import TrafficFilter  # noqa: F401,E501
-from swagger_server.models.MEC011_application_support.traffic_rule_action import TrafficRuleAction  # noqa: F401,E501
+	DestinationInterface  # noqa: F401 # pylint: disable=unused-import,E501
+from swagger_server.models.MEC011_application_support.traffic_filter import \
+	TrafficFilter  # noqa: F401 # pylint: disable=unused-import,E501
+from swagger_server.models.MEC011_application_support.traffic_rule_action import \
+	TrafficRuleAction  # noqa: F401 # pylint: disable=unused-import,E501
 from swagger_server.models.MEC011_application_support.traffic_rule_filter_type import \
-	TrafficRuleFilterType  # noqa: F401,E501
-from swagger_server.models.MEC011_application_support.traffic_rule_id import TrafficRuleId  # noqa: F401,E501
+	TrafficRuleFilterType  # noqa: F401 # pylint: disable=unused-import,E501
+from swagger_server.models.MEC011_application_support.traffic_rule_id import \
+	TrafficRuleId  # noqa: F401 # pylint: disable=unused-import,E501
 from swagger_server.models.MEC011_application_support.traffic_rule_priority import \
-	TrafficRulePriority  # noqa: F401,E501
-from swagger_server.models.MEC011_application_support.traffic_rule_state import TrafficRuleState  # noqa: F401,E501
+	TrafficRulePriority  # noqa: F401 # pylint: disable=unused-import,E501
+from swagger_server.models.MEC011_application_support.traffic_rule_state import \
+	TrafficRuleState  # noqa: F401 # pylint: disable=unused-import,E501
 from swagger_server import util
 
 

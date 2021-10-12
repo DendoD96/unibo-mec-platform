@@ -85,11 +85,11 @@ class TestDevAppController(BaseTestCase):
 
 		Get available application information.
 		"""
-		query_string = [('app_name', 'app_name_example'),
-		                ('app_provider', 'app_provider_example'),
-		                ('app_soft_version', 'app_soft_version_example'),
-		                ('vendor_id', 'vendor_id_example'),
-		                ('service_cont', 56)]
+		query_string = [('appName', 'app_name_example'),
+		                ('appProvider', 'app_provider_example'),
+		                ('appSoftVersion', 'app_soft_version_example'),
+		                ('vendorId', 'vendor_id_example'),
+		                ('serviceCont', 0)]
 		response = self.client.open(
 			'/dev_app/v1/app_list',
 			method='GET',
