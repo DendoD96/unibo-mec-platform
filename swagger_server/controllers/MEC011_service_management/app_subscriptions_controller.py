@@ -7,7 +7,6 @@ from swagger_server.models.internal.applications_services_data import add_applic
 from swagger_server.models.internal.applications_services_data import delete_application_subscription
 from swagger_server.models.problem_details import ProblemDetails
 
-
 def applications_subscription_delete(app_instance_id, subscription_id):  # noqa: E501
     """applications_subscription_delete
 
@@ -27,7 +26,7 @@ def applications_subscription_delete(app_instance_id, subscription_id):  # noqa:
 
 
 def applications_subscription_get(app_instance_id, subscription_id):  # noqa: E501
-    """applications_subscription_get
+	"""applications_subscription_get
 
     The GET method requests information about a subscription for this requestor. Upon success, the response contains entity body with the subscription for the requestor. # noqa: E501
 
@@ -38,11 +37,11 @@ def applications_subscription_get(app_instance_id, subscription_id):  # noqa: E5
 
     :rtype: SerAvailabilityNotificationSubscription
     """
-    return get_application_subscriptions(app_instance_id=app_instance_id,subscription_id=subscription_id)
+	return get_application_subscriptions(app_instance_id=app_instance_id, subscription_id=subscription_id)
 
 
 def applications_subscriptions_get(app_instance_id):  # noqa: E501
-    """applications_subscriptions_get
+	"""applications_subscriptions_get
 
     The GET method may be used to request information about all subscriptions for this requestor. Upon success, the response contains entity body with all the subscriptions for the requestor. # noqa: E501
 
@@ -51,7 +50,7 @@ def applications_subscriptions_get(app_instance_id):  # noqa: E501
 
     :rtype: MecServiceMgmtApiSubscriptionLinkList
     """
-    return get_application_subscriptions(app_instance_id=app_instance_id)
+	return get_application_subscriptions(app_instance_id=app_instance_id)
 
 
 def applications_subscriptions_post(body, app_instance_id):  # noqa: E501

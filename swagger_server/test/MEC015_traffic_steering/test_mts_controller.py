@@ -3,13 +3,10 @@
 from __future__ import absolute_import
 
 from flask import json
-from six import BytesIO
 
-from swagger_server.models.MEC015_traffic_steering.mts_capability_info import MtsCapabilityInfo  # noqa: E501
 from swagger_server.models.MEC015_traffic_steering.mts_session_info import MtsSessionInfo  # noqa: E501
 from swagger_server.models.MEC015_traffic_steering.mts_session_info_flow_filter import MtsSessionInfoFlowFilter
 from swagger_server.models.MEC015_traffic_steering.mts_session_info_qos_d import MtsSessionInfoQosD
-from swagger_server.models.problem_details import ProblemDetails  # noqa: E501
 from swagger_server.test import BaseTestCase
 
 

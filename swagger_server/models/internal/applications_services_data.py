@@ -45,7 +45,7 @@ def get_app_service(app_instance_id, ser_instance_id=None, ser_name=None, ser_ca
 
 
 def get_services(ser_instance_id=None, ser_name=None, ser_category_id=None, consumed_local_only=None,
-				 is_local=None, scope_of_locality=None):
+                 is_local=None, scope_of_locality=None):
 	app_services = []
 	for app_id in app_ids:
 		app_services.extend(app_ids.get(app_id, {}).get('servicelist', []))
@@ -74,8 +74,8 @@ def __delete_service(app_instance_id, ser_instance_id):
 	services = app_ids.get(app_instance_id, {}).get('servicelist', [])
 	if len(services) > 0:
 		services = [service for service in services if service.ser_instance_id != ser_instance_id]
-		app_ids[app_instance_id]['servicelist']=services
-		#TODO if len(services) > 0 but ser_instance_id not in services still replies with 204 instead of 404
+		app_ids[app_instance_id]['servicelist'] = services
+		# TODO if len(services) > 0 but ser_instance_id not in services still replies with 204 instead of 404
 		return services
 	return None
 
@@ -100,13 +100,16 @@ def update_app_service(app_instance_id, ser_instance_id, service):
 		return service
 	return None
 
+
 def get_current_time():
-	date =  datetime.now(timezone.utc)
-	current_time = CurrentTime(seconds=int(date.timestamp()),nano_seconds=0,time_source_status='TRACEABLE')
+	date = datetime.now(timezone.utc)
+	current_time = CurrentTime(seconds=int(date.timestamp()), nano_seconds=0, time_source_status='TRACEABLE')
 	return current_time
+
 
 def clean_up():
 	app_ids.clear()
+
 
 def get_application_subscriptions(app_instance_id, subscription_id=None):
 	app_subscriptions = app_ids.get(app_instance_id, {}).get('subscriptionlist', [])
