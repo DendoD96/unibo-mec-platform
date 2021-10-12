@@ -98,3 +98,11 @@ def get_current_time():
 
 def clean_up():
 	app_ids.clear()
+
+def get_application_subscriptions(app_instance_id, subscription_id=None):
+	app_subscriptions = app_ids.get(app_instance_id, {}).get('subscriptionlist', [])
+	if subscription_id:
+	#TODO the subscription_id is not part of the standard MEC011 Subscription model (in v2.1.1)
+		app_subscriptions = list(
+			filter(lambda subscription_info: (subscription_info.ser_availability_notification_subscription_id == subscription_id), app_subscriptions))
+	return subscription_id	

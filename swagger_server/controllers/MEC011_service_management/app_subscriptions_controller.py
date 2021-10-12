@@ -2,7 +2,7 @@ import connexion
 
 from swagger_server.models.MEC011_service_management.mec_service_mgmt_api_subscription_link_list import MecServiceMgmtApiSubscriptionLinkList  # noqa: E501
 from swagger_server.models.MEC011_service_management.ser_availability_notification_subscription import SerAvailabilityNotificationSubscription  # noqa: E501
-
+from swagger_server.models.internal.applications_services_data import get_application_subscriptions 
 
 def applications_subscription_delete(app_instance_id, subscription_id):  # noqa: E501
     """applications_subscription_delete
@@ -31,7 +31,7 @@ def applications_subscription_get(app_instance_id, subscription_id):  # noqa: E5
 
     :rtype: SerAvailabilityNotificationSubscription
     """
-    return 'do some magic!'
+    return get_application_subscriptions(app_instance_id=app_instance_id,subscription_id=subscription_id)
 
 
 def applications_subscriptions_get(app_instance_id):  # noqa: E501
@@ -44,7 +44,7 @@ def applications_subscriptions_get(app_instance_id):  # noqa: E501
 
     :rtype: MecServiceMgmtApiSubscriptionLinkList
     """
-    return 'do some magic!'
+    return get_application_subscriptions(app_instance_id=app_instance_id)
 
 
 def applications_subscriptions_post(body, app_instance_id):  # noqa: E501
