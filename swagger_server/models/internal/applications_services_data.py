@@ -1,7 +1,8 @@
 from swagger_server.models.MEC011_service_management.service_info import ServiceInfo  # noqa: E501
 from swagger_server.models.MEC011_service_management.service_info_post import ServiceInfoPost
 from swagger_server.models.MEC011_application_support.current_time import CurrentTime
-from swagger_server.models.MEC011_service_management.ser_availability_notification_subscription import SerAvailabilityNotificationSubscription
+from swagger_server.models.MEC011_service_management.ser_availability_notification_subscription import \
+	SerAvailabilityNotificationSubscription
 from datetime import datetime, timezone
 import uuid
 
@@ -18,78 +19,42 @@ def add_app_service(app_instance_id, service: ServiceInfoPost):
 	return service_info
 
 
-def get_app_service(app_instance_id, ser_instance_id=None, ser_name=None, ser_category_id=None,
-                    consumed_local_only=None,
-                    is_local=None, scope_of_locality=None):
-	app_services = app_ids.get(app_instance_id, {}).get('servicelist', [])
-	if ser_instance_id:
-		app_services = list(
-			filter(lambda service_info: (service_info.ser_instance_id in ser_instance_id), app_services))
-	if ser_name:
-		app_services = list(
-			filter(lambda service_info: (service_info.ser_name in ser_name), app_services))
-	if ser_category_id:
-		app_services = list(
-			filter(lambda service_info: (service_info.ser_category_id == ser_category_id), app_services))
-	if consumed_local_only:
-		app_services = list(
-			filter(lambda service_info: (service_info.consumed_local_only == consumed_local_only), app_services))
-	if is_local:
-		app_services = list(
-			filter(lambda service_info: (service_info.is_local == is_local), app_services))
-	if scope_of_locality:
-		app_services = list(
-			filter(lambda service_info: (service_info.scope_of_locality == scope_of_locality), app_services))
+def add_application_subscription(app_instance_id, subscription: SerAvailabilityNotificationSubscription):
+	subscription.ser_availability_notification_subscription_id = str(uuid.uuid4())
+	app_ids.setdefault(app_instance_id, {}).setdefault('subscriptionlist', []).append(subscription)
+	return subscription
 
-	return app_services
+
+def get_application_services(app_instance_id, ser_instance_id=None, ser_name=None, ser_category_id=None,
+                             consumed_local_only=None,
+                             is_local=None, scope_of_locality=None):
+	return __get_application_informations(app_instance_id=app_instance_id, parameters_dictionary=locals(),
+	                                      information='servicelist')
+
+
+def get_application_subscriptions(app_instance_id, subscription_id=None):
+	return __get_application_informations(app_instance_id=app_instance_id, parameters_dictionary=locals(),
+	                                      information='subscriptionlist')
 
 
 def get_services(ser_instance_id=None, ser_name=None, ser_category_id=None, consumed_local_only=None,
                  is_local=None, scope_of_locality=None):
 	app_services = []
 	for app_id in app_ids:
-		app_services.extend(app_ids.get(app_id, {}).get('servicelist', []))
-	if ser_instance_id:
-		app_services = list(
-			filter(lambda service_info: (service_info.ser_instance_id in ser_instance_id), app_services))
-	if ser_name:
-		app_services = list(
-			filter(lambda service_info: (service_info.ser_name in ser_name), app_services))
-	if ser_category_id:
-		app_services = list(
-			filter(lambda service_info: (service_info.ser_category_id == ser_category_id), app_services))
-	if consumed_local_only:
-		app_services = list(
-			filter(lambda service_info: (service_info.consumed_local_only == consumed_local_only), app_services))
-	if is_local:
-		app_services = list(
-			filter(lambda service_info: (service_info.is_local == is_local), app_services))
-	if scope_of_locality:
-		app_services = list(
-			filter(lambda service_info: (service_info.scope_of_locality == scope_of_locality), app_services))
+		app_services.extend(
+			get_application_services(app_id, ser_instance_id=ser_instance_id, ser_name=ser_name,
+			                         ser_category_id=ser_category_id,
+			                         consumed_local_only=consumed_local_only, is_local=is_local,
+			                         scope_of_locality=scope_of_locality))
 	return app_services
 
 
-def __delete_service(app_instance_id, ser_instance_id):
-	services = app_ids.get(app_instance_id, {}).get('servicelist', [])
-	if len(services) > 0:
-		services = [service for service in services if service.ser_instance_id != ser_instance_id]
-		app_ids[app_instance_id]['servicelist'] = services
-		# TODO if len(services) > 0 but ser_instance_id not in services still replies with 204 instead of 404
-		return services
-	return None
-
-def __delete_app_subscription(app_instance_id, subscription_id):
-	subscriptions = app_ids.get(app_instance_id, {}).get('subscriptionlist', [])
-	if len(subscriptions) > 0:
-		subscriptions = [subscription for subscription in subscriptions if subscription.ser_availability_notification_subscription_id != subscription_id]
-		app_ids[app_instance_id]['subscriptionlist']=subscriptions
-		#TODO if len(subscriptions) > 0 but subscription_id not in app_sub still replies with 204 instead of 404
-		return subscriptions
-	return None
-
 def delete_app_service(app_instance_id, ser_instance_id):
 	return __delete_service(app_instance_id, ser_instance_id)
+
+
+def delete_application_subscription(app_instance_id, subscription_id):
+	return __delete_app_subscription(app_instance_id, subscription_id)
 
 
 def update_app_service(app_instance_id, ser_instance_id, service):
@@ -107,23 +72,33 @@ def get_current_time():
 	return current_time
 
 
-def clean_up():
-	app_ids.clear()
+def __delete_service(app_instance_id, ser_instance_id):
+	return __delete_app_information(app_instance_id, 'servicelist',
+	                                lambda service: service.ser_instance_id != ser_instance_id)
 
 
-def get_application_subscriptions(app_instance_id, subscription_id=None):
-	app_subscriptions = app_ids.get(app_instance_id, {}).get('subscriptionlist', [])
-	if subscription_id:
-	#TODO the subscription_id is not part of the standard MEC011 Subscription model (in v2.1.1)
-	#TODO v2 added ser_availability_notification_subscription_id in the openAPI definition
-		app_subscriptions = list(
-			filter(lambda subscription_info: (subscription_info.ser_availability_notification_subscription_id == subscription_id), app_subscriptions))
-	return app_subscriptions
+def __delete_app_subscription(app_instance_id, subscription_id):
+	return __delete_app_information(app_instance_id, 'subscriptionlist', lambda
+		subscription: subscription.ser_availability_notification_subscription_id != subscription_id)
 
-def add_application_subscription(app_instance_id, subscription: SerAvailabilityNotificationSubscription):
-	subscription.ser_availability_notification_subscription_id = str(uuid.uuid4())
-	app_ids.setdefault(app_instance_id, {}).setdefault('subscriptionlist', []).append(subscription)
-	return subscription
 
-def delete_application_subscription(app_instance_id, subscription_id):
-	return __delete_app_subscription(app_instance_id, subscription_id)
+def __delete_app_information(app_instance_id, information, filter_lambda):
+	informations = app_ids.get(app_instance_id, {}).get(information, [])
+	information_length = len(informations)
+	if information_length > 0:
+		informations = [information for information in informations if filter_lambda(information)]
+		if len(informations) < information_length:
+			app_ids[app_instance_id][information] = informations
+			return informations
+	return None
+
+
+def __get_application_informations(app_instance_id, parameters_dictionary, information):
+	parameters = {k: v for k, v in parameters_dictionary.items() if v is not None and k != 'app_instance_id'}
+	informations = app_ids.get(app_instance_id, {}).get(information, [])
+	for k, v in parameters.items():
+		if isinstance(v, list):
+			informations = list(filter(lambda information: (getattr(information, k) in v), informations))
+		else:
+			informations = list(filter(lambda information: (getattr(information, k) == v), informations))
+	return informations

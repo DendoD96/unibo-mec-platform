@@ -4,7 +4,7 @@ from swagger_server.models.internal.applications_services_data import get_curren
 def timing_caps_get():  # noqa: E501
 	"""timing_caps_get
 
-	This method retrieves the information of the platform&#x27;s timing capabilities which corresponds to the timing capabilities query # noqa: E501
+	This method retrieves the information of the platform's timing capabilities which corresponds to the timing capabilities query # noqa: E501
 
 
 	:rtype: TimingCaps

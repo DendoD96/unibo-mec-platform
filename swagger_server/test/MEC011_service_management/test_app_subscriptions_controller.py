@@ -21,7 +21,7 @@ class TestAppSubscriptionsController(BaseTestCase):
 			'/mec_service_mgmt/v1/applications/{appInstanceId}/subscriptions/{subscriptionId}'.format(
 				appInstanceId='app_instance_id_example', subscriptionId='subscription_id_example'),
 			method='DELETE')
-		self.assert200(response,
+		self.assert404(response,
 		               'Response body is : ' + response.data.decode('utf-8'))
 
 	def test_applications_subscription_get(self):

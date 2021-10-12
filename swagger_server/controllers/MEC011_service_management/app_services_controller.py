@@ -3,7 +3,7 @@ import connexion
 from swagger_server.models.MEC011_service_management.service_info import ServiceInfo
 from swagger_server.models.MEC011_service_management.service_info_post import ServiceInfoPost  # noqa: E501
 from swagger_server.models.internal.applications_services_data import add_app_service, delete_app_service
-from swagger_server.models.internal.applications_services_data import get_app_service
+from swagger_server.models.internal.applications_services_data import get_application_services
 from swagger_server.models.internal.applications_services_data import update_app_service
 from swagger_server.models.problem_details import ProblemDetails
 
@@ -32,9 +32,10 @@ def app_services_get(app_instance_id, ser_instance_id=None, ser_name=None, ser_c
 
 	:rtype: List[ServiceInfo]
 	"""
-	return get_app_service(app_instance_id=app_instance_id, ser_instance_id=ser_instance_id, ser_name=ser_name,
-	                       ser_category_id=ser_category_id, consumed_local_only=consumed_local_only, is_local=is_local,
-	                       scope_of_locality=scope_of_locality)
+	return get_application_services(app_instance_id=app_instance_id, ser_instance_id=ser_instance_id, ser_name=ser_name,
+	                                ser_category_id=ser_category_id, consumed_local_only=consumed_local_only,
+	                                is_local=is_local,
+	                                scope_of_locality=scope_of_locality)
 
 
 def app_services_post(body, app_instance_id):  # noqa: E501
@@ -51,7 +52,7 @@ def app_services_post(body, app_instance_id):  # noqa: E501
 	"""
 	if connexion.request.is_json:
 		body = ServiceInfoPost.from_dict(connexion.request.get_json())  # noqa: E501
-	return add_app_service(app_instance_id, body)
+	return add_app_service(app_instance_id, body), 201
 
 
 def app_services_service_id_delete(app_instance_id, service_id):  # noqa: E501
@@ -84,7 +85,7 @@ def app_services_service_id_get(app_instance_id, service_id):  # noqa: E501
 
 	:rtype: ServiceInfo
 	"""
-	service_info = get_app_service(app_instance_id=app_instance_id, ser_instance_id=[service_id])
+	service_info = get_application_services(app_instance_id=app_instance_id, ser_instance_id=[service_id])
 	if len(service_info) == 1:
 		return service_info[0]
 	else:
