@@ -118,7 +118,7 @@ def get_application_subscriptions(app_instance_id, subscription_id=None):
 	#TODO v2 added ser_availability_notification_subscription_id in the openAPI definition
 		app_subscriptions = list(
 			filter(lambda subscription_info: (subscription_info.ser_availability_notification_subscription_id == subscription_id), app_subscriptions))
-	return subscription_id
+	return app_subscriptions
 
 def add_application_subscription(app_instance_id, subscription: SerAvailabilityNotificationSubscription):
 	subscription.ser_availability_notification_subscription_id = str(uuid.uuid4())
