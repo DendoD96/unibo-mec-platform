@@ -1,19 +1,25 @@
+import os
 import queue
-import threading
-import time
-from flask import current_app
+import logging
+
+from swagger_server.models.internal.service_subscription_event import ServiceSubscriptionEvent, ServiceRegistered, \
+	ServiceUpdated, ServiceDeleted
 
 task_queue = queue.Queue()
+logger = logging.getLogger('console')
 
 
-def update(url: str):
-	task_queue.put(url)
+def update_subscriber(event: ServiceSubscriptionEvent):
+	task_queue.put(event)
 
 
 def manager():
-	current_app.logger.debug(f'I am {threading.current_thread()} and i am going to start my job')
 	while True:
-		item = task_queue.get()
-		time.sleep(5)
-		current_app.logger.debug(f'I am {threading.current_thread()} and i have finished my job, sending result to {item}')
+		event = task_queue.get()
+		if isinstance(event, ServiceRegistered):
+			logger.debug('Service registered')
+		elif isinstance(event, ServiceUpdated):
+			logger.debug('Service updated')
+		elif isinstance(event, ServiceDeleted):
+			logger.debug('Service deleted')
 		task_queue.task_done()
