@@ -5,18 +5,35 @@ from swagger_server.models.MEC011_service_management.ser_availability_notificati
 	SerAvailabilityNotificationSubscription
 from datetime import datetime, timezone
 import uuid
+from swagger_server.models.problem_details import ProblemDetails
+
 
 app_ids = {}
 
+def app_confirm_ready(app_instance_id):
+	if app_instance_id not in app_ids:
+		app_ids.setdefault(app_instance_id, {})
+		return '204'	
+	return '404'
+
+def app_termination_ready(app_instance_id):
+	if app_instance_id in app_ids:
+		del app_ids[app_instance_id]
+		return '204'	
+	return '404'
+
 
 def add_app_service(app_instance_id, service: ServiceInfoPost):
-	service_info = ServiceInfo(ser_instance_id=str(uuid.uuid4()), ser_name=service.ser_name,
-	                           ser_category=service.ser_category, version=service.version, state=service.state,
-	                           transport_info=service.transport_info, serializer=service.serializer,
-	                           scope_of_locality=service.scope_of_locality,
-	                           consumed_local_only=service.consumed_local_only, is_local=service.is_local)
-	app_ids.setdefault(app_instance_id, {}).setdefault('servicelist', []).append(service_info)
-	return service_info
+	if app_instance_id in app_ids:	
+		service_info = ServiceInfo(ser_instance_id=str(uuid.uuid4()), ser_name=service.ser_name,
+							ser_category=service.ser_category, version=service.version, state=service.state,
+							transport_info=service.transport_info, serializer=service.serializer,
+							scope_of_locality=service.scope_of_locality,
+							consumed_local_only=service.consumed_local_only, is_local=service.is_local)					   
+		app_ids[app_instance_id].setdefault('servicelist', []).append(service_info)
+		return service_info
+	else:
+		return ProblemDetails(title="Application Id not found", status=404)
 
 
 def add_application_subscription(app_instance_id, subscription: SerAvailabilityNotificationSubscription):

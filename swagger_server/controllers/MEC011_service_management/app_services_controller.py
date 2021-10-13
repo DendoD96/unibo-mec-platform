@@ -52,7 +52,12 @@ def app_services_post(body, app_instance_id):  # noqa: E501
 	"""
 	if connexion.request.is_json:
 		body = ServiceInfoPost.from_dict(connexion.request.get_json())  # noqa: E501
-	return add_app_service(app_instance_id, body), 201
+	result = add_app_service(app_instance_id, body)
+	if isinstance(result,ServiceInfo):
+		return result,201
+	elif isinstance(result,ProblemDetails):
+		return result, result.status
+	return ProblemDetails(title="Something went wrong", status=400)
 
 
 def app_services_service_id_delete(app_instance_id, service_id):  # noqa: E501
@@ -70,7 +75,7 @@ def app_services_service_id_delete(app_instance_id, service_id):  # noqa: E501
 	result = delete_app_service(app_instance_id=app_instance_id, ser_instance_id=service_id)
 	if result is not None:
 		return "Done", 204
-	return ProblemDetails(title="service not found", status=404), 404
+	return ProblemDetails(title="Service not found", status=404), 404
 
 
 def app_services_service_id_get(app_instance_id, service_id):  # noqa: E501
