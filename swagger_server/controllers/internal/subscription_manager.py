@@ -1,4 +1,3 @@
-import os
 import queue
 import logging
 
@@ -6,7 +5,6 @@ from swagger_server.models.internal.service_subscription_event import ServiceSub
 	ServiceUpdated, ServiceDeleted
 
 task_queue = queue.Queue()
-logger = logging.getLogger('console')
 
 
 def update_subscriber(event: ServiceSubscriptionEvent):
@@ -17,9 +15,9 @@ def manager():
 	while True:
 		event = task_queue.get()
 		if isinstance(event, ServiceRegistered):
-			logger.debug('Service registered')
+			logging.debug('Service registered')
 		elif isinstance(event, ServiceUpdated):
-			logger.debug('Service updated')
+			logging.debug('Service updated')
 		elif isinstance(event, ServiceDeleted):
-			logger.debug('Service deleted')
+			logging.debug('Service deleted')
 		task_queue.task_done()
