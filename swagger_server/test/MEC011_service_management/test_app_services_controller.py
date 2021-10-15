@@ -5,10 +5,10 @@ from __future__ import absolute_import
 from flask import json
 
 from swagger_server.models.MEC011_service_management.service_info import ServiceInfo  # noqa: E501
-from swagger_server.test import BaseTestCase, APP_INSTANCE_ID
+from swagger_server.test import BaseTestCase
 
-from swagger_server.test.MEC011_service_management.utils.test_utilities import get_service_info_post
-from swagger_server.test.MEC011_service_management.utils.test_utilities import SERVICE_INFORMATIONS_TEMPLATE, SERVICE_ID
+from swagger_server.test.utils.test_utilities import get_service_info_post
+from swagger_server.test.utils.test_utilities import SERVICE_INFORMATIONS_TEMPLATE, SERVICE_ID, APP_INSTANCE_ID
 
 
 class TestAppServicesController(BaseTestCase):
@@ -102,9 +102,10 @@ class TestAppServicesController(BaseTestCase):
 		response = self.register_app_and_add_service()
 		response_body_data = response.json
 		self.check_status_code(201, response)
+		self.assertTrue(response.headers.get('Location'))
 		self.check_returned_service_informations(response_body_data)
 
-	def test_app_services_service_id_delete_empty(self):
+	def test_app_services_service_id_delete_fail_for_service_id(self):
 		"""Test case for app_services_service_id_delete. Should return 404 because the application is in READY state,
         but there is no service registered."""
 		self.app_ready(app_instance_id=APP_INSTANCE_ID)
@@ -114,6 +115,14 @@ class TestAppServicesController(BaseTestCase):
 		self.check_status_code(404, response,
 		                       message="Should return 404 because the application is in READY state, "
 		                               "but there is no service registered.")
+
+	def test_app_services_service_id_delete_fail_for_app_id(self):
+		"""Test case for app_services_service_id_delete. Should return 404 because the application is not in READY state."""
+		response = self.client.delete(
+			'/mec_service_mgmt/v1/applications/{appInstanceId}/services/{serviceId}'.format(
+				appInstanceId=APP_INSTANCE_ID, serviceId=SERVICE_ID))
+		self.check_status_code(404, response,
+		                       message="Should return 404 because the application is not in READY state.")
 
 	def test_app_services_service_id_delete(self):
 		"""Test case for app_services_service_id_delete.Should return 204 because the application is in READY state and
@@ -127,7 +136,7 @@ class TestAppServicesController(BaseTestCase):
 
 		self.check_status_code(204, response)
 
-	def test_app_services_service_id_get_not_found(self):
+	def test_app_services_service_id_get_fail_for_service_id(self):
 		"""Test case for app_services_service_id_get. Should return 404 because the application is in READY state,
         but there is no service registered."""
 		self.app_ready(app_instance_id=APP_INSTANCE_ID)
@@ -136,6 +145,13 @@ class TestAppServicesController(BaseTestCase):
 		self.check_status_code(404, response,
 		                       "Should return 404 because the application is in READY state, but there "
 		                       "is no service registered.")
+
+	def test_app_services_service_id_get_fail_for_app_id(self):
+		"""Test case for app_services_service_id_get. Should return 404 because the application is not in READY state."""
+		response = self.client.get('/mec_service_mgmt/v1/applications/{appInstanceId}/services/{serviceId}'.format(
+			appInstanceId=APP_INSTANCE_ID, serviceId='service_id_example'))
+		self.check_status_code(404, response,
+		                       "Should return 404 because the application is not in READY state.")
 
 	def test_app_services_service_id_get(self):
 		"""Test case for app_services_service_id_get. Should return 200 because the application is in READY state and

@@ -1,6 +1,8 @@
 import string
 import random
 
+from swagger_server.models.MEC011_service_management.ser_availability_notification_subscription import \
+	SerAvailabilityNotificationSubscription
 from swagger_server.models.MEC011_service_management.service_info_post import ServiceInfoPost
 
 RANDOM_STRING_LENGTH = 10
@@ -38,6 +40,7 @@ SERVICE_INFORMATIONS_TEMPLATE = {
 }
 APP_INSTANCE_ID = 'app_instance_id_example'
 SERVICE_ID = 'service_id_example'
+SUBSCRIPTION_ID = 'subscription_id_example'
 
 
 def get_random_string():
@@ -57,3 +60,9 @@ def get_random_application_id():
 
 def get_service_info_post():
 	return ServiceInfoPost.from_dict(SERVICE_INFORMATIONS_TEMPLATE)
+
+
+def get_service_availability_notification_subscription():
+	return SerAvailabilityNotificationSubscription(subscription_type="SerAvailabilityNotificationSubscription",
+	                                               callback_reference="callbackURI",
+	                                               )

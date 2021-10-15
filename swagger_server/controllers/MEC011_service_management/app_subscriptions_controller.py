@@ -20,10 +20,7 @@ def applications_subscription_delete(app_instance_id, subscription_id):  # noqa:
 
     :rtype: None
     """
-	result = delete_application_subscription(app_instance_id=app_instance_id, subscription_id=subscription_id)
-	if result is not None:
-		return "Done", 204
-	return ProblemDetails(title="service not found", status=404), 404
+	return delete_application_subscription(app_instance_id=app_instance_id, ser_availability_notification_subscription_id=subscription_id)
 
 
 def applications_subscription_get(app_instance_id, subscription_id):  # noqa: E501
@@ -38,7 +35,20 @@ def applications_subscription_get(app_instance_id, subscription_id):  # noqa: E5
 
     :rtype: SerAvailabilityNotificationSubscription
     """
-	return get_application_subscriptions(app_instance_id=app_instance_id, subscription_id=subscription_id)
+	# result can be:
+	#   a tuple2 (ProblemDetails,status_code) if the application is not in ready state
+	#   an empty list if the service does not exist
+	#   a list of one element that contains the service
+	result = get_application_subscriptions(app_instance_id=app_instance_id, ser_availability_notification_subscription_id=subscription_id)
+	if len(result) == 1:
+		return result[0]
+	elif len(result) == 0:
+		return ProblemDetails(title="subscription not found",
+		                      detail=f"Subscription with id {subscription_id} is not exposed by app with id "
+		                             f"{app_instance_id}",
+		                      status=404), 404
+	elif isinstance(result, tuple):
+		return result
 
 
 def applications_subscriptions_get(app_instance_id):  # noqa: E501
@@ -51,7 +61,9 @@ def applications_subscriptions_get(app_instance_id):  # noqa: E501
 
     :rtype: MecServiceMgmtApiSubscriptionLinkList
     """
-	return get_application_subscriptions(app_instance_id=app_instance_id)
+	result = get_application_subscriptions(app_instance_id=app_instance_id)
+	# TODO: Compose the correct response
+	return result
 
 
 def applications_subscriptions_post(body, app_instance_id):  # noqa: E501

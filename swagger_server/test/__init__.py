@@ -7,7 +7,7 @@ from flask import json
 
 from swagger_server.encoder import JSONEncoder
 from swagger_server.models.internal.applications_services_data import app_ids
-from swagger_server.test.MEC011_service_management.utils.test_utilities import SERVICE_INFORMATIONS_TEMPLATE, \
+from swagger_server.test.utils.test_utilities import SERVICE_INFORMATIONS_TEMPLATE, \
 	APP_INSTANCE_ID
 
 SPECIFICATIONS_DIRECTORY = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'swagger'))
@@ -18,13 +18,13 @@ class BaseTestCase(TestCase):
 	@classmethod
 	def create_app(cls):
 		logging.getLogger('connexion.operation').setLevel('ERROR')
-		app = connexion.App(__name__, specification_dir=SPECIFICATIONS_DIRECTORY)
+		app = connexion.App(__name__, specification_dir=SPECIFICATIONS_DIRECTORY, options={"swagger_ui": False})
 		app.app.json_encoder = JSONEncoder
 		app_ids.clear()
 		for filename in os.listdir(SPECIFICATIONS_DIRECTORY):
 			if filename.endswith(".yaml"):
 				app.add_api(filename, arguments={'title': f"ETSI GS ${filename.split('.')[0]} API"},
-				            pythonic_params=True)
+				            pythonic_params=True, strict_validation=True)
 				continue
 			else:
 				continue
@@ -35,6 +35,13 @@ class BaseTestCase(TestCase):
 			'/mec_service_mgmt/v1/applications/{appInstanceId}/services'.format(
 				appInstanceId=app_instance_id),
 			data=json.dumps(service_info),
+			content_type='application/json')
+
+	def add_subscription(self, subscription_info, app_instance_id):
+		return self.client.post(
+			'/mec_service_mgmt/v1/applications/{appInstanceId}/subscriptions'.format(
+				appInstanceId=app_instance_id),
+			data=json.dumps(subscription_info),
 			content_type='application/json')
 
 	def app_ready(self, app_instance_id):
@@ -52,6 +59,13 @@ class BaseTestCase(TestCase):
 		response = self.app_ready(app_instance_id_to_register)
 		self.check_status_code(204, response)
 		response = self.add_service(service_info=service_to_register, app_instance_id=app_instance_id_to_register)
+		self.check_status_code(201, response)
+		return response
+
+	def register_app_and_add_subscription(self, subscription_info):
+		response = self.app_ready(APP_INSTANCE_ID)
+		self.check_status_code(204, response)
+		response = self.add_subscription(app_instance_id=APP_INSTANCE_ID, subscription_info=subscription_info)
 		self.check_status_code(201, response)
 		return response
 

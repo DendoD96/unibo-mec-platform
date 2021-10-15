@@ -25,7 +25,7 @@ def main():
 	for filename in os.listdir(SPECIFICATIONS_DIRECTORY):
 		if filename.endswith(".yaml"):
 			app.add_api(filename, arguments={'title': f"ETSI GS ${filename.split('.')[0]} API"},
-			            pythonic_params=True)
+			            pythonic_params=True, strict_validation=True)
 			continue
 		else:
 			continue

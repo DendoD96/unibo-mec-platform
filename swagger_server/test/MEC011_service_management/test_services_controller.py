@@ -3,7 +3,7 @@
 from __future__ import absolute_import
 
 from swagger_server.test import BaseTestCase
-from swagger_server.test.MEC011_service_management.utils.test_utilities import get_random_service_informations, \
+from swagger_server.test.utils.test_utilities import get_random_service_informations, \
 	get_random_application_id, SERVICE_ID
 
 

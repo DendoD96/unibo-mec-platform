@@ -1,4 +1,5 @@
 from swagger_server.models.internal.applications_services_data import get_services
+from swagger_server.models.problem_details import ProblemDetails
 
 
 def services_get(ser_instance_id=None, ser_name=None, ser_category_id=None, consumed_local_only=None, is_local=None,
@@ -37,4 +38,10 @@ def services_service_id_get(service_id):  # noqa: E501
 
 	:rtype: ServiceInfo
 	"""
-	return get_services(ser_instance_id=[service_id])
+	# result can be an empty list or a single element list
+	result = get_services(ser_instance_id=[service_id])
+	if len(result) == 0:
+		return ProblemDetails(title="service not found", detail=f"There is no service with id {service_id}",
+		                      status=404), 404
+	elif len(result) == 1:
+		return result[0]

@@ -6,6 +6,7 @@ from flask import json
 
 from swagger_server.models.MEC011_application_support.app_ready_confirmation import AppReadyConfirmation  # noqa: E501
 from swagger_server.test import BaseTestCase
+from swagger_server.test.utils.test_utilities import APP_INSTANCE_ID
 
 
 class TestAppConfirmReadyController(BaseTestCase):
@@ -17,12 +18,11 @@ class TestAppConfirmReadyController(BaseTestCase):
 		body = AppReadyConfirmation(indication="READY")
 		response = self.client.open(
 			'/mec_app_support/v1/applications/{appInstanceId}/confirm_ready'.format(
-				appInstanceId='app_instance_id_example'),
+				appInstanceId=APP_INSTANCE_ID),
 			method='POST',
 			data=json.dumps(body),
 			content_type='application/json')
-		self.assert200(response,
-		               'Response body is : ' + response.data.decode('utf-8'))
+		self.check_status_code(204, response)
 
 
 if __name__ == '__main__':
