@@ -23,8 +23,7 @@ class BaseTestCase(TestCase):
 		app_ids.clear()
 		for filename in os.listdir(SPECIFICATIONS_DIRECTORY):
 			if filename.endswith(".yaml"):
-				app.add_api(filename, arguments={'title': f"ETSI GS ${filename.split('.')[0]} API"},
-				            pythonic_params=True, strict_validation=True)
+				app.add_api(filename, pythonic_params=True, strict_validation=True)
 				continue
 			else:
 				continue

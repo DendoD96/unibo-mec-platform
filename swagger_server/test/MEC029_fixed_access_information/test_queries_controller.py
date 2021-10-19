@@ -13,9 +13,9 @@ class TestQueriesController(BaseTestCase):
 
 		retrieve information on the devices that are connected to a fixed access network.
 		"""
-		query_string = [('gw_id', 'gw_id_example'),
-		                ('device_id', 'device_id_example'),
-		                ('device_status', 56)]
+		query_string = [('gwId', 'gw_id_example'),
+		                ('deviceId', 'device_id_example'),
+		                ('deviceStatus', 56)]
 		response = self.client.open(
 			'/fai/v1/queries/device_info',
 			method='GET',

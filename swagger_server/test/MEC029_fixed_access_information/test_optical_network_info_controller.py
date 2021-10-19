@@ -13,7 +13,7 @@ class TestOpticalNetworkInfoController(BaseTestCase):
 
 		used to query information about the optical network.
 		"""
-		query_string = [('ponYsId', 'pon_ys_id_example'),
+		query_string = [('ponYS_ID', 'pon_ys_id_example'),
 		                ('onuId', 'onu_id_example')]
 		response = self.client.open(
 			'/fai/v1/queries/optical_network_info',
