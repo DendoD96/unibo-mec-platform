@@ -20,8 +20,8 @@ jobs:
         run: |
           pip install -r test-requirements.txt
       - name: Run tox
-        run: tox 
+        run: tox
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
         with:
-          files: ./coverage.xml
+          files: ./coverage

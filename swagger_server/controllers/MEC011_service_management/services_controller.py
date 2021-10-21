@@ -1,4 +1,4 @@
-from swagger_server.models.internal.applications_services_data import get_services
+from swagger_server.controllers.internal.applications_information_manager import manage_get_services
 from swagger_server.models.problem_details import ProblemDetails
 
 
@@ -23,9 +23,9 @@ def services_get(ser_instance_id=None, ser_name=None, ser_category_id=None, cons
 
 	:rtype: List[ServiceInfo]
 	"""
-	return get_services(ser_instance_id=ser_instance_id, ser_name=ser_name, ser_category_id=ser_category_id,
-	                    consumed_local_only=consumed_local_only,
-	                    is_local=is_local, scope_of_locality=scope_of_locality)
+	return manage_get_services(ser_instance_id=ser_instance_id, ser_name=ser_name, ser_category_id=ser_category_id,
+	                           consumed_local_only=consumed_local_only,
+	                           is_local=is_local, scope_of_locality=scope_of_locality)
 
 
 def services_service_id_get(service_id):  # noqa: E501
@@ -39,7 +39,7 @@ def services_service_id_get(service_id):  # noqa: E501
 	:rtype: ServiceInfo
 	"""
 	# result can be an empty list or a single element list
-	result = get_services(ser_instance_id=[service_id])
+	result = manage_get_services(ser_instance_id=[service_id])
 	if len(result) == 0:
 		return ProblemDetails(title="service not found", detail=f"There is no service with id {service_id}",
 		                      status=404), 404

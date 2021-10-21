@@ -6,7 +6,7 @@ from flask_testing import TestCase
 from flask import json
 
 from swagger_server.encoder import JSONEncoder
-from swagger_server.models.internal.applications_services_data import app_ids
+from swagger_server.models.internal.applications_information_data import app_ids
 from swagger_server.test.utils.test_utilities import SERVICE_INFORMATIONS_TEMPLATE, \
 	APP_INSTANCE_ID
 

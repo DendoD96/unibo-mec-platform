@@ -2,9 +2,9 @@ import connexion
 
 from swagger_server.models.MEC011_service_management.ser_availability_notification_subscription import \
 	SerAvailabilityNotificationSubscription  # noqa: E501
-from swagger_server.models.internal.applications_services_data import get_application_subscriptions
-from swagger_server.models.internal.applications_services_data import add_application_subscription
-from swagger_server.models.internal.applications_services_data import delete_application_subscription
+from swagger_server.controllers.internal.applications_information_manager import manage_get_application_subscriptions
+from swagger_server.controllers.internal.applications_information_manager import manage_add_application_subscription
+from swagger_server.controllers.internal.applications_information_manager import manage_delete_application_subscription
 from swagger_server.models.problem_details import ProblemDetails
 
 
@@ -20,7 +20,8 @@ def applications_subscription_delete(app_instance_id, subscription_id):  # noqa:
 
     :rtype: None
     """
-	return delete_application_subscription(app_instance_id=app_instance_id, ser_availability_notification_subscription_id=subscription_id)
+	return manage_delete_application_subscription(app_instance_id=app_instance_id,
+	                                              ser_availability_notification_subscription_id=subscription_id)
 
 
 def applications_subscription_get(app_instance_id, subscription_id):  # noqa: E501
@@ -39,7 +40,8 @@ def applications_subscription_get(app_instance_id, subscription_id):  # noqa: E5
 	#   a tuple2 (ProblemDetails,status_code) if the application is not in ready state
 	#   an empty list if the service does not exist
 	#   a list of one element that contains the service
-	result = get_application_subscriptions(app_instance_id=app_instance_id, ser_availability_notification_subscription_id=subscription_id)
+	result = manage_get_application_subscriptions(app_instance_id=app_instance_id,
+	                                              ser_availability_notification_subscription_id=subscription_id)
 	if len(result) == 1:
 		return result[0]
 	elif len(result) == 0:
@@ -61,7 +63,7 @@ def applications_subscriptions_get(app_instance_id):  # noqa: E501
 
     :rtype: MecServiceMgmtApiSubscriptionLinkList
     """
-	result = get_application_subscriptions(app_instance_id=app_instance_id)
+	result = manage_get_application_subscriptions(app_instance_id=app_instance_id)
 	# TODO: Compose the correct response
 	return result
 
@@ -80,4 +82,4 @@ def applications_subscriptions_post(body, app_instance_id):  # noqa: E501
     """
 	if connexion.request.is_json:
 		body = SerAvailabilityNotificationSubscription.from_dict(connexion.request.get_json())  # noqa: E501
-	return add_application_subscription(app_instance_id, body)
+	return manage_add_application_subscription(app_instance_id, body)

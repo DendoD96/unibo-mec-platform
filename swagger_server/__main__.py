@@ -9,7 +9,7 @@ import argparse
 import yaml
 
 from swagger_server import encoder
-from swagger_server.controllers.internal.subscription_manager import manager
+from swagger_server.controllers.internal.subscriptions_update_manager import manager
 
 SPECIFICATIONS_DIRECTORY = os.path.join(pathlib.Path(__file__).parent.resolve(), 'swagger')
 SUBSCRIPTION_MANAGER_NUMBER = 1

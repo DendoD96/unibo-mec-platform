@@ -1,4 +1,4 @@
-from swagger_server.models.internal.applications_services_data import get_current_time
+from swagger_server.controllers.internal.applications_information_manager import get_current_time
 
 
 def timing_caps_get():  # noqa: E501

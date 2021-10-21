@@ -2,9 +2,10 @@ import connexion
 
 from swagger_server.models.MEC011_service_management.service_info import ServiceInfo
 from swagger_server.models.MEC011_service_management.service_info_post import ServiceInfoPost  # noqa: E501
-from swagger_server.models.internal.applications_services_data import add_app_service, delete_app_service
-from swagger_server.models.internal.applications_services_data import get_application_services
-from swagger_server.models.internal.applications_services_data import update_app_service
+from swagger_server.controllers.internal.applications_information_manager import manage_add_application_service, \
+	manage_delete_app_service
+from swagger_server.controllers.internal.applications_information_manager import manage_get_application_services
+from swagger_server.controllers.internal.applications_information_manager import manage_update_application_service
 from swagger_server.models.problem_details import ProblemDetails
 
 
@@ -32,10 +33,11 @@ def app_services_get(app_instance_id, ser_instance_id=None, ser_name=None, ser_c
 
 	:rtype: List[ServiceInfo]
 	"""
-	return get_application_services(app_instance_id=app_instance_id, ser_instance_id=ser_instance_id, ser_name=ser_name,
-	                                ser_category_id=ser_category_id, consumed_local_only=consumed_local_only,
-	                                is_local=is_local,
-	                                scope_of_locality=scope_of_locality)
+	return manage_get_application_services(app_instance_id=app_instance_id, ser_instance_id=ser_instance_id,
+	                                       ser_name=ser_name,
+	                                       ser_category_id=ser_category_id, consumed_local_only=consumed_local_only,
+	                                       is_local=is_local,
+	                                       scope_of_locality=scope_of_locality)
 
 
 def app_services_post(body, app_instance_id):  # noqa: E501
@@ -52,7 +54,7 @@ def app_services_post(body, app_instance_id):  # noqa: E501
 	"""
 	if connexion.request.is_json:
 		body = ServiceInfoPost.from_dict(connexion.request.get_json())  # noqa: E501
-	return add_app_service(app_instance_id, body)
+	return manage_add_application_service(app_instance_id, body)
 
 
 def app_services_service_id_delete(app_instance_id, service_id):  # noqa: E501
@@ -67,7 +69,7 @@ def app_services_service_id_delete(app_instance_id, service_id):  # noqa: E501
 
 	:rtype: None
 	"""
-	return delete_app_service(app_instance_id=app_instance_id, ser_instance_id=service_id)
+	return manage_delete_app_service(app_instance_id=app_instance_id, ser_instance_id=service_id)
 
 
 def app_services_service_id_get(app_instance_id, service_id):  # noqa: E501
@@ -86,7 +88,7 @@ def app_services_service_id_get(app_instance_id, service_id):  # noqa: E501
 	#   a tuple2 (ProblemDetails,status_code) if the application is not in ready state
 	#   an empty list if the service does not exist
 	#   a list of one element that contains the service
-	result = get_application_services(app_instance_id=app_instance_id, ser_instance_id=[service_id])
+	result = manage_get_application_services(app_instance_id=app_instance_id, ser_instance_id=[service_id])
 	if len(result) == 1:
 		return result[0]
 	elif len(result) == 0:
@@ -113,4 +115,4 @@ def app_services_service_id_put(body, app_instance_id, service_id):  # noqa: E50
 	"""
 	if connexion.request.is_json:
 		body = ServiceInfo.from_dict(connexion.request.get_json())  # noqa: E501
-	return update_app_service(app_instance_id=app_instance_id, ser_instance_id=service_id, service=body)
+	return manage_update_application_service(app_instance_id=app_instance_id, ser_instance_id=service_id, service=body)
