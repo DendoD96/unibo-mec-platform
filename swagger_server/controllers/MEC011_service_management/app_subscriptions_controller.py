@@ -1,5 +1,12 @@
 import connexion
 
+from swagger_server.models.MEC011_service_management.link_type import LinkType
+from swagger_server.models.MEC011_service_management.mec_service_mgmt_api_subscription_link_list import \
+	MecServiceMgmtApiSubscriptionLinkList
+from swagger_server.models.MEC011_service_management.mec_service_mgmt_api_subscription_link_list_links import \
+	MecServiceMgmtApiSubscriptionLinkListLinks
+from swagger_server.models.MEC011_service_management.mec_service_mgmt_api_subscription_link_list_subscription import \
+	MecServiceMgmtApiSubscriptionLinkListSubscription
 from swagger_server.models.MEC011_service_management.ser_availability_notification_subscription import \
 	SerAvailabilityNotificationSubscription  # noqa: E501
 from swagger_server.controllers.internal.applications_information_manager import manage_get_application_subscriptions
@@ -64,8 +71,17 @@ def applications_subscriptions_get(app_instance_id):  # noqa: E501
     :rtype: MecServiceMgmtApiSubscriptionLinkList
     """
 	result = manage_get_application_subscriptions(app_instance_id=app_instance_id)
-	# TODO: Compose the correct response
-	return result
+	if isinstance(result, tuple):
+		return result
+	else:
+		base_address = f"/mec_service_mgmt/v1/applications/{app_instance_id}/subscriptions"
+		subscriptions_list = list(map(
+			lambda ser_availability_notification_subscription: MecServiceMgmtApiSubscriptionLinkListSubscription(
+				href=ser_availability_notification_subscription.links._self.href,
+				rel="SerAvailabilityNotificationSubscription"), result))
+		return MecServiceMgmtApiSubscriptionLinkList(
+			links=MecServiceMgmtApiSubscriptionLinkListLinks(_self=LinkType(href=base_address),
+			                                                 subscriptions=subscriptions_list))
 
 
 def applications_subscriptions_post(body, app_instance_id):  # noqa: E501

@@ -1185,8 +1185,6 @@ components:
         - subscriptionType
       type: object
       properties:
-        serAvailabilityNotificationSubscriptionId:
-          $ref: '#/components/schemas/SerAvailabilityNotificationSubscription.serAvailabilityNotificationSubscriptionId'
         subscriptionType:
           $ref: '#/components/schemas/SerAvailabilityNotificationSubscription.SubscriptionType'
         callbackReference:
@@ -1223,13 +1221,6 @@ components:
           self:
             href: /mecSerMgmtApi/example
         callbackReference: http://example.com/aeiou
-        serAvailabilityNotificationSubscriptionId: 8fb5d6d8-dd26-4146-ab78-b2710392e7d7
-    SerAvailabilityNotificationSubscription.serAvailabilityNotificationSubscriptionId:
-      type: string
-      description: Identifier of the service availability notification subscription
-        assigned by the MEC platform.
-      readOnly: true
-      example: 8fb5d6d8-dd26-4146-ab78-b2710392e7d7
     SerAvailabilityNotificationSubscription.FilteringCriteria:
       type: object
       not:

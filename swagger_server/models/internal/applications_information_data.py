@@ -1,3 +1,10 @@
+import re
+from functools import partial
+
+from swagger_server.models.MEC011_service_management.ser_availability_notification_subscription import \
+	SerAvailabilityNotificationSubscription
+
+REGEX_FOR_SUBSCRIPTION_ID = r"\/mec_service_mgmt\/v1\/applications\/.*\/subscriptions\/(.*)"
 app_ids = {}
 
 
@@ -47,10 +54,15 @@ def get_application_services(application_instance_id, filter_parameters_dictiona
 	                                      information='servicelist')
 
 
-def get_application_subscriptions(application_instance_id, filter_parameters_dictionary):
-	return __get_application_informations(app_instance_id=application_instance_id,
-	                                      filter_parameters_dictionary=filter_parameters_dictionary,
-	                                      information='subscriptionlist')
+def get_application_subscriptions(application_instance_id, subscription_id):
+	if application_instance_id in app_ids:
+		subscriptions = app_ids[application_instance_id].get("subscriptionlist", [])
+		if subscription_id is not None:
+			subscriptions = list(
+				filter(partial(__subscription_match_subscription_id, subscription_id=subscription_id), subscriptions))
+		return subscriptions
+	else:
+		raise AppNotReady(f"{application_instance_id}  is not in ready applications list")
 
 
 def get_all_services(filter_parameters_dictionary):
@@ -63,11 +75,25 @@ def get_all_services(filter_parameters_dictionary):
 
 
 def delete_application_service(application_instance_id, service_instance_id):
-	return __delete_service(app_instance_id=application_instance_id, ser_instance_id=service_instance_id)
+	return __delete_app_information(application_instance_id, 'servicelist',
+	                                lambda service: service.ser_instance_id != service_instance_id)
 
 
-def delete_application_subscription(application_instance_id, ser_availability_notification_subscription_id):
-	return __delete_app_subscription(application_instance_id, ser_availability_notification_subscription_id)
+def delete_application_subscription(application_instance_id, subscription_id):
+	if application_instance_id in app_ids:
+		subscriptions = app_ids[application_instance_id].get("subscriptionlist", [])
+		subscriptions_length = len(subscriptions)
+		if subscriptions_length > 0:
+			subscriptions = list(
+				filter(lambda subscription: not __subscription_match_subscription_id(subscription=subscription,
+				                                                                     subscription_id=subscription_id),
+				       subscriptions))
+			if len(subscriptions) < subscriptions_length:
+				app_ids[application_instance_id]["subscriptionlist"] = subscriptions
+				return subscriptions
+		raise NoAppInformationFound(f"{application_instance_id} does not have the information to delete.")
+	else:
+		raise AppNotReady(f"{application_instance_id} is not in ready applications list.")
 
 
 def update_application_service(application_instance_id, service_instance_id, service):
@@ -105,24 +131,13 @@ def __check_match_between_service_and_subscription(service_information, subscrip
 	service_categories = getattr(filtering_criteria, 'ser_categories')
 	service_states = getattr(filtering_criteria, 'states')
 	service_is_local = getattr(filtering_criteria, 'is_local')
-	test1 = service_instance_ids is None or getattr(service_information, 'ser_instance_id') in service_instance_ids
-	test2 = service_names is None or getattr(service_information, 'ser_name') in service_names
-	test3 = service_categories is None or service_category_to_dict(
-		getattr(service_information, 'ser_category')) in service_categories
-	test4 = service_states is None or getattr(service_information, 'state') in service_states
-	test5 = service_is_local is None or getattr(service_information, 'is_local') == service_is_local
-	return test1 and test2 and test3 and test4 and test5
-
-
-def __delete_service(app_instance_id, ser_instance_id):
-	return __delete_app_information(app_instance_id, 'servicelist',
-	                                lambda service: service.ser_instance_id != ser_instance_id)
-
-
-def __delete_app_subscription(app_instance_id, subscription_id):
-	return __delete_app_information(app_instance_id, 'subscriptionlist',
-	                                lambda subscription:
-	                                subscription.ser_availability_notification_subscription_id != subscription_id)
+	tests = [service_instance_ids is None or getattr(service_information, 'ser_instance_id') in service_instance_ids,
+	         service_names is None or getattr(service_information, 'ser_name') in service_names,
+	         service_categories is None or service_category_to_dict(
+		         getattr(service_information, 'ser_category')) in service_categories,
+	         service_states is None or getattr(service_information, 'state') in service_states,
+	         service_is_local is None or getattr(service_information, 'is_local') == service_is_local]
+	return all(tests)
 
 
 def __delete_app_information(app_instance_id, information, filter_lambda):
@@ -163,3 +178,8 @@ def __get_application_informations(app_instance_id, filter_parameters_dictionary
 		return informations
 	else:
 		raise AppNotReady(f"{app_instance_id}  is not in ready applications list")
+
+
+def __subscription_match_subscription_id(subscription: SerAvailabilityNotificationSubscription, subscription_id):
+	return re.search(pattern=REGEX_FOR_SUBSCRIPTION_ID, string=str(subscription.links._self.href)).group(1) \
+	       == subscription_id

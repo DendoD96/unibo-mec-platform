@@ -59,7 +59,7 @@ def manage_add_application_subscription(app_instance_id, subscription: SerAvaila
 
 	try:
 		subscription_id = str(uuid.uuid4())
-		subscription.ser_availability_notification_subscription_id = subscription_id
+		# subscription.ser_availability_notification_subscription_id = subscription_id
 		subscription.links = ModelSelf(
 			_self=LinkType(href=f"/mec_service_mgmt/v1/applications/{app_instance_id}/subscriptions/{subscription_id}"))
 		add_application_subscription(application_instance_id=app_instance_id, subscription_information=subscription)
@@ -88,7 +88,7 @@ def manage_get_application_subscriptions(app_instance_id, ser_availability_notif
 
 	try:
 		return get_application_subscriptions(application_instance_id=app_instance_id,
-		                                     filter_parameters_dictionary=locals())
+		                                     subscription_id=ser_availability_notification_subscription_id)
 	except AppNotReady as exception:
 		return ProblemDetails(title="service not found", detail=str(exception), status=404), 404
 
@@ -120,7 +120,7 @@ def manage_delete_application_subscription(app_instance_id, ser_availability_not
 	specified application returns a ProblemDetails object."""
 	try:
 		delete_application_subscription(application_instance_id=app_instance_id,
-		                                ser_availability_notification_subscription_id=ser_availability_notification_subscription_id)
+		                                subscription_id=ser_availability_notification_subscription_id)
 		return "Done", 204
 	except AppNotReady as exception:
 		return ProblemDetails(title="subscription not found", detail=str(exception), status=404), 404

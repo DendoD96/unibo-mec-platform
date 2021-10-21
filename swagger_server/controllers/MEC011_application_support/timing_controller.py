@@ -1,4 +1,8 @@
+from datetime import datetime, timezone
+
 from swagger_server.controllers.internal.applications_information_manager import get_current_time
+from swagger_server.models.MEC011_application_support.timing_caps import TimingCaps
+from swagger_server.models.MEC011_application_support.timing_caps_time_stamp import TimingCapsTimeStamp
 
 
 def timing_caps_get():  # noqa: E501
@@ -9,7 +13,8 @@ def timing_caps_get():  # noqa: E501
 
 	:rtype: TimingCaps
 	"""
-	return 'do some magic!'
+	date = datetime.now(timezone.utc)
+	return TimingCaps(time_stamp=TimingCapsTimeStamp(seconds=int(date.timestamp()), nano_seconds=0))
 
 
 def timing_current_time_get():  # noqa: E501
