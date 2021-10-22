@@ -3,8 +3,6 @@ import connexion
 from swagger_server.models.MEC013_location.area_circle_body import AreaCircleBody  # noqa: E501
 from swagger_server.models.MEC013_location.circle_subscription_id_body import CircleSubscriptionIdBody  # noqa: E501
 from swagger_server.models.MEC013_location.distance_subscription_id_body import DistanceSubscriptionIdBody  # noqa: E501
-from swagger_server.models.MEC013_location.inline_response20013 import InlineResponse20013  # noqa: E501
-from swagger_server.models.MEC013_location.inline_response2005 import InlineResponse2005
 from swagger_server.models.MEC013_location.periodic_subscription_id_body import PeriodicSubscriptionIdBody  # noqa: E501
 from swagger_server.models.MEC013_location.subscriptions_distance_body import SubscriptionsDistanceBody  # noqa: E501
 from swagger_server.models.MEC013_location.subscriptions_periodic_body import SubscriptionsPeriodicBody  # noqa: E501
@@ -22,15 +20,15 @@ from swagger_server.models.MEC013_location.zone_status_subscription_id_body impo
 	ZoneStatusSubscriptionIdBody  # noqa: E501
 
 
-def ap_by_id_get(zoneId, accessPointId):  # noqa: E501
+def ap_by_id_get(zone_id, access_point_id):  # noqa: E501
 	"""Radio Node Location Lookup
 
     Radio Node Location Lookup to retrieve a radio node associated to a zone. # noqa: E501
 
-    :param zoneId: Indentifier of zone
-    :type zoneId: str
-    :param accessPointId: Identifier of access Point
-    :type accessPointId: str
+    :param zone_id: Indentifier of zone
+    :type zone_id: str
+    :param access_point_id: Identifier of access Point
+    :type access_point_id: str
 
     :rtype: InlineResponse2005
     """
@@ -38,41 +36,41 @@ def ap_by_id_get(zoneId, accessPointId):  # noqa: E501
 	return 'do some magic!'
 
 
-def ap_get(zoneId, interestRealm=None):  # noqa: E501
+def ap_get(zone_id, interest_realm=None):  # noqa: E501
 	"""Radio Node Location Lookup
 
     Radio Node Location Lookup to retrieve a list of radio nodes associated to a zone. # noqa: E501
 
-    :param zoneId: Indentifier of zone
-    :type zoneId: str
-    :param interestRealm: Interest realm of access point (e.g. geographical area, a type of industry etc.).
-    :type interestRealm: str
+    :param zone_id: Indentifier of zone
+    :type zone_id: str
+    :param interest_realm: Interest realm of access point (e.g. geographical area, a type of industry etc.).
+    :type interest_realm: str
 
     :rtype: InlineResponse2004
     """
 	return 'do some magic!'
 
 
-def area_circle_sub_delete(subscriptionId):  # noqa: E501
+def area_circle_sub_delete(subscription_id):  # noqa: E501
 	"""Cancel a subscription
 
     Method to delete a subscription. # noqa: E501
 
-    :param subscriptionId: Subscription Identifier, specifically the 'self' returned in the subscription request
-    :type subscriptionId: str
+    :param subscription_id: Subscription Identifier, specifically the 'self' returned in the subscription request
+    :type subscription_id: str
 
     :rtype: None
     """
 	return 'do some magic!'
 
 
-def area_circle_sub_get(subscriptionId):  # noqa: E501
+def area_circle_sub_get(subscription_id):  # noqa: E501
 	"""Retrieve subscription information
 
     Get subscription information. # noqa: E501
 
-    :param subscriptionId: Subscription Identifier, specifically the 'self' returned in the subscription request
-    :type subscriptionId: str
+    :param subscription_id: Subscription Identifier, specifically the 'self' returned in the subscription request
+    :type subscription_id: str
 
     :rtype: InlineResponse2007
     """
@@ -105,15 +103,15 @@ def area_circle_sub_post(body):  # noqa: E501
 	return 'do some magic!'
 
 
-def area_circle_sub_put(body, subscriptionId):  # noqa: E501
+def area_circle_sub_put(body, subscription_id):  # noqa: E501
 	"""Updates a subscription information
 
     Updates a subscription. # noqa: E501
 
     :param body: Subscription to be modified
     :type body: dict | bytes
-    :param subscriptionId: Subscription Identifier, specifically the 'self' returned in the subscription request
-    :type subscriptionId: str
+    :param subscription_id: Subscription Identifier, specifically the 'self' returned in the subscription request
+    :type subscription_id: str
 
     :rtype: CircleSubscriptionIdBody
     """
@@ -141,26 +139,26 @@ def distance_get(address, requester=None, latitude=None, longitude=None):  # noq
 	return 'do some magic!'
 
 
-def distance_sub_delete(subscriptionId):  # noqa: E501
+def distance_sub_delete(subscription_id):  # noqa: E501
 	"""Cancel a subscription
 
     Method to delete a subscription. # noqa: E501
 
-    :param subscriptionId: Subscription Identifier, specifically the 'self' returned in the subscription request
-    :type subscriptionId: str
+    :param subscription_id: Subscription Identifier, specifically the 'self' returned in the subscription request
+    :type subscription_id: str
 
     :rtype: None
     """
 	return 'do some magic!'
 
 
-def distance_sub_get(subscriptionId):  # noqa: E501
+def distance_sub_get(subscription_id):  # noqa: E501
 	"""Retrieve subscription information
 
     Get subscription information. # noqa: E501
 
-    :param subscriptionId: Subscription Identifier, specifically the 'self' returned in the subscription request
-    :type subscriptionId: str
+    :param subscription_id: Subscription Identifier, specifically the 'self' returned in the subscription request
+    :type subscription_id: str
 
     :rtype: InlineResponse2009
     """
@@ -193,15 +191,15 @@ def distance_sub_post(body):  # noqa: E501
 	return 'do some magic!'
 
 
-def distance_sub_put(body, subscriptionId):  # noqa: E501
+def distance_sub_put(body, subscription_id):  # noqa: E501
 	"""Updates a subscription information
 
     Updates a subscription. # noqa: E501
 
     :param body: Subscription to be modified
     :type body: dict | bytes
-    :param subscriptionId: Subscription Identifier, specifically the 'self' returned in the subscription request
-    :type subscriptionId: str
+    :param subscription_id: Subscription Identifier, specifically the 'self' returned in the subscription request
+    :type subscription_id: str
 
     :rtype: DistanceSubscriptionIdBody
     """
@@ -210,26 +208,26 @@ def distance_sub_put(body, subscriptionId):  # noqa: E501
 	return 'do some magic!'
 
 
-def periodic_sub_delete(subscriptionId):  # noqa: E501
+def periodic_sub_delete(subscription_id):  # noqa: E501
 	"""Cancel a subscription
 
     Method to delete a subscription. # noqa: E501
 
-    :param subscriptionId: Subscription Identifier, specifically the 'self' returned in the subscription request
-    :type subscriptionId: str
+    :param subscription_id: Subscription Identifier, specifically the 'self' returned in the subscription request
+    :type subscription_id: str
 
     :rtype: None
     """
 	return 'do some magic!'
 
 
-def periodic_sub_get(subscriptionId):  # noqa: E501
+def periodic_sub_get(subscription_id):  # noqa: E501
 	"""Retrieve subscription information
 
     Get subscription information. # noqa: E501
 
-    :param subscriptionId: Subscription Identifier, specifically the 'self' returned in the subscription request
-    :type subscriptionId: str
+    :param subscription_id: Subscription Identifier, specifically the 'self' returned in the subscription request
+    :type subscription_id: str
 
     :rtype: InlineResponse20011
     """
@@ -262,15 +260,15 @@ def periodic_sub_post(body):  # noqa: E501
 	return 'do some magic!'
 
 
-def periodic_sub_put(body, subscriptionId):  # noqa: E501
+def periodic_sub_put(body, subscription_id):  # noqa: E501
 	"""Updates a subscription information
 
     Updates a subscription. # noqa: E501
 
     :param body: Subscription to be modified
     :type body: dict | bytes
-    :param subscriptionId: Subscription Identifier, specifically the 'self' returned in the subscription request
-    :type subscriptionId: str
+    :param subscription_id: Subscription Identifier, specifically the 'self' returned in the subscription request
+    :type subscription_id: str
 
     :rtype: PeriodicSubscriptionIdBody
     """
@@ -279,26 +277,26 @@ def periodic_sub_put(body, subscriptionId):  # noqa: E501
 	return 'do some magic!'
 
 
-def user_tracking_sub_delete(subscriptionId):  # noqa: E501
+def user_tracking_sub_delete(subscription_id):  # noqa: E501
 	"""Cancel a subscription
 
     Method to delete a subscription. # noqa: E501
 
-    :param subscriptionId: Subscription Identifier, specifically the 'self' returned in the subscription request
-    :type subscriptionId: str
+    :param subscription_id: Subscription Identifier, specifically the 'self' returned in the subscription request
+    :type subscription_id: str
 
     :rtype: None
     """
 	return 'do some magic!'
 
 
-def user_tracking_sub_get(subscriptionId):  # noqa: E501
+def user_tracking_sub_get(subscription_id):  # noqa: E501
 	"""Retrieve subscription information
 
     Get subscription information. # noqa: E501
 
-    :param subscriptionId: Subscription Identifier, specifically the 'self' returned in the subscription request
-    :type subscriptionId: str
+    :param subscription_id: Subscription Identifier, specifically the 'self' returned in the subscription request
+    :type subscription_id: str
 
     :rtype: InlineResponse20013
     """
@@ -331,15 +329,15 @@ def user_tracking_sub_post(body):  # noqa: E501
 	return 'do some magic!'
 
 
-def user_tracking_sub_put(body, subscriptionId):  # noqa: E501
+def user_tracking_sub_put(body, subscription_id):  # noqa: E501
 	"""Updates a subscription information
 
     Updates a subscription. # noqa: E501
 
     :param body: Subscription to be modified
     :type body: dict | bytes
-    :param subscriptionId: Subscription Identifier, specifically the 'self' returned in the subscription request
-    :type subscriptionId: str
+    :param subscription_id: Subscription Identifier, specifically the 'self' returned in the subscription request
+    :type subscription_id: str
 
     :rtype: InlineResponse20014
     """
@@ -348,15 +346,15 @@ def user_tracking_sub_put(body, subscriptionId):  # noqa: E501
 	return 'do some magic!'
 
 
-def users_get(zoneId=None, accessPointId=None, address=None):  # noqa: E501
+def users_get(zone_id=None, access_point_id=None, address=None):  # noqa: E501
 	"""UE Location Lookup of a specific UE or group of UEs
 
     UE Location Lookup of a specific UE or group of UEs # noqa: E501
 
-    :param zoneId: Identifier of zone
-    :type zoneId: List[str]
-    :param accessPointId: Identifier of access point
-    :type accessPointId: List[str]
+    :param zone_id: Identifier of zone
+    :type zone_id: List[str]
+    :param access_point_id: Identifier of access point
+    :type access_point_id: List[str]
     :param address: address of users (e.g. 'sip' URI, 'tel' URI, 'acr' URI)
     :type address: List[str]
 
@@ -365,26 +363,26 @@ def users_get(zoneId=None, accessPointId=None, address=None):  # noqa: E501
 	return 'do some magic!'
 
 
-def zonal_traffic_sub_delete(subscriptionId):  # noqa: E501
+def zonal_traffic_sub_delete(subscription_id):  # noqa: E501
 	"""Cancel a subscription
 
     Method to delete a subscription. # noqa: E501
 
-    :param subscriptionId: Subscription Identifier, specifically the 'self' returned in the subscription request
-    :type subscriptionId: str
+    :param subscription_id: Subscription Identifier, specifically the 'self' returned in the subscription request
+    :type subscription_id: str
 
     :rtype: None
     """
 	return 'do some magic!'
 
 
-def zonal_traffic_sub_get(subscriptionId):  # noqa: E501
+def zonal_traffic_sub_get(subscription_id):  # noqa: E501
 	"""Retrieve subscription information
 
     Get subscription information. # noqa: E501
 
-    :param subscriptionId: Subscription Identifier, specifically the 'self' returned in the subscription request
-    :type subscriptionId: str
+    :param subscription_id: Subscription Identifier, specifically the 'self' returned in the subscription request
+    :type subscription_id: str
 
     :rtype: InlineResponse20016
     """
@@ -417,15 +415,15 @@ def zonal_traffic_sub_post(body):  # noqa: E501
 	return 'do some magic!'
 
 
-def zonal_traffic_sub_put(body, subscriptionId):  # noqa: E501
+def zonal_traffic_sub_put(body, subscription_id):  # noqa: E501
 	"""Updates a subscription information
 
     Updates a subscription. # noqa: E501
 
     :param body: Subscription to be modified
     :type body: dict | bytes
-    :param subscriptionId: Subscription Identifier, specifically the 'self' returned in the subscription request
-    :type subscriptionId: str
+    :param subscription_id: Subscription Identifier, specifically the 'self' returned in the subscription request
+    :type subscription_id: str
 
     :rtype: InlineResponse20017
     """
@@ -434,26 +432,26 @@ def zonal_traffic_sub_put(body, subscriptionId):  # noqa: E501
 	return 'do some magic!'
 
 
-def zone_status_sub_delete(subscriptionId):  # noqa: E501
+def zone_status_sub_delete(subscription_id):  # noqa: E501
 	"""Cancel a subscription
 
     Method to delete a subscription. # noqa: E501
 
-    :param subscriptionId: Subscription Identifier, specifically the 'self' returned in the subscription request
-    :type subscriptionId: str
+    :param subscription_id: Subscription Identifier, specifically the 'self' returned in the subscription request
+    :type subscription_id: str
 
     :rtype: None
     """
 	return 'do some magic!'
 
 
-def zone_status_sub_get(subscriptionId):  # noqa: E501
+def zone_status_sub_get(subscription_id):  # noqa: E501
 	"""Retrieve subscription information
 
     Get subscription information. # noqa: E501
 
-    :param subscriptionId: Subscription Identifier, specifically the 'self' returned in the subscription request
-    :type subscriptionId: str
+    :param subscription_id: Subscription Identifier, specifically the 'self' returned in the subscription request
+    :type subscription_id: str
 
     :rtype: InlineResponse20019
     """
@@ -486,15 +484,15 @@ def zone_status_sub_post(body):  # noqa: E501
 	return 'do some magic!'
 
 
-def zone_status_sub_put(body, subscriptionId):  # noqa: E501
+def zone_status_sub_put(body, subscription_id):  # noqa: E501
 	"""Updates a subscription information
 
     Updates a subscription. # noqa: E501
 
     :param body: Subscription to be modified
     :type body: dict | bytes
-    :param subscriptionId: Subscription Identifier, specifically the 'self' returned in the subscription request
-    :type subscriptionId: str
+    :param subscription_id: Subscription Identifier, specifically the 'self' returned in the subscription request
+    :type subscription_id: str
 
     :rtype: InlineResponse20020
     """
@@ -514,13 +512,13 @@ def zones_get():  # noqa: E501
 	return 'do some magic!'
 
 
-def zones_get_by_id(zoneId):  # noqa: E501
+def zones_get_by_id(zone_id):  # noqa: E501
 	"""Zones information Lookup
 
     Used to get the information for an authorized zone for use by the application. # noqa: E501
 
-    :param zoneId: Indentifier of zone
-    :type zoneId: str
+    :param zone_id: Indentifier of zone
+    :type zone_id: str
 
     :rtype: InlineResponse2003
     """

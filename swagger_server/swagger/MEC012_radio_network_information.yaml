@@ -13,154 +13,154 @@ externalDocs:
   description: "ETSI GS MEC 012 Radio Network Information API, V2.1.1"
   url: http://www.etsi.org/deliver/etsi_gs/MEC/001_099/012/02.01.01_60/gs_mec012v020101p.pdf
 servers:
-- url: https://localhost/rni/v2
+  - url: https://localhost/rni/v2
 tags:
-- name: rni
+  - name: rni
 paths:
   /queries/rab_info:
     get:
       tags:
-      - rni
+        - rni
       summary: Retrieve information on Radio Access Bearers
       description: Queries information about the Radio Access Bearers
       operationId: rab_info_get
       parameters:
-      - name: app_ins_id
-        in: query
-        description: Application instance identifier
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-        x-exportParamName: AppInsId
-        x-optionalDataType: String
-      - name: cell_id
-        in: query
-        description: Comma separated list of E-UTRAN Cell Identities
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
+        - name: app_ins_id
+          in: query
+          description: Application instance identifier
+          required: false
+          style: form
+          explode: true
+          schema:
             type: string
-        x-exportParamName: CellId
-      - name: ue_ipv4_address
-        in: query
-        description: Comma separated list of IE IPv4 addresses as defined for the
-          type for AssociateId
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-        x-exportParamName: UeIpv4Address
-      - name: ue_ipv6_address
-        in: query
-        description: Comma separated list of IE IPv6 addresses as defined for the
-          type for AssociateId
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-        x-exportParamName: UeIpv6Address
-      - name: nated_ip_address
-        in: query
-        description: Comma separated list of IE NATed IP addresses as defined for
-          the type for AssociateId
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-        x-exportParamName: NatedIpAddress
-      - name: gtp_teid
-        in: query
-        description: Comma separated list of GTP TEID addresses as defined for the
-          type for AssociateId
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-        x-exportParamName: GtpTeid
-      - name: erab_id
-        in: query
-        description: E-RAB identifier
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-          format: int32
-        x-exportParamName: ErabId
-        x-optionalDataType: Int32
-      - name: qci
-        in: query
-        description: QoS Class Identifier as defined in ETSI TS 123 401
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-          format: int32
-        x-exportParamName: Qci
-        x-optionalDataType: Int32
-      - name: erab_mbr_dl
-        in: query
-        description: Maximum downlink E-RAB Bit Rate as defined in ETSI TS 123 401
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-          format: int32
-        x-exportParamName: ErabMbrDl
-        x-optionalDataType: Int32
-      - name: erab_mbr_ul
-        in: query
-        description: Maximum uplink E-RAB Bit Rate as defined in ETSI TS 123 401
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-          format: int32
-        x-exportParamName: ErabMbrUl
-        x-optionalDataType: Int32
-      - name: erab_gbr_dl
-        in: query
-        description: Guaranteed downlink E-RAB Bit Rate as defined in ETSI TS 123
-          401
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-          format: int32
-        x-exportParamName: ErabGbrDl
-        x-optionalDataType: Int32
-      - name: erab_gbr_ul
-        in: query
-        description: Guaranteed uplink E-RAB Bit Rate as defined in ETSI TS 123 401
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-          format: int32
-        x-exportParamName: ErabGbrUl
-        x-optionalDataType: Int32
+          x-exportParamName: AppInsId
+          x-optionalDataType: String
+        - name: cell_id
+          in: query
+          description: Comma separated list of E-UTRAN Cell Identities
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+          x-exportParamName: CellId
+        - name: ue_ipv4_address
+          in: query
+          description: Comma separated list of IE IPv4 addresses as defined for the
+            type for AssociateId
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+          x-exportParamName: UeIpv4Address
+        - name: ue_ipv6_address
+          in: query
+          description: Comma separated list of IE IPv6 addresses as defined for the
+            type for AssociateId
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+          x-exportParamName: UeIpv6Address
+        - name: nated_ip_address
+          in: query
+          description: Comma separated list of IE NATed IP addresses as defined for
+            the type for AssociateId
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+          x-exportParamName: NatedIpAddress
+        - name: gtp_teid
+          in: query
+          description: Comma separated list of GTP TEID addresses as defined for the
+            type for AssociateId
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+          x-exportParamName: GtpTeid
+        - name: erab_id
+          in: query
+          description: E-RAB identifier
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+          x-exportParamName: ErabId
+          x-optionalDataType: Int32
+        - name: qci
+          in: query
+          description: QoS Class Identifier as defined in ETSI TS 123 401
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+          x-exportParamName: Qci
+          x-optionalDataType: Int32
+        - name: erab_mbr_dl
+          in: query
+          description: Maximum downlink E-RAB Bit Rate as defined in ETSI TS 123 401
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+          x-exportParamName: ErabMbrDl
+          x-optionalDataType: Int32
+        - name: erab_mbr_ul
+          in: query
+          description: Maximum uplink E-RAB Bit Rate as defined in ETSI TS 123 401
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+          x-exportParamName: ErabMbrUl
+          x-optionalDataType: Int32
+        - name: erab_gbr_dl
+          in: query
+          description: Guaranteed downlink E-RAB Bit Rate as defined in ETSI TS 123
+            401
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+          x-exportParamName: ErabGbrDl
+          x-optionalDataType: Int32
+        - name: erab_gbr_ul
+          in: query
+          description: Guaranteed uplink E-RAB Bit Rate as defined in ETSI TS 123 401
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+            format: int32
+          x-exportParamName: ErabGbrUl
+          x-optionalDataType: Int32
       responses:
         "200":
           description: Successful response to rab_info request
@@ -213,23 +213,23 @@ paths:
   /queries/plmn_info:
     get:
       tags:
-      - rni
+        - rni
       summary: Retrieve information on the underlying Mobile Network that the MEC
         application is associated to
       description: Queries information about the Mobile Network
       operationId: plmn_info_get
       parameters:
-      - name: app_ins_id
-        in: query
-        description: Comma separated list of Application instance identifiers
-        required: true
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-        x-exportParamName: AppInsIdArr
+        - name: app_ins_id
+          in: query
+          description: Comma separated list of Application instance identifiers
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+          x-exportParamName: AppInsIdArr
       responses:
         "200":
           description: Successful response to plmn_info request
@@ -285,94 +285,94 @@ paths:
   /queries/s1_bearer_info:
     get:
       tags:
-      - rni
+        - rni
       summary: Retrieve S1-U bearer information related to specific UE(s)
       description: Queries information about the S1 bearer(s)
       operationId: s1_bearer_info_get
       parameters:
-      - name: temp_ue_id
-        in: query
-        description: Comma separated list of temporary identifiers allocated for the
-          specific UE as defined in   ETSI TS 136 413
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-        x-exportParamName: TempUeId
-      - name: ue_ipv4_address
-        in: query
-        description: Comma separated list of IE IPv4 addresses as defined for the
-          type for AssociateId
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-        x-exportParamName: UeIpv4Address
-      - name: ue_ipv6_address
-        in: query
-        description: Comma separated list of IE IPv6 addresses as defined for the
-          type for AssociateId
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-        x-exportParamName: UeIpv6Address
-      - name: nated_ip_address
-        in: query
-        description: Comma separated list of IE NATed IP addresses as defined for
-          the type for AssociateId
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-        x-exportParamName: NatedIpAddress
-      - name: gtp_teid
-        in: query
-        description: Comma separated list of GTP TEID addresses as defined for the
-          type for AssociateId
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-        x-exportParamName: GtpTeid
-      - name: cell_id
-        in: query
-        description: Comma separated list of E-UTRAN Cell Identities
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-        x-exportParamName: CellId
-      - name: erab_id
-        in: query
-        description: Comma separated list of E-RAB identifiers
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: integer
-            format: int32
-        x-exportParamName: ErabIdArr
+        - name: temp_ue_id
+          in: query
+          description: Comma separated list of temporary identifiers allocated for the
+            specific UE as defined in   ETSI TS 136 413
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+          x-exportParamName: TempUeId
+        - name: ue_ipv4_address
+          in: query
+          description: Comma separated list of IE IPv4 addresses as defined for the
+            type for AssociateId
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+          x-exportParamName: UeIpv4Address
+        - name: ue_ipv6_address
+          in: query
+          description: Comma separated list of IE IPv6 addresses as defined for the
+            type for AssociateId
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+          x-exportParamName: UeIpv6Address
+        - name: nated_ip_address
+          in: query
+          description: Comma separated list of IE NATed IP addresses as defined for
+            the type for AssociateId
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+          x-exportParamName: NatedIpAddress
+        - name: gtp_teid
+          in: query
+          description: Comma separated list of GTP TEID addresses as defined for the
+            type for AssociateId
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+          x-exportParamName: GtpTeid
+        - name: cell_id
+          in: query
+          description: Comma separated list of E-UTRAN Cell Identities
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+          x-exportParamName: CellId
+        - name: erab_id
+          in: query
+          description: Comma separated list of E-RAB identifiers
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+          x-exportParamName: ErabIdArr
       responses:
         "200":
           description: Successful response to s1_bearer_info request
@@ -425,410 +425,410 @@ paths:
   /queries/layer2_meas:
     get:
       tags:
-      - rni
+        - rni
       summary: Retrieve information on layer 2 measurements
       description: Queries information about the layer 2 measurements.
       operationId: layer2_meas_info_get
       parameters:
-      - name: app_ins_id
-        in: query
-        description: Application instance identifier
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-        x-exportParamName: AppInsId
-        x-optionalDataType: String
-      - name: cell_id
-        in: query
-        description: Comma separated list of E-UTRAN Cell Identities
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
+        - name: app_ins_id
+          in: query
+          description: Application instance identifier
+          required: false
+          style: form
+          explode: true
+          schema:
             type: string
-        x-exportParamName: CellId
-      - name: ue_ipv4_address
-        in: query
-        description: Comma separated list of IE IPv4 addresses as defined for the
-          type for AssociateId
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-        x-exportParamName: UeIpv4Address
-      - name: ue_ipv6_address
-        in: query
-        description: Comma separated list of IE IPv6 addresses as defined for the
-          type for AssociateId
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-        x-exportParamName: UeIpv6Address
-      - name: nated_ip_address
-        in: query
-        description: Comma separated list of IE NATed IP addresses as defined for
-          the type for AssociateId
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-        x-exportParamName: NatedIpAddress
-      - name: gtp_teid
-        in: query
-        description: Comma separated list of GTP TEID addresses as defined for the
-          type for AssociateId
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-        x-exportParamName: GtpTeid
-      - name: dl_gbr_prb_usage_cell
-        in: query
-        description: PRB usage for downlink GBR traffic in percentage as defined in
-          ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: DlGbrPrbUsageCell
-      - name: ul_gbr_prb_usage_cell
-        in: query
-        description: PRB usage for uplink GBR traffic in percentage as defined in
-          ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: UlGbrPrbUsageCell
-      - name: dl_nongbr_prb_usage_cell
-        in: query
-        description: PRB usage for downlink non-GBR traffic in percentage as defined
-          in ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: DlNonGbrPrbUsageCell
-      - name: ul_nongbr_prb_usage_cell
-        in: query
-        description: PRB usage for uplink non-GBR traffic in percentage as defined
-          in ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: UlNonGbrPrbUsageCell
-      - name: dl_total_prb_usage_cell
-        in: query
-        description: PRB usage for total downlink traffic in percentage as defined
-          in ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: DlTotalPrbUsageCell
-      - name: ul_total_prb_usage_cell
-        in: query
-        description: PRB usage for total uplink traffic in percentage as defined in
-          ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: UlTotalPrbUsageCell
-      - name: received_dedicated_preambles_cell
-        in: query
-        description: Received dedicated preambles in percentage as defined in ETSI
-          TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: ReceivedDedicatedPreamblesCell
-      - name: received_randomly_selected_preambles_low_range_cell
-        in: query
-        description: Received randomly selected preambles in the low range in percentage
-          as defined in ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: ReceivedRandomPreamblesLowRangeCell
-      - name: received_randomly_selected_preambles_high_range_cell
-        in: query
-        description: Received rendomly selected preambles in the high range in percentage
-          as defined in ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: ReceivedRandomPreamblesHighRangeCell
-      - name: number_of_active_ue_dl_gbr_cell
-        in: query
-        description: Number of active UEs with downlink GBR traffic as defined in
-          ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: NumberOfActiveUeDlGbrCell
-      - name: number_of_active_ue_ul_gbr_cell
-        in: query
-        description: Number of active UEs with uplink GBR traffic as defined in ETSI
-          TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: NumberOfActiveUeUlGbrCell
-      - name: number_of_active_ue_dl_nongbr_cell
-        in: query
-        description: Number of active UEs with downlink non-GBR traffic as defined
-          in ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: NumberOfActiveUeDlNonGbrCell
-      - name: number_of_active_ue_ul_nongbr_cell
-        in: query
-        description: Number of active UEs with uplink non-GBR traffic as defined in
-          ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: NumberOfActiveUeUlNonGbrCell
-      - name: dl_gbr_pdr_cell
-        in: query
-        description: Packet discard rate for downlink GBR traffic in percentage as
-          defined in ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: DlGbrPdrCell
-      - name: ul_gbr_pdr_cell
-        in: query
-        description: Packet discard rate for uplink GBR traffic in percentage as defined
-          in ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: UlGbrPdrCell
-      - name: dl_nongbr_pdr_cell
-        in: query
-        description: Packet discard rate for downlink non-GBR traffic in percentage
-          as defined in ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: DlNonGbrPdrCell
-      - name: ul_nongbr_pdr_cell
-        in: query
-        description: Packet discard rate for uplink non-GBR traffic in percentage
-          as defined in ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: UlNonGbrPdrCell
-      - name: dl_gbr_delay_ue
-        in: query
-        description: Packet delay of downlink GBR traffic of a UE as defined in ETSI
-          TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: DlGbrDelayUe
-      - name: ul_gbr_delay_ue
-        in: query
-        description: Packet delay of uplink GBR traffic of a UE as defined in ETSI
-          TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: UlGbrDelayUe
-      - name: dl_nongbr_delay_ue
-        in: query
-        description: Packet delay of downlink non-GBR traffic of a UE as defined in
-          ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: DlNonGbrDelayUe
-      - name: ul_nongbr_delay_ue
-        in: query
-        description: Packet delay of uplink non-GBR traffic of a UE as defined in
-          ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: UlNonGbrDelayUe
-      - name: dl_gbr_pdr_ue
-        in: query
-        description: Packet discard rate of downlink GBR traffic of a UE in percentage
-          as defined in ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: DlGbrPdrUe
-      - name: ul_gbr_pdr_ue
-        in: query
-        description: Packet discard rate of uplink GBR traffic of a UE in percentage
-          as defined in ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: UlGbrPdrUe
-      - name: dl_nongbr_pdr_ue
-        in: query
-        description: Packet discard rate of downlink non-GBR traffic of a UE in percentage
-          as defined in ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: DlNonGbrPdrUe
-      - name: ul_nongbr_pdr_ue
-        in: query
-        description: Packet discard rate of uplink non-GBR traffic of a UE in percentage
-          as defined in ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: UlNonGbrPdrUe
-      - name: dl_gbr_throughput_ue
-        in: query
-        description: Scheduled throughput of downlink GBR traffic of a UE as defined
-          in ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: DlGbrThroughputUe
-      - name: ul_gbr_throughput_ue
-        in: query
-        description: Scheduled throughput of uplink GBR traffic of a UE as defined
-          in ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: UlGbrThroughputUe
-      - name: dl_nongbr_throughput_ue
-        in: query
-        description: Scheduled throughput of downlink non-GBR traffic of a UE as defined
-          in ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: DlNonGbrThroughputUe
-      - name: ul_nongbr_throughput_ue
-        in: query
-        description: Scheduled throughput of uplink non-GBR traffic of a UE as defined
-          in ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: UlNonGbrThroughputUe
-      - name: dl_gbr_data_volume_ue
-        in: query
-        description: Data volume of downlink GBR traffic of a UE as defined in ETSI
-          TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: DlGbrDataVolumeUe
-      - name: ul_gbr_data_volume_ue
-        in: query
-        description: Data volume of uplink GBR traffic of a UE as defined in ETSI
-          TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: UlGbrDataVolumeUe
-      - name: dl_nongbr_data_volume_ue
-        in: query
-        description: Data volume of downlink non-GBR traffic of a UE as defined in
-          ETSI TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: DlNonGbrDataVolumeUe
-      - name: ul_nongbr_data_volume_ue
-        in: query
-        description: Data volume of uplink non-GBR traffic of a UE as defined in ETSI
-          TS 136 314
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: integer
-        x-exportParamName: UlNonGbrDataVolumeUe
+          x-exportParamName: AppInsId
+          x-optionalDataType: String
+        - name: cell_id
+          in: query
+          description: Comma separated list of E-UTRAN Cell Identities
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+          x-exportParamName: CellId
+        - name: ue_ipv4_address
+          in: query
+          description: Comma separated list of IE IPv4 addresses as defined for the
+            type for AssociateId
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+          x-exportParamName: UeIpv4Address
+        - name: ue_ipv6_address
+          in: query
+          description: Comma separated list of IE IPv6 addresses as defined for the
+            type for AssociateId
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+          x-exportParamName: UeIpv6Address
+        - name: nated_ip_address
+          in: query
+          description: Comma separated list of IE NATed IP addresses as defined for
+            the type for AssociateId
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+          x-exportParamName: NatedIpAddress
+        - name: gtp_teid
+          in: query
+          description: Comma separated list of GTP TEID addresses as defined for the
+            type for AssociateId
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+          x-exportParamName: GtpTeid
+        - name: dl_gbr_prb_usage_cell
+          in: query
+          description: PRB usage for downlink GBR traffic in percentage as defined in
+            ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: DlGbrPrbUsageCell
+        - name: ul_gbr_prb_usage_cell
+          in: query
+          description: PRB usage for uplink GBR traffic in percentage as defined in
+            ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: UlGbrPrbUsageCell
+        - name: dl_nongbr_prb_usage_cell
+          in: query
+          description: PRB usage for downlink non-GBR traffic in percentage as defined
+            in ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: DlNonGbrPrbUsageCell
+        - name: ul_nongbr_prb_usage_cell
+          in: query
+          description: PRB usage for uplink non-GBR traffic in percentage as defined
+            in ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: UlNonGbrPrbUsageCell
+        - name: dl_total_prb_usage_cell
+          in: query
+          description: PRB usage for total downlink traffic in percentage as defined
+            in ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: DlTotalPrbUsageCell
+        - name: ul_total_prb_usage_cell
+          in: query
+          description: PRB usage for total uplink traffic in percentage as defined in
+            ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: UlTotalPrbUsageCell
+        - name: received_dedicated_preambles_cell
+          in: query
+          description: Received dedicated preambles in percentage as defined in ETSI
+            TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: ReceivedDedicatedPreamblesCell
+        - name: received_randomly_selected_preambles_low_range_cell
+          in: query
+          description: Received randomly selected preambles in the low range in percentage
+            as defined in ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: ReceivedRandomPreamblesLowRangeCell
+        - name: received_randomly_selected_preambles_high_range_cell
+          in: query
+          description: Received rendomly selected preambles in the high range in percentage
+            as defined in ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: ReceivedRandomPreamblesHighRangeCell
+        - name: number_of_active_ue_dl_gbr_cell
+          in: query
+          description: Number of active UEs with downlink GBR traffic as defined in
+            ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: NumberOfActiveUeDlGbrCell
+        - name: number_of_active_ue_ul_gbr_cell
+          in: query
+          description: Number of active UEs with uplink GBR traffic as defined in ETSI
+            TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: NumberOfActiveUeUlGbrCell
+        - name: number_of_active_ue_dl_nongbr_cell
+          in: query
+          description: Number of active UEs with downlink non-GBR traffic as defined
+            in ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: NumberOfActiveUeDlNonGbrCell
+        - name: number_of_active_ue_ul_nongbr_cell
+          in: query
+          description: Number of active UEs with uplink non-GBR traffic as defined in
+            ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: NumberOfActiveUeUlNonGbrCell
+        - name: dl_gbr_pdr_cell
+          in: query
+          description: Packet discard rate for downlink GBR traffic in percentage as
+            defined in ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: DlGbrPdrCell
+        - name: ul_gbr_pdr_cell
+          in: query
+          description: Packet discard rate for uplink GBR traffic in percentage as defined
+            in ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: UlGbrPdrCell
+        - name: dl_nongbr_pdr_cell
+          in: query
+          description: Packet discard rate for downlink non-GBR traffic in percentage
+            as defined in ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: DlNonGbrPdrCell
+        - name: ul_nongbr_pdr_cell
+          in: query
+          description: Packet discard rate for uplink non-GBR traffic in percentage
+            as defined in ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: UlNonGbrPdrCell
+        - name: dl_gbr_delay_ue
+          in: query
+          description: Packet delay of downlink GBR traffic of a UE as defined in ETSI
+            TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: DlGbrDelayUe
+        - name: ul_gbr_delay_ue
+          in: query
+          description: Packet delay of uplink GBR traffic of a UE as defined in ETSI
+            TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: UlGbrDelayUe
+        - name: dl_nongbr_delay_ue
+          in: query
+          description: Packet delay of downlink non-GBR traffic of a UE as defined in
+            ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: DlNonGbrDelayUe
+        - name: ul_nongbr_delay_ue
+          in: query
+          description: Packet delay of uplink non-GBR traffic of a UE as defined in
+            ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: UlNonGbrDelayUe
+        - name: dl_gbr_pdr_ue
+          in: query
+          description: Packet discard rate of downlink GBR traffic of a UE in percentage
+            as defined in ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: DlGbrPdrUe
+        - name: ul_gbr_pdr_ue
+          in: query
+          description: Packet discard rate of uplink GBR traffic of a UE in percentage
+            as defined in ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: UlGbrPdrUe
+        - name: dl_nongbr_pdr_ue
+          in: query
+          description: Packet discard rate of downlink non-GBR traffic of a UE in percentage
+            as defined in ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: DlNonGbrPdrUe
+        - name: ul_nongbr_pdr_ue
+          in: query
+          description: Packet discard rate of uplink non-GBR traffic of a UE in percentage
+            as defined in ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: UlNonGbrPdrUe
+        - name: dl_gbr_throughput_ue
+          in: query
+          description: Scheduled throughput of downlink GBR traffic of a UE as defined
+            in ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: DlGbrThroughputUe
+        - name: ul_gbr_throughput_ue
+          in: query
+          description: Scheduled throughput of uplink GBR traffic of a UE as defined
+            in ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: UlGbrThroughputUe
+        - name: dl_nongbr_throughput_ue
+          in: query
+          description: Scheduled throughput of downlink non-GBR traffic of a UE as defined
+            in ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: DlNonGbrThroughputUe
+        - name: ul_nongbr_throughput_ue
+          in: query
+          description: Scheduled throughput of uplink non-GBR traffic of a UE as defined
+            in ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: UlNonGbrThroughputUe
+        - name: dl_gbr_data_volume_ue
+          in: query
+          description: Data volume of downlink GBR traffic of a UE as defined in ETSI
+            TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: DlGbrDataVolumeUe
+        - name: ul_gbr_data_volume_ue
+          in: query
+          description: Data volume of uplink GBR traffic of a UE as defined in ETSI
+            TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: UlGbrDataVolumeUe
+        - name: dl_nongbr_data_volume_ue
+          in: query
+          description: Data volume of downlink non-GBR traffic of a UE as defined in
+            ETSI TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: DlNonGbrDataVolumeUe
+        - name: ul_nongbr_data_volume_ue
+          in: query
+          description: Data volume of uplink non-GBR traffic of a UE as defined in ETSI
+            TS 136 314
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: integer
+          x-exportParamName: UlNonGbrDataVolumeUe
       responses:
         "200":
           description: Successful response to layer2 measurements info request
@@ -889,22 +889,22 @@ paths:
   /subscriptions:
     get:
       tags:
-      - rni
+        - rni
       summary: Retrieve information on subscriptions for notifications
       description: Queries information on subscriptions for notifications
       operationId: subscription_link_list_subscriptions_get
       parameters:
-      - name: subscription_type
-        in: query
-        description: "Filter on a specific subscription type. Permitted values: cell_change,\
+        - name: subscription_type
+          in: query
+          description: "Filter on a specific subscription type. Permitted values: cell_change,\
           \ rab_est, rab_mod, rab_rel, meas_rep_ue, nr_meas_rep_ue, timing_advance_ue,\
           \ ca_reconf, s1_bearer."
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-        x-exportParamName: SubscriptionType
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+          x-exportParamName: SubscriptionType
       responses:
         "200":
           description: Response body contains the list of links to requestors subscriptions.
@@ -917,11 +917,11 @@ paths:
                   self:
                     href: http://meAppServer.example.com/rni/v2/subscriptions
                 subscription:
-                - _links:
-                    self:
-                      href: http://meAppServer.example.com/rni/v2/subscriptions/sub123
-                  callbackReference: http://my.callback.com/rni-cell-change/some-id
-                  subscriptionType: CellChangeSubscription
+                  - _links:
+                      self:
+                        href: http://meAppServer.example.com/rni/v2/subscriptions/sub123
+                    callbackReference: http://my.callback.com/rni-cell-change/some-id
+                    subscriptionType: CellChangeSubscription
         "400":
           description: "Bad Request : used to indicate that incorrect parameters were\
             \ passed to the request."
@@ -966,7 +966,7 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC012_radio_network_information.rni_controller
     post:
       tags:
-      - rni
+        - rni
       summary: Create a new subscription
       description: Creates a new subscription to Radio Network Information notifications
       operationId: subscriptions_post
@@ -982,16 +982,16 @@ paths:
               filterCriteriaAssocHo:
                 appInstanceId: myApp
                 associateId:
-                - type: 1
-                  value: 10.100.0.1
+                  - type: 1
+                    value: 10.100.0.1
                 ecgi:
-                - plmn:
-                    mnc: "01"
-                    mcc: "001"
-                  cellId: ACBDEFA
+                  - plmn:
+                      mnc: "01"
+                      mcc: "001"
+                    cellId: ACBDEFA
                 hoStatus:
-                - 1
-                - 2
+                  - 1
+                  - 2
               expiryDeadline:
                 seconds: 1977836800
                 nanoseconds: 0
@@ -1012,16 +1012,16 @@ paths:
                 filterCriteriaAssocHo:
                   appInstanceId: myApp
                   associateId:
-                  - type: 1
-                    value: 10.100.0.1
+                    - type: 1
+                      value: 10.100.0.1
                   ecgi:
-                  - plmn:
-                      mnc: "01"
-                      mcc: "001"
-                    cellId: ACBDEFA
+                    - plmn:
+                        mnc: "01"
+                        mcc: "001"
+                      cellId: ACBDEFA
                   hoStatus:
-                  - 1
-                  - 2
+                    - 1
+                    - 2
                 expiryDeadline:
                   seconds: 1977836800
                   nanoseconds: 0
@@ -1110,8 +1110,8 @@ paths:
                     example:
                       notificationType: CellChangeNotification
                       associateId:
-                      - type: 1
-                        value: 10.100.0.1
+                        - type: 1
+                          value: 10.100.0.1
                       hoStatus: 1
                       srcEcgi:
                         plmn:
@@ -1138,23 +1138,23 @@ paths:
   /subscriptions/{subscriptionId}:
     get:
       tags:
-      - rni
+        - rni
       summary: Retrieve information on current specific subscription
       description: "Queries information about an existing subscription, identified\
         \ by its self-referring URI returned on creation (initial POST)"
       operationId: subscriptions_get
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Id, specifically the \"Self-referring URI\" returned\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Id, specifically the \"Self-referring URI\" returned\
           \ in the subscription request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
-        x-exportParamName: SubscriptionId
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
+          x-exportParamName: SubscriptionId
       responses:
         "200":
           description: Subscription information regarding subscription notifications
@@ -1171,16 +1171,16 @@ paths:
                 filterCriteriaAssocHo:
                   appInstanceId: myApp
                   associateId:
-                  - type: 1
-                    value: 10.100.0.1
+                    - type: 1
+                      value: 10.100.0.1
                   ecgi:
-                  - plmn:
-                      mnc: "01"
-                      mcc: "001"
-                    cellId: ACBDEFA
+                    - plmn:
+                        mnc: "01"
+                        mcc: "001"
+                      cellId: ACBDEFA
                   hoStatus:
-                  - 1
-                  - 2
+                    - 1
+                    - 2
                 expiryDeadline:
                   seconds: 1977836800
                   nanoseconds: 0
@@ -1228,23 +1228,23 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC012_radio_network_information.rni_controller
     put:
       tags:
-      - rni
+        - rni
       summary: Modify an existing subscription
       description: "Updates an existing subscription, identified by its self-referring\
         \ URI returned on creation (initial POST)"
       operationId: subscriptions_put
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Id, specifically the \"Self-referring URI\" returned\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Id, specifically the \"Self-referring URI\" returned\
           \ in the subscription request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
-        x-exportParamName: SubscriptionId
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
+          x-exportParamName: SubscriptionId
       requestBody:
         description: Subscription to be modified
         content:
@@ -1260,16 +1260,16 @@ paths:
               filterCriteriaAssocHo:
                 appInstanceId: myApp
                 associateId:
-                - type: 1
-                  value: 10.100.0.1
+                  - type: 1
+                    value: 10.100.0.1
                 ecgi:
-                - plmn:
-                    mnc: "01"
-                    mcc: "001"
-                  cellId: ACBDEFA
+                  - plmn:
+                      mnc: "01"
+                      mcc: "001"
+                    cellId: ACBDEFA
                 hoStatus:
-                - 1
-                - 2
+                  - 1
+                  - 2
               expiryDeadline:
                 seconds: 1977836800
                 nanoseconds: 0
@@ -1290,16 +1290,16 @@ paths:
                 filterCriteriaAssocHo:
                   appInstanceId: myApp
                   associateId:
-                  - type: 1
-                    value: 10.100.0.1
+                    - type: 1
+                      value: 10.100.0.1
                   ecgi:
-                  - plmn:
-                      mnc: "01"
-                      mcc: "001"
-                    cellId: ACBDEFA
+                    - plmn:
+                        mnc: "01"
+                        mcc: "001"
+                      cellId: ACBDEFA
                   hoStatus:
-                  - 1
-                  - 2
+                    - 1
+                    - 2
                 expiryDeadline:
                   seconds: 1977836800
                   nanoseconds: 0
@@ -1375,23 +1375,23 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC012_radio_network_information.rni_controller
     delete:
       tags:
-      - rni
+        - rni
       summary: Cancel an existing subscription
       description: "Cancels an existing subscription, identified by its self-referring\
         \ URI returned on creation (initial POST)"
       operationId: subscriptions_delete
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Id, specifically the \"Self-referring URI\" returned\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Id, specifically the \"Self-referring URI\" returned\
           \ in the subscription request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
-        x-exportParamName: SubscriptionId
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
+          x-exportParamName: SubscriptionId
       responses:
         "204":
           description: No Content
@@ -1433,11 +1433,11 @@ components:
             \ as following: <p>0 = reserved. <p>1 = UE_IPv4_ADDRESS. <p>2 = UE_IPV6_ADDRESS.\
             \ <p>3 = NATED_IP_ADDRESS. <p>4 = GTP_TEID."
           enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          - 4
+            - 0
+            - 1
+            - 2
+            - 3
+            - 4
           x-etsi-mec-cardinality: "1"
           x-etsi-mec-origin-type: Enum
         value:
@@ -1450,8 +1450,8 @@ components:
         value: value
     CaReconfNotification:
       required:
-      - ecgi
-      - notificationType
+        - ecgi
+        - notificationType
       type: object
       properties:
         associateId:
@@ -1466,8 +1466,8 @@ components:
         carrierAggregationMeasInfo:
           minItems: 0
           required:
-          - cellIdNei
-          - cellIdSrv
+            - cellIdNei
+            - cellIdSrv
           type: array
           description: This parameter can be repeated to contain information of all
             the carriers assign for Carrier Aggregation up to M.
@@ -1485,7 +1485,7 @@ components:
         secondaryCellAdd:
           minItems: 0
           required:
-          - ecgi
+            - ecgi
           type: array
           items:
             $ref: '#/components/schemas/CaReconfNotification_secondaryCellAdd'
@@ -1494,7 +1494,7 @@ components:
         secondaryCellRemove:
           minItems: 0
           required:
-          - ecgi
+            - ecgi
           type: array
           items:
             $ref: '#/components/schemas/CaReconfNotification_secondaryCellAdd'
@@ -1505,9 +1505,9 @@ components:
       x-etsi-ref: 6.4.8
     CaReconfSubscription:
       required:
-      - callbackReference
-      - filterCriteriaAssoc
-      - subscriptionType
+        - callbackReference
+        - filterCriteriaAssoc
+        - subscriptionType
       type: object
       properties:
         _links:
@@ -1532,10 +1532,10 @@ components:
       x-etsi-ref: 6.3.8
     CellChangeNotification:
       required:
-      - hoStatus
-      - notificationType
-      - srcEcgi
-      - trgEcgi
+        - hoStatus
+        - notificationType
+        - srcEcgi
+        - trgEcgi
       type: object
       properties:
         associateId:
@@ -1553,11 +1553,11 @@ components:
             \ defined as following: <p>1 = IN_PREPARATION. <p>2 = IN_EXECUTION. <p>3\
             \ = COMPLETED. <p>4 = REJECTED. <p>5 = CANCELLED."
           enum:
-          - 1
-          - 2
-          - 3
-          - 4
-          - 5
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
           x-etsi-mec-cardinality: "1"
           x-etsi-mec-origin-type: Enum
         notificationType:
@@ -1584,9 +1584,9 @@ components:
       x-etsi-ref: 6.4.2
     CellChangeSubscription:
       required:
-      - callbackReference
-      - filterCriteriaAssocHo
-      - subscriptionType
+        - callbackReference
+        - filterCriteriaAssocHo
+        - subscriptionType
       type: object
       properties:
         _links:
@@ -1615,8 +1615,8 @@ components:
         \ string (size (28)) as defined in ETSI TS 136 413 [i.3]."
     Ecgi:
       required:
-      - cellId
-      - plmn
+        - cellId
+        - plmn
       type: object
       properties:
         cellId:
@@ -1633,8 +1633,8 @@ components:
       type: integer
     ExpiryNotification:
       required:
-      - _links
-      - expiryDeadline
+        - _links
+        - expiryDeadline
       type: object
       properties:
         _links:
@@ -1650,7 +1650,7 @@ components:
         cellInfo:
           minItems: 0
           required:
-          - ecgi
+            - ecgi
           type: array
           description: The per cell measurement information as defined below.
           items:
@@ -1660,8 +1660,8 @@ components:
         cellUEInfo:
           minItems: 0
           required:
-          - associateId
-          - ecgi
+            - associateId
+            - ecgi
           type: array
           description: The per cell per UE layer 2 measurements information as defined
             below.
@@ -1676,95 +1676,95 @@ components:
           seconds: 3
           nanoSeconds: 9
         cellUEInfo:
-        - dl_gbr_delay_ue: 4
-          ul_nongbr_data_volume_ue: 2
-          dl_nongbr_delay_ue: 6
-          ul_gbr_delay_ue: 3
-          ul_gbr_throughput_ue: 1
-          ul_nongbr_delay_ue: 6
-          dl_nongbr_throughput_ue: 9
-          ul_gbr_data_volume_ue: 6
-          dl_nongbr_data_volume_ue: 9
-          ecgi: null
-          dl_gbr_data_volume_ue: 1
-          associateId:
-            type: 0
-            value: value
-          dl_gbr_throughput_ue: 9
-          dl_nongbr_pdr_ue: 8
-          ul_nongbr_throughput_ue: 5
-          ul_nongbr_pdr_ue: 6
-          dl_gbr_pdr_ue: 5
-          ul_gbr_pdr_ue: 6
-        - dl_gbr_delay_ue: 4
-          ul_nongbr_data_volume_ue: 2
-          dl_nongbr_delay_ue: 6
-          ul_gbr_delay_ue: 3
-          ul_gbr_throughput_ue: 1
-          ul_nongbr_delay_ue: 6
-          dl_nongbr_throughput_ue: 9
-          ul_gbr_data_volume_ue: 6
-          dl_nongbr_data_volume_ue: 9
-          ecgi: null
-          dl_gbr_data_volume_ue: 1
-          associateId:
-            type: 0
-            value: value
-          dl_gbr_throughput_ue: 9
-          dl_nongbr_pdr_ue: 8
-          ul_nongbr_throughput_ue: 5
-          ul_nongbr_pdr_ue: 6
-          dl_gbr_pdr_ue: 5
-          ul_gbr_pdr_ue: 6
+          - dl_gbr_delay_ue: 4
+            ul_nongbr_data_volume_ue: 2
+            dl_nongbr_delay_ue: 6
+            ul_gbr_delay_ue: 3
+            ul_gbr_throughput_ue: 1
+            ul_nongbr_delay_ue: 6
+            dl_nongbr_throughput_ue: 9
+            ul_gbr_data_volume_ue: 6
+            dl_nongbr_data_volume_ue: 9
+            ecgi: null
+            dl_gbr_data_volume_ue: 1
+            associateId:
+              type: 0
+              value: value
+            dl_gbr_throughput_ue: 9
+            dl_nongbr_pdr_ue: 8
+            ul_nongbr_throughput_ue: 5
+            ul_nongbr_pdr_ue: 6
+            dl_gbr_pdr_ue: 5
+            ul_gbr_pdr_ue: 6
+          - dl_gbr_delay_ue: 4
+            ul_nongbr_data_volume_ue: 2
+            dl_nongbr_delay_ue: 6
+            ul_gbr_delay_ue: 3
+            ul_gbr_throughput_ue: 1
+            ul_nongbr_delay_ue: 6
+            dl_nongbr_throughput_ue: 9
+            ul_gbr_data_volume_ue: 6
+            dl_nongbr_data_volume_ue: 9
+            ecgi: null
+            dl_gbr_data_volume_ue: 1
+            associateId:
+              type: 0
+              value: value
+            dl_gbr_throughput_ue: 9
+            dl_nongbr_pdr_ue: 8
+            ul_nongbr_throughput_ue: 5
+            ul_nongbr_pdr_ue: 6
+            dl_gbr_pdr_ue: 5
+            ul_gbr_pdr_ue: 6
         cellInfo:
-        - number_of_active_ue_dl_nongbr_cell: 7
-          ul_total_prb_usage_cell: 7
-          received_dedicated_preambles_cell: 2
-          dl_total_prb_usage_cell: 5
-          ul_gbr_prb_usage_cell: 1
-          dl_gbr_pdr_cell: 0
-          number_of_active_ue_ul_gbr_cell: 9
-          ul_nongbr_pdr_cell: 1
-          dl_nongbr_pdr_cell: 1
-          number_of_active_ue_dl_gbr_cell: 2
-          ecgi:
-            plmn:
-              mnc: mnc
-              mcc: mcc
-            cellId: cellId
-          ul_gbr_pdr_cell: 1
-          ul_nongbr_prb_usage_cell: 6
-          received_randomly_selected_preambles_low_range_cell: 7
-          number_of_active_ue_ul_nongbr_cell: 3
-          received_randomly_selected_preambles_high_range_cell: 4
-          dl_nongbr_prb_usage_cell: 5
-          dl_gbr_prb_usage_cell: 6
-        - number_of_active_ue_dl_nongbr_cell: 7
-          ul_total_prb_usage_cell: 7
-          received_dedicated_preambles_cell: 2
-          dl_total_prb_usage_cell: 5
-          ul_gbr_prb_usage_cell: 1
-          dl_gbr_pdr_cell: 0
-          number_of_active_ue_ul_gbr_cell: 9
-          ul_nongbr_pdr_cell: 1
-          dl_nongbr_pdr_cell: 1
-          number_of_active_ue_dl_gbr_cell: 2
-          ecgi:
-            plmn:
-              mnc: mnc
-              mcc: mcc
-            cellId: cellId
-          ul_gbr_pdr_cell: 1
-          ul_nongbr_prb_usage_cell: 6
-          received_randomly_selected_preambles_low_range_cell: 7
-          number_of_active_ue_ul_nongbr_cell: 3
-          received_randomly_selected_preambles_high_range_cell: 4
-          dl_nongbr_prb_usage_cell: 5
-          dl_gbr_prb_usage_cell: 6
+          - number_of_active_ue_dl_nongbr_cell: 7
+            ul_total_prb_usage_cell: 7
+            received_dedicated_preambles_cell: 2
+            dl_total_prb_usage_cell: 5
+            ul_gbr_prb_usage_cell: 1
+            dl_gbr_pdr_cell: 0
+            number_of_active_ue_ul_gbr_cell: 9
+            ul_nongbr_pdr_cell: 1
+            dl_nongbr_pdr_cell: 1
+            number_of_active_ue_dl_gbr_cell: 2
+            ecgi:
+              plmn:
+                mnc: mnc
+                mcc: mcc
+              cellId: cellId
+            ul_gbr_pdr_cell: 1
+            ul_nongbr_prb_usage_cell: 6
+            received_randomly_selected_preambles_low_range_cell: 7
+            number_of_active_ue_ul_nongbr_cell: 3
+            received_randomly_selected_preambles_high_range_cell: 4
+            dl_nongbr_prb_usage_cell: 5
+            dl_gbr_prb_usage_cell: 6
+          - number_of_active_ue_dl_nongbr_cell: 7
+            ul_total_prb_usage_cell: 7
+            received_dedicated_preambles_cell: 2
+            dl_total_prb_usage_cell: 5
+            ul_gbr_prb_usage_cell: 1
+            dl_gbr_pdr_cell: 0
+            number_of_active_ue_ul_gbr_cell: 9
+            ul_nongbr_pdr_cell: 1
+            dl_nongbr_pdr_cell: 1
+            number_of_active_ue_dl_gbr_cell: 2
+            ecgi:
+              plmn:
+                mnc: mnc
+                mcc: mcc
+              cellId: cellId
+            ul_gbr_pdr_cell: 1
+            ul_nongbr_prb_usage_cell: 6
+            received_randomly_selected_preambles_low_range_cell: 7
+            number_of_active_ue_ul_nongbr_cell: 3
+            received_randomly_selected_preambles_high_range_cell: 4
+            dl_nongbr_prb_usage_cell: 5
+            dl_gbr_prb_usage_cell: 6
       x-etsi-ref: 6.2.4a
     LinkType:
       required:
-      - href
+        - href
       type: object
       properties:
         href:
@@ -1803,11 +1803,11 @@ components:
       x-etsi-ref: 6.5.11
     MeasRepUeNotification:
       required:
-      - ecgi
-      - notificationType
-      - rsrp
-      - rsrq
-      - trigger
+        - ecgi
+        - notificationType
+        - rsrp
+        - rsrq
+        - trigger
       type: object
       properties:
         associateId:
@@ -1822,7 +1822,7 @@ components:
         carrierAggregationMeasInfo:
           minItems: 0
           required:
-          - cellIdSrv
+            - cellIdSrv
           type: array
           description: This parameter can be repeated to contain information of all
             the carriers assign for Carrier Aggregation up to M.
@@ -1835,7 +1835,7 @@ components:
         eutranNeighbourCellMeasInfo:
           minItems: 0
           required:
-          - ecgi
+            - ecgi
           type: array
           description: This parameter can be repeated to contain information of all
             the neighbouring cells up to N.
@@ -1852,8 +1852,8 @@ components:
         newRadioMeasInfo:
           minItems: 0
           required:
-          - nrCarrierFreq
-          - nrSCs
+            - nrCarrierFreq
+            - nrSCs
           type: array
           description: 5G New Radio secondary serving cells measurement information.
           items:
@@ -1863,7 +1863,7 @@ components:
         newRadioMeasNeiInfo:
           minItems: 0
           required:
-          - nrNCellInfo
+            - nrNCellInfo
           type: array
           description: Measurement quantities concerning the 5G NR neighbours.
           items:
@@ -1917,9 +1917,9 @@ components:
       x-etsi-ref: 6.4.6
     MeasRepUeSubscription:
       required:
-      - callbackReference
-      - filterCriteriaAssocTri
-      - subscriptionType
+        - callbackReference
+        - filterCriteriaAssocTri
+        - subscriptionType
       type: object
       properties:
         _links:
@@ -1944,9 +1944,9 @@ components:
       x-etsi-ref: 6.3.6
     MeasTaNotification:
       required:
-      - ecgi
-      - notificationType
-      - timingAdvance
+        - ecgi
+        - notificationType
+        - timingAdvance
       type: object
       properties:
         associateId:
@@ -1976,9 +1976,9 @@ components:
       x-etsi-ref: 6.4.7
     MeasTaSubscription:
       required:
-      - callbackReference
-      - filterCriteriaAssoc
-      - subscriptionType
+        - callbackReference
+        - filterCriteriaAssoc
+        - subscriptionType
       type: object
       properties:
         _links:
@@ -2003,8 +2003,8 @@ components:
       x-etsi-ref: 6.3.7
     NRcgi:
       required:
-      - nrcellId
-      - plmn
+        - nrcellId
+        - plmn
       type: object
       properties:
         nrcellId:
@@ -2018,8 +2018,8 @@ components:
         \ (size (36)) as defined in ETSI TS 138 423 [i.17]."
     NrMeasRepUeNotification:
       required:
-      - notificationType
-      - triggerNr
+        - notificationType
+        - triggerNr
       type: object
       properties:
         associateId:
@@ -2034,7 +2034,7 @@ components:
         eutraNeighCellMeasInfo:
           minItems: 0
           required:
-          - ecgi
+            - ecgi
           type: array
           description: This parameter can be repeated to contain measurement information
             of all the neighbouring cells up to N. It shall not be included if nrNeighCellMeasInfo
@@ -2051,7 +2051,7 @@ components:
         nrNeighCellMeasInfo:
           minItems: 0
           required:
-          - nrcgi
+            - nrcgi
           type: array
           description: This parameter can be repeated to contain measurement information
             of all the neighbouring cells up to N. It shall not be included if eutraNeighCellMeasInfo
@@ -2063,8 +2063,8 @@ components:
         servCellMeasInfo:
           minItems: 0
           required:
-          - nrcgi
-          - sCell
+            - nrcgi
+            - sCell
           type: array
           description: This parameter can be repeated to contain information of all
             the serving cells up to N.
@@ -2079,9 +2079,9 @@ components:
       x-etsi-ref: 6.4.11
     NrMeasRepUeSubscription:
       required:
-      - callbackReference
-      - filterCriteriaNrMrs
-      - subscriptionType
+        - callbackReference
+        - filterCriteriaNrMrs
+        - subscriptionType
       type: object
       properties:
         _links:
@@ -2106,8 +2106,8 @@ components:
       x-etsi-ref: 6.3.11
     Plmn:
       required:
-      - mcc
-      - mnc
+        - mcc
+        - mnc
       type: object
       properties:
         mcc:
@@ -2128,8 +2128,8 @@ components:
       x-etsi-ref: 6.5.5
     PlmnInfo:
       required:
-      - appInstanceId
-      - plmn
+        - appInstanceId
+        - plmn
       type: object
       properties:
         appInstanceId:
@@ -2153,10 +2153,10 @@ components:
           seconds: 3
           nanoSeconds: 9
         plmn:
-        - mnc: mnc
-          mcc: mcc
-        - mnc: mnc
-          mcc: mcc
+          - mnc: mnc
+            mcc: mcc
+          - mnc: mnc
+            mcc: mcc
       x-etsi-ref: 6.2.2
     ProblemDetails:
       type: object
@@ -2194,9 +2194,9 @@ components:
           x-etsi-mec-origin-type: URI
     RabEstNotification:
       required:
-      - ecgi
-      - erabId
-      - notificationType
+        - ecgi
+        - erabId
+        - notificationType
       type: object
       properties:
         associateId:
@@ -2230,9 +2230,9 @@ components:
       x-etsi-ref: 6.4.3
     RabEstSubscription:
       required:
-      - callbackReference
-      - filterCriteriaQci
-      - subscriptionType
+        - callbackReference
+        - filterCriteriaQci
+        - subscriptionType
       type: object
       properties:
         _links:
@@ -2257,8 +2257,8 @@ components:
       x-etsi-ref: 6.3.3
     RabInfo:
       required:
-      - appInstanceId
-      - requestId
+        - appInstanceId
+        - requestId
       type: object
       properties:
         appInstanceId:
@@ -2269,8 +2269,8 @@ components:
         cellUserInfo:
           minItems: 0
           required:
-          - ecgi
-          - ueInfo
+            - ecgi
+            - ueInfo
           type: array
           description: The information on users per cell as defined below.
           items:
@@ -2288,106 +2288,106 @@ components:
       example:
         appInstanceId: appInstanceId
         cellUserInfo:
-        - ueInfo:
-          - associateId:
-            - type: 0
-              value: value
-            - type: 0
-              value: value
-            erabInfo:
-            - erabId: 6
-              erabQosParameters:
-                qosInformation:
-                  erabGbrDl: 5
-                  erabGbrUl: 5
-                  erabMbrUl: 7
-                  erabMbrDl: 2
-                qci: 1
-            - erabId: 6
-              erabQosParameters:
-                qosInformation:
-                  erabGbrDl: 5
-                  erabGbrUl: 5
-                  erabMbrUl: 7
-                  erabMbrDl: 2
-                qci: 1
-          - associateId:
-            - type: 0
-              value: value
-            - type: 0
-              value: value
-            erabInfo:
-            - erabId: 6
-              erabQosParameters:
-                qosInformation:
-                  erabGbrDl: 5
-                  erabGbrUl: 5
-                  erabMbrUl: 7
-                  erabMbrDl: 2
-                qci: 1
-            - erabId: 6
-              erabQosParameters:
-                qosInformation:
-                  erabGbrDl: 5
-                  erabGbrUl: 5
-                  erabMbrUl: 7
-                  erabMbrDl: 2
-                qci: 1
-          ecgi:
-            plmn:
-              mnc: mnc
-              mcc: mcc
-            cellId: cellId
-        - ueInfo:
-          - associateId:
-            - type: 0
-              value: value
-            - type: 0
-              value: value
-            erabInfo:
-            - erabId: 6
-              erabQosParameters:
-                qosInformation:
-                  erabGbrDl: 5
-                  erabGbrUl: 5
-                  erabMbrUl: 7
-                  erabMbrDl: 2
-                qci: 1
-            - erabId: 6
-              erabQosParameters:
-                qosInformation:
-                  erabGbrDl: 5
-                  erabGbrUl: 5
-                  erabMbrUl: 7
-                  erabMbrDl: 2
-                qci: 1
-          - associateId:
-            - type: 0
-              value: value
-            - type: 0
-              value: value
-            erabInfo:
-            - erabId: 6
-              erabQosParameters:
-                qosInformation:
-                  erabGbrDl: 5
-                  erabGbrUl: 5
-                  erabMbrUl: 7
-                  erabMbrDl: 2
-                qci: 1
-            - erabId: 6
-              erabQosParameters:
-                qosInformation:
-                  erabGbrDl: 5
-                  erabGbrUl: 5
-                  erabMbrUl: 7
-                  erabMbrDl: 2
-                qci: 1
-          ecgi:
-            plmn:
-              mnc: mnc
-              mcc: mcc
-            cellId: cellId
+          - ueInfo:
+              - associateId:
+                  - type: 0
+                    value: value
+                  - type: 0
+                    value: value
+                erabInfo:
+                  - erabId: 6
+                    erabQosParameters:
+                      qosInformation:
+                        erabGbrDl: 5
+                        erabGbrUl: 5
+                        erabMbrUl: 7
+                        erabMbrDl: 2
+                      qci: 1
+                  - erabId: 6
+                    erabQosParameters:
+                      qosInformation:
+                        erabGbrDl: 5
+                        erabGbrUl: 5
+                        erabMbrUl: 7
+                        erabMbrDl: 2
+                      qci: 1
+              - associateId:
+                  - type: 0
+                    value: value
+                  - type: 0
+                    value: value
+                erabInfo:
+                  - erabId: 6
+                    erabQosParameters:
+                      qosInformation:
+                        erabGbrDl: 5
+                        erabGbrUl: 5
+                        erabMbrUl: 7
+                        erabMbrDl: 2
+                      qci: 1
+                  - erabId: 6
+                    erabQosParameters:
+                      qosInformation:
+                        erabGbrDl: 5
+                        erabGbrUl: 5
+                        erabMbrUl: 7
+                        erabMbrDl: 2
+                      qci: 1
+            ecgi:
+              plmn:
+                mnc: mnc
+                mcc: mcc
+              cellId: cellId
+          - ueInfo:
+              - associateId:
+                  - type: 0
+                    value: value
+                  - type: 0
+                    value: value
+                erabInfo:
+                  - erabId: 6
+                    erabQosParameters:
+                      qosInformation:
+                        erabGbrDl: 5
+                        erabGbrUl: 5
+                        erabMbrUl: 7
+                        erabMbrDl: 2
+                      qci: 1
+                  - erabId: 6
+                    erabQosParameters:
+                      qosInformation:
+                        erabGbrDl: 5
+                        erabGbrUl: 5
+                        erabMbrUl: 7
+                        erabMbrDl: 2
+                      qci: 1
+              - associateId:
+                  - type: 0
+                    value: value
+                  - type: 0
+                    value: value
+                erabInfo:
+                  - erabId: 6
+                    erabQosParameters:
+                      qosInformation:
+                        erabGbrDl: 5
+                        erabGbrUl: 5
+                        erabMbrUl: 7
+                        erabMbrDl: 2
+                      qci: 1
+                  - erabId: 6
+                    erabQosParameters:
+                      qosInformation:
+                        erabGbrDl: 5
+                        erabGbrUl: 5
+                        erabMbrUl: 7
+                        erabMbrDl: 2
+                      qci: 1
+            ecgi:
+              plmn:
+                mnc: mnc
+                mcc: mcc
+              cellId: cellId
         timeStamp:
           seconds: 3
           nanoSeconds: 9
@@ -2395,9 +2395,9 @@ components:
       x-etsi-ref: 6.2.3
     RabModNotification:
       required:
-      - ecgi
-      - erabId
-      - notificationType
+        - ecgi
+        - erabId
+        - notificationType
       type: object
       properties:
         associateId:
@@ -2429,9 +2429,9 @@ components:
       x-etsi-ref: 6.4.4
     RabModSubscription:
       required:
-      - callbackReference
-      - filterCriteriaQci
-      - subscriptionType
+        - callbackReference
+        - filterCriteriaQci
+        - subscriptionType
       type: object
       properties:
         _links:
@@ -2456,9 +2456,9 @@ components:
       x-etsi-ref: 6.3.4
     RabRelNotification:
       required:
-      - ecgi
-      - erabReleaseInfo
-      - notificationType
+        - ecgi
+        - erabReleaseInfo
+        - notificationType
       type: object
       properties:
         associateId:
@@ -2484,9 +2484,9 @@ components:
       x-etsi-ref: 6.4.5
     RabRelSubscription:
       required:
-      - callbackReference
-      - filterCriteriaQci
-      - subscriptionType
+        - callbackReference
+        - filterCriteriaQci
+        - subscriptionType
       type: object
       properties:
         _links:
@@ -2511,7 +2511,7 @@ components:
       x-etsi-ref: 6.3.5
     ResultsPerCsiRsIndex:
       required:
-      - csiRsIndex
+        - csiRsIndex
       type: object
       properties:
         csiRsIndex:
@@ -2526,7 +2526,7 @@ components:
         resultsPerCsiRsIndex:
           minItems: 0
           required:
-          - csiRsIndex
+            - csiRsIndex
           type: array
           items:
             $ref: '#/components/schemas/ResultsPerCsiRsIndexList_resultsPerCsiRsIndex'
@@ -2535,7 +2535,7 @@ components:
       x-etsi-ref: 6.5.10
     ResultsPerSsbIndex:
       required:
-      - ssbIndex
+        - ssbIndex
       type: object
       properties:
         ssbIndex:
@@ -2550,7 +2550,7 @@ components:
         resultsPerSsbIndex:
           minItems: 0
           required:
-          - ssbIndex
+            - ssbIndex
           type: array
           items:
             $ref: '#/components/schemas/ResultsPerSsbIndexList_resultsPerSsbIndex'
@@ -2559,8 +2559,8 @@ components:
       x-etsi-ref: 6.5.9
     RsIndexResults:
       required:
-      - resultsCsiRsIndexes
-      - resultsSsbIndexes
+        - resultsCsiRsIndexes
+        - resultsSsbIndexes
       type: object
       properties:
         resultsCsiRsIndexes:
@@ -2570,15 +2570,15 @@ components:
       x-etsi-ref: 6.5.8
     S1BearerInfo:
       required:
-      - s1UeInfo
+        - s1UeInfo
       type: object
       properties:
         s1UeInfo:
           minItems: 1
           required:
-          - associateId
-          - ecgi
-          - s1BearerInfoDetailed
+            - associateId
+            - ecgi
+            - s1BearerInfoDetailed
           type: array
           description: Information on a specific UE as defined below.
           items:
@@ -2592,76 +2592,76 @@ components:
           seconds: 3
           nanoSeconds: 9
         s1UeInfo:
-        - associateId:
-          - type: 0
-            value: value
-          - type: 0
-            value: value
-          s1BearerInfoDetailed:
-          - erabId: 0
-            enbInfo:
-              tunnelId: tunnelId
-              ipAddress: ipAddress
-            sGwInfo:
-              tunnelId: tunnelId
-              ipAddress: ipAddress
-          - erabId: 0
-            enbInfo:
-              tunnelId: tunnelId
-              ipAddress: ipAddress
-            sGwInfo:
-              tunnelId: tunnelId
-              ipAddress: ipAddress
-          ecgi:
-          - plmn:
-              mnc: mnc
-              mcc: mcc
-            cellId: cellId
-          - plmn:
-              mnc: mnc
-              mcc: mcc
-            cellId: cellId
-          tempUeId:
-            mtmsi: mtmsi
-            mmec: mmec
-        - associateId:
-          - type: 0
-            value: value
-          - type: 0
-            value: value
-          s1BearerInfoDetailed:
-          - erabId: 0
-            enbInfo:
-              tunnelId: tunnelId
-              ipAddress: ipAddress
-            sGwInfo:
-              tunnelId: tunnelId
-              ipAddress: ipAddress
-          - erabId: 0
-            enbInfo:
-              tunnelId: tunnelId
-              ipAddress: ipAddress
-            sGwInfo:
-              tunnelId: tunnelId
-              ipAddress: ipAddress
-          ecgi:
-          - plmn:
-              mnc: mnc
-              mcc: mcc
-            cellId: cellId
-          - plmn:
-              mnc: mnc
-              mcc: mcc
-            cellId: cellId
-          tempUeId:
-            mtmsi: mtmsi
-            mmec: mmec
+          - associateId:
+              - type: 0
+                value: value
+              - type: 0
+                value: value
+            s1BearerInfoDetailed:
+              - erabId: 0
+                enbInfo:
+                  tunnelId: tunnelId
+                  ipAddress: ipAddress
+                sGwInfo:
+                  tunnelId: tunnelId
+                  ipAddress: ipAddress
+              - erabId: 0
+                enbInfo:
+                  tunnelId: tunnelId
+                  ipAddress: ipAddress
+                sGwInfo:
+                  tunnelId: tunnelId
+                  ipAddress: ipAddress
+            ecgi:
+              - plmn:
+                  mnc: mnc
+                  mcc: mcc
+                cellId: cellId
+              - plmn:
+                  mnc: mnc
+                  mcc: mcc
+                cellId: cellId
+            tempUeId:
+              mtmsi: mtmsi
+              mmec: mmec
+          - associateId:
+              - type: 0
+                value: value
+              - type: 0
+                value: value
+            s1BearerInfoDetailed:
+              - erabId: 0
+                enbInfo:
+                  tunnelId: tunnelId
+                  ipAddress: ipAddress
+                sGwInfo:
+                  tunnelId: tunnelId
+                  ipAddress: ipAddress
+              - erabId: 0
+                enbInfo:
+                  tunnelId: tunnelId
+                  ipAddress: ipAddress
+                sGwInfo:
+                  tunnelId: tunnelId
+                  ipAddress: ipAddress
+            ecgi:
+              - plmn:
+                  mnc: mnc
+                  mcc: mcc
+                cellId: cellId
+              - plmn:
+                  mnc: mnc
+                  mcc: mcc
+                cellId: cellId
+            tempUeId:
+              mtmsi: mtmsi
+              mmec: mmec
       x-etsi-ref: 6.2.4
     S1BearerNotification:
       required:
-      - notificationType
-      - s1Event
-      - s1UeInfo
+        - notificationType
+        - s1Event
+        - s1UeInfo
       type: object
       properties:
         notificationType:
@@ -2681,10 +2681,10 @@ components:
       x-etsi-ref: 6.4.10
     S1BearerSubscription:
       required:
-      - S1BearerSubscriptionCriteria
-      - callbackReference
-      - eventType
-      - subscriptionType
+        - S1BearerSubscriptionCriteria
+        - callbackReference
+        - eventType
+        - subscriptionType
       type: object
       properties:
         S1BearerSubscriptionCriteria:
@@ -2720,7 +2720,7 @@ components:
       x-etsi-ref: 6.3.9
     SubscriptionLinkList:
       required:
-      - _links
+        - _links
       type: object
       properties:
         _links:
@@ -2730,15 +2730,15 @@ components:
           self:
             href: http://example.com/aeiou
           subscription:
-          - subscriptionType: subscriptionType
-            href: http://example.com/aeiou
-          - subscriptionType: subscriptionType
-            href: http://example.com/aeiou
+            - subscriptionType: subscriptionType
+              href: http://example.com/aeiou
+            - subscriptionType: subscriptionType
+              href: http://example.com/aeiou
       x-etsi-ref: 6.3.10
     TimeStamp:
       required:
-      - nanoSeconds
-      - seconds
+        - nanoSeconds
+        - seconds
       type: object
       properties:
         nanoSeconds:
@@ -2770,29 +2770,29 @@ components:
         \ <p>31 = EVENT_C2 <p>40 = EVENT_W1 <p>41 = EVENT_W2 <p>42 = EVENT_W3 <p>50\
         \ = EVENT_V1 <p>51 = EVENT_V2 <p>60 = EVENT_H1 <p>61 = EVENT_H2"
       enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 10
-      - 11
-      - 12
-      - 13
-      - 14
-      - 15
-      - 20
-      - 21
-      - 30
-      - 31
-      - 40
-      - 41
-      - 42
-      - 50
-      - 51
-      - 60
-      - 61
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 10
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 20
+        - 21
+        - 30
+        - 31
+        - 40
+        - 41
+        - 42
+        - 50
+        - 51
+        - 60
+        - 61
     TriggerNr:
       type: integer
       description: "The enumeration Trigger represents specified triggers for a 5G\
@@ -2802,45 +2802,45 @@ components:
         \ = EVENT_A6 <p>20 = INTER_RAT_PERIODICAL <p>21 = INTER_RAT_CGI <p>30 = EVENT_B1\
         \ <p>31 = EVENT_B2"
       enum:
-      - 0
-      - 1
-      - 2
-      - 10
-      - 11
-      - 12
-      - 13
-      - 14
-      - 15
-      - 20
-      - 21
-      - 30
-      - 31
+        - 0
+        - 1
+        - 2
+        - 10
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 20
+        - 21
+        - 30
+        - 31
     InlineSubscription:
       discriminator:
         propertyName: subscription_type
       oneOf:
-      - $ref: '#/components/schemas/CellChangeSubscription'
-      - $ref: '#/components/schemas/RabEstSubscription'
-      - $ref: '#/components/schemas/RabModSubscription'
-      - $ref: '#/components/schemas/RabRelSubscription'
-      - $ref: '#/components/schemas/MeasRepUeSubscription'
-      - $ref: '#/components/schemas/NrMeasRepUeSubscription'
-      - $ref: '#/components/schemas/MeasTaSubscription'
-      - $ref: '#/components/schemas/CaReconfSubscription'
-      - $ref: '#/components/schemas/S1BearerSubscription'
+        - $ref: '#/components/schemas/CellChangeSubscription'
+        - $ref: '#/components/schemas/RabEstSubscription'
+        - $ref: '#/components/schemas/RabModSubscription'
+        - $ref: '#/components/schemas/RabRelSubscription'
+        - $ref: '#/components/schemas/MeasRepUeSubscription'
+        - $ref: '#/components/schemas/NrMeasRepUeSubscription'
+        - $ref: '#/components/schemas/MeasTaSubscription'
+        - $ref: '#/components/schemas/CaReconfSubscription'
+        - $ref: '#/components/schemas/S1BearerSubscription'
     InlineNotification:
       discriminator:
         propertyName: notification_type
       oneOf:
-      - $ref: '#/components/schemas/CellChangeNotification'
-      - $ref: '#/components/schemas/RabEstNotification'
-      - $ref: '#/components/schemas/RabModNotification'
-      - $ref: '#/components/schemas/RabRelNotification'
-      - $ref: '#/components/schemas/MeasRepUeNotification'
-      - $ref: '#/components/schemas/NrMeasRepUeNotification'
-      - $ref: '#/components/schemas/MeasTaNotification'
-      - $ref: '#/components/schemas/CaReconfNotification'
-      - $ref: '#/components/schemas/S1BearerNotification'
+        - $ref: '#/components/schemas/CellChangeNotification'
+        - $ref: '#/components/schemas/RabEstNotification'
+        - $ref: '#/components/schemas/RabModNotification'
+        - $ref: '#/components/schemas/RabRelNotification'
+        - $ref: '#/components/schemas/MeasRepUeNotification'
+        - $ref: '#/components/schemas/NrMeasRepUeNotification'
+        - $ref: '#/components/schemas/MeasTaNotification'
+        - $ref: '#/components/schemas/CaReconfNotification'
+        - $ref: '#/components/schemas/S1BearerNotification'
     CaReconfNotification_carrierAggregationMeasInfo:
       type: object
       properties:
@@ -2883,7 +2883,7 @@ components:
           $ref: '#/components/schemas/Ecgi'
     CaReconfSubscription__links:
       required:
-      - self
+        - self
       type: object
       properties:
         self:
@@ -2920,8 +2920,8 @@ components:
         \ in the response."
     CellChangeNotification_tempUeId:
       required:
-      - mmec
-      - mtmsi
+        - mmec
+        - mtmsi
       type: object
       properties:
         mmec:
@@ -2980,7 +2980,7 @@ components:
         \ in the response."
     ExpiryNotification__links:
       required:
-      - self
+        - self
       type: object
       properties:
         self:
@@ -3383,14 +3383,14 @@ components:
           x-etsi-mec-origin-type: Plmn
     MeasRepUeNotification_nrBNCs:
       required:
-      - nrBNCellInfo
+        - nrBNCellInfo
       type: object
       properties:
         nrBNCellInfo:
           minItems: 1
           required:
-          - nrBNCellGId
-          - nrBNCellPlmn
+            - nrBNCellGId
+            - nrBNCellPlmn
           type: array
           description: Best neighbours of the secondary serving cell(s) info
           items:
@@ -3435,14 +3435,14 @@ components:
           x-etsi-mec-origin-type: Plmn
     MeasRepUeNotification_nrSCs:
       required:
-      - nrSCellInfo
+        - nrSCellInfo
       type: object
       properties:
         nrSCellInfo:
           minItems: 1
           required:
-          - nrSCellGId
-          - nrSCellPlmn
+            - nrSCellGId
+            - nrSCellPlmn
           type: array
           description: Secondary serving cell(s) info.
           items:
@@ -3504,8 +3504,8 @@ components:
         nrNCellInfo:
           minItems: 1
           required:
-          - nrNCellGId
-          - nrNCellPlmn
+            - nrNCellGId
+            - nrNCellPlmn
           type: array
           description: 5G NR neighbour cell info.
           items:
@@ -3676,10 +3676,10 @@ components:
         \ in the response."
     RabEstNotification_erabQosParameters_qosInformation:
       required:
-      - erabGbrDl
-      - erabGbrUl
-      - erabMbrDl
-      - erabMbrUl
+        - erabGbrDl
+        - erabGbrUl
+        - erabMbrDl
+        - erabMbrUl
       type: object
       properties:
         erabGbrDl:
@@ -3714,7 +3714,7 @@ components:
         erabMbrDl: 2
     RabEstNotification_erabQosParameters:
       required:
-      - qci
+        - qci
       type: object
       properties:
         qci:
@@ -3734,8 +3734,8 @@ components:
         qci: 1
     RabEstNotification_tempUeId:
       required:
-      - mmec
-      - mtmsi
+        - mmec
+        - mtmsi
       type: object
       properties:
         mmec:
@@ -3752,7 +3752,7 @@ components:
         below. '
     RabEstSubscription_filterCriteriaQci:
       required:
-      - qci
+        - qci
       type: object
       properties:
         appInstanceId:
@@ -3811,7 +3811,7 @@ components:
         erabInfo:
           minItems: 1
           required:
-          - erabId
+            - erabId
           type: array
           description: Information on E-RAB as defined below.
           items:
@@ -3820,27 +3820,27 @@ components:
           x-etsi-mec-origin-type: Structure (inlined)
       example:
         associateId:
-        - type: 0
-          value: value
-        - type: 0
-          value: value
+          - type: 0
+            value: value
+          - type: 0
+            value: value
         erabInfo:
-        - erabId: 6
-          erabQosParameters:
-            qosInformation:
-              erabGbrDl: 5
-              erabGbrUl: 5
-              erabMbrUl: 7
-              erabMbrDl: 2
-            qci: 1
-        - erabId: 6
-          erabQosParameters:
-            qosInformation:
-              erabGbrDl: 5
-              erabGbrUl: 5
-              erabMbrUl: 7
-              erabMbrDl: 2
-            qci: 1
+          - erabId: 6
+            erabQosParameters:
+              qosInformation:
+                erabGbrDl: 5
+                erabGbrUl: 5
+                erabMbrUl: 7
+                erabMbrDl: 2
+              qci: 1
+          - erabId: 6
+            erabQosParameters:
+              qosInformation:
+                erabGbrDl: 5
+                erabGbrUl: 5
+                erabMbrUl: 7
+                erabMbrDl: 2
+              qci: 1
     RabInfo_cellUserInfo:
       type: object
       properties:
@@ -3849,7 +3849,7 @@ components:
         ueInfo:
           minItems: 1
           required:
-          - erabInfo
+            - erabInfo
           type: array
           description: Information on UEs in the specific cell as defined below.
           items:
@@ -3858,50 +3858,50 @@ components:
           x-etsi-mec-origin-type: Structure (inlined)
       example:
         ueInfo:
-        - associateId:
-          - type: 0
-            value: value
-          - type: 0
-            value: value
-          erabInfo:
-          - erabId: 6
-            erabQosParameters:
-              qosInformation:
-                erabGbrDl: 5
-                erabGbrUl: 5
-                erabMbrUl: 7
-                erabMbrDl: 2
-              qci: 1
-          - erabId: 6
-            erabQosParameters:
-              qosInformation:
-                erabGbrDl: 5
-                erabGbrUl: 5
-                erabMbrUl: 7
-                erabMbrDl: 2
-              qci: 1
-        - associateId:
-          - type: 0
-            value: value
-          - type: 0
-            value: value
-          erabInfo:
-          - erabId: 6
-            erabQosParameters:
-              qosInformation:
-                erabGbrDl: 5
-                erabGbrUl: 5
-                erabMbrUl: 7
-                erabMbrDl: 2
-              qci: 1
-          - erabId: 6
-            erabQosParameters:
-              qosInformation:
-                erabGbrDl: 5
-                erabGbrUl: 5
-                erabMbrUl: 7
-                erabMbrDl: 2
-              qci: 1
+          - associateId:
+              - type: 0
+                value: value
+              - type: 0
+                value: value
+            erabInfo:
+              - erabId: 6
+                erabQosParameters:
+                  qosInformation:
+                    erabGbrDl: 5
+                    erabGbrUl: 5
+                    erabMbrUl: 7
+                    erabMbrDl: 2
+                  qci: 1
+              - erabId: 6
+                erabQosParameters:
+                  qosInformation:
+                    erabGbrDl: 5
+                    erabGbrUl: 5
+                    erabMbrUl: 7
+                    erabMbrDl: 2
+                  qci: 1
+          - associateId:
+              - type: 0
+                value: value
+              - type: 0
+                value: value
+            erabInfo:
+              - erabId: 6
+                erabQosParameters:
+                  qosInformation:
+                    erabGbrDl: 5
+                    erabGbrUl: 5
+                    erabMbrUl: 7
+                    erabMbrDl: 2
+                  qci: 1
+              - erabId: 6
+                erabQosParameters:
+                  qosInformation:
+                    erabGbrDl: 5
+                    erabGbrUl: 5
+                    erabMbrUl: 7
+                    erabMbrDl: 2
+                  qci: 1
         ecgi:
           plmn:
             mnc: mnc
@@ -3909,10 +3909,10 @@ components:
           cellId: cellId
     RabModNotification_erabQosParameters_qosInformation:
       required:
-      - erabGbrDl
-      - erabGbrUl
-      - erabMbrDl
-      - erabMbrUl
+        - erabGbrDl
+        - erabGbrUl
+        - erabMbrDl
+        - erabMbrUl
       type: object
       properties:
         erabGbrDl:
@@ -3942,7 +3942,7 @@ components:
       description: The QoS Information for the E-RAB as defined below.
     RabModNotification_erabQosParameters:
       required:
-      - qci
+        - qci
       type: object
       properties:
         qci:
@@ -3955,8 +3955,8 @@ components:
       description: The QoS parameters for the E-RAB as defined below.
     RabModSubscription_filterCriteriaQci:
       required:
-      - erabId
-      - qci
+        - erabId
+        - qci
       type: object
       properties:
         appInstanceId:
@@ -3988,7 +3988,7 @@ components:
         \ in the response."
     RabRelNotification_erabReleaseInfo:
       required:
-      - erabId
+        - erabId
       type: object
       properties:
         erabId:
@@ -4020,8 +4020,8 @@ components:
           $ref: '#/components/schemas/MeasQuantityResultsNr'
     S1BearerInfo_enbInfo:
       required:
-      - ipAddress
-      - tunnelId
+        - ipAddress
+        - tunnelId
       type: object
       properties:
         ipAddress:
@@ -4040,8 +4040,8 @@ components:
         ipAddress: ipAddress
     S1BearerInfo_sGwInfo:
       required:
-      - ipAddress
-      - tunnelId
+        - ipAddress
+        - tunnelId
       type: object
       properties:
         ipAddress:
@@ -4102,9 +4102,9 @@ components:
         s1BearerInfoDetailed:
           minItems: 1
           required:
-          - enbInfo
-          - erabId
-          - sGwInfo
+            - enbInfo
+            - erabId
+            - sGwInfo
           type: array
           description: S1 bearer information as defined below.
           items:
@@ -4115,41 +4115,41 @@ components:
           $ref: '#/components/schemas/CellChangeNotification_tempUeId'
       example:
         associateId:
-        - type: 0
-          value: value
-        - type: 0
-          value: value
+          - type: 0
+            value: value
+          - type: 0
+            value: value
         s1BearerInfoDetailed:
-        - erabId: 0
-          enbInfo:
-            tunnelId: tunnelId
-            ipAddress: ipAddress
-          sGwInfo:
-            tunnelId: tunnelId
-            ipAddress: ipAddress
-        - erabId: 0
-          enbInfo:
-            tunnelId: tunnelId
-            ipAddress: ipAddress
-          sGwInfo:
-            tunnelId: tunnelId
-            ipAddress: ipAddress
+          - erabId: 0
+            enbInfo:
+              tunnelId: tunnelId
+              ipAddress: ipAddress
+            sGwInfo:
+              tunnelId: tunnelId
+              ipAddress: ipAddress
+          - erabId: 0
+            enbInfo:
+              tunnelId: tunnelId
+              ipAddress: ipAddress
+            sGwInfo:
+              tunnelId: tunnelId
+              ipAddress: ipAddress
         ecgi:
-        - plmn:
-            mnc: mnc
-            mcc: mcc
-          cellId: cellId
-        - plmn:
-            mnc: mnc
-            mcc: mcc
-          cellId: cellId
+          - plmn:
+              mnc: mnc
+              mcc: mcc
+            cellId: cellId
+          - plmn:
+              mnc: mnc
+              mcc: mcc
+            cellId: cellId
         tempUeId:
           mtmsi: mtmsi
           mmec: mmec
     S1BearerNotification_s1UeInfo:
       required:
-      - ecgi
-      - s1BearerInfo
+        - ecgi
+        - s1BearerInfo
       type: object
       properties:
         associateId:
@@ -4172,9 +4172,9 @@ components:
         s1BearerInfo:
           minItems: 1
           required:
-          - enbInfo
-          - erabId
-          - sGwInfo
+            - enbInfo
+            - erabId
+            - sGwInfo
           type: array
           description: S1 bearer information as defined below.
           items:
@@ -4236,7 +4236,7 @@ components:
         href: http://example.com/aeiou
     SubscriptionLinkList__links:
       required:
-      - self
+        - self
       type: object
       properties:
         self:
@@ -4244,8 +4244,8 @@ components:
         subscription:
           minItems: 0
           required:
-          - href
-          - subscriptionType
+            - href
+            - subscriptionType
           type: array
           description: A link to a subscription.
           items:
@@ -4257,10 +4257,10 @@ components:
         self:
           href: http://example.com/aeiou
         subscription:
-        - subscriptionType: subscriptionType
-          href: http://example.com/aeiou
-        - subscriptionType: subscriptionType
-          href: http://example.com/aeiou
+          - subscriptionType: subscriptionType
+            href: http://example.com/aeiou
+          - subscriptionType: subscriptionType
+            href: http://example.com/aeiou
   responses:
     "204":
       description: No Content

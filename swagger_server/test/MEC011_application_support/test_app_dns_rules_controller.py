@@ -3,11 +3,8 @@
 from __future__ import absolute_import
 
 from flask import json
-from six import BytesIO
 
 from swagger_server.models.MEC011_application_support.dns_rule import DnsRule  # noqa: E501
-from swagger_server.models.MEC011_application_support.dns_rule_id import DnsRuleId
-from swagger_server.models.problem_details import ProblemDetails  # noqa: E501
 from swagger_server.test import BaseTestCase
 
 

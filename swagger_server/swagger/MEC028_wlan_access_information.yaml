@@ -13,73 +13,73 @@ externalDocs:
   description: ETSI MEC028 V2.2.1 WLAN Information API
   url: https://www.etsi.org/deliver/etsi_gs/MEC/001_099/028/02.02.01_60/gs_mec028v020201p.pdf
 servers:
-- url: https://localhost/wai/v2
+  - url: https://localhost/wai/v2
 tags:
-- name: wai
+  - name: wai
 paths:
   /queries/ap/ap_information:
     get:
       tags:
-      - wai
+        - wai
       summary: Retrieve information on existing Access Points
       description: Queries information about existing WLAN Access Points
       operationId: ap_info_get
       parameters:
-      - name: filter
-        in: query
-        description: Attribute-based filtering expression according to clause 6.19
-          of ETSI GS MEC 009. .
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-      - name: all_fields
-        in: query
-        description: Include all complex attributes in the response. See clause 6.18
-          of ETSI GS MEC 009 for details.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-      - name: fields
-        in: query
-        description: Complex attributes to be included into the response. See clause
-          6.18 of ETSI GS MEC 009 for details.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
+        - name: filter
+          in: query
+          description: Attribute-based filtering expression according to clause 6.19
+            of ETSI GS MEC 009. .
+          required: false
+          style: form
+          explode: true
+          schema:
             type: string
-      - name: exclude_fields
-        in: query
-        description: Complex attributes to be excluded from the response. See clause
-          6.18 of ETSI GS MEC 009 for details.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
+        - name: all_fields
+          in: query
+          description: Include all complex attributes in the response. See clause 6.18
+            of ETSI GS MEC 009 for details.
+          required: false
+          style: form
+          explode: true
+          schema:
             type: string
-      - name: exclude_default
-        in: query
-        description: "Indicates to exclude the following complex attributes from the\
+        - name: fields
+          in: query
+          description: Complex attributes to be included into the response. See clause
+            6.18 of ETSI GS MEC 009 for details.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: exclude_fields
+          in: query
+          description: Complex attributes to be excluded from the response. See clause
+            6.18 of ETSI GS MEC 009 for details.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: exclude_default
+          in: query
+          description: "Indicates to exclude the following complex attributes from the\
           \ response. See clause 6.18 of ETSI GS MEC 009 for details. The following\
           \ attributes shall be excluded from the structure in the response body if\
           \ this parameter is provided, or none of the parameters \"all_fields\",\
           \ \"fields\", \"exclude_fields\", \"exclude_default\" are provided: Not\
           \ applicable"
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
       responses:
         "200":
           description: Successful response to ap_info request
@@ -134,66 +134,66 @@ paths:
   /queries/sta/sta_information:
     get:
       tags:
-      - wai
+        - wai
       summary: Retrieve information on existing Stations
       description: Queries information about existing WLAN stations
       operationId: sta_info_get
       parameters:
-      - name: filter
-        in: query
-        description: Attribute-based filtering expression according to clause 6.19
-          of ETSI GS MEC 009. .
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-      - name: all_fields
-        in: query
-        description: Include all complex attributes in the response. See clause 6.18
-          of ETSI GS MEC 009 for details.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
-      - name: fields
-        in: query
-        description: Complex attributes to be included into the response. See clause
-          6.18 of ETSI GS MEC 009 for details.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
+        - name: filter
+          in: query
+          description: Attribute-based filtering expression according to clause 6.19
+            of ETSI GS MEC 009. .
+          required: false
+          style: form
+          explode: true
+          schema:
             type: string
-      - name: exclude_fields
-        in: query
-        description: Complex attributes to be excluded from the response. See clause
-          6.18 of ETSI GS MEC 009 for details.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
+        - name: all_fields
+          in: query
+          description: Include all complex attributes in the response. See clause 6.18
+            of ETSI GS MEC 009 for details.
+          required: false
+          style: form
+          explode: true
+          schema:
             type: string
-      - name: exclude_default
-        in: query
-        description: "Indicates to exclude the following complex attributes from the\
+        - name: fields
+          in: query
+          description: Complex attributes to be included into the response. See clause
+            6.18 of ETSI GS MEC 009 for details.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: exclude_fields
+          in: query
+          description: Complex attributes to be excluded from the response. See clause
+            6.18 of ETSI GS MEC 009 for details.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: exclude_default
+          in: query
+          description: "Indicates to exclude the following complex attributes from the\
           \ response. See clause 6.18 of ETSI GS MEC 009 for details. The following\
           \ attributes shall be excluded from the structure in the response body if\
           \ this parameter is provided, or none of the parameters \"all_fields\",\
           \ \"fields\", \"exclude_fields\", \"exclude_default\" are provided: Not\
           \ applicable"
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
       responses:
         "200":
           description: Successful response to sta_info request
@@ -248,20 +248,20 @@ paths:
   /subscriptions:
     get:
       tags:
-      - wai
+        - wai
       summary: Retrieve information on subscriptions for notifications
       description: Queries information on subscriptions for notifications
       operationId: subscription_link_list_subscriptions_get
       parameters:
-      - name: subscription_type
-        in: query
-        description: "Filter on a specific subscription type. Permitted values: assoc_sta,\
+        - name: subscription_type
+          in: query
+          description: "Filter on a specific subscription type. Permitted values: assoc_sta,\
           \ sta_data_rate, measure_report."
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
       responses:
         "200":
           description: Response body contains the list of links to requestors subscriptions.
@@ -274,11 +274,11 @@ paths:
                   self:
                     href: http://meAppServer.example.com/wai/v2/subscriptions
                 subscription:
-                - _links:
-                    self:
-                      href: http://meAppServer.example.com/wai/v2/subscriptions/sub123
-                  callbackReference: http://my.callback.com/wai/assocStaSubscription/some-id
-                  subscriptionType: AssocStaSubscription
+                  - _links:
+                      self:
+                        href: http://meAppServer.example.com/wai/v2/subscriptions/sub123
+                    callbackReference: http://my.callback.com/wai/assocStaSubscription/some-id
+                    subscriptionType: AssocStaSubscription
         "400":
           description: "Bad Request : used to indicate that incorrect parameters were\
             \ passed to the request."
@@ -322,7 +322,7 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC028_wlan_access_information.wai_controller
     post:
       tags:
-      - wai
+        - wai
       summary: Create a new subscription
       description: Creates a new subscription to WLAN Access Information notifications
       operationId: subscriptions_post
@@ -341,9 +341,9 @@ paths:
               apId:
                 bssid: 005C0A0A0A0A
                 ssid:
-                - myNetworkSsid
+                  - myNetworkSsid
                 ipAddress:
-                - 10.10.100.1
+                  - 10.10.100.1
         required: true
       responses:
         "201":
@@ -364,9 +364,9 @@ paths:
                 apId:
                   bssid: 005C0A0A0A0A
                   ssid:
-                  - myNetworkSsid
+                    - myNetworkSsid
                   ipAddress:
-                  - 10.10.100.1
+                    - 10.10.100.1
         "400":
           description: "Bad Request : used to indicate that incorrect parameters were\
             \ passed to the request."
@@ -456,17 +456,17 @@ paths:
                       apId:
                         bssid: 005C0A0A0A0A
                         ssid:
-                        - myNetworkSsid
+                          - myNetworkSsid
                         ipAddress:
-                        - 10.10.100.1
+                          - 10.10.100.1
                       staId:
                         macId: 005C01111111
                         ssid:
-                        - myNetworkSsid
-                        - myOtherNetworkSsid
+                          - myNetworkSsid
+                          - myOtherNetworkSsid
                         aid: "1122"
                         ipAddress:
-                        - 10.10.1.255
+                          - 10.10.1.255
                 required: true
               responses:
                 "204":
@@ -475,22 +475,22 @@ paths:
   /subscriptions/{subscriptionId}:
     get:
       tags:
-      - wai
+        - wai
       summary: Retrieve information on current specific subscription
       description: "Queries information about an existing subscription, identified\
         \ by its self-referring URI returned on creation (initial POST)"
       operationId: subscriptions_get
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Id, specifically the \"self\" returned in the subscription\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Id, specifically the \"self\" returned in the subscription\
           \ request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
       responses:
         "200":
           description: Subscription information regarding subscription notifications
@@ -510,9 +510,9 @@ paths:
                 apId:
                   bssid: 005C0A0A0A0A
                   ssid:
-                  - myNetworkSsid
+                    - myNetworkSsid
                   ipAddress:
-                  - 10.10.100.1
+                    - 10.10.100.1
         "400":
           description: "Bad Request : used to indicate that incorrect parameters were\
             \ passed to the request."
@@ -556,22 +556,22 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC028_wlan_access_information.wai_controller
     put:
       tags:
-      - wai
+        - wai
       summary: Modify an existing subscription
       description: "Updates an existing subscription, identified by its self-referring\
         \ URI returned on creation (initial POST)"
       operationId: subscriptions_put
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Id, specifically the \"self\" returned in the subscription\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Id, specifically the \"self\" returned in the subscription\
           \ request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
       requestBody:
         description: Subscription to be modified
         content:
@@ -590,9 +590,9 @@ paths:
               apId:
                 bssid: 005C0A0A0A0A
                 ssid:
-                - myNetworkSsid
+                  - myNetworkSsid
                 ipAddress:
-                - 10.10.100.1
+                  - 10.10.100.1
         required: true
       responses:
         "200":
@@ -609,9 +609,9 @@ paths:
                 apId:
                   bssid: 005C0A0A0A0A
                   ssid:
-                  - myNetworkSsid
+                    - myNetworkSsid
                   ipAddress:
-                  - 10.10.100.1
+                    - 10.10.100.1
         "400":
           description: "Bad Request : used to indicate that incorrect parameters were\
             \ passed to the request."
@@ -683,22 +683,22 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC028_wlan_access_information.wai_controller
     delete:
       tags:
-      - wai
+        - wai
       summary: Cancel an existing subscription
       description: "Cancels an existing subscription, identified by its self-referring\
         \ URI returned on creation (initial POST)"
       operationId: subscriptions_delete
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Subscription Id, specifically the \"self\" returned in the subscription\
+        - name: subscriptionId
+          in: path
+          description: "Subscription Id, specifically the \"self\" returned in the subscription\
           \ request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
       responses:
         "204":
           description: No Content
@@ -732,7 +732,7 @@ paths:
   /measurements:
     get:
       tags:
-      - wai
+        - wai
       summary: Retrieve information on measurements configuration
       description: Queries information on measurements configuration
       operationId: measurement_link_list_measurements_get
@@ -749,8 +749,8 @@ paths:
                   self:
                     href: http://meAppServer.example.com/wai/v2/measurements
                 measurementConfig:
-                - href: http://meAppServer.example.com/wai/v2/measurements/meas123
-                  measurementId: myId1
+                  - href: http://meAppServer.example.com/wai/v2/measurements/meas123
+                    measurementId: myId1
         "400":
           description: "Bad Request : used to indicate that incorrect parameters were\
             \ passed to the request."
@@ -794,7 +794,7 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC028_wlan_access_information.wai_controller
     post:
       tags:
-      - wai
+        - wai
       summary: Create a new measurement configuration
       description: Creates a new measurement configuration
       operationId: measurements_post
@@ -808,10 +808,10 @@ paths:
               staId:
                 macId: 005C01111111
                 ssid:
-                - myNetworkSsid
-                - myOtherNetworkSsid
+                  - myNetworkSsid
+                  - myOtherNetworkSsid
               measurementId: myId1
-              measurementInfo: {}
+              measurementInfo: { }
         required: true
       responses:
         "201":
@@ -827,10 +827,10 @@ paths:
                 staId:
                   macId: 005C01111111
                   ssid:
-                  - myNetworkSsid
-                  - myOtherNetworkSsid
+                    - myNetworkSsid
+                    - myOtherNetworkSsid
                 measurementId: myId1
-                measurementInfo: {}
+                measurementInfo: { }
         "400":
           description: "Bad Request : used to indicate that incorrect parameters were\
             \ passed to the request."
@@ -902,22 +902,22 @@ paths:
   /measurements/{measurementConfigId}:
     get:
       tags:
-      - wai
+        - wai
       summary: Retrieve information on an existing measurement configuration
       description: "Queries information about an existing measurement configuration,\
         \ identified by its self-referring URI returned on creation (initial POST)"
       operationId: measurements_get
       parameters:
-      - name: measurementConfigId
-        in: path
-        description: "Measurement configuration Id, specifically the \"self\" returned\
+        - name: measurementConfigId
+          in: path
+          description: "Measurement configuration Id, specifically the \"self\" returned\
           \ in the measurement configuration request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
       responses:
         "200":
           description: Measurement configuration information
@@ -932,10 +932,10 @@ paths:
                 staId:
                   macId: 005C01111111
                   ssid:
-                  - myNetworkSsid
-                  - myOtherNetworkSsid
+                    - myNetworkSsid
+                    - myOtherNetworkSsid
                 measurementId: myId1
-                measurementInfo: {}
+                measurementInfo: { }
         "400":
           description: "Bad Request : used to indicate that incorrect parameters were\
             \ passed to the request."
@@ -979,22 +979,22 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC028_wlan_access_information.wai_controller
     put:
       tags:
-      - wai
+        - wai
       summary: Modify an existing measurement configuration
       description: "Updates an existing measurement configuration, identified by its\
         \ self-referring URI returned on creation (initial POST)"
       operationId: measurements_put
       parameters:
-      - name: measurementConfigId
-        in: path
-        description: "Measurement configuration Id, specifically the \"self\" returned\
+        - name: measurementConfigId
+          in: path
+          description: "Measurement configuration Id, specifically the \"self\" returned\
           \ in the measurement configuration request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
       requestBody:
         description: Measurement configuration to be modified
         content:
@@ -1008,10 +1008,10 @@ paths:
               staId:
                 macId: 005C01111111
                 ssid:
-                - myNetworkSsid
-                - myOtherNetworkSsid
+                  - myNetworkSsid
+                  - myOtherNetworkSsid
               measurementId: myId1
-              measurementInfo: {}
+              measurementInfo: { }
         required: true
       responses:
         "200":
@@ -1027,10 +1027,10 @@ paths:
                 staId:
                   macId: 005C01111111
                   ssid:
-                  - myNetworkSsid
-                  - myOtherNetworkSsid
+                    - myNetworkSsid
+                    - myOtherNetworkSsid
                 measurementId: myId1
-                measurementInfo: {}
+                measurementInfo: { }
         "400":
           description: "Bad Request : used to indicate that incorrect parameters were\
             \ passed to the request."
@@ -1102,22 +1102,22 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC028_wlan_access_information.wai_controller
     delete:
       tags:
-      - wai
+        - wai
       summary: Cancel a measurement configuration
       description: "Cancels an existing measurement configuration, identified by its\
         \ self-referring URI returned on creation (initial POST)"
       operationId: measurements_delete
       parameters:
-      - name: measurementConfigId
-        in: path
-        description: "Measurement configuration Id, specifically the \"self\" returned\
+        - name: measurementConfigId
+          in: path
+          description: "Measurement configuration Id, specifically the \"self\" returned\
           \ in the measurement configuration request"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-          format: uri
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            format: uri
       responses:
         "204":
           description: No Content
@@ -1152,7 +1152,7 @@ components:
   schemas:
     ApAssociated:
       required:
-      - bssid
+        - bssid
       type: object
       properties:
         assocId:
@@ -1189,15 +1189,15 @@ components:
         assocId: assocId
         bssid: bssid
         ipAddress:
-        - ipAddress
-        - ipAddress
+          - ipAddress
+          - ipAddress
         ssid:
-        - ssid
-        - ssid
+          - ssid
+          - ssid
       x-etsi-ref: 6.5.12
     ApIdentity:
       required:
-      - bssid
+        - bssid
       type: object
       properties:
         bssid:
@@ -1228,15 +1228,15 @@ components:
       example:
         bssid: bssid
         ipAddress:
-        - ipAddress
-        - ipAddress
+          - ipAddress
+          - ipAddress
         ssid:
-        - ssid
-        - ssid
+          - ssid
+          - ssid
       x-etsi-ref: 6.5.3
     ApInfo:
       required:
-      - apId
+        - apId
       type: object
       properties:
         apId:
@@ -1278,11 +1278,11 @@ components:
         apId:
           bssid: bssid
           ipAddress:
-          - ipAddress
-          - ipAddress
+            - ipAddress
+            - ipAddress
           ssid:
-          - ssid
-          - ssid
+            - ssid
+            - ssid
         channel: 7
         apLocation:
           civicLocation:
@@ -1422,8 +1422,8 @@ components:
       x-etsi-ref: 6.5.9
     AssocStaNotification:
       required:
-      - apId
-      - notificationType
+        - apId
+        - notificationType
       type: object
       properties:
         apId:
@@ -1446,8 +1446,8 @@ components:
       x-etsi-ref: 6.4.2
     AssocStaSubscription:
       required:
-      - apId
-      - subscriptionType
+        - apId
+        - subscriptionType
       type: object
       properties:
         _links:
@@ -1492,11 +1492,11 @@ components:
       x-etsi-ref: 6.3.2
     BeaconReport:
       required:
-      - bssid
-      - channel
-      - measurementId
-      - operatingClass
-      - reportedFrameInfo
+        - bssid
+        - channel
+        - measurementId
+        - operatingClass
+        - reportedFrameInfo
       type: object
       properties:
         antennaId:
@@ -1573,12 +1573,12 @@ components:
         staId:
           macId: macId
           ipAddress:
-          - ipAddress
-          - ipAddress
+            - ipAddress
+            - ipAddress
           aid: aid
           ssid:
-          - ssid
-          - ssid
+            - ssid
+            - ssid
         antennaId: 0
         bssid: bssid
         operatingClass: 1
@@ -1594,8 +1594,8 @@ components:
       x-etsi-ref: 6.5.27
     BeaconReportingConfig:
       required:
-      - reportingCondition
-      - threshold
+        - reportingCondition
+        - threshold
       type: object
       properties:
         reportingCondition:
@@ -1640,10 +1640,10 @@ components:
       x-etsi-ref: 6.5.28
     BeaconRequestConfig:
       required:
-      - beaconReportingConf
-      - channelId
-      - measurementMode
-      - operatingClass
+        - beaconReportingConf
+        - channelId
+        - measurementMode
+        - operatingClass
       type: object
       properties:
         beaconReportingConf:
@@ -1701,12 +1701,12 @@ components:
       x-etsi-ref: 6.5.25
     BssCapabilities:
       required:
-      - apsd
-      - delayedBACK
-      - immediateBACK
-      - qos
-      - radioMeasurements
-      - spectrumManagement
+        - apsd
+        - delayedBACK
+        - immediateBACK
+        - qos
+        - radioMeasurements
+        - spectrumManagement
       type: object
       properties:
         apsd:
@@ -1749,9 +1749,9 @@ components:
       x-etsi-ref: 6.5.31
     BssLoad:
       required:
-      - availAdmCap
-      - channelUtilization
-      - staCount
+        - availAdmCap
+        - channelUtilization
+        - staCount
       type: object
       properties:
         availAdmCap:
@@ -1784,13 +1784,13 @@ components:
       x-etsi-ref: 6.5.7
     BssidInfo:
       required:
-      - apReachability
-      - capabilities
-      - ftm
-      - highThroughput
-      - mobilityDomain
-      - security
-      - veryHighThroughput
+        - apReachability
+        - capabilities
+        - ftm
+        - highThroughput
+        - mobilityDomain
+        - security
+        - veryHighThroughput
       type: object
       properties:
         apReachability:
@@ -1866,11 +1866,11 @@ components:
       x-etsi-ref: 6.5.30
     ChannelLoad:
       required:
-      - channel
-      - channelLoad
-      - measurementDuration
-      - measurementId
-      - operatingClass
+        - channel
+        - channelLoad
+        - measurementDuration
+        - measurementId
+        - operatingClass
       type: object
       properties:
         channel:
@@ -1920,8 +1920,8 @@ components:
       x-etsi-ref: 6.5.39
     ChannelLoadConfig:
       required:
-      - channel
-      - operatingClass
+        - channel
+        - operatingClass
       type: object
       properties:
         channel:
@@ -1963,7 +1963,7 @@ components:
       x-etsi-ref: 6.5.24
     CivicLocation:
       required:
-      - country
+        - country
       type: object
       properties:
         ca0:
@@ -2169,12 +2169,12 @@ components:
       x-etsi-ref: 6.5.20
     DmgCapabilities:
       required:
-      - ExtScMcsCap
-      - dmgApOrPcpCapInfo
-      - dmgStaBeamTrackTimeLimit
-      - dmgStaCapInfo
-      - maxNrBasicAmsduSubframes
-      - maxNrShortAmsduSubframes
+        - ExtScMcsCap
+        - dmgApOrPcpCapInfo
+        - dmgStaBeamTrackTimeLimit
+        - dmgStaCapInfo
+        - maxNrBasicAmsduSubframes
+        - maxNrShortAmsduSubframes
       type: object
       properties:
         ExtScMcsCap:
@@ -2229,9 +2229,9 @@ components:
       x-etsi-ref: 6.5.17
     EdmgCapabilities:
       required:
-      - ampduParameters
-      - supportedMcs
-      - trnParameters
+        - ampduParameters
+        - supportedMcs
+        - trnParameters
       type: object
       properties:
         ampduParameters:
@@ -2259,9 +2259,9 @@ components:
       x-etsi-ref: 6.5.18
     ExpiryNotification:
       required:
-      - _links
-      - expiryDeadline
-      - notificationType
+        - _links
+        - expiryDeadline
+        - notificationType
       type: object
       properties:
         _links:
@@ -2276,11 +2276,11 @@ components:
       x-etsi-ref: 6.4.4
     ExtBssLoad:
       required:
-      - muMimoStaCount
-      - obsSec20MhzUtil
-      - obsSec40MhzUtil
-      - obsSec80MhzUtil
-      - spatStreamUnderUtil
+        - muMimoStaCount
+        - obsSec20MhzUtil
+        - obsSec40MhzUtil
+        - obsSec80MhzUtil
+        - spatStreamUnderUtil
       type: object
       properties:
         muMimoStaCount:
@@ -2326,11 +2326,11 @@ components:
       x-etsi-ref: 6.5.8
     GeoLocation:
       required:
-      - datum
-      - lat
-      - latUncertainty
-      - long
-      - longUncertainty
+        - datum
+        - lat
+        - latUncertainty
+        - long
+        - longUncertainty
       type: object
       properties:
         altitude:
@@ -2401,9 +2401,9 @@ components:
       x-etsi-ref: 6.5.19
     HeCapabilities:
       required:
-      - heMacCapInfo
-      - hePhyCapinfo
-      - supportedHeMcsNssSet
+        - heMacCapInfo
+        - hePhyCapinfo
+        - supportedHeMcsNssSet
       type: object
       properties:
         heMacCapInfo:
@@ -2431,12 +2431,12 @@ components:
       x-etsi-ref: 6.5.16
     HtCapabilities:
       required:
-      - ampduParameters
-      - aselCap
-      - htCapabilityInfo
-      - htExtendedCap
-      - supportedMcsSet
-      - txBeamFormCap
+        - ampduParameters
+        - aselCap
+        - htCapabilityInfo
+        - htExtendedCap
+        - supportedMcsSet
+        - txBeamFormCap
       type: object
       properties:
         ampduParameters:
@@ -2488,19 +2488,19 @@ components:
       discriminator:
         propertyName: notification_type
       oneOf:
-      - $ref: '#/components/schemas/AssocStaNotification'
-      - $ref: '#/components/schemas/StaDataRateNotification'
-      - $ref: '#/components/schemas/MeasurementReportNotification'
+        - $ref: '#/components/schemas/AssocStaNotification'
+        - $ref: '#/components/schemas/StaDataRateNotification'
+        - $ref: '#/components/schemas/MeasurementReportNotification'
     InlineSubscription:
       discriminator:
         propertyName: subscription_type
       oneOf:
-      - $ref: '#/components/schemas/AssocStaSubscription'
-      - $ref: '#/components/schemas/StaDataRateSubscription'
-      - $ref: '#/components/schemas/MeasurementReportSubscription'
+        - $ref: '#/components/schemas/AssocStaSubscription'
+        - $ref: '#/components/schemas/StaDataRateSubscription'
+        - $ref: '#/components/schemas/MeasurementReportSubscription'
     LinkType:
       required:
-      - href
+        - href
       type: object
       properties:
         href:
@@ -2510,9 +2510,9 @@ components:
       x-etsi-ref: 6.5.23
     MeasurementConfig:
       required:
-      - measurementId
-      - measurementInfo
-      - staId
+        - measurementId
+        - measurementInfo
+        - staId
       type: object
       properties:
         _links:
@@ -2537,22 +2537,22 @@ components:
           x-etsi-mec-origin-type: StaIdentity
       example:
         staId:
-        - macId: macId
-          ipAddress:
-          - ipAddress
-          - ipAddress
-          aid: aid
-          ssid:
-          - ssid
-          - ssid
-        - macId: macId
-          ipAddress:
-          - ipAddress
-          - ipAddress
-          aid: aid
-          ssid:
-          - ssid
-          - ssid
+          - macId: macId
+            ipAddress:
+              - ipAddress
+              - ipAddress
+            aid: aid
+            ssid:
+              - ssid
+              - ssid
+          - macId: macId
+            ipAddress:
+              - ipAddress
+              - ipAddress
+            aid: aid
+            ssid:
+              - ssid
+              - ssid
         measurementInfo:
           beaconRequestConf:
             measurementMode: 5
@@ -2593,7 +2593,7 @@ components:
       x-etsi-ref: 6.2.4
     MeasurementConfigLinkList:
       required:
-      - _links
+        - _links
       type: object
       properties:
         _links:
@@ -2606,10 +2606,10 @@ components:
           x-etsi-mec-origin-type: Structure (inlined)
       example:
         measurementConfig:
-        - href: http://example.com/aeiou
-          measurementId: measurementId
-        - href: http://example.com/aeiou
-          measurementId: measurementId
+          - href: http://example.com/aeiou
+            measurementId: measurementId
+          - href: http://example.com/aeiou
+            measurementId: measurementId
         _links:
           self:
             href: href
@@ -2683,7 +2683,7 @@ components:
       x-etsi-ref: 6.5.41
     MeasurementReportNotification:
       required:
-      - notificationType
+        - notificationType
       type: object
       properties:
         beaconReport:
@@ -2736,10 +2736,10 @@ components:
       x-etsi-ref: 6.4.5
     MeasurementReportSubscription:
       required:
-      - measurementId
-      - measurementInfo
-      - staId
-      - subscriptionType
+        - measurementId
+        - measurementInfo
+        - staId
+        - subscriptionType
       type: object
       properties:
         _links:
@@ -2786,12 +2786,12 @@ components:
       x-etsi-ref: 6.3.5
     NeighborReport:
       required:
-      - bssid
-      - bssidInfo
-      - channel
-      - measurementId
-      - operatingClass
-      - phyType
+        - bssid
+        - bssidInfo
+        - channel
+        - measurementId
+        - operatingClass
+        - phyType
       type: object
       properties:
         bssTransitionCandidatePreference:
@@ -2894,8 +2894,8 @@ components:
       x-etsi-ref: 6.5.32
     OBssLoad:
       required:
-      - allocatedTrafficSelfMean
-      - allocatedTrafficShareMean
+        - allocatedTrafficSelfMean
+        - allocatedTrafficShareMean
       type: object
       properties:
         allocatedTrafficSelfMean:
@@ -2976,8 +2976,8 @@ components:
           x-etsi-mec-origin-type: URI
     ReportedBeaconFrameInfo:
       required:
-      - frameType
-      - phyType
+        - frameType
+        - phyType
       type: object
       properties:
         frameType:
@@ -3000,13 +3000,13 @@ components:
       x-etsi-ref: 6.5.29
     ReportingReasonQoSCounters:
       required:
-      - qosAckFailure
-      - qosDiscarded
-      - qosFailed
-      - qosFrameDuplicate
-      - qosMultipleRetry
-      - qosRetry
-      - qosRtsFailure
+        - qosAckFailure
+        - qosDiscarded
+        - qosFailed
+        - qosFrameDuplicate
+        - qosMultipleRetry
+        - qosRetry
+        - qosRtsFailure
       type: object
       properties:
         qosAckFailure:
@@ -3055,13 +3055,13 @@ components:
       x-etsi-ref: 6.5.38
     ReportingReasonStaCounters:
       required:
-      - ackFailure
-      - failed
-      - fcsError
-      - frameDuplicate
-      - multipleRetry
-      - retry
-      - rtsFailure
+        - ackFailure
+        - failed
+        - fcsError
+        - frameDuplicate
+        - multipleRetry
+        - retry
+        - rtsFailure
       type: object
       properties:
         ackFailure:
@@ -3110,7 +3110,7 @@ components:
       x-etsi-ref: 6.5.37
     Rssi:
       required:
-      - rssi
+        - rssi
       type: object
       properties:
         rssi:
@@ -3207,7 +3207,7 @@ components:
       x-etsi-ref: 6.5.22
     StaDataRateNotification:
       required:
-      - notificationType
+        - notificationType
       type: object
       properties:
         notificationType:
@@ -3228,8 +3228,8 @@ components:
       x-etsi-ref: 6.4.3
     StaDataRateSubscription:
       required:
-      - staId
-      - subscriptionType
+        - staId
+        - subscriptionType
       type: object
       properties:
         _links:
@@ -3281,7 +3281,7 @@ components:
       x-etsi-ref: 6.3.3
     StaIdentity:
       required:
-      - macId
+        - macId
       type: object
       properties:
         aid:
@@ -3315,16 +3315,16 @@ components:
       example:
         macId: macId
         ipAddress:
-        - ipAddress
-        - ipAddress
+          - ipAddress
+          - ipAddress
         aid: aid
         ssid:
-        - ssid
-        - ssid
+          - ssid
+          - ssid
       x-etsi-ref: 6.5.11
     StaInfo:
       required:
-      - staId
+        - staId
       type: object
       properties:
         apAssociated:
@@ -3388,225 +3388,225 @@ components:
         rssi:
           rssi: 4
         staStatistics:
-        - staId: null
-          groupZeroData:
-            fcsErrorCount: 8
-            transmittedFrameCount: 5
-            failedCount: 4
-            groupTransmittedFrameCount: 3
-            reportingReasonStaCounters: null
-            transmittedFragmentCount: 7
-            receivedFragmentCount: 3
-            groupReceivedFrameCount: 7
-          groupOneData:
-            rtsFailureCount: 6
-            reportingReasonStaCounters:
-              multipleRetry: true
-              failed: true
-              rtsFailure: true
-              ackFailure: true
-              fcsError: true
-              frameDuplicate: true
-              retry: true
-            retryCount: 7
-            multipleRetryCount: 0
-            frameDuplicateCount: 7
-            ackFailureCount: 3
-            rtsSuccessCount: 0
-          measurementDuration: 3
-          group2to9Data:
-            qosFrameDuplicateCount: 9
-            qosAckFailureCount: 9
-            qosRetriesReceivedCount: 6
-            qosRTSFailureCount: 6
-            qosReceivedFragmentCount: 2
-            reportingReasonQoSCounters:
-              qosRtsFailure: true
-              qosMultipleRetry: true
-              qosFrameDuplicate: true
-              qosDiscarded: true
-              qosRetry: true
-              qosFailed: true
-              qosAckFailure: true
-            qosDiscardedFrameCount: 6
-            qosTransmittedFrameCount: 6
-            qosRetryCount: 6
-            qosMultipleRetryCount: 3
-            qosFailedCount: 8
-            qosRTSSuccessCount: 1
-            qosMPDUsReceivedCount: 6
-            qosTransmittedFragmentCount: 5
-          groupIdentity: 3
-          measurementId: measurementId
-        - staId: null
-          groupZeroData:
-            fcsErrorCount: 8
-            transmittedFrameCount: 5
-            failedCount: 4
-            groupTransmittedFrameCount: 3
-            reportingReasonStaCounters: null
-            transmittedFragmentCount: 7
-            receivedFragmentCount: 3
-            groupReceivedFrameCount: 7
-          groupOneData:
-            rtsFailureCount: 6
-            reportingReasonStaCounters:
-              multipleRetry: true
-              failed: true
-              rtsFailure: true
-              ackFailure: true
-              fcsError: true
-              frameDuplicate: true
-              retry: true
-            retryCount: 7
-            multipleRetryCount: 0
-            frameDuplicateCount: 7
-            ackFailureCount: 3
-            rtsSuccessCount: 0
-          measurementDuration: 3
-          group2to9Data:
-            qosFrameDuplicateCount: 9
-            qosAckFailureCount: 9
-            qosRetriesReceivedCount: 6
-            qosRTSFailureCount: 6
-            qosReceivedFragmentCount: 2
-            reportingReasonQoSCounters:
-              qosRtsFailure: true
-              qosMultipleRetry: true
-              qosFrameDuplicate: true
-              qosDiscarded: true
-              qosRetry: true
-              qosFailed: true
-              qosAckFailure: true
-            qosDiscardedFrameCount: 6
-            qosTransmittedFrameCount: 6
-            qosRetryCount: 6
-            qosMultipleRetryCount: 3
-            qosFailedCount: 8
-            qosRTSSuccessCount: 1
-            qosMPDUsReceivedCount: 6
-            qosTransmittedFragmentCount: 5
-          groupIdentity: 3
-          measurementId: measurementId
+          - staId: null
+            groupZeroData:
+              fcsErrorCount: 8
+              transmittedFrameCount: 5
+              failedCount: 4
+              groupTransmittedFrameCount: 3
+              reportingReasonStaCounters: null
+              transmittedFragmentCount: 7
+              receivedFragmentCount: 3
+              groupReceivedFrameCount: 7
+            groupOneData:
+              rtsFailureCount: 6
+              reportingReasonStaCounters:
+                multipleRetry: true
+                failed: true
+                rtsFailure: true
+                ackFailure: true
+                fcsError: true
+                frameDuplicate: true
+                retry: true
+              retryCount: 7
+              multipleRetryCount: 0
+              frameDuplicateCount: 7
+              ackFailureCount: 3
+              rtsSuccessCount: 0
+            measurementDuration: 3
+            group2to9Data:
+              qosFrameDuplicateCount: 9
+              qosAckFailureCount: 9
+              qosRetriesReceivedCount: 6
+              qosRTSFailureCount: 6
+              qosReceivedFragmentCount: 2
+              reportingReasonQoSCounters:
+                qosRtsFailure: true
+                qosMultipleRetry: true
+                qosFrameDuplicate: true
+                qosDiscarded: true
+                qosRetry: true
+                qosFailed: true
+                qosAckFailure: true
+              qosDiscardedFrameCount: 6
+              qosTransmittedFrameCount: 6
+              qosRetryCount: 6
+              qosMultipleRetryCount: 3
+              qosFailedCount: 8
+              qosRTSSuccessCount: 1
+              qosMPDUsReceivedCount: 6
+              qosTransmittedFragmentCount: 5
+            groupIdentity: 3
+            measurementId: measurementId
+          - staId: null
+            groupZeroData:
+              fcsErrorCount: 8
+              transmittedFrameCount: 5
+              failedCount: 4
+              groupTransmittedFrameCount: 3
+              reportingReasonStaCounters: null
+              transmittedFragmentCount: 7
+              receivedFragmentCount: 3
+              groupReceivedFrameCount: 7
+            groupOneData:
+              rtsFailureCount: 6
+              reportingReasonStaCounters:
+                multipleRetry: true
+                failed: true
+                rtsFailure: true
+                ackFailure: true
+                fcsError: true
+                frameDuplicate: true
+                retry: true
+              retryCount: 7
+              multipleRetryCount: 0
+              frameDuplicateCount: 7
+              ackFailureCount: 3
+              rtsSuccessCount: 0
+            measurementDuration: 3
+            group2to9Data:
+              qosFrameDuplicateCount: 9
+              qosAckFailureCount: 9
+              qosRetriesReceivedCount: 6
+              qosRTSFailureCount: 6
+              qosReceivedFragmentCount: 2
+              reportingReasonQoSCounters:
+                qosRtsFailure: true
+                qosMultipleRetry: true
+                qosFrameDuplicate: true
+                qosDiscarded: true
+                qosRetry: true
+                qosFailed: true
+                qosAckFailure: true
+              qosDiscardedFrameCount: 6
+              qosTransmittedFrameCount: 6
+              qosRetryCount: 6
+              qosMultipleRetryCount: 3
+              qosFailedCount: 8
+              qosRTSSuccessCount: 1
+              qosMPDUsReceivedCount: 6
+              qosTransmittedFragmentCount: 5
+            groupIdentity: 3
+            measurementId: measurementId
         apAssociated:
           assocId: assocId
           bssid: bssid
           ipAddress:
-          - ipAddress
-          - ipAddress
+            - ipAddress
+            - ipAddress
           ssid:
-          - ssid
-          - ssid
+            - ssid
+            - ssid
         neighborReport:
-        - staId: null
-          bssid: bssid
-          operatingClass: 7
-          channel: 6
-          phyType: 1
-          bssTransitionCandidatePreference: 1
-          bssidInfo:
-            highThroughput: true
-            apReachability: 1
-            mobilityDomain: true
-            security: true
-            veryHighThroughput: true
-            capabilities:
-              delayedBACK: true
-              qos: true
-              spectrumManagement: true
-              immediateBACK: true
-              radioMeasurements: true
-              apsd: true
-            ftm: true
-          measurementId: measurementId
-        - staId: null
-          bssid: bssid
-          operatingClass: 7
-          channel: 6
-          phyType: 1
-          bssTransitionCandidatePreference: 1
-          bssidInfo:
-            highThroughput: true
-            apReachability: 1
-            mobilityDomain: true
-            security: true
-            veryHighThroughput: true
-            capabilities:
-              delayedBACK: true
-              qos: true
-              spectrumManagement: true
-              immediateBACK: true
-              radioMeasurements: true
-              apsd: true
-            ftm: true
-          measurementId: measurementId
+          - staId: null
+            bssid: bssid
+            operatingClass: 7
+            channel: 6
+            phyType: 1
+            bssTransitionCandidatePreference: 1
+            bssidInfo:
+              highThroughput: true
+              apReachability: 1
+              mobilityDomain: true
+              security: true
+              veryHighThroughput: true
+              capabilities:
+                delayedBACK: true
+                qos: true
+                spectrumManagement: true
+                immediateBACK: true
+                radioMeasurements: true
+                apsd: true
+              ftm: true
+            measurementId: measurementId
+          - staId: null
+            bssid: bssid
+            operatingClass: 7
+            channel: 6
+            phyType: 1
+            bssTransitionCandidatePreference: 1
+            bssidInfo:
+              highThroughput: true
+              apReachability: 1
+              mobilityDomain: true
+              security: true
+              veryHighThroughput: true
+              capabilities:
+                delayedBACK: true
+                qos: true
+                spectrumManagement: true
+                immediateBACK: true
+                radioMeasurements: true
+                apsd: true
+              ftm: true
+            measurementId: measurementId
         staDataRate:
           staId: null
           staLastDataDownlinkRate: 5
           staLastDataUplinkRate: 9
         channel: 3
         channelLoad:
-        - staId: null
-          operatingClass: 1
-          channel: 2
-          measurementDuration: 7
-          channelLoad: 4
-          measurementId: measurementId
-        - staId: null
-          operatingClass: 1
-          channel: 2
-          measurementDuration: 7
-          channelLoad: 4
-          measurementId: measurementId
+          - staId: null
+            operatingClass: 1
+            channel: 2
+            measurementDuration: 7
+            channelLoad: 4
+            measurementId: measurementId
+          - staId: null
+            operatingClass: 1
+            channel: 2
+            measurementDuration: 7
+            channelLoad: 4
+            measurementId: measurementId
         beaconReport:
-        - staId:
-            macId: macId
-            ipAddress:
-            - ipAddress
-            - ipAddress
-            aid: aid
-            ssid:
-            - ssid
-            - ssid
-          antennaId: 0
-          bssid: bssid
-          operatingClass: 1
-          channel: 6
-          rsni: 9
-          parentTsf: 5
-          measurementId: measurementId
-          ssid: ssid
-          rcpi: 5
-          reportedFrameInfo:
-            phyType: 7
-            frameType: 2
-        - staId:
-            macId: macId
-            ipAddress:
-            - ipAddress
-            - ipAddress
-            aid: aid
-            ssid:
-            - ssid
-            - ssid
-          antennaId: 0
-          bssid: bssid
-          operatingClass: 1
-          channel: 6
-          rsni: 9
-          parentTsf: 5
-          measurementId: measurementId
-          ssid: ssid
-          rcpi: 5
-          reportedFrameInfo:
-            phyType: 7
-            frameType: 2
+          - staId:
+              macId: macId
+              ipAddress:
+                - ipAddress
+                - ipAddress
+              aid: aid
+              ssid:
+                - ssid
+                - ssid
+            antennaId: 0
+            bssid: bssid
+            operatingClass: 1
+            channel: 6
+            rsni: 9
+            parentTsf: 5
+            measurementId: measurementId
+            ssid: ssid
+            rcpi: 5
+            reportedFrameInfo:
+              phyType: 7
+              frameType: 2
+          - staId:
+              macId: macId
+              ipAddress:
+                - ipAddress
+                - ipAddress
+              aid: aid
+              ssid:
+                - ssid
+                - ssid
+            antennaId: 0
+            bssid: bssid
+            operatingClass: 1
+            channel: 6
+            rsni: 9
+            parentTsf: 5
+            measurementId: measurementId
+            ssid: ssid
+            rcpi: 5
+            reportedFrameInfo:
+              phyType: 7
+              frameType: 2
       x-etsi-ref: 6.2.3
     StaStatistics:
       required:
-      - groupIdentity
-      - measurementDuration
-      - measurementId
+        - groupIdentity
+        - measurementDuration
+        - measurementId
       type: object
       properties:
         group2to9Data:
@@ -3694,8 +3694,8 @@ components:
       x-etsi-ref: 6.5.13
     StaStatisticsConfig:
       required:
-      - groupIdentity
-      - triggeredReport
+        - groupIdentity
+        - triggeredReport
       type: object
       properties:
         groupIdentity:
@@ -3743,19 +3743,19 @@ components:
       x-etsi-ref: 6.5.26
     StaStatisticsGroup2to9Data:
       required:
-      - qosAckFailureCount
-      - qosDiscardedFrameCount
-      - qosFailedCount
-      - qosFrameDuplicateCount
-      - qosMPDUsReceivedCount
-      - qosMultipleRetryCount
-      - qosRTSFailureCount
-      - qosRTSSuccessCount
-      - qosReceivedFragmentCount
-      - qosRetriesReceivedCount
-      - qosRetryCount
-      - qosTransmittedFragmentCount
-      - qosTransmittedFrameCount
+        - qosAckFailureCount
+        - qosDiscardedFrameCount
+        - qosFailedCount
+        - qosFrameDuplicateCount
+        - qosMPDUsReceivedCount
+        - qosMultipleRetryCount
+        - qosRTSFailureCount
+        - qosRTSSuccessCount
+        - qosReceivedFragmentCount
+        - qosRetriesReceivedCount
+        - qosRetryCount
+        - qosTransmittedFragmentCount
+        - qosTransmittedFrameCount
       type: object
       properties:
         qosAckFailureCount:
@@ -3863,12 +3863,12 @@ components:
       x-etsi-ref: 6.5.36
     StaStatisticsGroupOneData:
       required:
-      - ackFailureCount
-      - frameDuplicateCount
-      - multipleRetryCount
-      - retryCount
-      - rtsFailureCount
-      - rtsSuccessCount
+        - ackFailureCount
+        - frameDuplicateCount
+        - multipleRetryCount
+        - retryCount
+        - rtsFailureCount
+        - rtsSuccessCount
       type: object
       properties:
         ackFailureCount:
@@ -3927,13 +3927,13 @@ components:
       x-etsi-ref: 6.5.35
     StaStatisticsGroupZeroData:
       required:
-      - failedCount
-      - fcsErrorCount
-      - groupReceivedFrameCount
-      - groupTransmittedFrameCount
-      - receivedFragmentCount
-      - transmittedFragmentCount
-      - transmittedFrameCount
+        - failedCount
+        - fcsErrorCount
+        - groupReceivedFrameCount
+        - groupTransmittedFrameCount
+        - receivedFragmentCount
+        - transmittedFragmentCount
+        - transmittedFrameCount
       type: object
       properties:
         failedCount:
@@ -3992,7 +3992,7 @@ components:
       x-etsi-ref: 6.5.34
     SubscriptionLinkList:
       required:
-      - _links
+        - _links
       type: object
       properties:
         _links:
@@ -4008,15 +4008,15 @@ components:
           self:
             href: href
         subscription:
-        - subscriptionType: subscriptionType
-          href: http://example.com/aeiou
-        - subscriptionType: subscriptionType
-          href: http://example.com/aeiou
+          - subscriptionType: subscriptionType
+            href: http://example.com/aeiou
+          - subscriptionType: subscriptionType
+            href: http://example.com/aeiou
       x-etsi-ref: 6.3.4
     TestNotification:
       required:
-      - _links
-      - notificationType
+        - _links
+        - notificationType
       type: object
       properties:
         _links:
@@ -4029,8 +4029,8 @@ components:
       x-etsi-ref: 6.4.6
     TimeStamp:
       required:
-      - nanoSeconds
-      - seconds
+        - nanoSeconds
+        - seconds
       type: object
       properties:
         nanoSeconds:
@@ -4053,8 +4053,8 @@ components:
       x-etsi-ref: 6.5.2
     VhtCapabilities:
       required:
-      - vhtCapInfo
-      - vhtMcsNss
+        - vhtCapInfo
+        - vhtMcsNss
       type: object
       properties:
         vhtCapInfo:
@@ -4076,12 +4076,12 @@ components:
       x-etsi-ref: 6.5.15
     WanMetrics:
       required:
-      - downlinkLoad
-      - downlinkSpeed
-      - lmd
-      - uplinkLoad
-      - uplinkSpeed
-      - wanInfo
+        - downlinkLoad
+        - downlinkSpeed
+        - lmd
+        - uplinkLoad
+        - uplinkSpeed
+        - wanInfo
       type: object
       properties:
         downlinkLoad:
@@ -4202,7 +4202,7 @@ components:
       x-etsi-ref: 6.5.4
     AssocStaSubscription__links:
       required:
-      - self
+        - self
       type: object
       properties:
         self:
@@ -4211,8 +4211,8 @@ components:
         in the HTTP responses and in HTTP PUT requests.
     AssocStaSubscription_notificationEvent:
       required:
-      - threshold
-      - trigger
+        - threshold
+        - trigger
       type: object
       properties:
         threshold:
@@ -4229,14 +4229,14 @@ components:
             1 = Notification issued when the number of connected stations is greater than or equal to the threshold.
             2 = Notification issued when the number of connected stations is less than or equal to the threshold.
           enum:
-          - 1
-          - 2
+            - 1
+            - 2
           x-etsi-mec-cardinality: "1"
           x-etsi-mec-origin-type: Enum (inline)
       description: 'Set for trigger-based event notification reporting. '
     ExpiryNotification__links:
       required:
-      - subscription
+        - subscription
       type: object
       properties:
         subscription:
@@ -4244,7 +4244,7 @@ components:
       description: Hyperlink related to the resource.
     MeasurementConfig__links:
       required:
-      - self
+        - self
       type: object
       properties:
         self:
@@ -4255,8 +4255,8 @@ components:
           href: href
     MeasurementConfigLinkList_measurementConfig:
       required:
-      - href
-      - measurementId
+        - href
+        - measurementId
       type: object
       properties:
         href:
@@ -4276,7 +4276,7 @@ components:
         measurementId: measurementId
     StaDataRateSubscription_notificationEvent:
       required:
-      - trigger
+        - trigger
       type: object
       properties:
         downlinkRateThreshold:
@@ -4298,14 +4298,14 @@ components:
             7 = Notification issued when the STA's downlink or uplink data rate is greater than or equal to their thresholds.
             8 = Notification issued when the STA's downlink or uplink data rate is less than or equal to their thresholds.
           enum:
-          - 1
-          - 2
-          - 3
-          - 4
-          - 5
-          - 6
-          - 7
-          - 8
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+            - 6
+            - 7
+            - 8
           x-etsi-mec-cardinality: "1"
           x-etsi-mec-origin-type: Enum (inline)
         uplinkRateThreshold:
@@ -4317,7 +4317,7 @@ components:
       description: Set for trigger-based event notification reporting.
     SubscriptionLinkList__links:
       required:
-      - self
+        - self
       type: object
       properties:
         self:
@@ -4329,8 +4329,8 @@ components:
     SubscriptionLinkList_subscription:
       minItems: 0
       required:
-      - href
-      - subscriptionType
+        - href
+        - subscriptionType
       type: object
       properties:
         href:
@@ -4352,7 +4352,7 @@ components:
         href: http://example.com/aeiou
     TestNotification__links:
       required:
-      - subscription
+        - subscription
       type: object
       properties:
         subscription:

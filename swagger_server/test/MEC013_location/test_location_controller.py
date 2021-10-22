@@ -45,7 +45,7 @@ class TestLocationController(BaseTestCase):
 
 		Radio Node Location Lookup
 		"""
-		query_string = [('interest_realm', 'interest_realm_example')]
+		query_string = [('interestRealm', 'interest_realm_example')]
 		response = self.client.open(
 			'/location/v2/queries/zones/{zoneId}/accessPoints'.format(zoneId='zone_id_example'),
 			method='GET',
@@ -321,8 +321,8 @@ class TestLocationController(BaseTestCase):
 
 		UE Location Lookup of a specific UE or group of UEs
 		"""
-		query_string = [('zone_id', 'zone_id_example'),
-		                ('access_point_id', 'access_point_id_example'),
+		query_string = [('zoneId', 'zone_id_example'),
+		                ('accessPointId', 'access_point_id_example'),
 		                ('address', 'address_example')]
 		response = self.client.open(
 			'/location/v2/queries/users',

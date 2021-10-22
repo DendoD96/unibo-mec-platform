@@ -14,82 +14,82 @@ externalDocs:
   description: "ETSI GS MEC 029 Fixed Access Information API, v2.1.1"
   url: https://www.etsi.org/deliver/etsi_gs/MEC/001_099/029/02.01.01_60/gs_mec029v020101p.pdf
 servers:
-- url: https://localhost/fai/v1
+  - url: https://localhost/fai/v1
 tags:
-- name: Queries
-- name: Subscription
+  - name: Queries
+  - name: Subscription
 paths:
   /queries/fa_info:
     get:
       tags:
-      - Queries
+        - Queries
       summary: Retrieve information on the available fixed access networks.
       description: Retrieve information on the available fixed access networks.
       operationId: fa_info_get
       parameters:
-      - name: customerPremisesInfo
-        in: query
-        description: Comma separated list of customer premises information
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            $ref: '#/components/schemas/CpInfo'
-      - name: lastMileTech
-        in: query
-        description: Comma separated list of last mile technologies.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: integer
-      - name: interfaceType
-        in: query
-        description: Comma separated list of interface types.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: integer
-      - name: dsbw
-        in: query
-        description: Comma separated list of the bandwidth (in Mbps) from the network
-          towards the customer site.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: integer
-      - name: usbw
-        in: query
-        description: Comma separated list of the bandwidth (in Mbps) from the customer
-          site towards the network.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: integer
-      - name: latency
-        in: query
-        description: Comma separated list of the maximum baseline latency (in ms)
-          between customer site and service edge node.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: integer
+        - name: customerPremisesInfo
+          in: query
+          description: Comma separated list of customer premises information
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/CpInfo'
+        - name: lastMileTech
+          in: query
+          description: Comma separated list of last mile technologies.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: integer
+        - name: interfaceType
+          in: query
+          description: Comma separated list of interface types.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: integer
+        - name: dsbw
+          in: query
+          description: Comma separated list of the bandwidth (in Mbps) from the network
+            towards the customer site.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: integer
+        - name: usbw
+          in: query
+          description: Comma separated list of the bandwidth (in Mbps) from the customer
+            site towards the network.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: integer
+        - name: latency
+          in: query
+          description: Comma separated list of the maximum baseline latency (in ms)
+            between customer site and service edge node.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: integer
       responses:
         "200":
           description: 'A response body containing the FAI is returned. '
@@ -141,43 +141,43 @@ paths:
   /queries/device_info:
     get:
       tags:
-      - Queries
+        - Queries
       summary: retrieve information on the devices that are connected to a fixed access
         network.
       description: retrieve information on the devices that are connected to a fixed
         access network.
       operationId: device_info_get
       parameters:
-      - name: gwId
-        in: query
-        description: Comma separated list of gateway identifier
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-      - name: deviceId
-        in: query
-        description: Comma separated list of device identifier.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-      - name: deviceStatus
-        in: query
-        description: Comma separated list of device status.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: integer
+        - name: gwId
+          in: query
+          description: Comma separated list of gateway identifier
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: deviceId
+          in: query
+          description: Comma separated list of device identifier.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: deviceStatus
+          in: query
+          description: Comma separated list of device status.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: integer
       responses:
         "200":
           description: A response body containing the device information is returned
@@ -229,31 +229,31 @@ paths:
   /queries/cable_line_info:
     get:
       tags:
-      - Cable line info
+        - Cable line info
       summary: It Queries information about the cable line of a fixed access network.
       description: It Queries information about the cable line of a fixed access network.
       operationId: cable_line_info_get
       parameters:
-      - name: customerPremisesInfo
-        in: query
-        description: Comma separated list of customer premises information
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            $ref: '#/components/schemas/CpInfo'
-      - name: cmId
-        in: query
-        description: Comma separated list of Cable Modem identifiers.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
+        - name: customerPremisesInfo
+          in: query
+          description: Comma separated list of customer premises information
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/CpInfo'
+        - name: cmId
+          in: query
+          description: Comma separated list of Cable Modem identifiers.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
       responses:
         "200":
           description: A response body containing the cable line information is returned.
@@ -305,41 +305,41 @@ paths:
   /queries/optical_network_info:
     get:
       tags:
-      - Optical network info
+        - Optical network info
       summary: used to query information about the optical network.
       description: used to query information about the optical network.
       operationId: optical_network_info_get
       parameters:
-      - name: customerPremisesInfo
-        in: query
-        description: Comma separated list of customer premises information
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            $ref: '#/components/schemas/CpInfo'
-      - name: ponYS_ID
-        in: query
-        description: Comma separated list of optical system identifiers.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-      - name: onuId
-        in: query
-        description: Comma separated list of optical network unit identifiers.
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
+        - name: customerPremisesInfo
+          in: query
+          description: Comma separated list of customer premises information
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/CpInfo'
+        - name: ponYS_ID
+          in: query
+          description: Comma separated list of optical system identifiers.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: onuId
+          in: query
+          description: Comma separated list of optical network unit identifiers.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
       responses:
         "200":
           description: A response body containing the optical network information
@@ -395,20 +395,20 @@ paths:
   /subscriptions:
     get:
       tags:
-      - Subscription
+        - Subscription
       summary: request information about the subscriptions for this requestor.
       description: request information about the subscriptions for this requestor.
       operationId: sub_get
       parameters:
-      - name: subscription_type
-        in: query
-        description: "Query parameter to filter on a specific subscription type. Permitted\
+        - name: subscription_type
+          in: query
+          description: "Query parameter to filter on a specific subscription type. Permitted\
           \ values: ONU_ALARM. DEVICE_ABNORMAL_ALERT. CM_CONNECTIVITY_STATE.  ANI_ALARM."
-        required: false
-        style: form
-        explode: true
-        schema:
-          type: string
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
       responses:
         "200":
           description: A response body containing the list of links to requestor subscriptions
@@ -460,7 +460,7 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC029_fixed_access_information.subscription_controller
     post:
       tags:
-      - Subscription
+        - Subscription
       summary: ' create a new subscription to FAI notifications.'
       description: ' create a new subscription to FAI notifications.'
       operationId: sub_post
@@ -551,10 +551,10 @@ paths:
                   application/json:
                     schema:
                       oneOf:
-                      - $ref: '#/components/schemas/OnuAlarmNotification'
-                      - $ref: '#/components/schemas/DevInfoNotification'
-                      - $ref: '#/components/schemas/CmConnNotification'
-                      - $ref: '#/components/schemas/AniAlarmNotification'
+                        - $ref: '#/components/schemas/OnuAlarmNotification'
+                        - $ref: '#/components/schemas/DevInfoNotification'
+                        - $ref: '#/components/schemas/CmConnNotification'
+                        - $ref: '#/components/schemas/AniAlarmNotification'
                 required: true
               responses:
                 "204":
@@ -563,20 +563,20 @@ paths:
   /subscriptions/{subscriptionId}:
     get:
       tags:
-      - Subscription
+        - Subscription
       summary: Retrieve information about this subscription.
       description: Retrieve information about this subscription.
       operationId: individual_subscription_get
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Refers to created subscription, where the FAI API allocates\
+        - name: subscriptionId
+          in: path
+          description: "Refers to created subscription, where the FAI API allocates\
           \ a unique resource name for this subscription"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       responses:
         "200":
           description: A response body containing data type describing the specific
@@ -628,20 +628,20 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC029_fixed_access_information.subscription_controller
     put:
       tags:
-      - Subscription
+        - Subscription
       summary: Used to update the existing subscription.
       description: Used to update the existing subscription.
       operationId: individual_subscription_put
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Refers to created subscription, where the FAI API allocates\
+        - name: subscriptionId
+          in: path
+          description: "Refers to created subscription, where the FAI API allocates\
           \ a unique resource name for this subscription"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       requestBody:
         content:
           application/json:
@@ -720,20 +720,20 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC029_fixed_access_information.subscription_controller
     delete:
       tags:
-      - Subscription
+        - Subscription
       summary: Used to cancel the existing subscription.
       description: Used to cancel the existing subscription.
       operationId: individual_subscription_delete
       parameters:
-      - name: subscriptionId
-        in: path
-        description: "Refers to created subscription, where the FAI API allocates\
+        - name: subscriptionId
+          in: path
+          description: "Refers to created subscription, where the FAI API allocates\
           \ a unique resource name for this subscription"
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       responses:
         "204":
           description: No Content
@@ -772,19 +772,19 @@ components:
         \ = HighReceivedOpticalPower. 2 = SignalFailure. 3 = SignalDegrade. 4 = LowTransmitOpticalPower.5\
         \ = HighTransmitOpticalPower.6 = LaserBiasCurrent."
       enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
       x-etsi-mec-cardinality: "1"
       x-etsi-mec-origin-type: Enum
     AniAlarmNotification.aniId:
       required:
-      - aniIndex
-      - onuId
+        - aniIndex
+        - onuId
       properties:
         onuId:
           type: string
@@ -799,9 +799,9 @@ components:
           x-etsi-mec-origin-type: String
     AniAlarmNotification:
       required:
-      - alarm
-#      - aniIndex TODO: check with ETSI if is an error
-      - notificationType
+        - alarm
+        #      - aniIndex TODO: check with ETSI if is an error
+        - notificationType
       type: object
       properties:
         alarm:
@@ -838,30 +838,30 @@ components:
         (Transmit optical power above upper threshold.)\n6  =\tLaserBiasCurrent.\n\
         (Laser bias current above threshold determined by vendor.)\n-1 =\tAll."
       enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - -1
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - -1
     AniAlarmSubscription.links:
       required:
-      - self
+        - self
       properties:
         self:
           $ref: '#/components/schemas/LinkType'
     AniAlarmSubscription.filterCriteriaAniAlarm:
       required:
-      - aniId
-      - onuId
+        - aniId
+        - onuId
       properties:
         customerPremisesInfo:
           minItems: 0
           required:
-          - aniId
-          - onuId
+            - aniId
+            - onuId
           type: array
           description: 0 to N physical locations of the customer sites.
           items:
@@ -890,11 +890,11 @@ components:
         \ in the response."
     AniAlarmSubscription:
       required:
-      - aniIndex
-      - callbackReference
-      - filterCriteriaAniAlarm
-#      - onuId   TODO: check with ETSI if is an error
-      - subscriptionType
+        - aniIndex
+        - callbackReference
+        - filterCriteriaAniAlarm
+        #      - onuId   TODO: check with ETSI if is an error
+        - subscriptionType
       type: object
       properties:
         subscriptionType:
@@ -923,8 +923,8 @@ components:
       x-etsi-ref: 6.3.6
     CableLineInfo.cmInfo.serviceFlowStats:
       required:
-      - ifIndex
-      - serviceFlowInfo
+        - ifIndex
+        - serviceFlowInfo
       type: object
       properties:
         ifIndex:
@@ -942,29 +942,29 @@ components:
       example:
         ifIndex: ifIndex
         serviceFlowInfo:
-        - timeActive: 1
-          serviceFlowId: 1
-          timeCreated: null
-          policedDropPkts: 1
-          aqmDroppedPkts: 2
-          policedDelayPkts: 7
-          pkts: 4
-        - timeActive: 1
-          serviceFlowId: 1
-          timeCreated: null
-          policedDropPkts: 1
-          aqmDroppedPkts: 2
-          policedDelayPkts: 7
-          pkts: 4
+          - timeActive: 1
+            serviceFlowId: 1
+            timeCreated: null
+            policedDropPkts: 1
+            aqmDroppedPkts: 2
+            policedDelayPkts: 7
+            pkts: 4
+          - timeActive: 1
+            serviceFlowId: 1
+            timeCreated: null
+            policedDropPkts: 1
+            aqmDroppedPkts: 2
+            policedDelayPkts: 7
+            pkts: 4
     CableLineInfo.cmInfo.serviceFlowStats.serviceFlowInfo:
       required:
-      - aqmDroppedPkts
-      - pkts
-      - policedDelayPkts
-      - policedDropPkts
-      - serviceFlowId
-      - timeActive
-      - timeCreated
+        - aqmDroppedPkts
+        - pkts
+        - policedDelayPkts
+        - policedDropPkts
+        - serviceFlowId
+        - timeActive
+        - timeCreated
       properties:
         aqmDroppedPkts:
           type: integer
@@ -1030,40 +1030,40 @@ components:
         \ 17 = dhcpV6Complete. 18 = registrationInProgress. 19 = bpiInit. 20 = forwardingDisabled.\
         \ 21 = dsTopologyResolutionInProgress. 22 = rangingInProgress. 23 = rfMuteAll."
       enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
-      - 11
-      - 12
-      - 13
-      - 14
-      - 15
-      - 16
-      - 17
-      - 18
-      - 19
-      - 20
-      - 21
-      - 22
-      - 23
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 16
+        - 17
+        - 18
+        - 19
+        - 20
+        - 21
+        - 22
+        - 23
       x-etsi-mec-cardinality: "1"
       x-etsi-mec-origin-type: Enum
     CableLineInfo.cmInfo.cmStatus:
       required:
-      - cmRegState
-      - emDlsOperStatus
-      - energyMgt1x1OperStatus
-      - ifIndex
-      - invalidRegRsps
-      - lostSyncs
-      - resets
+        - cmRegState
+        - emDlsOperStatus
+        - energyMgt1x1OperStatus
+        - ifIndex
+        - invalidRegRsps
+        - lostSyncs
+        - resets
       properties:
         cmRegState:
           $ref: '#/components/schemas/CableLineInfo.cmInfo.cmStatus.cmRegState'
@@ -1113,13 +1113,13 @@ components:
         lostSyncs: 9
     CableLineInfo.cmInfo.cmDpvStats:
       required:
-      - avgLatency
-      - ifIndex
-      - lastMeasLatency
-      - lastMeasTime
-      - maxLatency
-      - minLatency
-      - numMeas
+        - avgLatency
+        - ifIndex
+        - lastMeasLatency
+        - lastMeasTime
+        - maxLatency
+        - minLatency
+        - numMeas
       properties:
         avgLatency:
           type: integer
@@ -1168,7 +1168,7 @@ components:
         numMeas: 5
     CableLineInfo.cmInfo:
       required:
-      - cmId
+        - cmId
       properties:
         cmDpvStats:
           type: array
@@ -1198,62 +1198,62 @@ components:
           invalidRegRsps: 7
           lostSyncs: 9
         serviceFlowStats:
-        - ifIndex: ifIndex
-          serviceFlowInfo:
-          - timeActive: 1
-            serviceFlowId: 1
-            timeCreated: null
-            policedDropPkts: 1
-            aqmDroppedPkts: 2
-            policedDelayPkts: 7
-            pkts: 4
-          - timeActive: 1
-            serviceFlowId: 1
-            timeCreated: null
-            policedDropPkts: 1
-            aqmDroppedPkts: 2
-            policedDelayPkts: 7
-            pkts: 4
-        - ifIndex: ifIndex
-          serviceFlowInfo:
-          - timeActive: 1
-            serviceFlowId: 1
-            timeCreated: null
-            policedDropPkts: 1
-            aqmDroppedPkts: 2
-            policedDelayPkts: 7
-            pkts: 4
-          - timeActive: 1
-            serviceFlowId: 1
-            timeCreated: null
-            policedDropPkts: 1
-            aqmDroppedPkts: 2
-            policedDelayPkts: 7
-            pkts: 4
+          - ifIndex: ifIndex
+            serviceFlowInfo:
+              - timeActive: 1
+                serviceFlowId: 1
+                timeCreated: null
+                policedDropPkts: 1
+                aqmDroppedPkts: 2
+                policedDelayPkts: 7
+                pkts: 4
+              - timeActive: 1
+                serviceFlowId: 1
+                timeCreated: null
+                policedDropPkts: 1
+                aqmDroppedPkts: 2
+                policedDelayPkts: 7
+                pkts: 4
+          - ifIndex: ifIndex
+            serviceFlowInfo:
+              - timeActive: 1
+                serviceFlowId: 1
+                timeCreated: null
+                policedDropPkts: 1
+                aqmDroppedPkts: 2
+                policedDelayPkts: 7
+                pkts: 4
+              - timeActive: 1
+                serviceFlowId: 1
+                timeCreated: null
+                policedDropPkts: 1
+                aqmDroppedPkts: 2
+                policedDelayPkts: 7
+                pkts: 4
         cmDpvStats:
-        - ifIndex: ifIndex
-          lastMeasLatency: 6
-          avgLatency: 0
-          minLatency: 5
-          lastMeasTime:
-            seconds: 3
-            nanoSeconds: 9
-          maxLatency: 1
-          numMeas: 5
-        - ifIndex: ifIndex
-          lastMeasLatency: 6
-          avgLatency: 0
-          minLatency: 5
-          lastMeasTime:
-            seconds: 3
-            nanoSeconds: 9
-          maxLatency: 1
-          numMeas: 5
+          - ifIndex: ifIndex
+            lastMeasLatency: 6
+            avgLatency: 0
+            minLatency: 5
+            lastMeasTime:
+              seconds: 3
+              nanoSeconds: 9
+            maxLatency: 1
+            numMeas: 5
+          - ifIndex: ifIndex
+            lastMeasLatency: 6
+            avgLatency: 0
+            minLatency: 5
+            lastMeasTime:
+              seconds: 3
+              nanoSeconds: 9
+            maxLatency: 1
+            numMeas: 5
         cmId: cmId
     CableLineInfo:
       required:
-      - cmInfo
-      - customerPremisesInfo
+        - cmInfo
+        - customerPremisesInfo
       type: object
       properties:
         cmInfo:
@@ -1278,57 +1278,57 @@ components:
             invalidRegRsps: 7
             lostSyncs: 9
           serviceFlowStats:
-          - ifIndex: ifIndex
-            serviceFlowInfo:
-            - timeActive: 1
-              serviceFlowId: 1
-              timeCreated: null
-              policedDropPkts: 1
-              aqmDroppedPkts: 2
-              policedDelayPkts: 7
-              pkts: 4
-            - timeActive: 1
-              serviceFlowId: 1
-              timeCreated: null
-              policedDropPkts: 1
-              aqmDroppedPkts: 2
-              policedDelayPkts: 7
-              pkts: 4
-          - ifIndex: ifIndex
-            serviceFlowInfo:
-            - timeActive: 1
-              serviceFlowId: 1
-              timeCreated: null
-              policedDropPkts: 1
-              aqmDroppedPkts: 2
-              policedDelayPkts: 7
-              pkts: 4
-            - timeActive: 1
-              serviceFlowId: 1
-              timeCreated: null
-              policedDropPkts: 1
-              aqmDroppedPkts: 2
-              policedDelayPkts: 7
-              pkts: 4
+            - ifIndex: ifIndex
+              serviceFlowInfo:
+                - timeActive: 1
+                  serviceFlowId: 1
+                  timeCreated: null
+                  policedDropPkts: 1
+                  aqmDroppedPkts: 2
+                  policedDelayPkts: 7
+                  pkts: 4
+                - timeActive: 1
+                  serviceFlowId: 1
+                  timeCreated: null
+                  policedDropPkts: 1
+                  aqmDroppedPkts: 2
+                  policedDelayPkts: 7
+                  pkts: 4
+            - ifIndex: ifIndex
+              serviceFlowInfo:
+                - timeActive: 1
+                  serviceFlowId: 1
+                  timeCreated: null
+                  policedDropPkts: 1
+                  aqmDroppedPkts: 2
+                  policedDelayPkts: 7
+                  pkts: 4
+                - timeActive: 1
+                  serviceFlowId: 1
+                  timeCreated: null
+                  policedDropPkts: 1
+                  aqmDroppedPkts: 2
+                  policedDelayPkts: 7
+                  pkts: 4
           cmDpvStats:
-          - ifIndex: ifIndex
-            lastMeasLatency: 6
-            avgLatency: 0
-            minLatency: 5
-            lastMeasTime:
-              seconds: 3
-              nanoSeconds: 9
-            maxLatency: 1
-            numMeas: 5
-          - ifIndex: ifIndex
-            lastMeasLatency: 6
-            avgLatency: 0
-            minLatency: 5
-            lastMeasTime:
-              seconds: 3
-              nanoSeconds: 9
-            maxLatency: 1
-            numMeas: 5
+            - ifIndex: ifIndex
+              lastMeasLatency: 6
+              avgLatency: 0
+              minLatency: 5
+              lastMeasTime:
+                seconds: 3
+                nanoSeconds: 9
+              maxLatency: 1
+              numMeas: 5
+            - ifIndex: ifIndex
+              lastMeasLatency: 6
+              avgLatency: 0
+              minLatency: 5
+              lastMeasTime:
+                seconds: 3
+                nanoSeconds: 9
+              maxLatency: 1
+              numMeas: 5
           cmId: cmId
       x-etsi-ref: 6.2.4
     CmConnNotification.cmIf.cmRegState:
@@ -1341,32 +1341,32 @@ components:
         \ = registrationInProgress.17 = registrationComplete. 18 = accessDenied. 19\
         \ =operational. 20 = bpiInit.21 =forwardingDisabled."
       enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
-      - 11
-      - 12
-      - 13
-      - 14
-      - 15
-      - 16
-      - 17
-      - 18
-      - 19
-      - 20
-      - 21
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 16
+        - 17
+        - 18
+        - 19
+        - 20
+        - 21
     CmConnNotification.cmIf:
       required:
-      - cmId
-      - cmRegState
-      - ifIndex
+        - cmId
+        - cmRegState
+        - ifIndex
       type: array
       properties:
         cmId:
@@ -1393,8 +1393,8 @@ components:
         type: object
     CmConnNotification:
       required:
-      - cmIf
-      - notificationType
+        - cmIf
+        - notificationType
       type: object
       properties:
         cmIf:
@@ -1413,7 +1413,7 @@ components:
       x-etsi-ref: 6.4.4
     CmConnSubscription.links:
       required:
-      - self
+        - self
       type: object
       properties:
         self:
@@ -1431,32 +1431,32 @@ components:
         \ = registrationInProgress.17 = registrationComplete. 18 = accessDenied. 19\
         \ =operational. 20 = bpiInit.21 =forwardingDisabled."
       enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
-      - 11
-      - 12
-      - 13
-      - 14
-      - 15
-      - 16
-      - 17
-      - 18
-      - 19
-      - 20
-      - 21
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 16
+        - 17
+        - 18
+        - 19
+        - 20
+        - 21
     CmConnSubscription.filterCriteriaCmConn.cmIf:
       required:
-      - cmId
-      - cmRegState
-      - ifIndex
+        - cmId
+        - cmRegState
+        - ifIndex
       properties:
         cmId:
           type: string
@@ -1494,9 +1494,9 @@ components:
       x-etsi-mec-cardinality: "1"
     CmConnSubscription:
       required:
-      - callbackReference
-      - filterCriteriaCmConn
-      - subscriptionType
+        - callbackReference
+        - filterCriteriaCmConn
+        - subscriptionType
       type: object
       properties:
         _links:
@@ -1580,9 +1580,9 @@ components:
       x-etsi-ref: 6.5.3
     DevInfoNotification:
       required:
-      - deviceErrStatus
-      - deviceId
-      - notificationType
+        - deviceErrStatus
+        - deviceId
+        - notificationType
       type: object
       properties:
         deviceErrStatus:
@@ -1605,11 +1605,11 @@ components:
       description: "The abnormal operational status of the device. Enumeration of:\
         \  1 = Error. 2 = Disabled."
       enum:
-      - 1
-      - 2
+        - 1
+        - 2
     DevInfoSubscription.links:
       required:
-      - self
+        - self
       type: object
       properties:
         self:
@@ -1650,9 +1650,9 @@ components:
       x-etsi-mec-cardinality: "1"
     DevInfoSubscription:
       required:
-      - callbackReference
-      - filterCriteriaDevInfo
-      - subscriptionType
+        - callbackReference
+        - filterCriteriaDevInfo
+        - subscriptionType
       type: object
       properties:
         _links:
@@ -1680,22 +1680,22 @@ components:
       description: "Current operational status of the device. Enumeration of: 1 =\
         \ Up. 2 = Initializing. 3 = Error. 4 = Disabled."
       enum:
-      - 1
-      - 2
-      - 3
-      - 4
+        - 1
+        - 2
+        - 3
+        - 4
       x-etsi-mec-cardinality: "1"
       x-etsi-mec-origin-type: Enum
     DeviceInfo:
       required:
-      - deviceStatus
-      - gwId
-      - iPConnectionUpTime
-      - totalBytesReceived
-      - totalBytesSent
-      - totalPacketsReceived
-      - totalPacketsSent
-      - upTime
+        - deviceStatus
+        - gwId
+        - iPConnectionUpTime
+        - totalBytesReceived
+        - totalBytesSent
+        - totalPacketsReceived
+        - totalPacketsSent
+        - upTime
       type: object
       properties:
         deviceId:
@@ -1801,16 +1801,16 @@ components:
           failureCount: 3
           timeout: 1
         deviceId:
-        - deviceId
-        - deviceId
+          - deviceId
+          - deviceId
         deviceStatus: 0
         iPConnectionUpTime: 5
         timeStamp: null
         upTime: 9
         totalBytesSent: 6
         gwId:
-        - gwId
-        - gwId
+          - gwId
+          - gwId
         traceRouteDiagnostics:
           dataBlockSize: 4
           responseTime: 6
@@ -1827,23 +1827,23 @@ components:
         = Error_TransferFailed. 7 = Error_PasswordRequestFailed.8 = Error_LoginFailed.9
         = Error_NoTransferMode.10 = Error_NoPASV.11 = Error_IncorrectSize.12 = Error_Timeout.
       enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
-      - 11
-      - 12
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
       x-etsi-mec-cardinality: "1"
       x-etsi-mec-origin-type: Enum
     DownloadDiagnostics:
       required:
-      - diagnosticsState
+        - diagnosticsState
       type: object
       properties:
         bOMTime:
@@ -1891,7 +1891,7 @@ components:
       x-etsi-ref: 6.5.6
     ExpiryNotification.links:
       required:
-      - self
+        - self
       type: object
       properties:
         self:
@@ -1906,8 +1906,8 @@ components:
       x-etsi-mec-cardinality: "1"
     ExpiryNotification:
       required:
-      - _links
-      - expiryDeadline
+        - _links
+        - expiryDeadline
       type: object
       properties:
         _links:
@@ -1923,16 +1923,16 @@ components:
         6   =   1000BASE-LH.7   =   1000Base-ZX. 8   =   ADSL-RJ11.9   =   VDSL-RJ11.10
         =   GPON.
       enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
       x-etsi-mec-cardinality: "1"
       x-etsi-mec-origin-type: Enum
     FaInfo.connectivityInfo.lastMileTech:
@@ -1941,20 +1941,20 @@ components:
         used.The valid values are:1 = ADSL.2 = VDSL.3 = GPON. 4 = XGPON.5 = NGPON2.
         6 = XGSPON. 7 = GFAST.8 = P2PEthernet.
       enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
       x-etsi-mec-cardinality: "1"
       x-etsi-mec-origin-type: Enum
     FaInfo.connectivityInfo:
       required:
-      - interfaceType
-      - lastMileTech
+        - interfaceType
+        - lastMileTech
       properties:
         dsbw:
           type: integer
@@ -1987,7 +1987,7 @@ components:
         dsbw: 0
     FaInfo:
       required:
-      - customerPremisesInfo
+        - customerPremisesInfo
       type: object
       properties:
         connectivityInfo:
@@ -2009,40 +2009,40 @@ components:
           seconds: 3
           nanoSeconds: 9
         customerPremisesInfo:
-        - latitude: 2.3021358869347654518833223846741020679473876953125
-          postalCode: postalCode
-          longitude: 7.061401241503109105224211816675961017608642578125
-        - latitude: 2.3021358869347654518833223846741020679473876953125
-          postalCode: postalCode
-          longitude: 7.061401241503109105224211816675961017608642578125
+          - latitude: 2.3021358869347654518833223846741020679473876953125
+            postalCode: postalCode
+            longitude: 7.061401241503109105224211816675961017608642578125
+          - latitude: 2.3021358869347654518833223846741020679473876953125
+            postalCode: postalCode
+            longitude: 7.061401241503109105224211816675961017608642578125
         connectivityInfo:
-        - interfaceType: 6
-          lastMileTech: 1
-          usbw: 5
-          latency: 5
-          dsbw: 0
-        - interfaceType: 6
-          lastMileTech: 1
-          usbw: 5
-          latency: 5
-          dsbw: 0
+          - interfaceType: 6
+            lastMileTech: 1
+            usbw: 5
+            latency: 5
+            dsbw: 0
+          - interfaceType: 6
+            lastMileTech: 1
+            usbw: 5
+            latency: 5
+            dsbw: 0
       x-etsi-ref: 6.2.2
     IPPingDiagnostics.diagnosticsState:
       type: integer
       description: "The state of the IP ping test. Enumeration of: 1 = None. 2 = Requested.\
         \ 3 = Complete. 4 = Error_CannotResolveHostName. 5 = Error_Internal.6 = Error_Other."
       enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
       x-etsi-mec-cardinality: "1"
       x-etsi-mec-origin-type: Enum
     IPPingDiagnostics:
       required:
-      - diagnosticsState
+        - diagnosticsState
       type: object
       properties:
         averageResponseTime:
@@ -2125,29 +2125,29 @@ components:
         = VoltageYellow.11 = VoltageRed.12 = OnuManualPowerOff. 13 = InvImage.14 =
         PseOverloadYellow.15 = PseOverloadRed.
       enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
-      - 11
-      - 12
-      - 13
-      - 14
-      - 15
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
       x-etsi-mec-cardinality: "1"
       x-etsi-mec-origin-type: Enum
     OnuAlarmNotification:
       required:
-      - alarm
-      - notificationType
-      - onuId
+        - alarm
+        - notificationType
+        - onuId
       type: object
       properties:
         alarm:
@@ -2201,26 +2201,26 @@ components:
         \ the ONU is unable to supply all of the PoE demand of the attached PDs and\
         \ has removed or reduced power to at least one PD.)\n-1 =\tAll."
       enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
-      - 11
-      - 12
-      - 13
-      - 14
-      - 15
-      - -1
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - -1
     OnuAlarmSubscription.links:
       required:
-      - self
+        - self
       type: object
       properties:
         self:
@@ -2230,7 +2230,7 @@ components:
       x-etsi-mec-cardinality: 0..1
     OnuAlarmSubscription.filterCriteriaOnuAlarm:
       required:
-      - onuId
+        - onuId
       type: object
       properties:
         alarms:
@@ -2266,9 +2266,9 @@ components:
       x-etsi-mec-cardinality: "1"
     OnuAlarmSubscription:
       required:
-      - callbackReference
-      - filterCriteriaOnuAlarm
-      - subscriptionType
+        - callbackReference
+        - filterCriteriaOnuAlarm
+        - subscriptionType
       type: object
       properties:
         _links:
@@ -2297,8 +2297,8 @@ components:
         \ G-PON [i.9]; or\nNG-PON2 option 2 [i.8].\n2 =\t9,95328 Gbit/s:  XG-PON [i.10];\
         \ or\n XGS-PON [i.11]; or\nNG-PON2 option 1 [i.8]."
       enum:
-      - 1
-      - 2
+        - 1
+        - 2
       x-etsi-mec-cardinality: "1"
       x-etsi-mec-origin-type: Enum
     PonInfo.opticalNetworkInfo.operationalState:
@@ -2306,8 +2306,8 @@ components:
       description: "It reports whether the ONU is currently capable of performing\
         \ its function. Valid values are: 0 = enabled 1 = disabled"
       enum:
-      - 0
-      - 1
+        - 0
+        - 1
       x-etsi-mec-cardinality: "1"
       x-etsi-mec-origin-type: Enum
     PonInfo.opticalNetworkInfo.ponTech:
@@ -2315,10 +2315,10 @@ components:
       description: "An informative field identifying the optical technology used.\
         \ The valid values are: 1 = GPON. 2 = XGPON.3 = NGPON2. 4 = XGSPON."
       enum:
-      - 1
-      - 2
-      - 3
-      - 4
+        - 1
+        - 2
+        - 3
+        - 4
       x-etsi-mec-cardinality: "1"
       x-etsi-mec-origin-type: Enum
     PonInfo.opticalNetworkInfo.usRate:
@@ -2328,19 +2328,19 @@ components:
         \ or\nNG-PON2 option 2 [i.8].\n3 =\t9,95328 Gbit/s: XGS-PON [i.11]; or\nNG-PON2\
         \ option 1 [i.8]."
       enum:
-      - 1
-      - 2
-      - 3
+        - 1
+        - 2
+        - 3
       x-etsi-mec-cardinality: "1"
       x-etsi-mec-origin-type: Enum
     PonInfo.opticalNetworkInfo:
       minItems: 1
       required:
-      - dsRate
-      - onuId
-      - operationalState
-      - ponTech
-      - usRate
+        - dsRate
+        - onuId
+        - operationalState
+        - ponTech
+        - usRate
       type: array
       properties:
         dsRate:
@@ -2360,9 +2360,9 @@ components:
         type: object
     PonInfo:
       required:
-      - customerPremisesInfo
-      - opticalNetworkInfo
-      - ponSYS_ID
+        - customerPremisesInfo
+        - opticalNetworkInfo
+        - ponSYS_ID
       type: object
       properties:
         customerPremisesInfo:
@@ -2390,17 +2390,17 @@ components:
           seconds: 3
           nanoSeconds: 9
         customerPremisesInfo:
-        - latitude: 2.3021358869347654518833223846741020679473876953125
-          postalCode: postalCode
-          longitude: 7.061401241503109105224211816675961017608642578125
-        - latitude: 2.3021358869347654518833223846741020679473876953125
-          postalCode: postalCode
-          longitude: 7.061401241503109105224211816675961017608642578125
+          - latitude: 2.3021358869347654518833223846741020679473876953125
+            postalCode: postalCode
+            longitude: 7.061401241503109105224211816675961017608642578125
+          - latitude: 2.3021358869347654518833223846741020679473876953125
+            postalCode: postalCode
+            longitude: 7.061401241503109105224211816675961017608642578125
         opticalNetworkInfo:
-        - - {}
-          - {}
-        - - {}
-          - {}
+          - - { }
+            - { }
+          - - { }
+            - { }
         ponSYS_ID: ponSYS_ID
       x-etsi-ref: 6.2.5
     SubscriptionLinkList.links.subscription.subscriptionType:
@@ -2409,17 +2409,17 @@ components:
         \ as following: 0 = RESERVED. 1 = ONU_ALARM. 2 = DEVICE_ABNORMAL_ALERT. 3\
         \ = CM_CONNECTIVITY_STATE.4 = ANI_ALARM."
       enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
       x-etsi-mec-cardinality: "1"
       x-etsi-mec-origin-type: Enum
     SubscriptionLinkList.links.subscription:
       required:
-      - href
-      - subscriptionType
+        - href
+        - subscriptionType
       properties:
         href:
           type: string
@@ -2442,13 +2442,13 @@ components:
       description: List of hyperlinks related to the resource.
       example:
         subscription:
-        - subscriptionType: 0
-          href: http://example.com/aeiou
-        - subscriptionType: 0
-          href: http://example.com/aeiou
+          - subscriptionType: 0
+            href: http://example.com/aeiou
+          - subscriptionType: 0
+            href: http://example.com/aeiou
     SubscriptionLinkList:
       required:
-      - _links
+        - _links
       type: object
       properties:
         _links:
@@ -2456,15 +2456,15 @@ components:
       example:
         _links:
           subscription:
-          - subscriptionType: 0
-            href: http://example.com/aeiou
-          - subscriptionType: 0
-            href: http://example.com/aeiou
+            - subscriptionType: 0
+              href: http://example.com/aeiou
+            - subscriptionType: 0
+              href: http://example.com/aeiou
       x-etsi-ref: 6.3.5
     TimeStamp:
       required:
-      - nanoSeconds
-      - seconds
+        - nanoSeconds
+        - seconds
       type: object
       properties:
         nanoSeconds:
@@ -2491,18 +2491,18 @@ components:
         \ 2 = Requested. 3 = Complete.  4 = Error_CannotResolveHostName. 5 = Error_MaxHopCountExceeded.\
         \ 6 = Error_Internal. 7 = Error_Other."
       enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
       x-etsi-mec-cardinality: "1"
       x-etsi-mec-origin-type: Enum
     TraceRouteDiagnostics:
       required:
-      - diagnosticsState
+        - diagnosticsState
       type: object
       properties:
         dataBlockSize:
@@ -2559,23 +2559,23 @@ components:
         \ 8 = Error_NoTransferMode. 9 = Error_NoPASV.  10 = Error_NoCWD. 11 = Error_NoSTOR.12\
         \ = Error_NoTransferComplete."
       enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
-      - 11
-      - 12
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
       x-etsi-mec-cardinality: "1"
       x-etsi-mec-origin-type: Enum
     UploadDiagnostics:
       required:
-      - diagnosticsState
+        - diagnosticsState
       type: object
       properties:
         bOMTime:
@@ -2622,7 +2622,7 @@ components:
       x-etsi-ref: 6.5.7
     LinkType:
       required:
-      - href
+        - href
       type: object
       properties:
         href:
@@ -2668,20 +2668,20 @@ components:
           x-etsi-mec-origin-type: URI
     subscriptions_body:
       oneOf:
-      - $ref: '#/components/schemas/OnuAlarmSubscription'
-      - $ref: '#/components/schemas/DevInfoSubscription'
-      - $ref: '#/components/schemas/CmConnSubscription'
-      - $ref: '#/components/schemas/AniAlarmSubscription'
+        - $ref: '#/components/schemas/OnuAlarmSubscription'
+        - $ref: '#/components/schemas/DevInfoSubscription'
+        - $ref: '#/components/schemas/CmConnSubscription'
+        - $ref: '#/components/schemas/AniAlarmSubscription'
     subscriptions_subscriptionId_body:
       oneOf:
-      - $ref: '#/components/schemas/OnuAlarmSubscription'
-      - $ref: '#/components/schemas/DevInfoSubscription'
-      - $ref: '#/components/schemas/CmConnSubscription'
-      - $ref: '#/components/schemas/AniAlarmSubscription'
+        - $ref: '#/components/schemas/OnuAlarmSubscription'
+        - $ref: '#/components/schemas/DevInfoSubscription'
+        - $ref: '#/components/schemas/CmConnSubscription'
+        - $ref: '#/components/schemas/AniAlarmSubscription'
     AniAlarmSubscription.filterCriteriaAniAlarm_aniId:
       required:
-      - aniIndex
-      - onuId
+        - aniIndex
+        - onuId
       type: object
       properties:
         onuId:

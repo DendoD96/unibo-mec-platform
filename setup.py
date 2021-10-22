@@ -1,33 +1,25 @@
-# coding: utf-8
-
-import sys
 from setuptools import setup, find_packages
 
-NAME = "swagger_server"
-VERSION = "1.0.0"
-# To install the library, run the following
-#
-# python setup.py install
-#
-# prerequisite: setuptools
-# http://pypi.python.org/pypi/setuptools
+NAME = "unibo-mec-platform"
+VERSION = "0.1.0"
 
-REQUIRES = ["connexion"]
+REQUIRES = ["connexion", "python_dateutil", "setuptools"]
 
 setup(
-    name=NAME,
-    version=VERSION,
-    description="ETSI GS MEC 015 Bandwidth Management API",
-    author_email="",
-    url="",
-    keywords=["Swagger", "ETSI GS MEC 015 Bandwidth Management API"],
-    install_requires=REQUIRES,
-    packages=find_packages(),
-    package_data={'': ['swagger/swagger.yaml']},
-    include_package_data=True,
-    entry_points={
-        'console_scripts': ['swagger_server=swagger_server.__main__:main']},
-    long_description="""\
-    The ETSI MEC ISG Bandwidth Management API described using OpenAPI.
+	name=NAME,
+	version=VERSION,
+	description="Unibo MEC Platform",
+	author="Davide Borsatti, Daniele Rossi",
+	author_email="davide.borsatti@unibo.it, daniele.rossi27@unibo.it",
+	url="https://github.com/DendoD96/unibo-mec-platform",
+	keywords=["Swagger", "MEC Platform"],
+	install_requires=REQUIRES,
+	packages=find_packages(exclude=['*.tests', '*.tests.*', 'tests.*', 'tests']),
+	package_data={'': ['swagger/swagger.yaml']},
+	include_package_data=True,
+	entry_points={
+		'console_scripts': ['swagger_server=swagger_server.__main__:main']},
+	long_description="""\
+    Unibo MEC Platform.
     """
 )

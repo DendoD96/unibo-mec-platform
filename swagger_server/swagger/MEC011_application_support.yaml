@@ -13,34 +13,34 @@ externalDocs:
   description: "ETSI GS MEC011 Application Enablement API, V2.1.1"
   url: https://www.etsi.org/deliver/etsi_gs/MEC/001_099/011/02.01.01_60/gs_MEC011v020101p.pdf
 servers:
-- url: http://127.0.0.1:8081/mec_app_support/v1
-- url: https://127.0.0.1:8081/mec_app_support/v1
+  - url: http://127.0.0.1:8081/mec_app_support/v1
+  - url: https://127.0.0.1:8081/mec_app_support/v1
 tags:
-- name: appTrafficRules
-- name: appDnsRules
-- name: appSubscriptions
-- name: appConfirmTermination
-- name: appConfirmReady
-- name: timing
-- name: callbacks
+  - name: appTrafficRules
+  - name: appDnsRules
+  - name: appSubscriptions
+  - name: appConfirmTermination
+  - name: appConfirmReady
+  - name: timing
+  - name: callbacks
 paths:
   /applications/{appInstanceId}/traffic_rules:
     get:
       tags:
-      - appTrafficRules
+        - appTrafficRules
       description: This method retrieves information about all the traffic rules associated
         with a MEC application instance.
       operationId: applications_traffic_rules_get
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a MEC application instance. Note that the appInstanceId
-          is allocated by the MEC platform manager.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: appInstanceId
+          in: path
+          description: Represents a MEC application instance. Note that the appInstanceId
+            is allocated by the MEC platform manager.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       responses:
         "200":
           description: It is used to indicate nonspecific success. The response body
@@ -92,28 +92,28 @@ paths:
   /applications/{appInstanceId}/traffic_rules/{trafficRuleId}:
     get:
       tags:
-      - appTrafficRules
+        - appTrafficRules
       description: This method retrieves information about all the traffic rules associated
         with a MEC application instance.
       operationId: applications_traffic_rule_get
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a MEC application instance. Note that the appInstanceId
-          is allocated by the MEC platform manager.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-      - name: trafficRuleId
-        in: path
-        description: Represents a traffic rule.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: appInstanceId
+          in: path
+          description: Represents a MEC application instance. Note that the appInstanceId
+            is allocated by the MEC platform manager.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: trafficRuleId
+          in: path
+          description: Represents a traffic rule.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       responses:
         "200":
           description: It is used to indicate nonspecific success. The response body
@@ -155,28 +155,28 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC011_application_support.app_traffic_rules_controller
     put:
       tags:
-      - appTrafficRules
+        - appTrafficRules
       description: This method retrieves information about all the traffic rules associated
         with a MEC application instance.
       operationId: applications_traffic_rule_put
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a MEC application instance. Note that the appInstanceId
-          is allocated by the MEC platform manager.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-      - name: trafficRuleId
-        in: path
-        description: Represents a traffic rule.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: appInstanceId
+          in: path
+          description: Represents a MEC application instance. Note that the appInstanceId
+            is allocated by the MEC platform manager.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: trafficRuleId
+          in: path
+          description: Represents a traffic rule.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       requestBody:
         $ref: '#/components/requestBodies/ApplicationsTrafficRule'
       responses:
@@ -231,20 +231,20 @@ paths:
   /applications/{appInstanceId}/dns_rules:
     get:
       tags:
-      - appDnsRules
+        - appDnsRules
       description: This method retrieves information about all the DNS rules associated
         with a MEC application instance.
       operationId: applications_dns_rules_get
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a MEC application instance. Note that the appInstanceId
-          is allocated by the MEC platform manager.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: appInstanceId
+          in: path
+          description: Represents a MEC application instance. Note that the appInstanceId
+            is allocated by the MEC platform manager.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       responses:
         "200":
           description: It is used to indicate nonspecific success. The response body
@@ -296,28 +296,28 @@ paths:
   /applications/{appInstanceId}/dns_rules/{dnsRuleId}:
     get:
       tags:
-      - appDnsRules
+        - appDnsRules
       description: This method retrieves information about a DNS rule associated with
         a MEC application instance.
       operationId: applications_dns_rule_get
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a MEC application instance. Note that the appInstanceId
-          is allocated by the MEC platform manager.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-      - name: dnsRuleId
-        in: path
-        description: Represents a DNS rule.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: appInstanceId
+          in: path
+          description: Represents a MEC application instance. Note that the appInstanceId
+            is allocated by the MEC platform manager.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: dnsRuleId
+          in: path
+          description: Represents a DNS rule.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       responses:
         "200":
           description: It is used to indicate nonspecific success. The response body
@@ -359,27 +359,27 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC011_application_support.app_dns_rules_controller
     put:
       tags:
-      - appDnsRules
+        - appDnsRules
       description: "This method activates, de-activates or updates a traffic rule."
       operationId: applications_dns_rule_put
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a MEC application instance. Note that the appInstanceId
-          is allocated by the MEC platform manager.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-      - name: dnsRuleId
-        in: path
-        description: Represents a DNS rule.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: appInstanceId
+          in: path
+          description: Represents a MEC application instance. Note that the appInstanceId
+            is allocated by the MEC platform manager.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: dnsRuleId
+          in: path
+          description: Represents a DNS rule.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       requestBody:
         $ref: '#/components/requestBodies/ApplicationsDnsRule'
       responses:
@@ -434,21 +434,21 @@ paths:
   /applications/{appInstanceId}/subscriptions:
     get:
       tags:
-      - appSubscriptions
+        - appSubscriptions
       description: "The GET method may be used to request information about all subscriptions\
         \ for this requestor. Upon success, the response contains entity body with\
         \ all the subscriptions for the requestor."
       operationId: applications_subscriptions_get
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a MEC application instance. Note that the appInstanceId
-          is allocated by the MEC platform manager.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: appInstanceId
+          in: path
+          description: Represents a MEC application instance. Note that the appInstanceId
+            is allocated by the MEC platform manager.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       responses:
         "200":
           description: "Upon success, a response body containing the list of links\
@@ -492,22 +492,22 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC011_application_support.app_subscriptions_controller
     post:
       tags:
-      - appSubscriptions
+        - appSubscriptions
       description: "The POST method may be used to create a new subscription. One\
         \ example use case is to create a new subscription to the MEC service availability\
         \ notifications. Upon success, the response contains entity body describing\
         \ the created subscription."
       operationId: applications_subscriptions_post
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a MEC application instance. Note that the appInstanceId
-          is allocated by the MEC platform manager.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: appInstanceId
+          in: path
+          description: Represents a MEC application instance. Note that the appInstanceId
+            is allocated by the MEC platform manager.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       requestBody:
         $ref: '#/components/requestBodies/ApplicationsSubscriptions'
       responses:
@@ -565,29 +565,29 @@ paths:
   /applications/{appInstanceId}/subscriptions/{subscriptionId}:
     get:
       tags:
-      - appSubscriptions
+        - appSubscriptions
       description: "The GET method requests information about a subscription for this\
         \ requestor. Upon success, the response contains entity body with the subscription\
         \ for the requestor."
       operationId: applications_subscription_get
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a MEC application instance. Note that the appInstanceId
-          is allocated by the MEC platform manager.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-      - name: subscriptionId
-        in: path
-        description: Represents a subscription to the notifications from the MEC platform.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: appInstanceId
+          in: path
+          description: Represents a MEC application instance. Note that the appInstanceId
+            is allocated by the MEC platform manager.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: subscriptionId
+          in: path
+          description: Represents a subscription to the notifications from the MEC platform.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       responses:
         "200":
           description: "Upon success, a response body containing the requested subscription\
@@ -626,29 +626,29 @@ paths:
       x-openapi-router-controller: swagger_server.controllers.MEC011_application_support.app_subscriptions_controller
     delete:
       tags:
-      - appSubscriptions
+        - appSubscriptions
       description: This method deletes a mecAppSuptApiSubscription. This method is
         typically used in "Unsubscribing from service availability event notifications"
         procedure.
       operationId: applications_subscription_delete
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a MEC application instance. Note that the appInstanceId
-          is allocated by the MEC platform manager.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
-      - name: subscriptionId
-        in: path
-        description: Represents a subscription to the notifications from the MEC platform.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: appInstanceId
+          in: path
+          description: Represents a MEC application instance. Note that the appInstanceId
+            is allocated by the MEC platform manager.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: subscriptionId
+          in: path
+          description: Represents a subscription to the notifications from the MEC platform.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       responses:
         "204":
           description: No Content
@@ -673,20 +673,20 @@ paths:
   /applications/{appInstanceId}/confirm_termination:
     post:
       tags:
-      - appConfirmTermination
+        - appConfirmTermination
       description: This method is used to confirm the application level termination  of
         an application instance.
       operationId: applications_confirm_termination_post
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a MEC application instance. Note that the appInstanceId
-          is allocated by the MEC platform manager.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: appInstanceId
+          in: path
+          description: Represents a MEC application instance. Note that the appInstanceId
+            is allocated by the MEC platform manager.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       requestBody:
         $ref: '#/components/requestBodies/ApplicationsConfirmTermination'
       responses:
@@ -743,20 +743,20 @@ paths:
   /applications/{appInstanceId}/confirm_ready:
     post:
       tags:
-      - appConfirmReady
+        - appConfirmReady
       description: 'This method may be used by the MEC application instance to notify
         the MEC platform that it is up and running. '
       operationId: applications_confirm_ready_post
       parameters:
-      - name: appInstanceId
-        in: path
-        description: Represents a MEC application instance. Note that the appInstanceId
-          is allocated by the MEC platform manager.
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: string
+        - name: appInstanceId
+          in: path
+          description: Represents a MEC application instance. Note that the appInstanceId
+            is allocated by the MEC platform manager.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
       requestBody:
         $ref: '#/components/requestBodies/ApplicationsConfirmReady'
       responses:
@@ -813,7 +813,7 @@ paths:
   /timing/timing_caps:
     get:
       tags:
-      - timing
+        - timing
       description: This method retrieves the information of the platform's timing
         capabilities which corresponds to the timing capabilities query
       operationId: timing_caps_get
@@ -856,7 +856,7 @@ paths:
   /timing/current_time:
     get:
       tags:
-      - timing
+        - timing
       description: This method retrieves the information of the platform's current
         time which corresponds to the get platform time procedure
       operationId: timing_current_time_get
@@ -902,7 +902,7 @@ components:
       description: Empty schema
     AppReadyConfirmation:
       required:
-      - indication
+        - indication
       type: object
       properties:
         indication:
@@ -911,7 +911,7 @@ components:
         indicates to the MEC platform that it is up and running.
     AppTerminationConfirmation:
       required:
-      - operationAction
+        - operationAction
       type: object
       properties:
         operationAction:
@@ -922,7 +922,7 @@ components:
         \ retention of application state in the case of stop."
     AppTerminationNotification.Links:
       required:
-      - subscription
+        - subscription
       type: object
       properties:
         subscription:
@@ -942,10 +942,10 @@ components:
       example: AppTerminationNotification
     AppTerminationNotification:
       required:
-      - _links
-      - maxGracefulTimeout
-      - notificationType
-      - operationAction
+        - _links
+        - maxGracefulTimeout
+        - notificationType
+        - operationAction
       type: object
       properties:
         notificationType:
@@ -971,10 +971,10 @@ components:
       format: uri
     AppTerminationNotificationSubscription:
       required:
-      - _links
-      - appInstanceId
-      - callbackReference
-      - subscriptionType
+        - _links
+        - appInstanceId
+        - callbackReference
+        - subscriptionType
       type: object
       properties:
         subscriptionType:
@@ -1001,9 +1001,9 @@ components:
       example: AppTerminationNotificationSubscription
     CurrentTime:
       required:
-      - nanoSeconds
-      - seconds
-      - timeSourceStatus
+        - nanoSeconds
+        - seconds
+        - timeSourceStatus
       type: object
       properties:
         seconds:
@@ -1025,8 +1025,8 @@ components:
             to the UTC time source
           example: TRACEABLE
           enum:
-          - TRACEABLE
-          - NONTRACEABLE
+            - TRACEABLE
+            - NONTRACEABLE
       description: This type represents the information provided by the MEC platform
         in response to the Get Platform Time Request message.
       example:
@@ -1038,9 +1038,9 @@ components:
       description: Type of the interface
       example: TUNNEL
       enum:
-      - TUNNEL
-      - MAC
-      - IP
+        - TUNNEL
+        - MAC
+        - IP
     DestinationInterface.IpAddress:
       type: string
       description: IP address of the remote destination
@@ -1051,7 +1051,7 @@ components:
       example: 02-00-00-00-00-00
     DestinationInterface:
       required:
-      - interfaceType
+        - interfaceType
       type: object
       properties:
         interfaceType:
@@ -1094,26 +1094,26 @@ components:
       description: IP address type
       example: IP_V6
       enum:
-      - IP_V6
-      - IP_V4
+        - IP_V6
+        - IP_V4
     DnsRule.State:
       type: string
       description: DNS rule state. This attribute may be updated using HTTP PUT method
       example: ACTIVE
       enum:
-      - ACTIVE
-      - INACTIVE
+        - ACTIVE
+        - INACTIVE
     DnsRule.Ttl:
       type: integer
       description: Time to live value
       format: uint32
     DnsRule:
       required:
-      - dnsRuleId
-      - domainName
-      - ipAddress
-      - ipAddressType
-      - state
+        - dnsRuleId
+        - domainName
+        - ipAddress
+        - ipAddressType
+        - state
       type: object
       properties:
         dnsRuleId:
@@ -1159,7 +1159,7 @@ components:
       example: /mecAppSuptApi/example
     MecAppSuptApiSubscriptionLinkList.Links:
       required:
-      - self
+        - self
       type: object
       properties:
         self:
@@ -1172,16 +1172,16 @@ components:
       description: Self-referring URI.
       example:
         subscriptions:
-        - rel: rel
-          href: null
-        - rel: rel
-          href: null
+          - rel: rel
+            href: null
+          - rel: rel
+            href: null
         self:
           href: /mecAppSuptApi/example
     MecAppSuptApiSubscriptionLinkList.Subscription:
       required:
-      - href
-      - rel
+        - href
+        - rel
       type: object
       properties:
         href:
@@ -1195,7 +1195,7 @@ components:
         href: null
     MecAppSuptApiSubscriptionLinkList:
       required:
-      - _links
+        - _links
       type: object
       properties:
         _links:
@@ -1206,10 +1206,10 @@ components:
       example:
         _links:
           subscriptions:
-          - rel: rel
-            href: null
-          - rel: rel
-            href: null
+            - rel: rel
+              href: null
+            - rel: rel
+              href: null
           self:
             href: /mecAppSuptApi/example
     OperationActionType:
@@ -1217,8 +1217,8 @@ components:
       description: Operation that is being performed on the MEC application instance.
       example: TERMINATING
       enum:
-      - STOPPING
-      - TERMINATING
+        - STOPPING
+        - TERMINATING
     ProblemDetails:
       type: object
       properties:
@@ -1258,10 +1258,10 @@ components:
       description: Indication about the MEC application instance.
       example: READY
       enum:
-      - READY
+        - READY
     Self:
       required:
-      - self
+        - self
       type: object
       properties:
         self:
@@ -1281,9 +1281,9 @@ components:
       description: NTP authentication option
       example: NONE
       enum:
-      - NONE
-      - SYMMETRIC_KEY
-      - AUTO_KEY
+        - NONE
+        - SYMMETRIC_KEY
+        - AUTO_KEY
     TimingCaps.NtpServers.DelayReqMaxRate:
       type: integer
       description: Acceptable maximum rate of the Delay_Req messages in packets per
@@ -1316,8 +1316,8 @@ components:
       description: Address type of NTP server
       example: IP_ADDRESS
       enum:
-      - IP_ADDRESS
-      - DNS_NAME
+        - IP_ADDRESS
+        - DNS_NAME
     TimingCaps.NtpServers_PtpMasterIpAddress:
       type: string
       description: PTP Master IP Address
@@ -1329,13 +1329,13 @@ components:
       example: 1
     TimingCaps.NtpServers:
       required:
-      - authenticationKeyNum
-      - authenticationOption
-      - localPriority
-      - maxPollingInterval
-      - minPollingInterval
-      - ntpServerAddr
-      - ntpServerAddrType
+        - authenticationKeyNum
+        - authenticationOption
+        - localPriority
+        - maxPollingInterval
+        - minPollingInterval
+        - ntpServerAddr
+        - ntpServerAddrType
       type: object
       properties:
         ntpServerAddrType:
@@ -1363,9 +1363,9 @@ components:
         minPollingInterval: 3
     TimingCaps_PtpMasters:
       required:
-      - delayReqMaxRate
-      - ptpMasterIpAddress
-      - ptpMasterLocalPriority
+        - delayReqMaxRate
+        - ptpMasterIpAddress
+        - ptpMasterLocalPriority
       type: object
       properties:
         ptpMasterIpAddress:
@@ -1381,8 +1381,8 @@ components:
         delayReqMaxRate: 10
     TimingCaps.TimeStamp:
       required:
-      - nanoSeconds
-      - seconds
+        - nanoSeconds
+        - seconds
       type: object
       properties:
         seconds:
@@ -1423,27 +1423,27 @@ components:
           seconds: 1577836800
           nanoSeconds: 0
         ntpServers:
-        - ntpServerAddr: 192.0.2.0
-          maxPollingInterval: 17
-          authenticationKeyNum: 1
-          localPriority: 1
-          authenticationOption: NONE
-          ntpServerAddrType: IP_ADDRESS
-          minPollingInterval: 3
-        - ntpServerAddr: 192.0.2.0
-          maxPollingInterval: 17
-          authenticationKeyNum: 1
-          localPriority: 1
-          authenticationOption: NONE
-          ntpServerAddrType: IP_ADDRESS
-          minPollingInterval: 3
+          - ntpServerAddr: 192.0.2.0
+            maxPollingInterval: 17
+            authenticationKeyNum: 1
+            localPriority: 1
+            authenticationOption: NONE
+            ntpServerAddrType: IP_ADDRESS
+            minPollingInterval: 3
+          - ntpServerAddr: 192.0.2.0
+            maxPollingInterval: 17
+            authenticationKeyNum: 1
+            localPriority: 1
+            authenticationOption: NONE
+            ntpServerAddrType: IP_ADDRESS
+            minPollingInterval: 3
         ptpMasters:
-        - ptpMasterLocalPriority: 1
-          ptpMasterIpAddress: 192.0.2.0
-          delayReqMaxRate: 10
-        - ptpMasterLocalPriority: 1
-          ptpMasterIpAddress: 192.0.2.0
-          delayReqMaxRate: 10
+          - ptpMasterLocalPriority: 1
+            ptpMasterIpAddress: 192.0.2.0
+            delayReqMaxRate: 10
+          - ptpMasterLocalPriority: 1
+            ptpMasterIpAddress: 192.0.2.0
+            delayReqMaxRate: 10
     TrafficFilter.Address:
       type: string
       description: Identify the traffic ip address.
@@ -1553,58 +1553,58 @@ components:
       description: This type represents the traffic filter.
       example:
         srcTunnelPort:
-        - '?'
-        - '?'
+          - '?'
+          - '?'
         dstAddress:
-        - null
-        - null
+          - null
+          - null
         srcAddress:
-        - 192.168.1.1
-        - 192.168.1.1
+          - 192.168.1.1
+          - 192.168.1.1
         srcPort:
-        - "8080"
-        - "8080"
+          - "8080"
+          - "8080"
         token:
-        - '?'
-        - '?'
+          - '?'
+          - '?'
         tC: 1
         protocol:
-        - '?'
-        - '?'
+          - '?'
+          - '?'
         dstTunnelPort:
-        - null
-        - null
+          - null
+          - null
         dSCP: 0
         dstPort:
-        - null
-        - null
+          - null
+          - null
         qCI: 1
         srcTunnelAddress:
-        - '?'
-        - '?'
+          - '?'
+          - '?'
         tgtTunnelAddress:
-        - null
-        - null
+          - null
+          - null
     TrafficRule.Action:
       type: string
       description: "The action of the MEC host data plane when a packet matches the\
         \ trafficFilter\n   "
       example: DROP
       enum:
-      - DROP
-      - FORWARD_DECAPSULATED
-      - FORWARD_ENCAPSULATED
-      - PASSTHROUGH
-      - DUPLICATE_DECAPSULATED
-      - DUPLICATE_ENCAPSULATED
+        - DROP
+        - FORWARD_DECAPSULATED
+        - FORWARD_ENCAPSULATED
+        - PASSTHROUGH
+        - DUPLICATE_DECAPSULATED
+        - DUPLICATE_ENCAPSULATED
     TrafficRule.FilterType:
       type: string
       description: Definition of filter per FLOW or PACKET. If flow the filter match
         UE->EPC packet and the reverse packet is handled in the same context
       example: FLOW
       enum:
-      - FLOW
-      - PACKET
+        - FLOW
+        - PACKET
     TrafficRule.Id:
       type: string
       description: Identify the traffic rule.
@@ -1621,16 +1621,16 @@ components:
         using HTTP PUT method
       example: ACTIVE
       enum:
-      - ACTIVE
-      - INACTIVE
+        - ACTIVE
+        - INACTIVE
     TrafficRule:
       required:
-      - action
-      - filterType
-      - priority
-      - state
-      - trafficFilter
-      - trafficRuleId
+        - action
+        - filterType
+        - priority
+        - state
+        - trafficFilter
+        - trafficRuleId
       type: object
       properties:
         trafficRuleId:
@@ -1666,72 +1666,72 @@ components:
         filterType: FLOW
         priority: 1
         trafficFilter:
-        - srcTunnelPort:
-          - '?'
-          - '?'
-          dstAddress:
-          - null
-          - null
-          srcAddress:
-          - 192.168.1.1
-          - 192.168.1.1
-          srcPort:
-          - "8080"
-          - "8080"
-          token:
-          - '?'
-          - '?'
-          tC: 1
-          protocol:
-          - '?'
-          - '?'
-          dstTunnelPort:
-          - null
-          - null
-          dSCP: 0
-          dstPort:
-          - null
-          - null
-          qCI: 1
-          srcTunnelAddress:
-          - '?'
-          - '?'
-          tgtTunnelAddress:
-          - null
-          - null
-        - srcTunnelPort:
-          - '?'
-          - '?'
-          dstAddress:
-          - null
-          - null
-          srcAddress:
-          - 192.168.1.1
-          - 192.168.1.1
-          srcPort:
-          - "8080"
-          - "8080"
-          token:
-          - '?'
-          - '?'
-          tC: 1
-          protocol:
-          - '?'
-          - '?'
-          dstTunnelPort:
-          - null
-          - null
-          dSCP: 0
-          dstPort:
-          - null
-          - null
-          qCI: 1
-          srcTunnelAddress:
-          - '?'
-          - '?'
-          tgtTunnelAddress:
-          - null
-          - null
+          - srcTunnelPort:
+              - '?'
+              - '?'
+            dstAddress:
+              - null
+              - null
+            srcAddress:
+              - 192.168.1.1
+              - 192.168.1.1
+            srcPort:
+              - "8080"
+              - "8080"
+            token:
+              - '?'
+              - '?'
+            tC: 1
+            protocol:
+              - '?'
+              - '?'
+            dstTunnelPort:
+              - null
+              - null
+            dSCP: 0
+            dstPort:
+              - null
+              - null
+            qCI: 1
+            srcTunnelAddress:
+              - '?'
+              - '?'
+            tgtTunnelAddress:
+              - null
+              - null
+          - srcTunnelPort:
+              - '?'
+              - '?'
+            dstAddress:
+              - null
+              - null
+            srcAddress:
+              - 192.168.1.1
+              - 192.168.1.1
+            srcPort:
+              - "8080"
+              - "8080"
+            token:
+              - '?'
+              - '?'
+            tC: 1
+            protocol:
+              - '?'
+              - '?'
+            dstTunnelPort:
+              - null
+              - null
+            dSCP: 0
+            dstPort:
+              - null
+              - null
+            qCI: 1
+            srcTunnelAddress:
+              - '?'
+              - '?'
+            tgtTunnelAddress:
+              - null
+              - null
     TunnelInfo.TunnelDstAddress:
       type: string
       description: Destination address of the tunnel
@@ -1745,11 +1745,11 @@ components:
       description: This type represents the tunnel information.
       example: GTP_U
       enum:
-      - GTP_U
-      - GRE
+        - GTP_U
+        - GRE
     TunnelInfo:
       required:
-      - tunnelType
+        - tunnelType
       type: object
       properties:
         tunnelType:
@@ -1991,18 +1991,18 @@ components:
         state: ACTIVE
     DnsRules:
       value:
-      - dnsRuleId: DnsRule1
-        domainName: www.example.com
-        ipAddressType: IP_V4
-        ipAddress: 146.241.7.3
-        ttl: 300
-        state: ACTIVE
-      - dnsRuleId: DnsRule2
-        domainName: www.example.com
-        ipAddressType: IP_V4
-        ipAddress: 146.241.7.4
-        ttl: 300
-        state: INACTIVE
+        - dnsRuleId: DnsRule1
+          domainName: www.example.com
+          ipAddressType: IP_V4
+          ipAddress: 146.241.7.3
+          ttl: 300
+          state: ACTIVE
+        - dnsRuleId: DnsRule2
+          domainName: www.example.com
+          ipAddressType: IP_V4
+          ipAddress: 146.241.7.4
+          ttl: 300
+          state: INACTIVE
     TrafficRule:
       value:
         trafficRuleId: TrafficRule123
@@ -2010,13 +2010,13 @@ components:
         filterType: FLOW
         priority: 1
         trafficFilter:
-        - srcAddress:
-          - 192.168.2.0/24
-          - 192.168.3.0/24
-          dstAddress:
-          - 192.127.4.100/32
-          dstPort:
-          - "80"
+          - srcAddress:
+              - 192.168.2.0/24
+              - 192.168.3.0/24
+            dstAddress:
+              - 192.127.4.100/32
+            dstPort:
+              - "80"
         action: FORWARD_DECAPSULATED
         dstInterface:
           interfaceType: IP
@@ -2024,23 +2024,23 @@ components:
         state: ACTIVE
     TrafficRules:
       value:
-      - trafficRuleId: TrafficRule123
-        serName: ExampleService
-        filterType: FLOW
-        priority: 1
-        trafficFilter:
-        - srcAddress:
-          - 192.168.2.0/24
-          - 192.168.3.0/24
-          dstAddress:
-          - 192.127.4.100/32
-          dstPort:
-          - "80"
-        action: FORWARD_DECAPSULATED
-        dstInterface:
-          interfaceType: IP
-          dstIpAddress: 20.1.1.1
-        state: ACTIVE
+        - trafficRuleId: TrafficRule123
+          serName: ExampleService
+          filterType: FLOW
+          priority: 1
+          trafficFilter:
+            - srcAddress:
+                - 192.168.2.0/24
+                - 192.168.3.0/24
+              dstAddress:
+                - 192.127.4.100/32
+              dstPort:
+                - "80"
+          action: FORWARD_DECAPSULATED
+          dstInterface:
+            interfaceType: IP
+            dstIpAddress: 20.1.1.1
+          state: ACTIVE
   requestBodies:
     ApplicationsConfirmReady:
       content:
@@ -2146,7 +2146,7 @@ components:
       '{$request.body#/callbackReference}':
         post:
           tags:
-          - callbacks
+            - callbacks
           description: Represents the information that the MEP notifies the subscribed
             application instance about the corresponding  application instance termination/stop
           operationId: AppTerminationNotification_POST

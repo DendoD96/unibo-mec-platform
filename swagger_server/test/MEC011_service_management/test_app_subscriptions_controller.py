@@ -2,41 +2,86 @@
 
 from __future__ import absolute_import
 
-from flask import json
+import re
 
-from swagger_server.models.MEC011_service_management.ser_availability_notification_subscription import \
-	SerAvailabilityNotificationSubscription  # noqa: E501
 from swagger_server.test import BaseTestCase
+from swagger_server.test.utils.test_utilities import SUBSCRIPTION_ID, APP_INSTANCE_ID, \
+	get_service_availability_notification_subscription
+
+REGEX_FOR_SUBSCRIPTION_ID = r"\/mec_service_mgmt\/v1\/applications\/.*\/subscriptions\/(.*)"
 
 
 class TestAppSubscriptionsController(BaseTestCase):
 	"""AppSubscriptionsController integration test stubs"""
 
-	def test_applications_subscription_delete(self):
-		"""Test case for applications_subscription_delete
+	def test_applications_subscription_delete_fail_for_app_id(self):
+		"""Test case for applications_subscription_delete. Should return 404 because the application is not in READY state."""
 
-
-		"""
 		response = self.client.open(
 			'/mec_service_mgmt/v1/applications/{appInstanceId}/subscriptions/{subscriptionId}'.format(
-				appInstanceId='app_instance_id_example', subscriptionId='subscription_id_example'),
+				appInstanceId=APP_INSTANCE_ID, subscriptionId=SUBSCRIPTION_ID),
 			method='DELETE')
-		self.assert200(response,
-		               'Response body is : ' + response.data.decode('utf-8'))
+		self.check_status_code(404, response)
+
+	def test_applications_subscription_delete_fail_for_subscription_id(self):
+		"""Test case for applications_subscription_delete. Should return 404 because the application is in READY state,
+        but there is no subscription registered."""
+
+		self.app_ready(APP_INSTANCE_ID)
+		response = self.client.open(
+			'/mec_service_mgmt/v1/applications/{appInstanceId}/subscriptions/{subscriptionId}'.format(
+				appInstanceId=APP_INSTANCE_ID, subscriptionId=SUBSCRIPTION_ID),
+			method='DELETE')
+		self.check_status_code(404, response)
+
+	def test_applications_subscription_delete(self):
+		"""Test case for applications_subscription_delete. There is no subscription registered."""
+		inserted_subscription = self.register_app_and_add_subscription(
+			get_service_availability_notification_subscription())
+		inserted_subscription_id = re.search(pattern=REGEX_FOR_SUBSCRIPTION_ID,
+		                                     string=inserted_subscription.json["_links"]["self"]["href"]).group(1)
+		response = self.client.open(
+			'/mec_service_mgmt/v1/applications/{appInstanceId}/subscriptions/{subscriptionId}'.format(
+				appInstanceId=APP_INSTANCE_ID,
+				subscriptionId=inserted_subscription_id),
+			method='DELETE')
+		self.check_status_code(204, response)
+
+	def test_applications_subscription_get_fail_for_app_id(self):
+		"""Test case for applications_subscription_get. Should return 404 because the application is not in READY state."""
+
+		response = self.client.open(
+			'/mec_service_mgmt/v1/applications/{appInstanceId}/subscriptions/{subscriptionId}'.format(
+				appInstanceId=APP_INSTANCE_ID, subscriptionId=SUBSCRIPTION_ID),
+			method='GET')
+		self.check_status_code(404, response)
+
+	def test_applications_subscription_get_fail_for_subscription_id(self):
+		"""Test case for applications_subscription_get. Should return 404 because the application is in READY state,
+        but there is no subscription registered."""
+
+		self.register_app_and_add_subscription(
+			get_service_availability_notification_subscription())
+		response = self.client.open(
+			'/mec_service_mgmt/v1/applications/{appInstanceId}/subscriptions/{subscriptionId}'.format(
+				appInstanceId=APP_INSTANCE_ID, subscriptionId=SUBSCRIPTION_ID),
+			method='GET')
+		self.check_status_code(404, response)
 
 	def test_applications_subscription_get(self):
-		"""Test case for applications_subscription_get
-
-
-		"""
+		"""Test case for applications_subscription_get."""
+		inserted_subscription = self.register_app_and_add_subscription(
+			get_service_availability_notification_subscription())
+		inserted_subscription_id = re.search(pattern=REGEX_FOR_SUBSCRIPTION_ID,
+		                                     string=inserted_subscription.json["_links"]["self"]["href"]).group(1)
 		response = self.client.open(
 			'/mec_service_mgmt/v1/applications/{appInstanceId}/subscriptions/{subscriptionId}'.format(
-				appInstanceId='app_instance_id_example', subscriptionId='subscription_id_example'),
+				appInstanceId=APP_INSTANCE_ID,
+				subscriptionId=inserted_subscription_id),
 			method='GET')
-		self.assert200(response,
-		               'Response body is : ' + response.data.decode('utf-8'))
+		self.check_status_code(200, response)
 
-	def test_applications_subscriptions_get(self):
+	def test_applications_subscriptions_get_fail(self):
 		"""Test case for applications_subscriptions_get
 
 
@@ -45,25 +90,33 @@ class TestAppSubscriptionsController(BaseTestCase):
 			'/mec_service_mgmt/v1/applications/{appInstanceId}/subscriptions'.format(
 				appInstanceId='app_instance_id_example'),
 			method='GET')
-		self.assert200(response,
-		               'Response body is : ' + response.data.decode('utf-8'))
+		self.check_status_code(404, response)
 
-	def test_applications_subscriptions_post(self):
-		"""Test case for applications_subscriptions_post
+	def test_applications_subscriptions_get(self):
+		"""Test case for applications_subscriptions_get
 
 
 		"""
-		body = SerAvailabilityNotificationSubscription(subscription_type="SerAvailabilityNotificationSubscription",
-		                                               callback_reference="callbackURI",
-		                                               )
+		self.register_app_and_add_subscription(
+			get_service_availability_notification_subscription())
 		response = self.client.open(
 			'/mec_service_mgmt/v1/applications/{appInstanceId}/subscriptions'.format(
-				appInstanceId='app_instance_id_example'),
-			method='POST',
-			data=json.dumps(body),
-			content_type='application/json')
-		self.assert200(response,
-		               'Response body is : ' + response.data.decode('utf-8'))
+				appInstanceId=APP_INSTANCE_ID),
+			method='GET')
+		self.check_status_code(200, response)
+
+	def test_applications_subscriptions_post_fail(self):
+		"""Test case for applications_subscriptions_post.
+		Should return 404 because the application is not in READY state."""
+		subscription_info = get_service_availability_notification_subscription()
+		self.check_status_code(404, self.add_subscription(app_instance_id=APP_INSTANCE_ID,
+		                                                  subscription_info=subscription_info))
+
+	def test_applications_subscriptions_post(self):
+		"""Test case for applications_subscriptions_post."""
+		response = self.register_app_and_add_subscription(get_service_availability_notification_subscription())
+		self.check_status_code(201, response)
+		self.assertTrue(response.headers.get('Location'))
 
 
 if __name__ == '__main__':
