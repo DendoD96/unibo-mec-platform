@@ -1,8 +1,11 @@
+import json
 import re
 from functools import partial
 
+from deepdiff import DeepDiff
 from swagger_server.models.MEC011_service_management.ser_availability_notification_subscription import \
 	SerAvailabilityNotificationSubscription
+from swagger_server.encoder import JSONEncoder
 
 REGEX_FOR_SUBSCRIPTION_ID = r"\/mec_service_mgmt\/v1\/applications\/.*\/subscriptions\/(.*)"
 app_ids = {}
@@ -75,8 +78,23 @@ def get_all_services(filter_parameters_dictionary):
 
 
 def delete_application_service(application_instance_id, service_instance_id):
-	return __delete_app_information(application_instance_id, 'servicelist',
-	                                lambda service: service.ser_instance_id != service_instance_id)
+	if application_instance_id in app_ids:
+		services = app_ids[application_instance_id].get('servicelist', [])
+		information_length = len(services)
+		if information_length > 0:
+			new_services = []
+			deleted_service = None
+			for service in services:
+				if service.ser_instance_id != service_instance_id:
+					new_services.append(service)
+				else:
+					deleted_service = service
+			if deleted_service is not None:
+				app_ids[application_instance_id]['servicelist'] = new_services
+				return deleted_service
+		raise NoAppInformationFound(f"{application_instance_id} does not have the information to delete.")
+	else:
+		raise AppNotReady(f"{application_instance_id} is not in ready applications list.")
 
 
 def delete_application_subscription(application_instance_id, subscription_id):
@@ -97,11 +115,24 @@ def delete_application_subscription(application_instance_id, subscription_id):
 
 
 def update_application_service(application_instance_id, service_instance_id, service):
-	services = delete_application_service(application_instance_id=application_instance_id,
-	                                      service_instance_id=service_instance_id)
+	def get_change_type():
+		change = None
+		service_dictionary = json.loads(
+			json.dumps(service, cls=JSONEncoder, sort_keys=True).replace("'", "\""))
+		deleted_service_dictionary = json.loads(
+			json.dumps(deleted_service, cls=JSONEncoder, sort_keys=True).replace("'", "\""))
+		differences = DeepDiff(service_dictionary, deleted_service_dictionary).get('values_changed', {})
+		if len(differences) == 1 and "root['state']" in differences:
+			change = "STATE_CHANGED"
+		elif len(differences) > 0:
+			change = "ATTRIBUTES_CHANGED"
+		return change
+
+	deleted_service = delete_application_service(application_instance_id=application_instance_id,
+	                                             service_instance_id=service_instance_id)
 	service.ser_instance_id = service_instance_id
-	services.append(service)
-	return service
+	app_ids[application_instance_id].get('servicelist', []).append(service)
+	return service, get_change_type()
 
 
 def get_entity_to_update(service_info):
@@ -138,24 +169,6 @@ def __check_match_between_service_and_subscription(service_information, subscrip
 	         service_states is None or getattr(service_information, 'state') in service_states,
 	         service_is_local is None or getattr(service_information, 'is_local') == service_is_local]
 	return all(tests)
-
-
-def __delete_app_information(app_instance_id, information, filter_lambda):
-	"""Return the new informations without the deleted ones. If the specified application id does not correspond to a
-	ready application the method raise an exception. If the application does
-	not have the information to delete it raise an exception."""
-
-	if app_instance_id in app_ids:
-		informations = app_ids[app_instance_id].get(information, [])
-		information_length = len(informations)
-		if information_length > 0:
-			informations = [information for information in informations if filter_lambda(information)]
-			if len(informations) < information_length:
-				app_ids[app_instance_id][information] = informations
-				return informations
-		raise NoAppInformationFound(f"{app_instance_id} does not have the information to delete.")
-	else:
-		raise AppNotReady(f"{app_instance_id} is not in ready applications list.")
 
 
 def __get_application_informations(app_instance_id, filter_parameters_dictionary, information):

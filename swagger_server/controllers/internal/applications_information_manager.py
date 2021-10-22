@@ -13,7 +13,7 @@ from swagger_server.models.internal.applications_information_data import add_app
 	delete_application, AppNotReady, add_application_service, add_application_subscription, get_application_services, \
 	get_application_subscriptions, get_all_services, delete_application_service, NoAppInformationFound, \
 	delete_application_subscription, update_application_service
-from swagger_server.models.internal.service_subscription_event import ServiceRegistered, ServiceDeleted, ServiceUpdated
+from swagger_server.models.internal.service_subscription_event import ServiceSubscriptionEvent
 from swagger_server.models.problem_details import ProblemDetails
 
 
@@ -45,7 +45,8 @@ def manage_add_application_service(app_instance_id, service: ServiceInfoPost):
 		                           scope_of_locality=service.scope_of_locality,
 		                           consumed_local_only=service.consumed_local_only, is_local=service.is_local)
 		add_application_service(application_instance_id=app_instance_id, service_information=service_info)
-		update_subscriber(ServiceRegistered(app_instance_id=app_instance_id, service_information=service_info))
+		update_subscriber(ServiceSubscriptionEvent(app_instance_id=app_instance_id, service_information=service_info,
+		                                           change_type="ADDED"))
 		return service_info, 201, {
 			"Location": f"/mec_service_mgmt/v1/applications/{app_instance_id}/services/{service_id}"}
 	except AppNotReady as exception:
@@ -59,7 +60,6 @@ def manage_add_application_subscription(app_instance_id, subscription: SerAvaila
 
 	try:
 		subscription_id = str(uuid.uuid4())
-		# subscription.ser_availability_notification_subscription_id = subscription_id
 		subscription.links = ModelSelf(
 			_self=LinkType(href=f"/mec_service_mgmt/v1/applications/{app_instance_id}/subscriptions/{subscription_id}"))
 		add_application_subscription(application_instance_id=app_instance_id, subscription_information=subscription)
@@ -105,8 +105,10 @@ def manage_delete_app_service(app_instance_id, ser_instance_id):
 	returns a ProblemDetails object."""
 
 	try:
-		delete_application_service(application_instance_id=app_instance_id, service_instance_id=ser_instance_id)
-		update_subscriber(ServiceDeleted(app_instance_id=app_instance_id))
+		deleted_service = delete_application_service(application_instance_id=app_instance_id,
+		                                             service_instance_id=ser_instance_id)
+		update_subscriber(ServiceSubscriptionEvent(app_instance_id=app_instance_id, service_information=deleted_service,
+		                                           change_type="REMOVED"))
 		return "Done", 204
 	except AppNotReady as exception:
 		return ProblemDetails(title="service not found", detail=str(exception), status=404), 404
@@ -134,10 +136,12 @@ def manage_update_application_service(app_instance_id, ser_instance_id, service)
 	returns a ProblemDetails object."""
 
 	try:
-		updated_service = update_application_service(application_instance_id=app_instance_id,
-		                                             service=service,
-		                                             service_instance_id=ser_instance_id)
-		update_subscriber(ServiceUpdated(app_instance_id=app_instance_id, service_information=updated_service))
+		updated_service_and_changed_type = update_application_service(application_instance_id=app_instance_id,
+		                                                              service=service,
+		                                                              service_instance_id=ser_instance_id)
+		updated_service = updated_service_and_changed_type[0]
+		# update_subscriber(ServiceSubscriptionEvent(app_instance_id=app_instance_id, service_information=updated_service,
+		#                                            change_type=updated_service_and_changed_type[1]))
 		return updated_service
 	except AppNotReady as exception:
 		return ProblemDetails(title="service not found", detail=str(exception), status=404), 404
